@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Qur'an</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       CSS VARIABLES
+    ══════════════════════════════════════════ */
+    :root {
+      --hijau-gelap:   #1a472a;
+      --hijau-medium:  #2d6a4f;
+      --hijau-muda:    #40916c;
+      --hijau-terang:  #74c69d;
+      --emas:          #d4af37;
+      --emas-muda:     #f0d060;
+      --emas-redup:    #a8892a;
+      --bg-utama:      #f7f5f0;
+      --bg-kartu:      #ffffff;
+      --border:        #e0d9c8;
+      --teks-gelap:    #1c1c1c;
+      --teks-sedang:   #444444;
+      --teks-muted:    #888888;
+      --font-arab:     'Amiri', serif;
+      --font-latin:    'Lato', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-latin);
+      background: var(--bg-utama);
+      color: var(--teks-gelap);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ══════════════════════════════════════════
+       STICKY HEADER + HERO (digabung)
+    ══════════════════════════════════════════ */
+    .hero {
+      background: var(--hijau-gelap);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow: hidden;
+      padding: 14px 24px 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    /* Dekorasi lingkaran latar */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.07);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -50px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-kecil {
+      font-size: clamp(0.92rem, 2.5vw, 1.15rem);
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--emas);
+      margin-bottom: 2px;
+      line-height: 1.2;
+    }
+
+    .hero-arab {
+      font-family: var(--font-arab);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--emas);
+      line-height: 1.4;
+      margin-bottom: 1px;
+    }
+
+    .hero-latin {
+      font-size: clamp(0.6rem, 1.5vw, 0.72rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .hero-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════════════
+       PROGRESS BAR SECTION
+    ══════════════════════════════════════════ */
+    .progress-section {
+      background: linear-gradient(135deg, #14391f 0%, #1a472a 100%);
+      border-bottom: 2px solid var(--emas);
+      padding: 12px 24px 10px;
+    }
+
+    .progress-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-angka {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 700;
+      color: var(--emas);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 3px;
+      display: block;
+    }
+
+    .progress-bar-wrap {
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      height: 6px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--emas-redup), var(--emas), var(--emas-muda));
+      transition: width 1s ease;
+    }
+
+    .progress-pct {
+      text-align: right;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ══════════════════════════════════════════
+       MAIN CONTAINER
+    ══════════════════════════════════════════ */
+    main {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 24px;
+      flex: 1;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION TITLE
+    ══════════════════════════════════════════ */
+    .sec-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .sec-title h2 {
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--hijau-gelap);
+    }
+
+    .sec-title-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sec-title .badge-count {
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: var(--hijau-gelap);
+      color: white;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+
+    /* ══════════════════════════════════════════
+       SEARCH BAR
+    ══════════════════════════════════════════ */
+    .search-wrap {
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 18px 12px 44px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: var(--font-latin);
+      font-size: 0.9rem;
+      background: white;
+      color: var(--teks-gelap);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--hijau-muda);
+      box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
+    }
+
+    .search-wrap input::placeholder { color: #bbb; }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bbb;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════
+       GRID SURAH TERSEDIA
+    ══════════════════════════════════════════ */
+    .grid-tersedia {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .kartu-surah {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .kartu-surah:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(26,71,42,0.13);
+      border-color: var(--hijau-muda);
+    }
+
+    .kartu-surah-top {
+      background: linear-gradient(135deg, var(--hijau-gelap) 0%, var(--hijau-medium) 100%);
+      padding: 18px 20px 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .kartu-nomor {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .kartu-nama-latin {
+      font-size: 1rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .kartu-nama-arti {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+
+    .kartu-nama-arab {
+      font-family: var(--font-arab);
+      font-size: 1.8rem;
+      color: var(--emas);
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    .kartu-surah-bottom {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .kartu-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .tag-kecil {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-makkiyah  { background: #fef9c3; color: #854d0e; border: 1px solid #fde68a; }
+    .tag-madaniyah { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+
+    .kartu-ayat-count {
+      font-size: 0.72rem;
+      color: var(--teks-muted);
+    }
+
+    .kartu-cta {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--hijau-medium);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    /* Progress per surah (ayat selesai/total) */
+    .kartu-progress-wrap {
+      padding: 0 20px 14px;
+    }
+
+    .kartu-progress-bar {
+      background: #f0ede4;
+      border-radius: 100px;
+      height: 4px;
+      overflow: hidden;
+    }
+
+    .kartu-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--hijau-muda), var(--hijau-terang));
+      border-radius: 100px;
+    }
+
+    .kartu-progress-label {
+      font-size: 0.65rem;
+      color: var(--teks-muted);
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ══════════════════════════════════════════
+       GRID SURAH RENCANA
+    ══════════════════════════════════════════ */
+    .grid-rencana {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .kartu-rencana {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      opacity: 0.72;
+      transition: opacity 0.2s;
+    }
+
+    .kartu-rencana:hover { opacity: 0.9; }
+
+    .kartu-rencana .nomor {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--teks-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .kartu-rencana .nama-latin {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--teks-sedang);
+    }
+
+    .kartu-rencana .nama-arab {
+      font-family: var(--font-arab);
+      font-size: 1.15rem;
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .kartu-rencana .ayat {
+      font-size: 0.65rem;
+      color: #ccc;
+    }
+
+    .badge-segera {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #94a3b8;
+      border: 1px solid #e2e8f0;
+      padding: 1px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+      align-self: flex-start;
+    }
+
+    /* ══════════════════════════════════════════
+       EMPTY STATE (search tidak ketemu)
+    ══════════════════════════════════════════ */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--teks-muted);
+      display: none;
+    }
+
+    .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .empty-state p { font-size: 0.88rem; }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: var(--hijau-gelap);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.75rem;
+      line-height: 1.8;
+    }
+
+    footer a { color: var(--emas); text-decoration: none; }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .progress-stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .grid-tersedia  { grid-template-columns: 1fr; }
+      .grid-rencana   { grid-template-columns: repeat(2, 1fr); }
+      main { padding: 28px 16px; }
+      .hero { padding: 12px 16px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-kecil">Analisis Gramatikal Al-Qur'an</div>
+      <div class="hero-arab">تَحْلِيْل نَحْوِي الْقُرْآن</div>
+      <div class="hero-latin">Tahlil Nahwi Al-Qur'an</div>
+      <p class="hero-desc">
+        Analisis gramatikal terpadu mulai tingkat kata, frasa, dan kalimat<br>
+        untuk membantu memahami Al-Qur'an secara mendalam.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PROGRESS
+  ══════════════════════════════════════════ -->
+  <div class="progress-section">
+    <div class="progress-inner">
+      <div class="progress-stats">
+        <div class="stat-item">
+          <span class="stat-angka" id="stat-ayat">0</span>
+          <span class="stat-label">Ayat Selesai</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-angka" id="stat-surah">0</span>
+          <span class="stat-label">Surah Selesai</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-angka">6.236</span>
+          <span class="stat-label">Total Ayat</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-angka" id="stat-persen">0%</span>
+          <span class="stat-label">Progress</span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-pct" id="progress-pct-text">Memuat...</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       KONTEN UTAMA
+  ══════════════════════════════════════════ -->
+  <main>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        id="input-cari"
+        placeholder="Cari surah — nama Latin atau nama Arab..."
+        oninput="filterSurah(this.value)"
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- ── Surah Tersedia ── -->
+    <div class="sec-title" id="sec-tersedia">
+      <h2>Surah Tersedia</h2>
+      <div class="sec-title-line"></div>
+      <span class="badge-count" id="count-tersedia">0 Surah</span>
+    </div>
+
+    <div class="grid-tersedia" id="grid-tersedia"></div>
+
+    <div class="empty-state" id="empty-tersedia">
+      <div class="empty-icon">📭</div>
+      <p>Tidak ada surah tersedia yang cocok dengan pencarian.</p>
+    </div>
+
+    <!-- ── Surah Rencana ── -->
+    <div class="sec-title" id="sec-rencana">
+      <h2>Segera Hadir — Juz Amma</h2>
+      <div class="sec-title-line"></div>
+      <span class="badge-count" id="count-rencana">0 Surah</span>
+    </div>
+
+    <div class="grid-rencana" id="grid-rencana"></div>
+
+    <div class="empty-state" id="empty-rencana">
+      <div class="empty-icon">📭</div>
+      <p>Tidak ada surah rencana yang cocok dengan pencarian.</p>
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>تَحْلِيْل نَحْوِي الْقُرْآن &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an</p>
+    <p>Semoga menjadi ilmu yang bermanfaat dan amal jariyah. Aamiin.</p>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════ -->
+  <!-- surah-data.js di-embed langsung agar bisa dibuka via file:// tanpa server -->
+  <script>
+const SURAH_DATA = [
+  { nomor:1,   nomorStr:"001", namaLatin:"Al-Fatihah",    namaArab:"الفاتحة",    arti:"Pembuka",                jumlahAyat:7,  jenis:"Makkiyah",  status:"tersedia", keterangan:"Surah pertama dan pembuka Al-Qur'an" },
+  { nomor:113, nomorStr:"113", namaLatin:"Al-Falaq",      namaArab:"الفلق",      arti:"Waktu Subuh",            jumlahAyat:5,  jenis:"Makkiyah",  status:"tersedia", keterangan:"Surah ke-113, salah satu Al-Mu'awwidzatain" },
+  { nomor:114, nomorStr:"114", namaLatin:"An-Naas",       namaArab:"الناس",      arti:"Manusia",                jumlahAyat:6,  jenis:"Makkiyah",  status:"tersedia", keterangan:"Surah terakhir Al-Qur'an, salah satu Al-Mu'awwidzatain" },
+  { nomor:78,  nomorStr:"078", namaLatin:"An-Naba'",      namaArab:"النبأ",      arti:"Berita Besar",           jumlahAyat:40, jenis:"Makkiyah",  status:"rencana",  keterangan:"Surah ke-78, awal Juz Amma" },
+  { nomor:79,  nomorStr:"079", namaLatin:"An-Nazi'at",    namaArab:"النازعات",   arti:"Malaikat yang Mencabut", jumlahAyat:46, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:80,  nomorStr:"080", namaLatin:"'Abasa",        namaArab:"عبس",        arti:"Ia Bermuka Masam",       jumlahAyat:42, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:81,  nomorStr:"081", namaLatin:"At-Takwir",     namaArab:"التكوير",    arti:"Penggulungan",           jumlahAyat:29, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:82,  nomorStr:"082", namaLatin:"Al-Infithar",   namaArab:"الانفطار",   arti:"Terbelah",               jumlahAyat:19, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:83,  nomorStr:"083", namaLatin:"Al-Muthaffifin",namaArab:"المطففين",   arti:"Orang yang Curang",      jumlahAyat:36, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:84,  nomorStr:"084", namaLatin:"Al-Insyiqaq",   namaArab:"الانشقاق",   arti:"Terbelah",               jumlahAyat:25, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:85,  nomorStr:"085", namaLatin:"Al-Buruj",      namaArab:"البروج",     arti:"Gugusan Bintang",        jumlahAyat:22, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:86,  nomorStr:"086", namaLatin:"Ath-Thariq",    namaArab:"الطارق",     arti:"Bintang Malam",          jumlahAyat:17, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:87,  nomorStr:"087", namaLatin:"Al-A'la",       namaArab:"الأعلى",     arti:"Yang Maha Tinggi",       jumlahAyat:19, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:88,  nomorStr:"088", namaLatin:"Al-Ghasyiyah",  namaArab:"الغاشية",    arti:"Hari Pembalasan",        jumlahAyat:26, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:89,  nomorStr:"089", namaLatin:"Al-Fajr",       namaArab:"الفجر",      arti:"Fajar",                  jumlahAyat:30, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:90,  nomorStr:"090", namaLatin:"Al-Balad",      namaArab:"البلد",      arti:"Negeri",                 jumlahAyat:20, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:91,  nomorStr:"091", namaLatin:"Asy-Syams",     namaArab:"الشمس",      arti:"Matahari",               jumlahAyat:15, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:92,  nomorStr:"092", namaLatin:"Al-Lail",       namaArab:"الليل",      arti:"Malam",                  jumlahAyat:21, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:93,  nomorStr:"093", namaLatin:"Adh-Dhuha",     namaArab:"الضحى",      arti:"Waktu Dhuha",            jumlahAyat:11, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:94,  nomorStr:"094", namaLatin:"Al-Insyirah",   namaArab:"الانشراح",   arti:"Kelapangan",             jumlahAyat:8,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:95,  nomorStr:"095", namaLatin:"At-Tin",        namaArab:"التين",      arti:"Buah Tin",               jumlahAyat:8,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:96,  nomorStr:"096", namaLatin:"Al-'Alaq",      namaArab:"العلق",      arti:"Segumpal Darah",         jumlahAyat:19, jenis:"Makkiyah",  status:"rencana",  keterangan:"Ayat pertama yang diturunkan" },
+  { nomor:97,  nomorStr:"097", namaLatin:"Al-Qadr",       namaArab:"القدر",      arti:"Kemuliaan",              jumlahAyat:5,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:98,  nomorStr:"098", namaLatin:"Al-Bayyinah",   namaArab:"البينة",     arti:"Bukti Nyata",            jumlahAyat:8,  jenis:"Madaniyah", status:"rencana",  keterangan:"" },
+  { nomor:99,  nomorStr:"099", namaLatin:"Az-Zalzalah",   namaArab:"الزلزلة",    arti:"Kegoncangan",            jumlahAyat:8,  jenis:"Madaniyah", status:"rencana",  keterangan:"" },
+  { nomor:100, nomorStr:"100", namaLatin:"Al-'Adiyat",    namaArab:"العاديات",   arti:"Kuda Perang",            jumlahAyat:11, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:101, nomorStr:"101", namaLatin:"Al-Qari'ah",    namaArab:"القارعة",    arti:"Hari Kiamat",            jumlahAyat:11, jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:102, nomorStr:"102", namaLatin:"At-Takatsur",   namaArab:"التكاثر",    arti:"Bermegah-megahan",       jumlahAyat:8,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:103, nomorStr:"103", namaLatin:"Al-'Ashr",      namaArab:"العصر",      arti:"Masa",                   jumlahAyat:3,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:104, nomorStr:"104", namaLatin:"Al-Humazah",    namaArab:"الهمزة",     arti:"Pengumpat",              jumlahAyat:9,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:105, nomorStr:"105", namaLatin:"Al-Fil",        namaArab:"الفيل",      arti:"Gajah",                  jumlahAyat:5,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:106, nomorStr:"106", namaLatin:"Quraisy",       namaArab:"قريش",       arti:"Suku Quraisy",           jumlahAyat:4,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:107, nomorStr:"107", namaLatin:"Al-Ma'un",      namaArab:"الماعون",    arti:"Barang yang Berguna",    jumlahAyat:7,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:108, nomorStr:"108", namaLatin:"Al-Kautsar",    namaArab:"الكوثر",     arti:"Nikmat yang Banyak",     jumlahAyat:3,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:109, nomorStr:"109", namaLatin:"Al-Kafirun",    namaArab:"الكافرون",   arti:"Orang-orang Kafir",      jumlahAyat:6,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:110, nomorStr:"110", namaLatin:"An-Nashr",      namaArab:"النصر",      arti:"Pertolongan",            jumlahAyat:3,  jenis:"Madaniyah", status:"rencana",  keterangan:"" },
+  { nomor:111, nomorStr:"111", namaLatin:"Al-Masad",      namaArab:"المسد",      arti:"Sabut",                  jumlahAyat:5,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" },
+  { nomor:112, nomorStr:"112", namaLatin:"Al-Ikhlas",     namaArab:"الإخلاص",    arti:"Ikhlas",                 jumlahAyat:4,  jenis:"Makkiyah",  status:"rencana",  keterangan:"" }
+];
+
+function getSurahTersedia() {
+  return SURAH_DATA.filter(s => s.status === "tersedia").sort((a,b) => a.nomor - b.nomor);
+}
+function getSurahRencana() {
+  return SURAH_DATA.filter(s => s.status === "rencana").sort((a,b) => a.nomor - b.nomor);
+}
+function getSurahByNomor(nomor) {
+  return SURAH_DATA.find(s => s.nomor === nomor) || null;
+}
+// Path RELATIF — tanpa leading "/" agar berfungsi di file:// maupun server
+function getPathAyat(nomorStr, ayat) {
+  return nomorStr + '-' + String(ayat).padStart(2,'0') + '.html';
+}
+function getStatistik() {
+  const tersedia = getSurahTersedia();
+  const totalAyatQuran = 6236;
+  const ayatSelesai = tersedia.reduce((sum, s) => sum + s.jumlahAyat, 0);
+  const surahSelesai = tersedia.length;
+  const totalSurah = SURAH_DATA.length;
+  const persentase = ((ayatSelesai / totalAyatQuran) * 100).toFixed(2);
+  return { ayatSelesai, surahSelesai, totalSurah, totalAyatQuran, persentase: parseFloat(persentase) };
+}
+  </script>
+
+  <script>
+  (function () {
+
+    // ── 1. STATISTIK PROGRESS ──────────────────
+    const stat = getStatistik();
+
+    document.getElementById('stat-ayat').textContent   = stat.ayatSelesai;
+    document.getElementById('stat-surah').textContent  = stat.surahSelesai;
+    document.getElementById('stat-persen').textContent = stat.persentase + '%';
+
+    const fillEl = document.getElementById('progress-fill');
+    const pctTxt = document.getElementById('progress-pct-text');
+
+    // Animasi bar setelah render
+    setTimeout(() => {
+      fillEl.style.width = stat.persentase + '%';
+      pctTxt.textContent = stat.ayatSelesai + ' dari ' + stat.totalAyatQuran + ' ayat selesai (' + stat.persentase + '%)';
+    }, 120);
+
+
+    // ── 2. RENDER KARTU ───────────────────────
+
+    // Hitung ayat selesai per surah
+    // (dalam proyek ini, surah "tersedia" = semua ayatnya selesai)
+    function getAyatSelesai(surah) {
+      // Surah tersedia → semua ayatnya sudah ada
+      return surah.status === 'tersedia' ? surah.jumlahAyat : 0;
+    }
+
+    function buatKartuTersedia(s) {
+      const pct = Math.round((getAyatSelesai(s) / s.jumlahAyat) * 100);
+      const tagJenis = s.jenis === 'Makkiyah'
+        ? '<span class="tag-kecil tag-makkiyah">Makkiyah</span>'
+        : '<span class="tag-kecil tag-madaniyah">Madaniyah</span>';
+
+      const el = document.createElement('a');
+      el.href = getPathAyat(s.nomorStr, 1);
+      el.className = 'kartu-surah';
+      el.dataset.cari = (s.namaLatin + ' ' + s.namaArab + ' ' + s.arti).toLowerCase();
+
+      el.innerHTML = `
+        <div class="kartu-surah-top">
+          <div>
+            <div class="kartu-nomor">Surah ${s.nomor}</div>
+            <div class="kartu-nama-latin">${s.namaLatin}</div>
+            <div class="kartu-nama-arti">${s.arti}</div>
+          </div>
+          <div class="kartu-nama-arab">${s.namaArab}</div>
+        </div>
+        <div class="kartu-surah-bottom">
+          <div class="kartu-meta">
+            ${tagJenis}
+            <span class="kartu-ayat-count">${s.jumlahAyat} Ayat</span>
+          </div>
+          <span class="kartu-cta">Buka →</span>
+        </div>
+        <div class="kartu-progress-wrap">
+          <div class="kartu-progress-bar">
+            <div class="kartu-progress-fill" style="width:${pct}%"></div>
+          </div>
+          <div class="kartu-progress-label">
+            <span>${getAyatSelesai(s)} ayat selesai</span>
+            <span>${pct}%</span>
+          </div>
+        </div>
+      `;
+      return el;
+    }
+
+    function buatKartuRencana(s) {
+      const tagJenis = s.jenis === 'Makkiyah'
+        ? '<span class="tag-kecil tag-makkiyah">Makkiyah</span>'
+        : '<span class="tag-kecil tag-madaniyah">Madaniyah</span>';
+
+      const el = document.createElement('div');
+      el.className = 'kartu-rencana';
+      el.dataset.cari = (s.namaLatin + ' ' + s.namaArab + ' ' + s.arti).toLowerCase();
+
+      el.innerHTML = `
+        <div class="nomor">${s.nomorStr} · ${s.jenis}</div>
+        <div class="nama-latin">${s.namaLatin}</div>
+        <div class="nama-arab">${s.namaArab}</div>
+        <div class="ayat">${s.jumlahAyat} Ayat</div>
+        <span class="badge-segera">Segera Hadir</span>
+      `;
+      return el;
+    }
+
+    // Render awal
+    const tersedia = getSurahTersedia();
+    const rencana  = getSurahRencana();
+
+    const gridTersedia = document.getElementById('grid-tersedia');
+    const gridRencana  = document.getElementById('grid-rencana');
+
+    tersedia.forEach(s => gridTersedia.appendChild(buatKartuTersedia(s)));
+    rencana.forEach(s  => gridRencana.appendChild(buatKartuRencana(s)));
+
+    document.getElementById('count-tersedia').textContent = tersedia.length + ' Surah';
+    document.getElementById('count-rencana').textContent  = rencana.length + ' Surah';
+
+
+    // ── 3. FILTER / SEARCH ────────────────────
+    window.filterSurah = function (q) {
+      const kata = q.trim().toLowerCase();
+
+      let adaTersedia = 0;
+      let adaRencana  = 0;
+
+      // Filter tersedia
+      gridTersedia.querySelectorAll('.kartu-surah').forEach(el => {
+        const cocok = !kata || el.dataset.cari.includes(kata);
+        el.style.display = cocok ? '' : 'none';
+        if (cocok) adaTersedia++;
+      });
+
+      // Filter rencana
+      gridRencana.querySelectorAll('.kartu-rencana').forEach(el => {
+        const cocok = !kata || el.dataset.cari.includes(kata);
+        el.style.display = cocok ? '' : 'none';
+        if (cocok) adaRencana++;
+      });
+
+      // Update counter
+      document.getElementById('count-tersedia').textContent = adaTersedia + ' Surah';
+      document.getElementById('count-rencana').textContent  = adaRencana  + ' Surah';
+
+      // Empty state
+      document.getElementById('empty-tersedia').style.display = adaTersedia === 0 ? 'block' : 'none';
+      document.getElementById('empty-rencana').style.display  = adaRencana  === 0 ? 'block' : 'none';
+    };
+
+  })();
+  </script>
+
+</body>
+</html>
