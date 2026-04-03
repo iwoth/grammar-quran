@@ -484,7 +484,7 @@ function getSurahByNomor(nomor) {
  */
 function getPathAyat(nomorStr, ayat) {
   const ayatStr = String(ayat).padStart(2, '0');
-  return `/${nomorStr}-${ayatStr}.html`;
+  return `${nomorStr}-${ayatStr}.html`;
 }
 
 /**
