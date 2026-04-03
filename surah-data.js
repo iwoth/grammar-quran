@@ -438,11 +438,11 @@ const SURAH_DATA = [
     nomorStr: "112",
     namaLatin: "Al-Ikhlas",
     namaArab: "الإخلاص",
-    arti: "Ikhlas",
+    arti: "Kemurnian Tauhid",
     jumlahAyat: 4,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-112, setara sepertiga Al-Qur'an"
   }
 
 ];
