@@ -430,8 +430,8 @@ const SURAH_DATA = [
     arti: "Sabut",
     jumlahAyat: 5,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-111, tentang Abu Lahab musuh Islam"
   },
   {
     nomor: 112,
