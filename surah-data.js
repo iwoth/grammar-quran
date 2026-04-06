@@ -408,8 +408,8 @@ const SURAH_DATA = [
     arti: "Orang-orang Kafir",
     jumlahAyat: 6,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-109, deklarasi bara'ah (berlepas diri) dari syirik"
   },
   {
     nomor: 110,
@@ -419,8 +419,8 @@ const SURAH_DATA = [
     arti: "Pertolongan",
     jumlahAyat: 3,
     jenis: "Madaniyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-110, isyarat selesainya tugas Nabi ﷺ"
   },
   {
     nomor: 111,
