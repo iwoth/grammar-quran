@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Kafirun 109:5</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --hijau-gelap:  #1a472a;
+      --hijau-medium: #2d6a4f;
+      --hijau-muda:   #40916c;
+      --biru-tua:     #1e3a8a;
+      --ungu:         #5b21b6;
+      --coklat:       #92400e;
+      --merah-fi:     #c2410c;
+      --emas:         #d4af37;
+      --emas-muda:    #f0d060;
+      --bg-utama:     #f7f5f0;
+      --border:       #e0d9c8;
+      --font-arab:    'Amiri', serif;
+      --font-latin:   'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+    .arab { font-family: var(--font-arab); direction: rtl; }
+
+    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; }
+    .header-info .hi-label { font-size: .60rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-surah { font-size: .90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
+    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: .88rem; color: var(--emas); direction: rtl; }
+    .header-info .hi-ayat { font-size: .70rem; color: rgba(255,255,255,.55); margin-top: 3px; }
+    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
+    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s; max-width: 240px; }
+    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
+    .nav-dropdowns select option { background: var(--hijau-gelap); }
+    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
+    .btn-go:hover { background: var(--emas-muda); }
+    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s; flex-shrink: 0; }
+    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
+
+    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
+
+    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
+    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .teks-ayat { font-family: var(--font-arab); font-size: 36px; line-height: 2; color: #1a1a1a; }
+    .transliterasi { margin-top: 10px; font-size: 14px; color: var(--hijau-medium); font-style: italic; }
+    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
+
+    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
+
+    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
+    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+    .section-header .sub-judul { font-size: 12px; color: #a8d5b5; margin-top: 2px; }
+    .section-header.biru { background: #1e3a5f; }
+    .section-header.biru .sub-judul { color: #93c5fd; }
+    .section-header.tadabur { background: #5b3a1a; }
+    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
+
+    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 13px 20px; border-bottom: 1px solid #f0ebe0; }
+    .kartu-head.warna-kata   { background: #f0f7f2; }
+    .kartu-head.warna-harf   { background: #ecfeff; }
+    .kartu-head.warna-fi     { background: #fff7ed; }
+    .kartu-head.warna-frasa1 { background: #eef4fb; }
+    .kartu-head.warna-frasa2 { background: #f5f0fb; }
+    .kartu-head.warna-frasa3 { background: #fdf6ec; }
+
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
+    .badge-kata   { background: var(--hijau-gelap); color: white; }
+    .badge-harf   { background: #0e7490; color: white; }
+    .badge-fi     { background: var(--merah-fi); color: white; }
+    .badge-frasa1 { background: var(--biru-tua); color: white; }
+    .badge-frasa2 { background: var(--ungu); color: white; }
+    .badge-frasa3 { background: var(--coklat); color: white; }
+    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
+
+    .kartu-arab-besar { font-size: 48px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.6; }
+    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
+    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
+    .kartu-tabel tr:last-child { border-bottom: none; }
+    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
+    .kartu-tabel td:first-child { color: #777; width: 28%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .kartu-tabel td:last-child  { color: #1a1a1a; width: 72%; }
+
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
+    .tag-n       { background: #dbeafe; color: #1e3a8a; }
+    .tag-harf    { background: #cffafe; color: #155e75; }
+    .tag-fi      { background: #ffedd5; color: #9a3412; }
+    .tag-marfu   { background: #dcfce7; color: #166534; }
+    .tag-manshub { background: #fce7f3; color: #9d174d; }
+    .tag-majrur  { background: #fef3c7; color: #92400e; }
+    .tag-nakirah { background: #fee2e2; color: #991b1b; }
+    .tag-marifah { background: #dbeafe; color: #1e3a8a; }
+    .tag-mabni   { background: #f3e8ff; color: #6b21a8; }
+
+    .arab-inline  { font-family: var(--font-arab); font-size: 20px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
+
+    .poin-list { list-style: none; padding: 0; margin: 0; }
+    .poin-list li { padding: 3px 0 3px 16px; position: relative; }
+    .poin-list li::before { content: '·'; position: absolute; left: 4px; color: #aaa; }
+
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+
+    .muqaranah-box { background: #f0f9ff; border: 1px solid #bae6fd; border-left: 5px solid #0369a1; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .muqaranah-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0369a1; margin-bottom: 10px; }
+    .muqaranah-baris { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+    .muqaranah-baris:last-of-type { margin-bottom: 0; }
+    .muqaranah-arab { font-family: var(--font-arab); font-size: 24px; color: #1a1a1a; direction: rtl; min-width: 160px; text-align: right; flex-shrink: 0; }
+    .muqaranah-detail { font-size: 13px; color: #444; line-height: 1.6; }
+    .muqaranah-divider { border: none; border-top: 1px dashed #bae6fd; margin: 8px 0; }
+
+    .tashrif-box { background: #fff8f0; border: 1px solid #fed7aa; border-left: 5px solid #c2410c; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .tashrif-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #c2410c; margin-bottom: 10px; }
+    .tashrif-isi { font-size: 13px; color: #374151; line-height: 1.9; }
+    .tashrif-arab { font-family: var(--font-arab); font-size: 22px; color: #1a1a1a; direction: rtl; display: inline-block; margin: 0 4px; }
+
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
+    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
+    .tadabur-isi { padding: 18px 20px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+    .tadabur-isi p { margin-bottom: 10px; }
+    .tadabur-isi p:last-child { margin-bottom: 0; }
+    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 30px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+
+    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
+    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
+    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
+
+    .video-section { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .video-header  { text-align: center; margin-bottom: 18px; }
+    .video-badge   { display: inline-block; background: var(--emas); color: #1a1a1a; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 12px; }
+    .video-judul   { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+    .video-sub     { font-size: 13px; color: #777; }
+    .video-link    { display: block; max-width: 560px; margin: 0 auto; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.15); text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .video-link:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.22); }
+    .video-thumb   { position: relative; background: #000; line-height: 0; }
+    .video-thumb img { width: 100%; display: block; opacity: .92; }
+    .video-play    { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 72px; height: 72px; background: rgba(220,38,38,.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,.4); }
+    .video-domain  { position: absolute; bottom: 10px; right: 12px; background: rgba(0,0,0,.75); color: white; font-size: 11px; padding: 3px 8px; border-radius: 4px; }
+    .video-bar     { background: var(--hijau-gelap); padding: 14px 18px; display: flex; align-items: center; gap: 14px; }
+    .video-icon    { flex-shrink: 0; width: 40px; height: 40px; background: #dc2626; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .video-title   { flex: 1; min-width: 0; font-size: 13px; font-weight: 700; color: white; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .video-ch      { font-size: 11px; color: #a8d5b5; }
+    .video-btn     { flex-shrink: 0; background: var(--emas); color: #1a1a1a; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 6px; white-space: nowrap; }
+
+    .nav-bawah { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .nav-btn { display: inline-block; padding: 9px 20px; border: 1px solid var(--hijau-gelap); color: var(--hijau-gelap); border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: all .2s; }
+    .nav-btn:hover { background: var(--hijau-gelap); color: white; }
+    .nav-btn.beranda { background: var(--hijau-gelap); color: white; }
+    .nav-btn.beranda:hover { background: var(--hijau-medium); }
+    .nav-info { font-size: 13px; color: #aaa; text-align: center; }
+
+    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
+    footer a { color: var(--emas); text-decoration: none; }
+
+    @media (max-width: 680px) {
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .container { padding: 20px 14px; }
+      .teks-ayat { font-size: 26px; }
+      .kartu-arab-besar { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
+      <span class="hi-surah" id="hi-surah-text">
+        Surah Al-Kafirun <span class="arab-surah">الْكَافِرُون</span>
+      </span>
+      <span class="hi-ayat" id="hi-ayat-text">Ayat 3 · (109:3)</span>
+    </a>
+    <div class="nav-dropdowns">
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <!-- § 1 — AYAT LENGKAP -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Kafirun : 5</div>
+    <div class="teks-ayat arab">وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ</div>
+    <div class="transliterasi">Wa lā antum ʻbābidūna mā a'bud</div>
+    <div class="terjemahan">"Dan kalian pun bukan penyembah apa yang aku sembah"</div>
+  </div>
+
+
+  <!-- § 2 — CATATAN KONTEKS -->
+  <div class="konteks-box">
+  <strong>Catatan konteks:</strong> Ayat 5 secara harfiah <em>identik</em> dengan ayat 3:
+  <span style="font-family:var(--font-arab);font-size:18px;direction:rtl;">وَلَآ أَنتُمْ عَابِدُونَ مَآ أَعْبُدُ</span>
+  — tidak ada perbedaan satu huruf pun. Ini adalah
+  <strong>التِّكْرَار لِلتَّأْكِيد</strong> (tikrar lit-taukid) —
+  pengulangan yang berfungsi sebagai penguatan dan penegasan.
+  <br><br>
+  Untuk analisis gramatikal lengkap per morfem, rujuk ke
+  <a href="109-03.html" style="color:var(--hijau-gelap);font-weight:700;">Ayat 3</a>.
+  Halaman ini fokus pada <strong>fungsi tikrar</strong> dalam konteks Surah Al-Kafirun
+  dan Al-Qur'an secara umum.
+</div>
+
+
+<!-- SEKSI TIKRAR -->
+<div class="section-header">
+  <div class="judul">Analisis Utama : التِّكْرَار لِلتَّأْكِيد</div>
+  <div class="sub-judul">Pengulangan sebagai taukid — prinsip balaghah Al-Qur'an</div>
+</div>
+
+<div class="kartu">
+  <div class="kartu-head warna-frasa3">
+    <span class="badge badge-frasa3">PRINSIP TIKRAR</span>
+    <span class="kartu-arab-besar arab" style="font-size:26px;">التِّكْرَارُ لِلتَّأْكِيد</span>
+    <span class="kartu-arti">pengulangan untuk penguatan — bukan redundansi, melainkan kedalaman makna</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr>
+      <td>Definisi</td>
+      <td>
+        <strong>التِّكْرَار</strong> (tikrar/takrir) dalam ilmu balaghah adalah
+        pengulangan lafaz atau makna untuk tujuan tertentu.
+        Dalam Al-Qur'an, tikrar tidak pernah sia-sia — setiap pengulangan
+        membawa fungsi yang disengaja dan bermakna
+      </td>
+    </tr>
+    <tr>
+      <td>Fungsi tikrar</td>
+      <td>
+        <ul class="poin-list">
+          <li><strong>تَأْكِيد (taukid)</strong> — memperkuat dan mempertegas pesan</li>
+          <li><strong>تَثْبِيت (tatsbīt)</strong> — menanamkan makna ke dalam hati pendengar</li>
+          <li><strong>تَهْوِيل (tahwīl)</strong> — menambah kesan dahsyat/agung pada konteks tertentu</li>
+          <li><strong>تَلَذُّذ (taladzdzudz)</strong> — keindahan ritmis yang memperindah tilawah</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<div class="kartu">
+  <div class="kartu-head warna-frasa2">
+    <span class="badge badge-frasa2">CONTOH KLASIK</span>
+    <span class="kartu-arab-besar arab" style="font-size:24px;">فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ</span>
+    <span class="kartu-arti">Surah Ar-Rahman — diulang 31 kali sebagai taukid agung</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr>
+      <td>Ar-Rahman</td>
+      <td>
+        Kalimat <span style="font-family:var(--font-arab);font-size:18px;direction:rtl;">فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ</span>
+        ("Maka nikmat Tuhanmu yang manakah yang kalian dustakan?")
+        diulang <strong>31 kali</strong> dalam Surah Ar-Rahman.
+        Setiap pengulangan hadir setelah penyebutan nikmat yang berbeda —
+        menjadikan setiap ulangan sebagai <em>penghentian dan perenungan</em> baru.
+        Bukan karena Allah lupa bahwa kalimat itu sudah diucapkan,
+        melainkan karena setiap nikmat berhak mendapat pertanyaan tersendiri
+      </td>
+    </tr>
+    <tr>
+      <td>Prinsip umum</td>
+      <td>
+        <div class="iltifat-box">
+          <div class="iltifat-label">✦ Tikrar dalam Al-Qur'an — Selalu Membawa Makna Baru</div>
+          <div class="iltifat-isi">
+            Para ulama balaghah menegaskan:
+            <em>"لَيْسَ التِّكْرَارُ فِي الْقُرْآنِ عَبَثًا"</em>
+            — tidak ada pengulangan sia-sia dalam Al-Qur'an.
+            Sekalipun lafaznya sama persis, konteksnya selalu memberikan
+            <em>dimensi makna yang baru</em>.
+            <br><br>
+            Pengulangan di Al-Qur'an berfungsi seperti:
+            <ul class="poin-list" style="margin-top:5px;">
+              <li>Pukulan palu yang menguatkan paku — setiap pukulan memperdalam</li>
+              <li>Segel yang dikuatkan — pernyataan pertama adalah pernyataan,
+                pernyataan kedua adalah <em>kepastian yang tidak bisa dibantah</em></li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<div class="kartu">
+  <div class="kartu-head warna-frasa1">
+    <span class="badge badge-frasa1">TIKRAR DI SURAH AL-KAFIRUN</span>
+    <span class="kartu-arab-besar arab" style="font-size:22px;">الْبَرَاءَةُ الْمُطْلَقَة</span>
+    <span class="kartu-arti">pelepasan diri yang mutlak — ditegaskan dua kali dari sisi kaum kafir</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr>
+      <td>Ayat 3 vs Ayat 5</td>
+      <td>
+        <div class="muqaranah-box">
+          <div class="muqaranah-label">✦ Pengulangan dalam Surah Al-Kafirun</div>
+          <div class="muqaranah-baris">
+            <span class="muqaranah-arab">وَلَا أَنتُمْ عَابِدُونَ مَآ أَعْبُدُ (ayat 3)</span>
+            <div class="muqaranah-detail">
+              Muncul pertama kali — penolakan dari sisi kaum kafir,
+              setelah penolakan dari sisi Nabi ﷺ di ayat 2.
+              <em>Pernyataan awal</em>
+            </div>
+          </div>
+          <hr class="muqaranah-divider"/>
+          <div class="muqaranah-baris">
+            <span class="muqaranah-arab">وَلَا أَنتُمْ عَابِدُونَ مَآ أَعْبُدُ (ayat 5)</span>
+            <div class="muqaranah-detail">
+              Diulang setelah ayat 4 (penolakan isim fa'il dari sisi Nabi ﷺ).
+              Kini ia bukan sekadar pernyataan — melainkan
+              <em>penutup dan segel final</em> dari seluruh deklarasi surah.
+              Maknanya: penolakan ini <em>tidak berubah, tidak bisa digoyahkan</em>
+            </div>
+          </div>
+          <hr class="muqaranah-divider"/>
+          <div class="muqaranah-detail" style="padding-top:4px;">
+            <strong>Perbedaan konteks:</strong> Ayat 3 hadir di tengah deklarasi,
+            ayat 5 hadir sebagai <em>penutup</em> — memberikan kesan bahwa
+            pemisahan antara tauhid dan syirik adalah sesuatu yang
+            <em>final, abadi, dan tidak bisa dinegosiasi</em>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Struktur surah</td>
+      <td>
+        Surah Al-Kafirun memiliki struktur yang sangat rapi:
+        <ul class="poin-list" style="margin-top:6px;">
+          <li>Ayat 1: Perintah قُلْ — pembuka</li>
+          <li>Ayat 2: لَا أَعْبُدُ — fi'il mudhari' (sisi Nabi ﷺ, tindakan)</li>
+          <li>Ayat 3: وَلَا أَنتُمْ عَابِدُونَ — isim fa'il (sisi kafir, karakter)</li>
+          <li>Ayat 4: وَلَا أَنَا عَابِدٌ — isim fa'il (sisi Nabi ﷺ, karakter)</li>
+          <li>Ayat 5: وَلَا أَنتُمْ عَابِدُونَ — <strong>tikrar ayat 3, segel penutup</strong></li>
+          <li>Ayat 6: لَكُمْ دِينُكُمْ وَلِيَ دِينِ — kesimpulan final</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ANALISIS GRAMATIKAL RINGKAS -->
+<div class="section-header">
+  <div class="judul">Analisis Gramatikal Ringkas</div>
+  <div class="sub-judul">Identik dengan ayat 3 — rujuk 109-03.html untuk analisis lengkap</div>
+</div>
+
+<div class="kartu">
+  <div class="kartu-head warna-kata">
+    <span class="badge badge-kata">RINGKASAN I'RAB · (109:5)</span>
+    <span class="kartu-arab-besar arab" style="font-size:24px;">وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ</span>
+    <span class="kartu-arti">identik dengan ayat 3 — semua i'rab sama persis</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr>
+      <td><span style="font-family:var(--font-arab);font-size:20px;">وَ</span></td>
+      <td>Harf 'athf — menghubungkan ke ayat 4</td>
+    </tr>
+    <tr>
+      <td><span style="font-family:var(--font-arab);font-size:20px;">لَا</span></td>
+      <td>Harf nafi — menafikan jumlah ismiyyah yang mengikutinya</td>
+    </tr>
+    <tr>
+      <td><span style="font-family:var(--font-arab);font-size:20px;">أَنتُمْ</span></td>
+      <td>Dhamir munfasil · <strong>mubtada'</strong> · mabni sukun · mahall رفع</td>
+    </tr>
+    <tr>
+      <td><span style="font-family:var(--font-arab);font-size:20px;">عَابِدُونَ</span></td>
+      <td>Isim fa'il JMS · <strong>khabar</strong> · marfu' bi al-waw · beramal maf'ul bih</td>
+    </tr>
+    <tr>
+      <td><span style="font-family:var(--font-arab);font-size:20px;">مَآ</span></td>
+      <td>Isim maushul · <strong>maf'ul bih</strong> dari عَابِدُونَ · mabni sukun · mahall نصب</td>
+    </tr>
+    <tr>
+      <td><span style="font-family:var(--font-arab);font-size:20px;">أَعْبُدُ</span></td>
+      <td>Fi'il mudhari' · jumlah shilah · fa'il أنا mustatir · 'a'id هُ mahdzuf</td>
+    </tr>
+    <tr>
+      <td>Jenis kalimat</td>
+      <td>
+        <strong>جُمْلَة اسْمِيَّة مَنْفِيَّة مَعْطُوفَة</strong> —
+        sama dengan ayat 3, namun berfungsi sebagai <em>segel penutup</em>
+        dari keseluruhan deklarasi surah
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- TADABUR -->
+<div class="section-header tadabur">
+  <div class="judul">Tadabur</div>
+  <div class="sub-judul">Mengapa ayat ini diulang — hikmah tikrar</div>
+</div>
+
+<div class="tadabur-box">
+  <div class="tadabur-head">
+    <span class="badge-tadabur">HIKMAH</span>
+    <span class="tadabur-judul">Pengulangan sebagai Segel — Kepastian yang Tidak Bisa Digoyahkan</span>
+  </div>
+  <div class="tadabur-isi">
+    <p>Ketika sebuah pernyataan diulang dalam Al-Qur'an, bukan berarti Allah lupa bahwa kata itu sudah diucapkan. Pengulangan adalah <strong>kehendak yang disengaja</strong> — untuk menanamkan makna lebih dalam, untuk memberikan penekanan yang tidak bisa diabaikan.</p>
+
+    <span class="arab-kutip">وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ</span>
+
+    <p>Ayat 5 mengulang ayat 3 setelah ayat 4 menyatakan penolakan dari sisi karakter Nabi ﷺ. Seolah-olah Al-Qur'an berkata: "Dan setelah semua ini dijelaskan — baik dari sisi tindakan maupun karakter, baik dari sisi Nabi maupun kaum kafir — kesimpulannya tetap sama: kalian bukan penyembah apa yang aku sembah." Pengulangan ini adalah <em>penutup lingkaran</em>, bukan perulangan hampa.</p>
+    <p>Seperti halnya Surah Ar-Rahman yang mengulang <em>فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ</em> sebanyak 31 kali — setiap ulangan bukan kelemahan gaya bahasa, melainkan kekuatan yang semakin memukul hati. Demikian pula ayat 5 ini: semakin menancapkan hakikat bahwa pemisahan antara tauhid dan syirik adalah sesuatu yang <em>abadi dan tidak bisa dikompromikan</em>.</p>
+  </div>
+</div>
+
+
+<!-- DIAGRAM RINGKAS -->
+<div class="section-header biru">
+  <div class="judul">Diagram Struktur Gramatikal</div>
+  <div class="sub-judul">Identik dengan ayat 3 — sama persis secara gramatikal</div>
+</div>
+
+<div class="diagram-wrapper">
+  <svg viewBox="0 0 760 475" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+
+    <!-- LEVEL 1: 6 kata RTL -->
+
+    <!-- k6: أَعْبُدُ x=55 -->
+    <text x="55" y="32" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" font-style="italic" fill="#c2410c">(kata ke-6)</text>
+    <text x="55" y="80" text-anchor="middle" font-family="Amiri,serif" font-size="26" font-weight="bold" fill="#c2410c" direction="rtl">أَعْبُدُ</text>
+    <text x="55" y="96" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#c2410c">shilah maushul</text>
+    <text x="55" y="107" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#c2410c">marfu' · أنا mustatir</text>
+
+    <!-- k5: مَا x=165 -->
+    <text x="165" y="32" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" font-style="italic" fill="#1e3a8a">(kata ke-5)</text>
+    <text x="165" y="80" text-anchor="middle" font-family="Amiri,serif" font-size="30" font-weight="bold" fill="#1e3a8a" direction="rtl">مَآ</text>
+    <text x="165" y="96" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#1e3a8a">isim maushul</text>
+    <text x="165" y="107" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#1e3a8a">mabni · mahall نصب</text>
+
+    <!-- k4: عَابِدُونَ x=295 -->
+    <text x="295" y="32" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" font-style="italic" fill="#1a472a">(kata ke-4)</text>
+    <text x="295" y="80" text-anchor="middle" font-family="Amiri,serif" font-size="24" font-weight="bold" fill="#1a472a" direction="rtl">عَابِدُونَ</text>
+    <text x="295" y="96" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#1a472a">isim fa'il JMS · khabar</text>
+    <text x="295" y="107" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#1a472a">marfu' bi al-waw</text>
+
+    <!-- k3: أَنتُمْ x=420 -->
+    <text x="420" y="32" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" font-style="italic" fill="#5b21b6">(kata ke-3)</text>
+    <text x="420" y="80" text-anchor="middle" font-family="Amiri,serif" font-size="26" font-weight="bold" fill="#5b21b6" direction="rtl">أَنتُمْ</text>
+    <text x="420" y="96" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#5b21b6">dhamir munfasil · mubtada'</text>
+    <text x="420" y="107" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#5b21b6">mabni sukun · mahall رفع</text>
+
+    <!-- k2: لَا x=560 -->
+    <text x="560" y="32" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" font-style="italic" fill="#0e7490">(kata ke-2)</text>
+    <text x="560" y="80" text-anchor="middle" font-family="Amiri,serif" font-size="30" font-weight="bold" fill="#0e7490" direction="rtl">لَا</text>
+    <text x="560" y="96" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#0e7490">harf nafi</text>
+    <text x="560" y="107" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#0e7490">لَا النَّافِيَة</text>
+
+    <!-- k1: وَ x=690 -->
+    <text x="690" y="32" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" font-style="italic" fill="#92400e">(kata ke-1)</text>
+    <text x="690" y="80" text-anchor="middle" font-family="Amiri,serif" font-size="30" font-weight="bold" fill="#92400e" direction="rtl">وَ</text>
+    <text x="690" y="96" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#92400e">harf 'athf</text>
+    <text x="690" y="107" text-anchor="middle" font-family="Lato,sans-serif" font-size="7.5" fill="#92400e">penghubung ke ayat 4</text>
+
+    <!-- Garis: مَا + أَعْبُدُ → ke garis vertikal بawah عَابِدُونَ -->
+    <line x1="55"  y1="114" x2="55"  y2="150" stroke="#1a472a" stroke-width="2"/>
+    <line x1="165" y1="114" x2="165" y2="150" stroke="#1a472a" stroke-width="2"/>
+    <line x1="55"  y1="150" x2="165" y2="150" stroke="#1a472a" stroke-width="2"/>
+    <line x1="110" y1="150" x2="295" y2="150" stroke="#1a472a" stroke-width="2"/>
+
+    <!-- عَابِدُونَ turun ke y=150 (bertemu مَا أَعْبُدُ), lalu bersama turun -->
+    <line x1="295" y1="114" x2="295" y2="192" stroke="#1a472a" stroke-width="2"/>
+
+    <!-- أَنتُمْ bergabung -->
+    <line x1="420" y1="114" x2="420" y2="192" stroke="#1a472a" stroke-width="2"/>
+    <line x1="295" y1="192" x2="420" y2="192" stroke="#1a472a" stroke-width="2"/>
+    <line x1="358" y1="192" x2="358" y2="225" stroke="#1a472a" stroke-width="2"/>
+
+    <!-- لَا + وَ bersatu -->
+    <line x1="560" y1="114" x2="560" y2="160" stroke="#1a472a" stroke-width="2"/>
+    <line x1="690" y1="114" x2="690" y2="160" stroke="#1a472a" stroke-width="2"/>
+    <line x1="560" y1="160" x2="690" y2="160" stroke="#1a472a" stroke-width="2"/>
+    <line x1="625" y1="160" x2="625" y2="225" stroke="#1a472a" stroke-width="2"/>
+
+    <!-- LEVEL 2 -->
+    <rect x="42" y="225" width="490" height="82" rx="8" fill="none" stroke="#1a472a" stroke-width="2"/>
+    <text x="287" y="245" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" font-style="italic" fill="#1a472a">Jumlah Ismiyyah — identik dengan ayat 3 (TIKRAR)</text>
+    <text x="287" y="270" text-anchor="middle" font-family="Amiri,serif" font-size="16" font-weight="bold" fill="#1a472a" direction="rtl">أَنتُمْ عَابِدُونَ مَا أَعْبُدُ</text>
+    <text x="287" y="288" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" fill="#1a472a">"kalian adalah penyembah apa yang aku sembah"</text>
+    <text x="287" y="300" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" fill="#1a472a">→ dinafikan لَا · diulang sebagai سَيِّد الِاسْتِفَال (segel penutup)</text>
+
+    <rect x="548" y="225" width="164" height="82" rx="8" fill="none" stroke="#1a472a" stroke-width="2"/>
+    <text x="630" y="245" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" font-style="italic" fill="#1a472a">Harf 'Athf + Harf Nafi</text>
+    <text x="630" y="272" text-anchor="middle" font-family="Amiri,serif" font-size="28" font-weight="bold" fill="#1a472a" direction="rtl">وَلَا</text>
+    <text x="630" y="292" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" fill="#1a472a">penghubung + penafi</text>
+    <text x="630" y="303" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" fill="#1a472a">harf — tidak ber-i'rab</text>
+
+    <!-- Level 2 → Root -->
+    <line x1="287" y1="307" x2="287" y2="352" stroke="#1a472a" stroke-width="2"/>
+    <line x1="287" y1="352" x2="378" y2="352" stroke="#1a472a" stroke-width="2"/>
+    <line x1="378" y1="352" x2="378" y2="368" stroke="#1a472a" stroke-width="2"/>
+    <line x1="630" y1="307" x2="630" y2="352" stroke="#1a472a" stroke-width="2"/>
+    <line x1="630" y1="352" x2="490" y2="352" stroke="#1a472a" stroke-width="2"/>
+    <line x1="490" y1="352" x2="490" y2="368" stroke="#1a472a" stroke-width="2"/>
+
+    <!-- ROOT -->
+    <rect x="42" y="368" width="670" height="70" rx="8" fill="#1a472a"/>
+    <text x="377" y="389" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" font-style="italic" fill="#a8d5b5">التِّكْرَار لِلتَّأْكِيد — Segel Penutup Deklarasi</text>
+    <text x="377" y="412" text-anchor="middle" font-family="Amiri,serif" font-size="14" font-weight="bold" fill="white" direction="rtl">جُمْلَةٌ اسْمِيَّةٌ مَنْفِيَّةٌ مَعْطُوفَة · مُكَرَّرَة</text>
+    <text x="377" y="428" text-anchor="middle" font-family="Lato,sans-serif" font-size="8.5" fill="#c8e6c9">وَلَا أَنتُمْ عَابِدُونَ مَآ أَعْبُدُ — tikrar ayat 3 sebagai taukid dan penutup final</text>
+
+  </svg>
+  <div class="diagram-legenda">
+    <span class="legenda-label">KETERANGAN:</span>
+    <span class="legenda-item">Diagram identik dengan ayat 3 — مَآ أَعْبُدُ terhubung ke garis vertikal bawah عَابِدُونَ (maf'ul bih isim fa'il)</span>
+  </div>
+</div>
+
+
+
+  <div class="video-section">
+    <div class="video-header">
+      <div class="video-badge">▶ VIDEO TAFSIR</div>
+      <div class="video-judul">Surah Al-Kafirun — Analisis Gramatikal</div>
+      <div class="video-sub">Kajian nahwu lengkap ayat per ayat</div>
+    </div>
+    <a class="video-link" href="https://www.youtube.com/watch?v=agV0NZCttys" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/agV0NZCttys/maxresdefault.jpg"
+             alt="Video Surah Al-Kafirun"
+             onerror="this.src='https://img.youtube.com/vi/agV0NZCttys/hqdefault.jpg'"/>
+        <div class="video-play">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <span class="video-domain">youtube.com</span>
+      </div>
+      <div class="video-bar">
+        <div class="video-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div>
+          <div class="video-title">Surah Al-Kafirun — Analisis Gramatikal Al-Qur'an</div>
+          <div class="video-ch">grammar-quran · YouTube</div>
+        </div>
+        <span class="video-btn">Tonton</span>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div>
+
+<footer>
+  <p><a href="index.html">grammar-quran.netlify.app</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>const PAGE_CONFIG = { nomorSurah: 109, nomorAyat: 5, ayatTerakhir: false };</script>
+<script>
+  (function () {
+    const surah = (typeof getSurahByNomor === 'function') ? getSurahByNomor(PAGE_CONFIG.nomorSurah) : null;
+    const ayatSaat = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah ? surah.jumlahAyat : 6;
+    const surahNama = surah ? surah.namaLatin : 'Al-Kafirun';
+
+    if (surah) {
+      document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
+      const lbl = document.getElementById('label-ayat-box');
+      if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}`;
+      const hiAyat = document.getElementById('hi-ayat-text');
+      if (hiAyat) hiAyat.textContent = `Ayat ${ayatSaat} · (${surah.nomor}:${ayatSaat})`;
+
+      const ddSurah = document.getElementById('dd-surah');
+      SURAH_DATA.filter(s => s.status === 'tersedia').sort((a,b) => a.nomor - b.nomor).forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomorStr + '  ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' Ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+      function isiDropdownAyat(n) {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        const ops = getOpsiDropdownAyat(n);
+        if (!ops.length) { dd.disabled = true; return; }
+        dd.disabled = false;
+        ops.forEach(o => {
+          const opt = document.createElement('option');
+          opt.value = o.path; opt.textContent = o.label;
+          if (o.value === ayatSaat && n === surah.nomor) opt.selected = true;
+          dd.appendChild(opt);
+        });
+      }
+      isiDropdownAyat(surah.nomor);
+      document.getElementById('dd-surah').addEventListener('change', function () {
+        const n = parseInt(this.value);
+        if (n) isiDropdownAyat(n);
+        else { const dd = document.getElementById('dd-ayat'); dd.innerHTML = '<option value="">— Pilih Ayat —</option>'; dd.disabled = true; }
+      });
+    }
+
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) window.location.href = path;
+      else alert('Pilih surah dan ayat terlebih dahulu.');
+    };
+
+    const c = document.getElementById('nav-bawah-container');
+    const bp = document.createElement('a');
+    bp.className = 'nav-btn'; bp.href = '109-04.html'; bp.textContent = '← Ayat 4';
+    const info = document.createElement('span');
+    info.className = 'nav-info';
+    info.textContent = `${surahNama} · Ayat ${ayatSaat} dari ${totalAyat}`;
+    const bn = document.createElement('a');
+    bn.className = 'nav-btn'; bn.href = '109-06.html'; bn.textContent = 'Ayat 6 →';
+    c.appendChild(bp); c.appendChild(info); c.appendChild(bn);
+  })();
+</script>
+</body>
+</html>
