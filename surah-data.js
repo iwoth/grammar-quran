@@ -392,13 +392,13 @@ const SURAH_DATA = [
   {
     nomor: 108,
     nomorStr: "108",
-    namaLatin: "Al-Kautsar",
+    namaLatin: "Al-Kawtsar",
     namaArab: "الكوثر",
     arti: "Nikmat yang Banyak",
     jumlahAyat: 3,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-108, surah terpendek Al-Qur'an — karunia, kewajiban, dan vonis"
   },
   {
     nomor: 109,
