@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Ma'un 107:3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hijau-gelap:  #1a472a;
+      --hijau-medium: #2d6a4f;
+      --hijau-muda:   #40916c;
+      --biru-tua:     #1e3a8a;
+      --ungu:         #5b21b6;
+      --coklat:       #92400e;
+      --merah-fi:     #c2410c;
+      --emas:         #d4af37;
+      --emas-muda:    #f0d060;
+      --bg-utama:     #f7f5f0;
+      --border:       #e0d9c8;
+      --font-arab:    'Scheherazade New', serif;
+      --font-latin:   'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+    .arab { font-family: var(--font-arab); direction: rtl; }
+    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; }
+    .header-info .hi-label { font-size: .60rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-surah { font-size: .90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
+    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: .88rem; color: var(--emas); direction: rtl; }
+    .header-info .hi-ayat { font-size: .70rem; color: rgba(255,255,255,.55); margin-top: 3px; }
+    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
+    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s; max-width: 240px; }
+    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
+    .nav-dropdowns select option { background: var(--hijau-gelap); }
+    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
+    .btn-go:hover { background: var(--emas-muda); }
+    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s; flex-shrink: 0; }
+    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
+    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
+    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
+    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .teks-ayat { font-family: var(--font-arab); font-size: 36px; line-height: 2; color: #1a1a1a; }
+    .transliterasi { margin-top: 10px; font-size: 14px; color: var(--hijau-medium); font-style: italic; }
+    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
+    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
+    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
+    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+    .section-header .sub-judul { font-size: 12px; color: #a8d5b5; margin-top: 2px; }
+    .section-header.biru { background: #1e3a5f; }
+    .section-header.biru .sub-judul { color: #93c5fd; }
+    .section-header.tadabur { background: #5b3a1a; }
+    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
+    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 13px 20px; border-bottom: 1px solid #f0ebe0; }
+    .kartu-head.warna-kata   { background: #f0f7f2; }
+    .kartu-head.warna-harf   { background: #ecfeff; }
+    .kartu-head.warna-fi     { background: #fff7ed; }
+    .kartu-head.warna-frasa1 { background: #eef4fb; }
+    .kartu-head.warna-frasa2 { background: #f5f0fb; }
+    .kartu-head.warna-frasa3 { background: #fdf6ec; }
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
+    .badge-kata   { background: var(--hijau-gelap); color: white; }
+    .badge-harf   { background: #0e7490; color: white; }
+    .badge-fi     { background: var(--merah-fi); color: white; }
+    .badge-frasa1 { background: var(--biru-tua); color: white; }
+    .badge-frasa2 { background: var(--ungu); color: white; }
+    .badge-frasa3 { background: var(--coklat); color: white; }
+    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
+    .kartu-arab-besar { font-size: 40px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.6; }
+    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
+    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
+    .kartu-tabel tr:last-child { border-bottom: none; }
+    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
+    .kartu-tabel td:first-child { color: #777; width: 28%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .kartu-tabel td:last-child  { color: #1a1a1a; width: 72%; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
+    .tag-n       { background: #dbeafe; color: #1e3a8a; }
+    .tag-harf    { background: #cffafe; color: #155e75; }
+    .tag-fi      { background: #ffedd5; color: #9a3412; }
+    .tag-marfu   { background: #dcfce7; color: #166534; }
+    .tag-manshub { background: #fce7f3; color: #9d174d; }
+    .tag-majrur  { background: #fef3c7; color: #92400e; }
+    .tag-nakirah { background: #fee2e2; color: #991b1b; }
+    .tag-marifah { background: #dbeafe; color: #1e3a8a; }
+    .tag-mabni   { background: #f3e8ff; color: #6b21a8; }
+    .arab-inline { font-family: var(--font-arab); font-size: 20px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
+    .poin-list { list-style: none; padding: 0; margin: 0; }
+    .poin-list li { padding: 3px 0 3px 16px; position: relative; }
+    .poin-list li::before { content: '·'; position: absolute; left: 4px; color: #aaa; }
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .muqaranah-box { background: #f0f9ff; border: 1px solid #bae6fd; border-left: 5px solid #0369a1; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .muqaranah-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0369a1; margin-bottom: 10px; }
+    .muqaranah-baris { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+    .muqaranah-baris:last-of-type { margin-bottom: 0; }
+    .muqaranah-arab { font-family: var(--font-arab); font-size: 22px; color: #1a1a1a; direction: rtl; min-width: 150px; text-align: right; flex-shrink: 0; }
+    .muqaranah-detail { font-size: 13px; color: #444; line-height: 1.6; }
+    .muqaranah-divider { border: none; border-top: 1px dashed #bae6fd; margin: 8px 0; }
+    .tashrif-box { background: #fff8f0; border: 1px solid #fed7aa; border-left: 5px solid #c2410c; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .tashrif-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #c2410c; margin-bottom: 10px; }
+    .tashrif-isi { font-size: 13px; color: #374151; line-height: 1.9; }
+    .tashrif-kotak-wrap { display: flex; align-items: stretch; gap: 0; margin: 12px 0 8px; flex-wrap: wrap; }
+    .tashrif-kotak { border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 12px; text-align: center; min-width: 110px; flex: 1; }
+    .tashrif-kotak.akar { background: #f0f7f2; border-color: #1a472a; }
+    .tashrif-kotak.subyek { background: #fff3e0; border: 2px solid #c2410c; }
+    .tashrif-kotak-label { font-size: 9px; color: #888; font-style: italic; margin-bottom: 4px; }
+    .tashrif-kotak-arab { font-family: var(--font-arab); font-size: 22px; direction: rtl; display: block; line-height: 1.6; }
+    .tashrif-kotak.akar .tashrif-kotak-arab { color: #1a472a; font-size: 16px; letter-spacing: 3px; font-family: var(--font-latin); font-weight: 700; }
+    .tashrif-kotak.subyek .tashrif-kotak-arab { color: #c2410c; font-weight: 700; }
+    .tashrif-panah { display: flex; align-items: center; padding: 0 4px; font-size: 18px; color: #c2410c; font-weight: 700; }
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
+    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
+    .tadabur-isi { padding: 18px 20px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+    .tadabur-isi p { margin-bottom: 10px; }
+    .tadabur-isi p:last-child { margin-bottom: 0; }
+    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 30px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
+    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
+    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
+    .video-section { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .video-header  { text-align: center; margin-bottom: 18px; }
+    .video-badge   { display: inline-block; background: var(--emas); color: #1a1a1a; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 12px; }
+    .video-judul   { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+    .video-sub     { font-size: 13px; color: #777; }
+    .nav-bawah { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .nav-btn { display: inline-block; padding: 9px 20px; border: 1px solid var(--hijau-gelap); color: var(--hijau-gelap); border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: all .2s; }
+    .nav-btn:hover { background: var(--hijau-gelap); color: white; }
+    .nav-btn.beranda { background: var(--hijau-gelap); color: white; }
+    .nav-btn.beranda:hover { background: var(--hijau-medium); }
+    .nav-info { font-size: 13px; color: #aaa; text-align: center; }
+    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
+    footer a { color: var(--emas); text-decoration: none; }
+    @media (max-width: 680px) {
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .container { padding: 20px 14px; }
+      .teks-ayat { font-size: 26px; }
+      .kartu-arab-besar { font-size: 34px; }
+      .tashrif-kotak-wrap { gap: 4px; }
+      .tashrif-kotak { min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
+      <span class="hi-surah" id="hi-surah-text">
+        Surah Al-Ma'un <span class="arab-surah">الْمَاعُون</span>
+      </span>
+      <span class="hi-ayat" id="hi-ayat-text">Ayat 3 · (107:3)</span>
+    </a>
+    <div class="nav-dropdowns">
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <!-- § 1 — AYAT LENGKAP -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Ma'un : 3</div>
+    <div class="teks-ayat arab">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</div>
+    <div class="transliterasi">Wa lā yaḥuḍḍu 'alā ṭa'āmil-miskīn</div>
+    <div class="terjemahan">"dan tidak mendorong (orang lain) untuk memberi makan orang miskin"</div>
+  </div>
+
+
+  <!-- § 2 — CATATAN KONTEKS -->
+  <div class="konteks-box">
+    <strong>Catatan konteks:</strong> Ayat 3 melanjutkan deskripsi المُكَذِّب بِالدِّينِ dari
+    ayat 2 dengan tanda keduanya — kali ini dalam ranah sosial yang lebih luas.
+    Kata <span class="arab-inline">وَ</span> di awal mengikat ayat ini sebagai
+    kelanjutan dari ayat 2, dan keduanya (ayat 2–3) membentuk satu unit deskripsi
+    tentang sikap sosial المُكَذِّب.
+    <br><br>
+    Yang sangat perlu dicermati adalah pilihan kata <strong>يَحُضُّ</strong> (mendorong/menganjurkan
+    orang lain) — bukan <strong>يُطْعِمُ</strong> (memberi makan sendiri). Ini berarti
+    Allah ﷻ tidak hanya mencela ketidakmauan memberi makan, tetapi bahkan
+    <em>tidak menganjurkan orang lain untuk memberi makan pun tidak dilakukan.</em>
+    Indiktmen yang jauh lebih keras: minimnya kepedulian sosial sudah mencapai taraf
+    tidak mau peduli sama sekali — bahkan sekadar mendorong.
+    <br><br>
+    Secara gramatikal, ayat ini adalah <strong>جُمْلَة فِعْلِيَّة مَنْفِيَّة مَعْطُوفَة</strong>
+    (jumlah fi'liyyah manfiyyah ma'thufah — kalimat verbal negatif yang dihubungkan/di-'athaf-kan)
+    dengan وَ kepada ayat 2. Fi'il يَحُضُّ adalah fi'il mudha'af bab I
+    yang مُتَعَدٍّ بِحَرْف الجَرِّ عَلَى (transitif melalui harf jar عَلَى).
+  </div>
+
+
+  <!-- § 3 — ANALISIS TINGKAT 1: KATA -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
+    <div class="sub-judul">وَ · لَا · يَحُضُّ · عَلَىٰ · طَعَامِ · الْمِسْكِينِ — enam morfem</div>
+  </div>
+
+
+  <!-- MORFEM 1: وَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <span class="badge badge-harf">HARF · (107:3:1) · وَاو الْعَطْف — Penghubung Paralel</span>
+      <span class="kartu-arab-besar arab">وَ</span>
+      <span class="kartu-arti">"dan" — menghubungkan ayat 3 kepada ayat 2 secara paralel</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis kata</td><td><span class="tag tag-harf">Harf</span> <strong>وَاو الْعَطْف</strong> (waw 'atf — harf penghubung/sambung). Menghubungkan jumlah (kalimat) ini kepada jumlah (kalimat) sebelumnya (ayat 2) dalam posisi setara</td></tr>
+      <tr><td>Arti</td><td>"Dan" — menyambungkan dua deskripsi tentang المُكَذِّب: (a) menghardik anak yatim + (b) tidak mendorong memberi makan orang miskin. Keduanya adalah tanda sosial dari satu penyakit yang sama</td></tr>
+      <tr><td>Fungsi</td><td>
+        <strong>عَطْف جُمْلَة عَلَى جُمْلَة</strong> (menghubungkan satu jumlah (kalimat) kepada jumlah (kalimat) lain) —
+        ayat 3 di-'athaf-kan kepada ayat 2. Pola وَ + لَا memberikan struktur paralel yang tegas:
+        <br><br>
+        <span style="font-family:'Scheherazade New',serif;font-size:17px;direction:rtl;display:block;text-align:center;margin:8px 0;color:#1a472a;">
+        ذَلِكَ الَّذِي يَدُعُّ الْيَتِيمَ<br>
+        وَلَا يَحُضُّ عَلَى طَعَامِ الْمِسْكِينِ
+        </span>
+        Dua wajah dari satu orang — kekerasan aktif (ayat 2) + apatisme total (ayat 3)
+      </td></tr>
+      <tr><td>Status i'rab</td><td><span class="tag tag-mabni">Mabni</span> Mabni fathah — <strong>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب</strong> (tidak memiliki kedudukan i'rab — berlaku untuk semua harf)</td></tr>
+      <tr><td>Kedudukan gramatikal</td><td>
+        <ul class="poin-list">
+          <li><strong>وَاو الْعَطْف</strong> — menghubungkan <strong>مَعْطُوف</strong> yaitu jumlah fi'liyyah ayat 3 <span class="arab-inline" style="font-size:20px;">لَا يَحُضُّ عَلَى طَعَامِ الْمِسْكِينِ</span> kepada <strong>مَعْطُوف عَلَيْهِ</strong> yaitu jumlah fi'liyyah ayat 2 <span class="arab-inline" style="font-size:20px;">يَدُعُّ الْيَتِيمَ</span></li>
+          <li>Harf 'athof وَ <strong>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب</strong> — tidak memiliki kedudukan i'rab</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- MORFEM 2: لَا -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <span class="badge badge-harf">HARF · (107:3:2) · لَا النَّافِيَة لِلْفِعْل</span>
+      <span class="kartu-arab-besar arab">لَا</span>
+      <span class="kartu-arti">"tidak" — menafikan fi'il mudhari' يَحُضُّ (dibahas di <a href="109-02.html" style="color:#0369a1;font-weight:700;">109:2</a>)</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis kata</td><td><span class="tag tag-harf">Harf</span> <strong>لَا النَّافِيَة لِلْفِعْل</strong> (lā nāfiyah lil fi'l — lā penafian untuk fi'il). Menafikan fi'il mudhari' tanpa mengubah i'rab-nya — fi'il tetap marfu' (dibahas di <a href="109-02.html" style="color:#0369a1;">109:2</a>)</td></tr>
+      <tr><td>Arti</td><td>"Tidak" — penafian yang bersifat habitual/kebiasaan: sosok ini memang tidak pernah mendorong pemberian makan kepada orang miskin — bukan sekadar sekali tidak melakukan</td></tr>
+      <tr><td>Fungsi</td><td>Menafikan fi'il mudhari' يَحُضُّ. Fi'il setelah لَا النَّافِيَة tetap في حالة الرَّفْع (marfu') — berbeda dari لَا النَّاهِيَة (yang menjazmkan fi'il)</td></tr>
+      <tr><td>Status i'rab</td><td><span class="tag tag-mabni">Mabni</span> Mabni sukun — <strong>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب</strong> (tidak memiliki kedudukan i'rab)</td></tr>
+      <tr><td>Kedudukan gramatikal</td><td>
+        <ul class="poin-list">
+          <li>لَا النَّافِيَة — menafikan fi'il mudhari', fi'il tetap marfu'</li>
+          <li>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب — tidak memiliki kedudukan i'rab</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- MORFEM 3: يَحُضُّ -->
+  <div class="kartu">
+    <div class="kartu-head warna-fi">
+      <span class="badge badge-fi">FI'IL · (107:3:3) · Fi'il Mudhari' · Tsulasi Mujarrad · Mudha'af · Muta'addi bil Harf</span>
+      <span class="kartu-arab-besar arab">يَحُضُّ</span>
+      <span class="kartu-arti">"mendorong / menganjurkan / menggiatkan (orang lain)" — dinafikan oleh لَا</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis kata</td><td><span class="tag tag-fi">Fi'il</span> Fi'il mudhari', tsulasi mujarrad bab I (فَعَلَ — يَفْعُلُ — 'ain mudhari' dhammah). Jenis <strong>فِعْل مُضَاعَف</strong> (mudha'af — akar ح ض ض). Fi'il <strong>مُتَعَدٍّ بِحَرْف الجَرِّ عَلَى</strong> (transitif melalui عَلَى)</td></tr>
+      <tr><td>Makna</td><td>"Mendorong / menganjurkan / menggiatkan (orang lain)" — bukan memberi makan sendiri. Kata ini menunjuk pada <strong>peran sosial</strong>: mengajak, memotivasi, menginisiasi kepedulian komunitas terhadap orang miskin. Mendustakan agama membuat seseorang tidak peduli bahkan untuk sekadar mendorong</td></tr>
+      <tr><td>Makna Gramatikal</td><td>
+        "Dia (هو) mendorong" — dinafikan oleh لَا → "dia tidak mendorong".
+        <br><br>
+        <div class="muqaranah-box">
+          <div class="muqaranah-label">✦ Muqaranah: يَحُضُّ vs يُطْعِمُ — Pilihan Kata yang Bermakna</div>
+          <div class="muqaranah-baris">
+            <div class="muqaranah-arab" style="font-size:22px;">لَا يُطْعِمُ الْمِسْكِينَ</div>
+            <div class="muqaranah-detail">
+              Arti: "tidak memberi makan orang miskin"<br>
+              Indiktmen: tidak mau <em>sendiri</em> memberi makan<br>
+              Tingkat: lalai pada tindakan personal
+            </div>
+          </div>
+          <hr class="muqaranah-divider"/>
+          <div class="muqaranah-baris">
+            <div class="muqaranah-arab" style="font-size:22px;">لَا يَحُضُّ عَلَى طَعَامِ الْمِسْكِينِ</div>
+            <div class="muqaranah-detail">
+              Arti: "tidak mendorong orang lain memberi makan"<br>
+              Indiktmen: tidak mau <em>menganjurkan pun</em><br>
+              Tingkat: apatisme total — lebih keras
+            </div>
+          </div>
+        </div>
+      </td></tr>
+      <tr><td>Fa'il</td><td>Dhamir mustatir جَوَازًا <strong>هو</strong> — merujuk kepada الَّذِي di ayat 2 (sosok yang sama, المُكَذِّب بِالدِّينِ)</td></tr>
+      <tr><td>Akar + Tashrif</td><td>
+        <div class="tashrif-box">
+          <div class="tashrif-label">✦ Tashrif Fi'il يَحُضُّ — Tsulasi Mudha'af (ح ض ض)</div>
+          <div class="tashrif-kotak-wrap">
+            <div class="tashrif-kotak akar">
+              <div class="tashrif-kotak-label">Akar Kata</div>
+              <span class="tashrif-kotak-arab">ح ض ض</span>
+            </div>
+            <div class="tashrif-panah">→</div>
+            <div class="tashrif-kotak">
+              <div class="tashrif-kotak-label">Madhy (هو)</div>
+              <span class="tashrif-kotak-arab">حَضَّ</span>
+            </div>
+            <div class="tashrif-panah">→</div>
+            <div class="tashrif-kotak">
+              <div class="tashrif-kotak-label">Mudhari' (هو)</div>
+              <span class="tashrif-kotak-arab">يَحُضُّ</span>
+            </div>
+            <div class="tashrif-panah">→</div>
+            <div class="tashrif-kotak subyek">
+              <div class="tashrif-kotak-label">Subyek ayat (الَّذِي)</div>
+              <span class="tashrif-kotak-arab">يَحُضُّ</span>
+            </div>
+          </div>
+          <div class="tashrif-isi">
+            <strong>Fi'il Mudha'af (ح ض ض):</strong> حَضَضَ → حَضَّ (idgham dua dhad), يَحْضُضُ → يَحُضُّ (idgham + dhammah pada huruf pertama).<br>
+            Sama polanya dengan يَدُعُّ (dibahas di <a href="107-02.html" style="color:#0369a1;">107:2</a>) — bab I, wazan فَعَلَ يَفْعُلُ, 'ain mudhari' dhammah.<br><br>
+            <strong>يَحُضُّ عَلَى</strong> = mendorong/menganjurkan terhadap sesuatu. عَلَى di sini bermakna تَعْدِيَة (membuat fi'il menjadi muta'addi): يَحُضُّ + عَلَى الأَمْرِ = mendorong pada perkara tersebut.
+          </div>
+        </div>
+      </td></tr>
+      <tr><td>Status i'rab</td><td><span class="tag tag-marfu">Marfu'</span> Marfu' bi al-dhammah al-zhahirah — mudhari' dinafikan لَا النَّافِيَة (tidak menjazmkan), bukan لَا النَّاهِيَة</td></tr>
+      <tr><td>Kedudukan gramatikal</td><td>
+        <ul class="poin-list">
+          <li><strong>Fi'il</strong> dalam جُمْلَة فِعْلِيَّة مَنْفِيَّة (kalimat verbal yang dinafikan)</li>
+          <li>Fa'il: دَمِير مُسْتَتِر جَوَازًا هو (merujuk ke ذَلِكَ di ayat 2)</li>
+          <li>Jar majrur عَلَى طَعَامِ الْمِسْكِينِ — مُتَعَلِّق بِـ يَحُضُّ (terkait dengan fi'il)</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- MORFEM 4: عَلَىٰ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <span class="badge badge-harf">HARF · (107:3:4) · حَرْف جَرّ عَلَى</span>
+      <span class="kartu-arab-besar arab">عَلَىٰ</span>
+      <span class="kartu-arti">"atas / terhadap / untuk" — menjarrkan طَعَامِ الْمِسْكِينِ</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis kata</td><td><span class="tag tag-harf">Harf</span> Harf jar <strong>عَلَى</strong> — salah satu harf jar yang paling produktif dalam bahasa Arab. Di sini bermakna <strong>تَعْدِيَة</strong> (menjadikan يَحُضُّ muta'addi)</td></tr>
+      <tr><td>Arti</td><td>"Atas / terhadap / untuk" — يَحُضُّ عَلَى طَعَامِ الْمِسْكِينِ = mendorong untuk (memberi) makan orang miskin</td></tr>
+      <tr><td>Fungsi</td><td>Menjarrkan طَعَامِ dan menjadikan frasa عَلَى طَعَامِ الْمِسْكِينِ sebagai jar majrur yang مُتَعَلِّق (terkait) dengan يَحُضُّ</td></tr>
+      <tr><td>Status i'rab</td><td><span class="tag tag-mabni">Mabni</span> Mabni sukun — <strong>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب</strong> (tidak memiliki kedudukan i'rab)</td></tr>
+      <tr><td>Kedudukan gramatikal</td><td>
+        <ul class="poin-list">
+          <li>Harf jar — menjarrkan طَعَامِ الْمِسْكِينِ</li>
+          <li>Jar majrur <strong>عَلَى طَعَامِ الْمِسْكِينِ</strong> — مُتَعَلِّق بِـ يَحُضُّ (terkait dengan fi'il يَحُضُّ)</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- MORFEM 5: طَعَامِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <span class="badge badge-kata">ISIM · (107:3:5) · Isim Jenis / Masdar · Mudhaf · Majrur</span>
+      <span class="kartu-arab-besar arab">طَعَامِ</span>
+      <span class="kartu-arti">"makanan / memberi makan" — mudhaf kepada الْمِسْكِينِ, majrur bi عَلَى</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis kata</td><td><span class="tag tag-n">Isim</span> Isim jenis sekaligus dapat berlaku sebagai <strong>مَصْدَر مِيمِيّ</strong> (masdar mimi) dari أَطْعَمَ — bermakna "makanan" atau "tindakan memberi makan". Di sini lebih kuat bermakna <strong>إِطْعَام</strong> (pemberian makan/nafkah)</td></tr>
+      <tr><td>Arti</td><td>"Makanan / pemberian makan" — طَعَامُ الْمِسْكِينِ = makanan yang menjadi hak/kebutuhan orang miskin, atau: tindakan memberi makan orang miskin</td></tr>
+      <tr><td>Akar</td><td><strong>ط ع م</strong> — dari طَعِمَ (merasakan makanan, makan). Wazan: فَعَال (isim jenis)</td></tr>
+      <tr><td>Status i'rab</td><td><span class="tag tag-majrur">Majrur</span> Majrur bi al-kasrah al-zhahirah — karena: (1) didahului harf jar عَلَى, dan (2) <strong>mudhaf</strong> → tanwin gugur</td></tr>
+      <tr><td>Jumlah</td><td>Mufrad (tunggal — bermakna jenis/umum)</td></tr>
+      <tr><td>Gender</td><td>Mudzakkar</td></tr>
+      <tr><td>Identitas</td><td><span class="tag tag-marifah">Ma'rifah</span> Ma'rifah bi al-idhafah — menjadi ma'rifah karena mudhaf kepada الْمِسْكِينِ (ma'rifah bi al-ال). Tanwin gugur akibat idhafah</td></tr>
+      <tr><td>Kedudukan gramatikal</td><td>
+        <ul class="poin-list">
+          <li><strong>مَجْرُور</strong> bi al-kasrah — setelah harf jar عَلَى</li>
+          <li><strong>مُضَاف</strong> — kepala idhafah طَعَامِ الْمِسْكِينِ</li>
+          <li>Bersama الْمِسْكِينِ membentuk frasa idhafah yang menjadi majrur-nya عَلَى</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- MORFEM 6: الْمِسْكِينِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <span class="badge badge-kata">ISIM · (107:3:6) · Isim Sifat Wazan مِفْعِيل · Mudhaf Ilaih</span>
+      <span class="kartu-arab-besar arab">الْمِسْكِينِ</span>
+      <span class="kartu-arti">"orang miskin / yang ditundukkan oleh kemiskinan" — mudhaf ilaih, majrur</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis kata</td><td><span class="tag tag-n">Isim</span> Isim sifat wazan <strong>مِفْعِيل</strong> — wazan yang menunjukkan sifat yang sangat kuat melekat. الْمِسْكِينُ = yang benar-benar ditundukkan/dilumpuhkan oleh kemiskinan (lebih parah dari الْفَقِير menurut sebagian ulama)</td></tr>
+      <tr><td>Arti</td><td>
+        "Orang miskin" — dari سَكَنَ (diam, tunduk). الْمِسْكِين = yang diam/terdiam karena
+        kemiskinan, yang tidak mampu bergerak mencari nafkah yang cukup.
+        <span style="font-size:12px;color:#666;display:block;margin-top:4px;">
+        Catatan: Para ulama berbeda pendapat tentang الْفَقِير vs الْمِسْكِين — mana yang lebih miskin.
+        Pendapat yang rajih (Imam Syafi'i dan mayoritas): الْمِسْكِين lebih miskin dari الْفَقِير,
+        karena ia benar-benar tidak bisa bergerak mencari nafkah.
+        </span>
+      </td></tr>
+      <tr><td>Akar + Wazan</td><td>Akar: <strong>س ك ن</strong> — Wazan: <strong>مِفْعِيل</strong> (menunjukkan sifat intensif yang melekat permanen pada pelaku/yang dikenai)</td></tr>
+      <tr><td>Status i'rab</td><td><span class="tag tag-majrur">Majrur</span> Majrur bi al-kasrah al-zhahirah sebagai <strong>مُضَاف إِلَيْه</strong> dari طَعَامِ</td></tr>
+      <tr><td>Jumlah</td><td>Mufrad (tunggal) — bermakna jenis: mencakup seluruh orang miskin</td></tr>
+      <tr><td>Gender</td><td>Mudzakkar</td></tr>
+      <tr><td>Identitas</td><td><span class="tag tag-marifah">Ma'rifah</span> Ma'rifah bi al-ال — ال jinis (mencakup semua yang termasuk kategori miskin)</td></tr>
+      <tr><td>Kedudukan gramatikal</td><td>
+        <ul class="poin-list">
+          <li><strong>مُضَاف إِلَيْه</strong> dari طَعَامِ — majrur bi al-kasrah</li>
+          <li>Bersama طَعَامِ membentuk idhafah yang menjadi majrur-nya عَلَى</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- § 4 — ANALISIS TINGKAT 2: FRASA -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
+    <div class="sub-judul">Dari depan ke belakang — وَلَا يَحُضُّ · طَعَامِ الْمِسْكِينِ · عَلَى طَعَامِ الْمِسْكِينِ · jumlah kamilah</div>
+  </div>
+
+
+  <!-- FRASA (a): وَلَا يَحُضُّ -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <span class="badge badge-frasa1">FRASA (a) · وَ (Atf) + لَا (Nafi) + يَحُضُّ — Negasi Fi'il Terhubung</span>
+      <span class="kartu-arab-besar arab" style="font-size:34px;">وَلَا يَحُضُّ</span>
+      <span class="kartu-arti">waw 'atf + lā nāfiyah + fi'il mudhari' — "dan tidak mendorong..."</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>
+        <span class="tag tag-harf">وَ</span> harf 'atf (لَا مَحَلَّ لَهُ — tidak memiliki kedudukan i'rab) +
+        <span class="tag tag-harf">لَا</span> lā nāfiyah lil fi'l (لَا مَحَلَّ لَهُ — tidak memiliki kedudukan i'rab) +
+        <span class="tag tag-fi">يَحُضُّ</span> fi'il mudhari' marfu' (fa'il mustatir هو)
+      </td></tr>
+      <tr><td>Makna frasa</td><td><strong>"Dan tidak mendorong..."</strong> — kalimat verbal negatif yang belum sempurna, masih menanti jar majrur عَلَى طَعَامِ الْمِسْكِينِ yang akan menyempurnakan arah dorongan yang dinafikan</td></tr>
+      <tr><td>Peran / Kedudukan</td><td>
+        <strong>وَ + لَا + فِعْل مَنْفِيّ</strong> — pembuka jumlah fi'liyyah manfiyyah yang di-'athaf-kan kepada ayat 2.
+        Struktur ini sejajar dengan يَدُعُّ di ayat 2: keduanya adalah fi'il yang menggambarkan
+        perilaku المُكَذِّب بِالدِّينِ
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- FRASA (b): طَعَامِ الْمِسْكِينِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <span class="badge badge-frasa1">FRASA (b) · Idhafah — Mudhaf + Mudhaf Ilaih</span>
+      <span class="kartu-arab-besar arab" style="font-size:34px;">طَعَامِ الْمِسْكِينِ</span>
+      <span class="kartu-arti">طَعَامِ (mudhaf) + الْمِسْكِينِ (mudhaf ilaih) → "makanan/pemberian makan orang miskin"</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>
+        <span class="tag tag-n">طَعَامِ</span> mudhaf (majrur, tanwin gugur) +
+        <span class="tag tag-n">الْمِسْكِينِ</span> mudhaf ilaih (majrur bi al-kasrah).
+        Idhafah jenis <strong>إِضَافَة مَعْنَوِيَّة</strong> (idhafah maknawiyyah — memberikan makna hubungan kepemilikan/peruntukan)
+      </td></tr>
+      <tr><td>Makna frasa</td><td><strong>"Makanan orang miskin / pemberian makan kepada orang miskin"</strong> — idhafah ini bermakna طَعَام yang diperuntukkan bagi الْمِسْكِين. Frasa ini menjadi tujuan dorongan yang dinafikan: bukan tentang makanan apa pun, melainkan spesifik: kebutuhan si miskin</td></tr>
+      <tr><td>Peran / Kedudukan</td><td>
+        <strong>إِضَافَة</strong> — frasa idhafah ini menjadi <strong>مَجْرُور</strong> setelah harf jar عَلَى.
+        طَعَامِ majrur bi al-kasrah sebagai kepala idhafah; الْمِسْكِينِ majrur sebagai mudhaf ilaih
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- FRASA (c): عَلَى طَعَامِ الْمِسْكِينِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <span class="badge badge-frasa1">FRASA (c) · Jar Majrur — مُتَعَلِّق بِـ يَحُضُّ</span>
+      <span class="kartu-arab-besar arab" style="font-size:28px;">عَلَىٰ طَعَامِ الْمِسْكِينِ</span>
+      <span class="kartu-arti">عَلَى (harf jar) + طَعَامِ الْمِسْكِينِ (idhafah majrurah) — jar majrur متعلق بـ يَحُضُّ</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>
+        <span class="tag tag-harf">عَلَى</span> harf jar +
+        <span class="tag tag-n">طَعَامِ الْمِسْكِينِ</span> idhafah majrurah (طَعَامِ majrur bi al-kasrah + الْمِسْكِينِ mudhaf ilaih)
+      </td></tr>
+      <tr><td>Makna frasa</td><td><strong>"untuk (memberi) makan orang miskin"</strong> — jar majrur yang menyempurnakan makna يَحُضُّ: mendorong ke arah apa? Ke arah pemberian makan bagi orang miskin</td></tr>
+      <tr><td>Peran / Kedudukan</td><td>
+        <strong>Jar Majrur مُتَعَلِّق بِـ يَحُضُّ</strong> — terkait langsung dengan fi'il يَحُضُّ,
+        menjelaskan arah dan tujuan dorongan yang dinafikan oleh لَا
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- FRASA (d): jumlah kamilah -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2">
+      <span class="badge badge-frasa2">FRASA (d) · Jumlah Fi'liyyah Manfiyyah Ma'thufah — Ayat Lengkap</span>
+      <span class="kartu-arab-besar arab" style="font-size:20px;">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</span>
+      <span class="kartu-arti">وَ + لَا + fi'il (fa'il هو) + jar majrur — "dan tidak mendorong memberi makan orang miskin"</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>
+        <span class="tag tag-harf">وَ</span> 'atf +
+        <span class="tag tag-harf">لَا</span> nafi +
+        <span class="tag tag-fi">يَحُضُّ</span> fi'il (fa'il هو mustatir) +
+        <span class="tag tag-harf">عَلَى</span> harf jar +
+        <span class="tag tag-n">طَعَامِ الْمِسْكِينِ</span> idhafah majrurah (متعلق بـ يَحُضُّ)
+      </td></tr>
+      <tr><td>Makna frasa</td><td>
+        <strong>"Dan tidak mendorong (orang lain) untuk memberi makan orang miskin"</strong> —
+        tanda kedua dari المُكَذِّب بِالدِّينِ. Bukan sekadar tidak memberi makan sendiri —
+        bahkan tidak mau mendorong orang lain untuk peduli. Apatisme yang total
+      </td></tr>
+      <tr><td>Peran / Kedudukan</td><td>
+        <strong>جُمْلَة فِعْلِيَّة مَنْفِيَّة مَعْطُوفَة</strong> — jumlah verbal negatif yang
+        di-'athaf-kan kepada jumlah (kalimat) ayat 2 (يَدُعُّ الْيَتِيمَ). Keduanya bersama-sama
+        melukis potret sosial المُكَذِّب بِالدِّينِ: keras kepada yang lemah (ayat 2)
+        dan acuh tak acuh terhadap yang menderita (ayat 3)
+      </td></tr>
+    </table>
+  </div>
+
+
+  <!-- § 5 — ANALISIS TINGKAT 3 -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
+    <div class="sub-judul">Ayat 3 dari 7 — penutup unit sosial · pasangan ayat 2 · jembatan menuju ayat 4</div>
+  </div>
+
+  <div class="kartu" style="padding:0;">
+    <table class="kartu-tabel">
+      <tr>
+        <td>Posisi dalam surah</td>
+        <td>
+          Ayat <strong>3 dari 7</strong> — penutup unit deskripsi sosial (ayat 2–3).
+          Ayat 2 dan 3 adalah pasangan yang saling melengkapi:
+          <ul class="poin-list" style="margin-top:6px;">
+            <li><strong>Ayat 2</strong>: يَدُعُّ الْيَتِيمَ — tindakan aktif (menghardik yang lemah)</li>
+            <li><strong>Ayat 3</strong>: لَا يَحُضُّ عَلَى طَعَامِ الْمِسْكِينِ — apatisme pasif (tidak mau mendorong) ← <em>kita di sini</em></li>
+            <li><strong>Ayat 4–7</strong>: Dimensi kedua — wajah ibadah المُكَذِّب (shalat lalai, riya', tidak mau berbagi)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jenis kalimat</td>
+        <td>
+          <strong>جُمْلَة فِعْلِيَّة مَنْفِيَّة مَعْطُوفَة</strong> — kalimat verbal negatif
+          yang di-'athaf-kan kepada jumlah (kalimat) ayat 2.
+          Berbeda dari ayat 2 yang memakai fi'il positif (يَدُعُّ),
+          ayat 3 memakai struktur لَا + fi'il untuk menegaskan ketiadaan tindakan
+        </td>
+      </tr>
+      <tr>
+        <td>Kontras gramatikal</td>
+        <td>
+          Ayat 2 menggunakan fi'il positif: <strong>يَدُعُّ</strong> (aktif melakukan keburukan)<br>
+          Ayat 3 menggunakan fi'il negatif: <strong>لَا يَحُضُّ</strong> (abai melakukan kebaikan)<br><br>
+          Dua wajah kejahatan: <em>melakukan yang salah</em> + <em>tidak melakukan yang benar</em>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <!-- § 6 — TADABUR -->
+  <div class="section-header tadabur">
+    <div class="judul">Tadabur</div>
+    <div class="sub-judul">Renungan makna dan hikmah · وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</div>
+  </div>
+
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">HIKMAH</span>
+      <span class="tadabur-judul">Tidak Mendorong Pun Tidak — Apatisme yang Lebih Dalam dari Kikir</span>
+    </div>
+    <div class="tadabur-isi">
+      <p>
+        Allah ﷻ memilih kata <strong>يَحُضُّ</strong> — bukan يُطْعِمُ. Ini bukan kebetulan.
+        Seseorang yang tidak memberi makan orang miskin mungkin karena tidak punya
+        kemampuan. Namun seseorang yang <em>tidak mau mendorong orang lain pun</em> —
+        padahal dorongan itu tidak memerlukan harta — menunjukkan bahwa masalahnya
+        bukan di kantong, melainkan di hati.
+      </p>
+      <span class="arab-kutip">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</span>
+      <p>
+        Ini juga mengajarkan bahwa Islam tidak hanya menilai tindakan seseorang secara
+        individual. <strong>Mendorong kebaikan adalah ibadah sosial</strong> — dan
+        meninggalkannya adalah kelalaian yang dicela Al-Qur'an. Seorang yang beriman
+        kepada hari pembalasan akan merasakan tanggung jawab bukan hanya untuk
+        berbuat baik sendiri, tetapi untuk <em>menginspirasi</em> kebaikan di sekitarnya.
+      </p>
+      <p>
+        Ayat 2 dan 3 bersama-sama melukis sosok المُكَذِّب dari dua sisi:
+        keras aktif terhadap yang lemah (يَدُعُّ الْيَتِيمَ)
+        dan beku pasif terhadap yang menderita (لَا يَحُضُّ عَلَى طَعَامِ الْمِسْكِينِ).
+        Inilah jiwa yang kehilangan رَحْمَة — karena rahmat hanya tumbuh di atas tanah iman
+        yang sesungguhnya.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- § 7 — DIAGRAM SVG -->
+  <div class="section-header biru">
+    <div class="judul">Diagram Sintaksis — Model Pohon</div>
+    <div class="sub-judul">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ · MODEL-POHON · POLA-BERTINGKAT · tiga level konstituen</div>
+  </div>
+
+  <div class="diagram-wrapper">
+    <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:720px;display:block;margin:0 auto;">
+
+      <!-- ══ BARIS KATA (RTL): وَ=658  لَا=578  يَحُضُّ=470  عَلَى=360  طَعَامِ=242  الْمِسْكِينِ=85 ══ -->
+
+      <!-- وَ — harf 'atf -->
+      <text x="658" y="44" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="26" fill="#0e7490" direction="rtl">وَ</text>
+      <text x="658" y="63" text-anchor="middle" font-size="10" fill="#0e7490">وَاو الْعَطْف</text>
+      <text x="658" y="77" text-anchor="middle" font-size="10" fill="#888">لَا مَحَلَّ لَهُ</text>
+
+      <!-- لَا — harf nafi -->
+      <text x="578" y="44" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="24" fill="#0e7490" direction="rtl">لَا</text>
+      <text x="578" y="63" text-anchor="middle" font-size="10" fill="#0e7490">لَا نَافِيَة</text>
+      <text x="578" y="77" text-anchor="middle" font-size="10" fill="#888">لَا مَحَلَّ لَهُ</text>
+
+      <!-- يَحُضُّ — fi'il mudhari' -->
+      <text x="470" y="44" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#c2410c" direction="rtl">يَحُضُّ</text>
+      <text x="470" y="63" text-anchor="middle" font-size="10" fill="#c2410c">fi'il mudhari' · marfu'</text>
+      <text x="470" y="77" text-anchor="middle" font-size="10" fill="#888">fa'il: هو (mustatir)</text>
+
+      <!-- عَلَى — harf jar -->
+      <text x="360" y="44" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" direction="rtl">عَلَىٰ</text>
+      <text x="360" y="63" text-anchor="middle" font-size="10" fill="#0e7490">harf jar</text>
+      <text x="360" y="77" text-anchor="middle" font-size="10" fill="#888">لَا مَحَلَّ لَهُ</text>
+
+      <!-- طَعَامِ — isim mudhaf -->
+      <text x="242" y="44" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#1a472a" direction="rtl">طَعَامِ</text>
+      <text x="242" y="63" text-anchor="middle" font-size="10" fill="#1a472a">isim · mudhaf · majrur</text>
+      <text x="242" y="77" text-anchor="middle" font-size="10" fill="#888">kepala idhafah</text>
+
+      <!-- الْمِسْكِينِ — isim mudhaf ilaih -->
+      <text x="85" y="44" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="20" fill="#1a472a" direction="rtl">الْمِسْكِينِ</text>
+      <text x="85" y="63" text-anchor="middle" font-size="10" fill="#1a472a">isim · mudhaf ilaih</text>
+      <text x="85" y="77" text-anchor="middle" font-size="10" fill="#888">مَجْرُور</text>
+
+
+      <!-- ══ LEVEL 1 — DUA NODE SEJAJAR ══ -->
+
+      <!-- NODE A (kanan): لَا + يَحُضُّ → لَا يَحُضُّ (hijau solid) -->
+      <!-- لَا: harf → dashed tipis -->
+      <line x1="578" y1="83" x2="578" y2="108" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <!-- يَحُضُّ: fi'il → solid hijau -->
+      <line x1="470" y1="83" x2="470" y2="108" stroke="#1a472a" stroke-width="2"/>
+      <line x1="470" y1="108" x2="578" y2="108" stroke="#1a472a" stroke-width="2"/>
+      <polygon points="524,108 517,100 531,100" fill="#1a472a"/>
+      <line x1="524" y1="108" x2="524" y2="143" stroke="#1a472a" stroke-width="2"/>
+      <!-- Label L1A — dua baris -->
+      <text x="524" y="156" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#1a472a" font-weight="700" direction="rtl">لَا يَحُضُّ</text>
+      <text x="524" y="171" text-anchor="middle" font-size="9" fill="#555">Fi'il Mudhari' Manfi · Fa'il هو (mustatir) · Marfu'</text>
+      <!-- label لَا sebagai harf -->
+      <text x="578" y="100" text-anchor="middle" font-size="8" fill="#888">حَرْف</text>
+
+      <!-- NODE B (kiri): طَعَامِ + الْمِسْكِينِ → Idhafah (teal solid) -->
+      <line x1="242" y1="83" x2="242" y2="108" stroke="#0e7490" stroke-width="2"/>
+      <line x1="85"  y1="83" x2="85"  y2="108" stroke="#0e7490" stroke-width="2"/>
+      <line x1="85"  y1="108" x2="242" y2="108" stroke="#0e7490" stroke-width="2"/>
+      <polygon points="163,108 156,100 170,100" fill="#0e7490"/>
+      <line x1="163" y1="108" x2="163" y2="143" stroke="#0e7490" stroke-width="2"/>
+      <!-- Label L1B — dua baris -->
+      <text x="163" y="156" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#0e7490" font-weight="700" direction="rtl">طَعَامِ الْمِسْكِينِ</text>
+      <text x="163" y="171" text-anchor="middle" font-size="9" fill="#555">Idhafah · Mudhaf + Mudhaf Ilaih (Majrur)</text>
+
+
+      <!-- ══ LEVEL 2: عَلَى + NODE B → عَلَى طَعَامِ الْمِسْكِينِ (teal putus) ══ -->
+      <!-- عَلَى: harf jar → dashed langsung ke L2 horizontal -->
+      <line x1="360" y1="83"  x2="360" y2="198" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <!-- NODE B naik ke L2 -->
+      <line x1="163" y1="176" x2="163" y2="198" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="163" y1="198" x2="360" y2="198" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <polygon points="262,198 255,190 269,190" fill="#0e7490"/>
+      <line x1="262" y1="198" x2="262" y2="232" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <!-- Label L2 — dua baris -->
+      <text x="262" y="246" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="14" fill="#0e7490" font-weight="700" direction="rtl">عَلَى طَعَامِ الْمِسْكِينِ</text>
+      <text x="262" y="261" text-anchor="middle" font-size="9" fill="#555">Jar Majrur · مُتَعَلِّق بِـ يَحُضُّ</text>
+      <!-- label عَلَى sebagai harf jar -->
+      <text x="360" y="186" text-anchor="middle" font-size="8" fill="#888">حَرْف</text>
+
+
+      <!-- ══ LEVEL 3: NODE A + L2 → jumlah kamilah, وَ bergabung di sini (ungu putus) ══ -->
+      <!-- NODE A naik ke L3 -->
+      <line x1="524" y1="176" x2="524" y2="310" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <!-- L2 naik ke L3 -->
+      <line x1="262" y1="266" x2="262" y2="310" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <!-- وَ: harf atf, garis panjang turun ke L3 horizontal -->
+      <line x1="658" y1="83"  x2="658" y2="310" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <!-- L3 horizontal — meliputi وَ(658) + NODE A(524) + L2(262) -->
+      <line x1="262" y1="310" x2="658" y2="310" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <!-- Segitiga di tengah NODE A dan L2 -->
+      <polygon points="393,310 386,302 400,302" fill="#5b21b6"/>
+      <line x1="393" y1="310" x2="393" y2="344" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <!-- Label L3 — dua baris -->
+      <text x="393" y="358" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="12" fill="#5b21b6" font-weight="700" direction="rtl">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</text>
+      <text x="393" y="373" text-anchor="middle" font-size="9" fill="#555">جُمْلَة فِعْلِيَّة مَنْفِيَّة مَعْطُوفَة · Ma'thuf kepada Ayat 2</text>
+      <!-- label وَ sebagai harf di L3 -->
+      <text x="658" y="298" text-anchor="middle" font-size="8" fill="#888">حَرْف</text>
+
+    </svg>
+
+    <div class="diagram-legenda">
+      <span class="legenda-label">LEGENDA</span>
+      <span class="legenda-item">
+        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>
+        لَا يَحُضُّ — Fi'il Mudhari' Manfi (Fa'il هو mustatir)
+      </span>
+      <span class="legenda-item">
+        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="2.5"/></svg>
+        طَعَامِ الْمِسْكِينِ — Idhafah (Majrur bi عَلَى)
+      </span>
+      <span class="legenda-item">
+        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>
+        عَلَى طَعَامِ الْمِسْكِينِ — Jar Majrur (متعلق بـ يَحُضُّ)
+      </span>
+      <span class="legenda-item">
+        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>
+        جُمْلَة كَامِلَة — Jumlah Fi'liyyah Manfiyyah Ma'thufah
+      </span>
+      <span class="legenda-item">
+        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="3,3"/></svg>
+        وَ / لَا / عَلَى — Harf (لَا مَحَلَّ لَهُ)
+      </span>
+    </div>
+  </div>
+
+
+  <!-- § 8 — VIDEO -->
+  <div class="video-section">
+    <div class="video-header">
+      <div class="video-badge">▶ VIDEO TAFSIR</div>
+      <div class="video-judul">Surah Al-Ma'un — Analisis Gramatikal</div>
+      <div class="video-sub">Kajian nahwu lengkap ayat per ayat · <em>Video segera hadir</em></div>
+    </div>
+  </div>
+
+
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div>
+
+<footer>
+  <p><a href="index.html">iwoth.github.io/grammar-quran</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>const PAGE_CONFIG = { nomorSurah: 107, nomorAyat: 3, ayatTerakhir: false };</script>
+<script>
+  (function () {
+    const surah = (typeof getSurahByNomor === 'function') ? getSurahByNomor(PAGE_CONFIG.nomorSurah) : null;
+    const ayatSaat = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah ? surah.jumlahAyat : 7;
+    const surahNama = surah ? surah.namaLatin : "Al-Ma'un";
+
+    if (surah) {
+      document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
+      const lbl = document.getElementById('label-ayat-box');
+      if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}`;
+      const hiAyat = document.getElementById('hi-ayat-text');
+      if (hiAyat) hiAyat.textContent = `Ayat ${ayatSaat} · (${surah.nomor}:${ayatSaat})`;
+
+      const ddSurah = document.getElementById('dd-surah');
+      SURAH_DATA.filter(s => s.status === 'tersedia').sort((a,b) => a.nomor - b.nomor).forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomorStr + '  ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' Ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+      function isiDropdownAyat(n) {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        const ops = getOpsiDropdownAyat(n);
+        if (!ops.length) { dd.disabled = true; return; }
+        dd.disabled = false;
+        ops.forEach(o => {
+          const opt = document.createElement('option');
+          opt.value = o.path; opt.textContent = o.label;
+          if (o.value === ayatSaat && n === surah.nomor) opt.selected = true;
+          dd.appendChild(opt);
+        });
+      }
+      isiDropdownAyat(surah.nomor);
+      document.getElementById('dd-surah').addEventListener('change', function () {
+        const n = parseInt(this.value);
+        if (n) isiDropdownAyat(n);
+        else { const dd = document.getElementById('dd-ayat'); dd.innerHTML = '<option value="">— Pilih Ayat —</option>'; dd.disabled = true; }
+      });
+    }
+
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) window.location.href = path;
+      else alert('Pilih surah dan ayat terlebih dahulu.');
+    };
+
+    const c = document.getElementById('nav-bawah-container');
+    const bp = document.createElement('a');
+    bp.className = 'nav-btn'; bp.href = '107-02.html'; bp.textContent = '\u2190 Ayat 2';
+    const info = document.createElement('span');
+    info.className = 'nav-info';
+    info.textContent = `${surahNama} \u00b7 Ayat ${ayatSaat} dari ${totalAyat}`;
+    const bn = document.createElement('a');
+    bn.className = 'nav-btn'; bn.href = '107-04.html'; bn.textContent = 'Ayat 4 \u2192';
+    c.appendChild(bp); c.appendChild(info); c.appendChild(bn);
+  })();
+</script>
+</body>
+</html>
