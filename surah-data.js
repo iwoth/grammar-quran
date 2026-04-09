@@ -385,9 +385,9 @@ const SURAH_DATA = [
     namaArab: "الماعون",
     arti: "Barang yang Berguna",
     jumlahAyat: 7,
-    jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    jenis: "Makkiyah + Madaniyah",
+    status: "tersedia",
+    keterangan: "Surah ke-107, dua unit: ayat 1–3 Makkiyyah (المُكَذِّب بِالدِّين) + ayat 4–7 Madaniyyah (المُنَافِقُون)"
   },
   {
     nomor: 108,
