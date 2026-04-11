@@ -370,13 +370,13 @@ const SURAH_DATA = [
   {
     nomor: 106,
     nomorStr: "106",
-    namaLatin: "Quraisy",
+    namaLatin: "Al-Quraisy",
     namaArab: "قريش",
     arti: "Suku Quraisy",
     jumlahAyat: 4,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-106, satu-satunya surah yang dibuka dengan jar-majrur (ta'lil) yang bersandar pada perintah di ayat 3"
   },
   {
     nomor: 107,
