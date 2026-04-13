@@ -364,8 +364,8 @@ const SURAH_DATA = [
     arti: "Gajah",
     jumlahAyat: 5,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-105, kisah pasukan gajah Abrahah — 5 ayat, struktur naratif lengkap"
   },
   {
     nomor: 106,
