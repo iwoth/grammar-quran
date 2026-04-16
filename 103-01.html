@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Asr 103:1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hijau-gelap:#1a472a; --hijau-medium:#2d6a4f; --hijau-muda:#40916c;
+      --biru-tua:#1e3a8a; --ungu:#5b21b6; --coklat:#92400e;
+      --merah-fi:#c2410c; --emas:#d4af37; --emas-muda:#f0d060;
+      --bg-utama:#f7f5f0; --border:#e0d9c8;
+      --font-arab:'Scheherazade New',serif; --font-latin:'Lato',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-latin);background:var(--bg-utama);color:#1c1c1c;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+    .arab{font-family:var(--font-arab);direction:rtl;}
+    header{background:var(--hijau-gelap);color:white;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
+    .header-info{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;justify-content:center;}
+    .header-info .hi-label{font-size:.60rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas);margin-bottom:3px;}
+    .header-info .hi-surah{font-size:.90rem;font-weight:700;color:white;display:flex;align-items:baseline;gap:10px;}
+    .header-info .hi-surah .arab-surah{font-family:var(--font-arab);font-size:.88rem;color:var(--emas);direction:rtl;}
+    .header-info .hi-ayat{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:3px;}
+    .nav-dropdowns{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .dropdown-wrapper{display:flex;flex-direction:column;gap:3px;}
+    .nav-dropdowns label{font-size:.72rem;color:rgba(255,255,255,.65);white-space:nowrap;}
+    .nav-dropdowns select{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;font-family:var(--font-latin);font-size:.82rem;cursor:pointer;outline:none;transition:background .2s;max-width:240px;}
+    .nav-dropdowns select:hover,.nav-dropdowns select:focus{background:rgba(255,255,255,.2);border-color:var(--emas);}
+    .nav-dropdowns select option{background:var(--hijau-gelap);}
+    .btn-go{background:var(--emas);color:var(--hijau-gelap);border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-latin);font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s;align-self:flex-end;}
+    .btn-go:hover{background:var(--emas-muda);}
+    .nav-home{color:#1a472a;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;background:#c8d0c8;border:1px solid #b0bab0;border-radius:8px;padding:6px 12px;transition:background .2s;flex-shrink:0;}
+    .nav-home:hover{background:#e8f0e8;border-color:var(--emas);}
+    .container{max-width:780px;width:100%;margin:0 auto;padding:32px 24px;flex:1;}
+    .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
+    .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
+    .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2;color:#1a1a1a;}
+    .transliterasi{margin-top:10px;font-size:14px;color:var(--hijau-medium);font-style:italic;}
+    .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
+    .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
+    .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
+    .section-header .judul{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;}
+    .section-header .sub-judul{font-size:12px;color:#a8d5b5;margin-top:2px;}
+    .section-header.biru{background:#1e3a5f;} .section-header.biru .sub-judul{color:#93c5fd;}
+    .section-header.tadabur{background:#5b3a1a;} .section-header.tadabur .sub-judul{color:var(--emas);opacity:.8;}
+    .kartu{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .kartu-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid #f0ebe0;}
+    .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
+    .kartu-head.warna-fi{background:#fff7ed;}
+    .kartu-head.warna-frasa1{background:#eef4fb;}
+    .kartu-head.warna-frasa2{background:#f5f0fb;} .kartu-head.warna-frasa3{background:#fdf6ec;}
+    .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
+    .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
+    .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
+    .badge-frasa2{background:var(--ungu);color:white;} .badge-frasa3{background:var(--coklat);color:white;}
+    .badge-tadabur{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;background:#92400e;color:white;}
+    .badge-khilaf{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;background:#0e7490;color:white;}
+    .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
+    .kartu-arti{font-size:13px;color:#555;font-style:italic;}
+    .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
+    .kartu-tabel tr{border-bottom:1px solid #f5f0e8;} .kartu-tabel tr:last-child{border-bottom:none;}
+    .kartu-tabel td{padding:9px 20px;vertical-align:top;word-wrap:break-word;}
+    .kartu-tabel td:first-child{color:#777;width:28%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+    .kartu-tabel td:last-child{color:#1a1a1a;width:72%;}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.3px;margin-right:4px;margin-bottom:2px;}
+    .tag-n{background:#dbeafe;color:#1e3a8a;} .tag-harf{background:#cffafe;color:#155e75;}
+    .tag-fi{background:#ffedd5;color:#9a3412;} .tag-marfu{background:#dcfce7;color:#166534;}
+    .tag-manshub{background:#fce7f3;color:#9d174d;} .tag-majrur{background:#fef3c7;color:#92400e;}
+    .tag-nakirah{background:#fee2e2;color:#991b1b;} .tag-marifah{background:#dbeafe;color:#1e3a8a;}
+    .tag-mabni{background:#f3e8ff;color:#6b21a8;}
+    .arab-inline{font-family:var(--font-arab);font-size:20px;color:var(--hijau-gelap);direction:rtl;display:inline-block;}
+    .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
+    .poin-list{list-style:none;padding:0;margin:0;}
+    .poin-list li{padding:3px 0 3px 16px;position:relative;}
+    .poin-list li::before{content:'·';position:absolute;left:4px;color:#aaa;}
+    .iltifat-box{background:#fdf4ff;border:1px solid #e9d5ff;border-left:5px solid #7e22ce;border-radius:10px;padding:16px 20px;margin-top:8px;}
+    .iltifat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7e22ce;margin-bottom:10px;}
+    .iltifat-isi{font-size:13px;color:#374151;line-height:1.8;}
+    .khilaf-box{background:#f0fdf4;border:1px solid #bbf7d0;border-left:5px solid #0e7490;border-radius:10px;padding:16px 20px;margin-top:8px;}
+    .khilaf-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#0e7490;margin-bottom:10px;}
+    .khilaf-isi{font-size:13px;color:#374151;line-height:1.8;}
+    .tadabur-box{background:white;border:1px solid var(--border);border-left:5px solid var(--emas);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .tadabur-head{background:#fdf6ec;padding:12px 20px;border-bottom:1px solid #f0e8d0;display:flex;align-items:center;gap:10px;}
+    .tadabur-judul{font-size:13px;font-weight:700;color:#78350f;}
+    .tadabur-isi{padding:18px 20px;font-size:14.5px;line-height:1.9;color:#2d2d2d;}
+    .tadabur-isi p{margin-bottom:10px;} .tadabur-isi p:last-child{margin-bottom:0;}
+    .diagram-wrapper{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;margin-bottom:20px;overflow-x:auto;}
+    .diagram-legenda{margin-top:12px;background:#f8f6f1;border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:11px;color:#444;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;}
+    .legenda-label{font-weight:700;color:#888;letter-spacing:.5px;width:100%;margin-bottom:4px;}
+    .legenda-item{display:inline-flex;align-items:center;gap:5px;}
+    /* ── Kartu head 3-kolom ── */
+    .kartu-head-harf3{display:flex;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid #f0ebe0;background:#ecfeff;}
+    .kartu-head-harf3 .kh3-badge{flex-shrink:0;}
+    .kartu-head-harf3 .kh3-arab{font-family:var(--font-arab);font-size:40px;color:#1a1a1a;line-height:1.6;direction:rtl;flex:0 0 auto;}
+    .kartu-head-harf3 .kh3-arti{font-size:13px;color:#555;font-style:italic;flex:1;}
+    footer{background:var(--hijau-gelap);color:rgba(255,255,255,.6);text-align:center;padding:16px 24px;font-size:12px;}
+    footer a{color:var(--emas);text-decoration:none;}
+    .nav-bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 8px;flex-wrap:wrap;}
+    .nav-btn{background:white;border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;transition:background .2s;}
+    .nav-btn:hover{background:#e8f0e8;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda{background:var(--hijau-gelap);color:white;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda:hover{background:var(--hijau-medium);}
+    .nav-info{font-size:12px;color:#888;text-align:center;flex:1;}
+    /* Konsep gramatikal box */
+    .konsep-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:16px 20px;margin-top:8px;}
+    .konsep-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:10px;}
+    .konsep-isi{font-size:13px;color:#374151;line-height:1.9;}
+    .konsep-tabel{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px;}
+    .konsep-tabel th{background:#fff3e0;padding:7px 12px;text-align:left;font-weight:700;color:#92400e;border:1px solid #fed7aa;}
+    .konsep-tabel td{padding:7px 12px;border:1px solid #fde8c8;vertical-align:top;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <div class="hi-label">Grammar Al-Qur'an</div>
+      <div class="hi-surah">
+        Al-Asr · 103
+        <span class="arab-surah">الْعَصْرِ</span>
+      </div>
+      <div class="hi-ayat" id="hi-ayat-text">Ayat 1 · (103:1)</div>
+    </a>
+    <div class="nav-dropdowns">
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Pergi →</button>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- §1 AYAT BOX -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Asr : 1</div>
+    <div class="teks-ayat arab">وَالْعَصْرِ</div>
+    <div class="transliterasi">Wal-'aṣr</div>
+    <div class="terjemahan">"Demi masa."</div>
+  </div>
+
+  <!-- §2 KONTEKS -->
+  <div class="konteks-box">
+    <strong>Konteks Surah:</strong> Al-Asr adalah surah Makkiyah ke-103 dalam urutan mushaf, terdiri dari 3 ayat. Surah ini tergolong surah paling pendek sekaligus paling padat maknanya. Imam Asy-Syafi'i rahimahullah berkata: <em>"Seandainya manusia merenungkan surah ini saja, niscaya itu sudah cukup bagi mereka."</em> Surah ini memberi formula lengkap keselamatan manusia di dunia dan akhirat dalam tiga ayat yang ringkas.
+    <br><br>
+    <strong>Konteks Ayat 1:</strong> Ayat pembuka ini berupa <em>qasam</em> (قَسَم — sumpah). Allah Ta'ala bersumpah dengan <em>al-'aṣr</em> (الْعَصْرِ), yang menurut jumhur ulama bermakna masa/zaman secara umum. Sumpah ini berfungsi untuk menegaskan dan menguatkan kandungan yang menjadi <em>jawāb al-qasam</em> (respons sumpah) di ayat berikutnya: <span class="arab-inline">إِنَّ الْإِنسَانَ لَفِى خُسْرٍ</span>. Sumpah Allah dengan salah satu ciptaan-Nya menunjukkan betapa berharganya sesuatu tersebut dan sekaligus mengingatkan tentangnya.
+  </div>
+
+  <!-- §3 ANALISIS TINGKAT 1 -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
+    <div class="sub-judul">Pembahasan kata per kata secara individual</div>
+  </div>
+
+  <!-- Kartu 1: وَ -->
+  <div class="kartu">
+    <div class="kartu-head-harf3">
+      <span class="badge badge-harf kh3-badge">HARF · Harf Qasam · (103:1:1)</span>
+      <div class="kh3-arab arab">وَ</div>
+      <div class="kh3-arti">demi (pembuka sumpah)</div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis Kata</td><td><span class="tag tag-harf">Harf</span> <em>ḥarf al-qasam</em> (harf sumpah) · salah satu dari tiga harf qasam: وَ، بِ، تَ</td></tr>
+      <tr><td>Arti</td><td>demi — digunakan untuk bersumpah dengan apa yang mengikutinya (<em>muqsam bih</em>)</td></tr>
+      <tr><td>Fungsi</td><td>
+        Menjarkan isim yang mengikutinya sehingga <span class="arab-inline">الْعَصْرِ</span> menjadi <em>majrūr</em> (berharakat kasrah) sebagai <em>muqsam bih</em> (yang dijadikan sumpah).
+        <ul class="poin-list" style="margin-top:6px;">
+          <li>Tidak bisa berdiri sendiri — selalu melekat pada kata berikutnya</li>
+          <li>Berbeda dari <em>wāwul-'aṭf</em> (وَاو اتصال): waw qasam hanya diikuti isim (bukan fi'il/jumlah)</li>
+        </ul>
+        <div class="konsep-box" style="margin-top:10px;">
+          <div class="konsep-label">📌 Konsep Gramatikal Al-Asr — Al-Qasam (الْقَسَم — Sumpah) dalam Al-Qur'an</div>
+          <div class="konsep-isi">
+            <strong>Struktur qasam</strong> terdiri dari tiga unsur:
+            <ol style="margin:8px 0 8px 18px;line-height:2;">
+              <li><strong>Harf al-qasam</strong> (حَرْفُ الْقَسَمِ — harf sumpah): وَ، بِ، تَ</li>
+              <li><strong>Muqsam bih</strong> (مُقْسَمٌ بِهِ — yang dijadikan sumpah): <span class="arab-inline">الْعَصْرِ</span></li>
+              <li><strong>Jawāb al-qasam</strong> (جَوَابُ الْقَسَمِ — respons/isi sumpah): <a href="103-02.html"><span class="arab-inline">إِنَّ الْإِنسَانَ لَفِى خُسْرٍ</span></a> (ayat 2)</li>
+            </ol>
+            <strong>Tiga harf qasam:</strong>
+            <table class="konsep-tabel">
+              <tr><th>Harf</th><th>Nama</th><th>Kekhususan</th></tr>
+              <tr><td><span class="arab-inline">وَ</span></td><td><em>wāwul-qasam</em> (waw sumpah)</td><td>Paling umum · hanya digunakan di awal kalimat qasam · menjarkan isim berikutnya</td></tr>
+              <tr><td><span class="arab-inline">بِ</span></td><td><em>bā'ul-qasam</em> (ba' sumpah)</td><td>Lebih luas penggunaannya · bisa setelah fi'il (<em>أَقْسَمَ بِاللهِ</em>)</td></tr>
+              <tr><td><span class="arab-inline">تَ</span></td><td><em>tā'ul-qasam</em> (ta' sumpah)</td><td>Khusus untuk <em>lafzh al-jalālah</em> (لَفْظُ الْجَلَالَة — nama Allah): تَاللهِ saja</td></tr>
+            </table>
+            <br>
+            <strong>Makna dan fungsi qasam dalam Al-Qur'an:</strong> Ketika Allah bersumpah dengan sesuatu dari ciptaan-Nya (masa, matahari, bintang, buah tin, dsb.), hal itu menunjukkan dua hal: (1) sesuatu yang dijadikan sumpah adalah tanda kekuasaan Allah yang berharga dan perlu diperhatikan, (2) isi sumpah (<em>jawāb al-qasam</em>) adalah perkara yang sangat penting dan wajib diperhatikan.
+          </div>
+        </div>
+      </td></tr>
+      <tr><td>Status I'rab</td><td><span class="tag tag-mabni">Mabni</span> <em>mabni 'alā al-fatḥ</em> (berbentuk tetap) · <em>lā maḥalla lahu minal-i'rāb</em> (tidak memiliki kedudukan i'rab)</td></tr>
+      <tr><td>Kedudukan Gramatikal</td><td>
+        <ul class="poin-list">
+          <li>Harf qasam yang menjarkan <span class="arab-inline">الْعَصْرِ</span></li>
+          <li>Bersama <span class="arab-inline">الْعَصْرِ</span> membentuk <em>jumlah al-qasam</em> (جُمْلَةُ الْقَسَمِ — kalimat sumpah)</li>
+          <li><em>Jawāb al-qasam</em> menyusul di <a href="103-02.html">ayat 2</a>: <span class="arab-inline">إِنَّ الْإِنسَانَ لَفِى خُسْرٍ</span></li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+  <!-- Kartu 2: الْعَصْرِ -->
+  <div class="kartu">
+    <div class="kartu-head-harf3" style="background:#f0f7f2;">
+      <span class="badge badge-kata kh3-badge">ISIM · Muqsam Bih, Ma'rifah · (103:1:2)</span>
+      <div class="kh3-arab arab">الْعَصْرِ</div>
+      <div class="kh3-arti">masa, waktu</div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Jenis Kata</td><td><span class="tag tag-n">Isim</span> <em>ismu jāmid</em> (isim tidak turunan) · <em>wazn af'al</em> (timbangan af'al)</td></tr>
+      <tr><td>Arti</td><td>
+        <em>al-'aṣr</em> — terjadi <em>khilāf</em> (perbedaan pendapat) di kalangan mufassirin:
+        <div class="khilaf-box" style="margin-top:8px;">
+          <div class="khilaf-label">📖 Khilaf Makna الْعَصْرِ</div>
+          <div class="khilaf-isi">
+            <strong>Pendapat 1 — Masa/Zaman secara umum (<em>al-dahr</em>)</strong>: Jumhur mufassirin, di antaranya Ibnu Jarir Ath-Thabari rahimahullah. Ini pendapat yang paling kuat karena:
+            <ul class="poin-list" style="margin:6px 0;">
+              <li>Sesuai dengan kandungan ayat berikutnya yang berbicara tentang manusia secara umum</li>
+              <li>Sesuai dengan penggunaan لُغَوِيّ (lughawi) — العصر bermakna waktu yang terus berlalu</li>
+            </ul>
+            <strong>Pendapat 2 — Waktu Shalat Ashar</strong>: Karena shalat Ashar memiliki keistimewaan khusus (<em>al-ṣalātul-wusṭā</em> menurut sebagian ulama).
+            <br><br>
+            <strong>Pendapat 3 — Waktu Sore (akhir hari)</strong>: Waktu di mana manusia menghitung amalnya di akhir hari.
+            <br><br>
+            <em>Rajih</em> (pendapat lebih kuat): <strong>Masa/Zaman</strong> — karena sumpah dengan masa selaras dengan tema surah tentang perjalanan waktu dan kerugian manusia.
+          </div>
+        </div>
+      </td></tr>
+      <tr><td>Akar</td><td>ع-ص-ر · <em>ismu jāmid</em> (tidak turunan dari fi'il tertentu dalam makna ini) · wazan <em>af'al</em> → أَفْعَال (jamak: الأَعْصَار)</td></tr>
+      <tr><td>Status I'rab</td><td><span class="tag tag-majrur">Majrur</span> <em>majrūr bi-wāwil-qasam</em> (dijarkan oleh waw qasam) · tanda: <em>kasrah ẓāhirah</em> (kasrah yang tampak) pada huruf ra'</td></tr>
+      <tr><td>Jumlah</td><td><em>mufrad</em> (tunggal)</td></tr>
+      <tr><td>Gender</td><td><em>mudhakkar</em> (maskulin)</td></tr>
+      <tr><td>Identitas</td><td><span class="tag tag-marifah">Ma'rifah</span> <em>ma'rifah bil-alif wa al-lām at-ta'rīf</em> (menjadi tertentu dengan alif lam ta'rif) · ال di sini berfungsi sebagai <em>al-jinsiyyah</em> (menyatakan jenis keseluruhan — seluruh masa/zaman)</td></tr>
+      <tr><td>Kedudukan Gramatikal</td><td>
+        <ul class="poin-list">
+          <li><em>muqsam bih</em> (مُقْسَمٌ بِهِ — yang dijadikan sumpah) · dijarkan oleh waw al-qasam</li>
+          <li>Bersama waw membentuk <em>jumlah al-qasam</em> (kalimat sumpah) yang berfungsi sebagai <em>mu'akkid</em> (penguat) bagi jawab al-qasam di ayat 2</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+  <!-- §4 ANALISIS TINGKAT 2 — FRASA -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 2 — Frasa</div>
+    <div class="sub-judul">Analisis dari depan ke belakang · membangun frasa bertahap</div>
+  </div>
+
+  <!-- Frasa 1: وَالْعَصْرِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <div>
+        <div class="kartu-arab-besar arab">وَالْعَصْرِ</div>
+        <div class="kartu-arti">Frasa 1 — Jumlah al-Qasam (Kalimat Sumpah)</div>
+      </div>
+      <span class="badge badge-frasa1">FRASA 1 · KAMILAH</span>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td><em>jumlah al-qasam</em> (جُمْلَةُ الْقَسَمِ — kalimat sumpah) · <em>ḥarf al-qasam</em> (harf sumpah): <span class="arab-inline">وَ</span> + <em>muqsam bih</em> (yang dijadikan sumpah): <span class="arab-inline">الْعَصْرِ</span></td></tr>
+      <tr><td>Makna Frasa</td><td>"Demi masa" — Allah bersumpah dengan masa sebagai penguatan terhadap pernyataan di ayat 2. Sumpah menunjukkan bahwa masa adalah perkara berharga yang layak dijadikan saksi atas kondisi manusia</td></tr>
+      <tr><td>Peran / Kedudukan</td><td>
+        <em>Jumlah al-qasam</em> yang <em>lā maḥalla lahā minal-i'rāb</em> (tidak memiliki kedudukan i'rab lebih lanjut) · berperan sebagai <em>mu'akkid</em> (penguat) dan <em>muqaddimah</em> (pembuka) sebelum isi pokok surah di <a href="103-02.html">ayat 2</a>. <em>Jawāb al-qasam</em> (respons sumpah) menyusul: <span class="arab-inline">إِنَّ الْإِنسَانَ لَفِى خُسْرٍ</span>
+      </td></tr>
+    </table>
+  </div>
+
+  <!-- §5 ANALISIS TINGKAT 3 -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 3 — Kedudukan dalam Surah</div>
+    <div class="sub-judul">Peran ayat dalam struktur dan alur Surah Al-Asr</div>
+  </div>
+
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kartu-arab-besar arab" style="font-size:24px;">وَالْعَصْرِ</div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <strong><em>jumlah al-qasam</em> (kalimat sumpah pembuka)</strong> — Ayat 1 berperan sebagai pembuka dengan sumpah, teknik retorika Al-Qur'an yang menyiapkan pendengar agar memperhatikan sepenuhnya apa yang akan datang. Ini bukan sekadar formalitas — sumpah Allah dengan masa adalah pernyataan bahwa waktu adalah saksi terbesar atas nasib manusia.
+        </td>
+      </tr>
+      <tr>
+        <td>Alur Surah</td>
+        <td>
+          Surah Al-Asr memiliki struktur yang sangat padat:<br>
+          <em>Ayat 1</em>: <strong>Qasam</strong> — Allah bersumpah dengan masa (<span class="arab-inline">وَالْعَصْرِ</span>)<br>
+          <em>Ayat 2</em>: <strong>Jawab qasam — Pernyataan umum</strong> — semua manusia merugi (<span class="arab-inline">إِنَّ الْإِنسَانَ لَفِى خُسْرٍ</span>)<br>
+          <em>Ayat 3</em>: <strong>Pengecualian</strong> — empat sifat yang menyelamatkan (<span class="arab-inline">إِلَّا الَّذِينَ آمَنُوا...</span>)
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan Qasam–Jawab</td>
+        <td>
+          Qasam (وَالْعَصْرِ) dan jawab al-qasam (إِنَّ الْإِنسَانَ لَفِى خُسْرٍ) membentuk ikatan logis: Allah bersumpah <em>dengan</em> masa untuk menegaskan bahwa <em>di dalam</em> masa itu manusia berada dalam kerugian. Masa sendiri menjadi saksi atas kerugian manusia — setiap detik yang berlalu tanpa iman, amal, dan wasiat menjadi bukti kerugian.
+        </td>
+      </tr>
+      <tr>
+        <td>Nama Surah</td>
+        <td>
+          Surah ini dinamakan <strong>Al-Asr (Masa)</strong> diambil dari kata <span class="arab-inline">الْعَصْرِ</span> di ayat pembuka ini. Ini menunjukkan bahwa tema utama surah adalah tentang waktu sebagai modal terbesar manusia yang tidak bisa diperbaharui.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- §6 TADABUR -->
+  <div class="section-header tadabur">
+    <div class="judul">Tadabur</div>
+    <div class="sub-judul">Renungan dan hikmah ayat</div>
+  </div>
+
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">HIKMAH</span>
+      <span class="tadabur-judul">Masa Adalah Modal yang Paling Berharga dan Paling Mudah Tersia-sia</span>
+    </div>
+    <div class="tadabur-isi">
+      <span class="arab-kutip">وَالْعَصْرِ</span>
+      <p>Allah Ta'ala bersumpah dengan masa. Ini bukan sekedar gaya bahasa — dalam Al-Qur'an, ketika Allah bersumpah dengan sesuatu dari ciptaan-Nya, Dia menegaskan dua hal sekaligus: (1) ciptaan itu adalah tanda kekuasaan-Nya yang luar biasa, dan (2) apa yang akan Dia nyatakan setelahnya adalah perkara yang sangat penting.</p>
+      <p>Masa adalah satu-satunya modal yang diberikan secara rata kepada setiap manusia: 24 jam sehari, 60 menit per jam, 60 detik per menit. Tidak ada yang mendapat lebih, tidak ada yang mendapat kurang. Yang membedakan manusia adalah bagaimana mereka <em>mengisi</em> dan <em>memanfaatkan</em> masa tersebut.</p>
+      <p>Imam Asy-Syafi'i rahimahullah berkata tentang surah ini:<br>
+      <em>"Seandainya manusia hanya merenungkan surah ini, niscaya itu sudah mencukupi mereka"</em> — karena surah ini memuat formula lengkap keselamatan: iman, amal shalih, saling menasihati dalam kebenaran, dan saling menasihati dalam kesabaran.</p>
+      <p>Sumpah dengan masa juga merupakan peringatan: waktu terus berjalan tanpa bisa dihentikan atau diputar kembali. Setiap saat yang berlalu adalah saksi yang akan berbicara di hari kiamat. Inilah yang dimaksud Al-Hasan Al-Bashri: <em>"Wahai anak Adam, sesungguhnya engkau hanyalah kumpulan hari-hari. Setiap hari berlalu, berlalulah sebagian darimu."</em></p>
+    </div>
+  </div>
+
+  <!-- §7 DIAGRAM SVG -->
+  <div class="section-header biru">
+    <div class="judul">Diagram Sintaksis</div>
+    <div class="sub-judul">Model Pohon Konstituen · Pola Bertingkat · وَالْعَصْرِ</div>
+  </div>
+
+  <div class="diagram-wrapper">
+    <!--
+      DIAGRAM MODEL-POHON · POLA-BERTINGKAT
+      Ayat: وَالْعَصْرِ (103:1)
+      RTL: الْعَصْرِ (kanan, X=370) · وَ (kiri, X=130)
+      Setiap kata: label-atas (italic) · teks Arab (berwarna) · label-bawah
+      Garis ortogonal + segitiga ▼ sebagai penanda sambungan
+    -->
+    <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:520px;display:block;margin:0 auto;">
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- BARIS KATA — L0  (Y area: 18–120)                     -->
+      <!-- RTL: الْعَصْرِ di kanan (cx=370), وَ di kiri (cx=130) -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- ── Kata 1 (KANAN — RTL pertama): وَ ── -->
+      <!-- label atas -->
+      <text x="370" y="18" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9.5"
+            fill="#555" font-style="italic">ḥarf al-qasam, mabni</text>
+      <!-- teks Arab -->
+      <text x="370" y="72" text-anchor="middle"
+            font-family="'Scheherazade New',serif" font-size="36"
+            fill="#0e7490" font-weight="700" direction="rtl">وَ</text>
+      <!-- label bawah -->
+      <text x="370" y="90" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9"
+            fill="#777">lā maḥalla lahu minal-i'rāb</text>
+
+      <!-- ── Kata 2 (KIRI — RTL kedua): الْعَصْرِ ── -->
+      <!-- label atas -->
+      <text x="130" y="18" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9.5"
+            fill="#555" font-style="italic">isim majrūr · muqsam bih</text>
+      <!-- teks Arab -->
+      <text x="130" y="72" text-anchor="middle"
+            font-family="'Scheherazade New',serif" font-size="36"
+            fill="#1a472a" font-weight="700" direction="rtl">الْعَصْرِ</text>
+      <!-- label bawah -->
+      <text x="130" y="90" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9"
+            fill="#777">ma'rifah bil-alif-lam · wāw qasam menjarkan</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- GARIS L1 — dari kata ke node Jumlah al-Qasam          -->
+      <!-- وَ (kanan, teal) · الْعَصْرِ (kiri, hijau)             -->
+      <!-- Bar horizontal di Y=130, node di Y=160                 -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- وَ (kanan): turun vertikal Y=95 → Y=130 -->
+      <line x1="370" y1="95" x2="370" y2="130"
+            stroke="#0e7490" stroke-width="2"/>
+      <!-- horizontal kanan→tengah Y=130, X=370→252 -->
+      <line x1="370" y1="130" x2="252" y2="130"
+            stroke="#0e7490" stroke-width="2"/>
+      <!-- segitiga ▼ di titik temu (dari kanan) -->
+      <polygon points="250,125 250,135 244,130" fill="#0e7490"/>
+
+      <!-- الْعَصْرِ (kiri): turun vertikal Y=95 → Y=130 -->
+      <line x1="130" y1="95" x2="130" y2="130"
+            stroke="#1a472a" stroke-width="2"/>
+      <!-- horizontal kiri→tengah Y=130, X=130→248 -->
+      <line x1="130" y1="130" x2="248" y2="130"
+            stroke="#1a472a" stroke-width="2"/>
+      <!-- segitiga ▼ di titik temu (dari kiri) -->
+      <polygon points="250,125 250,135 256,130" fill="#1a472a"/>
+
+      <!-- vertikal turun dari Y=130 ke node Y=160 -->
+      <line x1="250" y1="130" x2="250" y2="160"
+            stroke="#0e7490" stroke-width="2" stroke-dasharray="6,3"/>
+      <!-- segitiga ▼ di ujung garis masuk ke node -->
+      <polygon points="246,157 254,157 250,163" fill="#0e7490"/>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- NODE L1 — Jumlah al-Qasam (Y=163–225)                 -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- label italic di atas node -->
+      <text x="250" y="158" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9"
+            fill="#0e7490" font-style="italic">Jumlah al-Qasam (kalimat sumpah)</text>
+      <!-- teks Arab node -->
+      <text x="250" y="200" text-anchor="middle"
+            font-family="'Scheherazade New',serif" font-size="26"
+            fill="#0e7490" font-weight="700" direction="rtl">وَالْعَصْرِ</text>
+      <!-- label bawah node -->
+      <text x="250" y="220" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9"
+            fill="#555">wāw qasam + majrūr — lā maḥalla lahā minal-i'rāb</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- GARIS ke Jawab al-Qasam (referensi — abu putus)        -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <line x1="250" y1="224" x2="250" y2="265"
+            stroke="#bbb" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <polygon points="246,262 254,262 250,268" fill="#bbb"/>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- NODE REF — Jawāb al-Qasam (Ayat 2) — referensi silang -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- label italic di atas -->
+      <text x="250" y="263" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9"
+            fill="#9ca3af" font-style="italic">Jawāb al-qasam — Ayat 2 (103-02.html)</text>
+      <!-- kotak referensi -->
+      <rect x="60" y="268" width="380" height="62" rx="6"
+            fill="#f9fafb" stroke="#bbb" stroke-width="1.2"
+            stroke-dasharray="5,3"/>
+      <!-- teks Arab di dalam kotak -->
+      <text x="250" y="296" text-anchor="middle"
+            font-family="'Scheherazade New',serif" font-size="20"
+            fill="#9ca3af" font-weight="700" direction="rtl">إِنَّ الْإِنسَانَ لَفِى خُسْرٍ</text>
+      <text x="250" y="318" text-anchor="middle"
+            font-family="'Lato',sans-serif" font-size="9"
+            fill="#bbb" font-style="italic">manshub bi-inna · lā maḥalla lahā (jawāb qasam)</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- Teks ayat kamilah di bawah diagram                    -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <text x="250" y="402" text-anchor="middle"
+            font-family="'Scheherazade New',serif" font-size="14"
+            fill="#1e3a8a" font-weight="700" direction="rtl">وَالْعَصْرِ</text>
+
+    </svg>
+
+    <div class="diagram-legenda">
+      <span class="legenda-label">LEGENDA</span>
+      <span class="legenda-item">
+        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>
+        L1A — Isim Majrur: الْعَصْرِ · muqsam bih (hijau solid)
+      </span>
+      <span class="legenda-item">
+        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2.5"/></svg>
+        L1B — Harf Qasam: وَ · lā maḥall (teal solid)
+      </span>
+      <span class="legenda-item">
+        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="6,3"/></svg>
+        L2 — Jumlah al-Qasam: وَالْعَصْرِ (teal putus)
+      </span>
+      <span class="legenda-item">
+        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#bbb" stroke-width="1.5" stroke-dasharray="5,4"/></svg>
+        Referensi silang: Jawāb al-qasam · Ayat 2 (abu putus)
+      </span>
+    </div>
+  </div>
+
+  <!-- Nav bawah -->
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div>
+
+<footer>
+  <p><a href="index.html">grammar-quran.com</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>const PAGE_CONFIG = { nomorSurah: 103, nomorAyat: 1, ayatTerakhir: false };</script>
+<script>
+  (function () {
+    const surah = (typeof getSurahByNomor === 'function') ? getSurahByNomor(PAGE_CONFIG.nomorSurah) : null;
+    const ayatSaat = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah ? surah.jumlahAyat : 3;
+    const surahNama = surah ? surah.namaLatin : 'Al-Asr';
+
+    if (surah) {
+      document.title = 'Grammar ' + surah.namaLatin + ' ' + surah.nomor + ':' + ayatSaat;
+      const lbl = document.getElementById('label-ayat-box');
+      if (lbl) lbl.textContent = 'Ayat Lengkap · ' + surah.namaLatin + ' : ' + ayatSaat;
+      const hiAyat = document.getElementById('hi-ayat-text');
+      if (hiAyat) hiAyat.textContent = 'Ayat ' + ayatSaat + ' · (' + surah.nomor + ':' + ayatSaat + ')';
+
+      const ddSurah = document.getElementById('dd-surah');
+      SURAH_DATA.filter(function(s){ return s.status === 'tersedia'; }).sort(function(a,b){ return a.nomor - b.nomor; }).forEach(function(s) {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomorStr + '  ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' Ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+      function isiDropdownAyat(n) {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        const ops = getOpsiDropdownAyat(n);
+        if (!ops.length) { dd.disabled = true; return; }
+        dd.disabled = false;
+        ops.forEach(function(o) {
+          const opt = document.createElement('option');
+          opt.value = o.path; opt.textContent = o.label;
+          if (o.value === ayatSaat && n === surah.nomor) opt.selected = true;
+          dd.appendChild(opt);
+        });
+      }
+      isiDropdownAyat(surah.nomor);
+      document.getElementById('dd-surah').addEventListener('change', function () {
+        const n = parseInt(this.value);
+        if (n) isiDropdownAyat(n);
+        else { const dd = document.getElementById('dd-ayat'); dd.innerHTML = '<option value="">— Pilih Ayat —</option>'; dd.disabled = true; }
+      });
+    }
+
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) window.location.href = path;
+      else alert('Pilih surah dan ayat terlebih dahulu.');
+    };
+
+    /* Nav bawah — ayat 1: tidak ada prev, next = 103-02.html */
+    const c = document.getElementById('nav-bawah-container');
+    const bh = document.createElement('a');
+    bh.className = 'nav-btn beranda'; bh.href = 'index.html'; bh.textContent = '\u2302 Beranda';
+    const info = document.createElement('span');
+    info.className = 'nav-info';
+    info.textContent = surahNama + ' \u00b7 Ayat ' + ayatSaat + ' dari ' + totalAyat;
+    const bn = document.createElement('a');
+    bn.className = 'nav-btn'; bn.href = '103-02.html'; bn.textContent = 'Ayat 2 \u2192';
+    c.appendChild(bh); c.appendChild(info); c.appendChild(bn);
+  })();
+</script>
+</body>
+</html>
