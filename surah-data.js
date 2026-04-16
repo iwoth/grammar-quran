@@ -342,8 +342,8 @@ const SURAH_DATA = [
     arti: "Masa",
     jumlahAyat: 3,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-103 · 3 ayat · qasam + tesis universal + istidrāk empat sifat penyelamat · konsep: istithna' muttasil, bab VI tafa'ala, Isim Jamak Perempuan tanda nasb kasrah"
   },
   {
     nomor: 104,
@@ -353,8 +353,8 @@ const SURAH_DATA = [
     arti: "Pengumpat",
     jumlahAyat: 9,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-104 · 9 ayat · dua unit: ayat 1–3 deskripsi pelaku + ayat 4–9 deskripsi azab al-Ḥuṭamah · kesepadanan wazan فُعَلَة (هُمَزَة · لُمَزَة · الْحُطَمَة)"
   },
   {
     nomor: 105,
