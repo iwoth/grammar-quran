@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Qari'ah 101:11</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hijau-gelap:#1a472a; --hijau-medium:#2d6a4f; --hijau-muda:#40916c;
+      --biru-tua:#1e3a8a; --ungu:#5b21b6; --coklat:#92400e;
+      --merah-fi:#c2410c; --emas:#d4af37; --emas-muda:#f0d060;
+      --bg-utama:#f7f5f0; --border:#e0d9c8;
+      --font-arab:'Scheherazade New',serif; --font-latin:'Lato',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-latin);background:var(--bg-utama);color:#1c1c1c;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+    .arab{font-family:var(--font-arab);direction:rtl;}
+    header{background:var(--hijau-gelap);color:white;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
+    .header-info{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;justify-content:center;}
+    .header-info .hi-label{font-size:.60rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas);margin-bottom:3px;}
+    .header-info .hi-surah{font-size:.90rem;font-weight:700;color:white;display:flex;align-items:baseline;gap:10px;}
+    .header-info .hi-surah .arab-surah{font-family:var(--font-arab);font-size:.88rem;color:var(--emas);direction:rtl;}
+    .header-info .hi-ayat{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:3px;}
+    .nav-dropdowns{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .dropdown-wrapper{display:flex;flex-direction:column;gap:3px;}
+    .nav-dropdowns label{font-size:.72rem;color:rgba(255,255,255,.65);white-space:nowrap;}
+    .nav-dropdowns select{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;font-family:var(--font-latin);font-size:.82rem;cursor:pointer;outline:none;transition:background .2s;max-width:240px;}
+    .nav-dropdowns select:hover,.nav-dropdowns select:focus{background:rgba(255,255,255,.2);border-color:var(--emas);}
+    .nav-dropdowns select option{background:var(--hijau-gelap);}
+    .btn-go{background:var(--emas);color:var(--hijau-gelap);border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-latin);font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s;align-self:flex-end;}
+    .btn-go:hover{background:var(--emas-muda);}
+    .nav-home{color:#1a472a;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;background:#c8d0c8;border:1px solid #b0bab0;border-radius:8px;padding:6px 12px;transition:background .2s;flex-shrink:0;}
+    .nav-home:hover{background:#e8f0e8;border-color:var(--emas);}
+    .container{max-width:780px;width:100%;margin:0 auto;padding:32px 24px;flex:1;}
+    .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
+    .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
+    .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2.2;color:#1a1a1a;}
+    .transliterasi{margin-top:10px;font-size:14px;color:var(--hijau-medium);font-style:italic;}
+    .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
+    .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
+    .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
+    .section-header .judul{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;}
+    .section-header .sub-judul{font-size:12px;color:#a8d5b5;margin-top:2px;}
+    .section-header.biru{background:#1e3a5f;} .section-header.biru .sub-judul{color:#93c5fd;}
+    .section-header.tadabur{background:#5b3a1a;} .section-header.tadabur .sub-judul{color:var(--emas);opacity:.8;}
+    .kartu{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .kartu-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid #f0ebe0;}
+    .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
+    .kartu-head.warna-fi{background:#fff7ed;} .kartu-head.warna-frasa1{background:#eef4fb;}
+    .kartu-head.warna-frasa2{background:#f5f0fb;}
+    .kartu-head.warna-frasa3{background:#ecfdf5;}
+    .kartu-head.warna-frasa4{background:#fefce8;}
+    .kartu-head.warna-frasa5{background:#fef2f2;}
+    .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
+    .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
+    .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
+    .badge-frasa2{background:var(--ungu);color:white;}
+    .badge-frasa3{background:#047857;color:white;}
+    .badge-frasa4{background:#a16207;color:white;}
+    .badge-frasa5{background:#991b1b;color:white;}
+    .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
+    .kartu-arti{font-size:13px;color:#555;font-style:italic;}
+    .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
+    .kartu-tabel tr{border-bottom:1px solid #f5f0e8;} .kartu-tabel tr:last-child{border-bottom:none;}
+    .kartu-tabel td{padding:9px 20px;vertical-align:top;word-wrap:break-word;}
+    .kartu-tabel td:first-child{color:#777;width:22%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+    .kartu-tabel td:last-child{color:#1a1a1a;width:78%;}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.3px;margin-right:4px;margin-bottom:2px;}
+    .tag-n{background:#dbeafe;color:#1e3a8a;} .tag-harf{background:#cffafe;color:#155e75;}
+    .tag-fi{background:#ffedd5;color:#9a3412;} .tag-marfu{background:#dcfce7;color:#166534;}
+    .tag-manshub{background:#fce7f3;color:#9d174d;} .tag-majrur{background:#fef3c7;color:#92400e;}
+    .tag-nakirah{background:#fee2e2;color:#991b1b;} .tag-marifah{background:#dbeafe;color:#1e3a8a;}
+    .tag-mabni{background:#f3e8ff;color:#6b21a8;}
+    .arab-inline{font-family:var(--font-arab);font-size:20px;color:var(--hijau-gelap);direction:rtl;display:inline-block;}
+    .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
+    .poin-list{list-style:none;padding:0;margin:0;}
+    .poin-list li{padding:3px 0 3px 16px;position:relative;}
+    .poin-list li::before{content:'•';position:absolute;left:4px;color:#1a472a;font-weight:700;}
+    /* Tashrif */
+    .tashrif-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .tashrif-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:10px;}
+    .tashrif-grid{display:grid;grid-template-columns:1fr 28px 1fr;grid-template-rows:auto auto;gap:10px 0;margin:12px 0 8px;align-items:center;}
+    .tashrif-grid .tashrif-panah{justify-content:center;font-size:18px;color:#c2410c;font-weight:700;display:flex;align-items:center;}
+    .tashrif-kotak{border:1px solid #fed7aa;border-radius:6px;padding:8px 12px;text-align:center;}
+    .tashrif-kotak.akar{background:#f0f7f2;border-color:#1a472a;}
+    .tashrif-kotak.subyek{background:#fff3e0;border:2px solid #c2410c;}
+    .tashrif-kotak-label{font-size:9px;color:#888;font-style:italic;margin-bottom:4px;}
+    .tashrif-kotak-arab{font-family:var(--font-arab);font-size:22px;direction:rtl;display:block;line-height:1.6;}
+    .tashrif-kotak.akar .tashrif-kotak-arab{color:#1a472a;font-size:22px;}
+    .tashrif-kotak.subyek .tashrif-kotak-arab{color:#c2410c;font-weight:700;}
+    .tashrif-isi{font-size:12.5px;color:#374151;line-height:1.8;margin-top:8px;}
+    .link-eksternal-wrapper{margin-top:10px;padding-top:8px;border-top:1px dashed #d1c7b0;font-size:12px;color:#374151;line-height:1.7;}
+    .link-eksternal{display:inline-block;margin-top:4px;padding:4px 10px;background:#fff7ed;border:1px solid #fbbf24;border-radius:4px;color:#92400e;text-decoration:none;font-size:11.5px;font-weight:600;word-break:break-all;}
+    .link-eksternal:hover{background:#fef3c7;border-color:#d97706;}
+    /* Konsep / iltifat boxes */
+    .iltifat-box{background:#fdf4ff;border:1px solid #e9d5ff;border-left:5px solid #7e22ce;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .iltifat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7e22ce;margin-bottom:8px;}
+    .iltifat-isi{font-size:13px;color:#374151;line-height:1.8;}
+    .konsep-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .konsep-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:8px;}
+    .konsep-isi{font-size:13px;color:#374151;line-height:1.9;}
+    .konsep-tabel{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+    .konsep-tabel th{background:#fff3e0;padding:6px 10px;text-align:left;font-weight:700;color:#92400e;border:1px solid #fed7aa;}
+    .konsep-tabel td{padding:6px 10px;border:1px solid #fde8c8;}
+    /* kartu-head-harf3 */
+    .kartu-head-harf3{display:flex;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid #f0ebe0;background:#ecfeff;}
+    .kartu-head-harf3 .kh3-badge{flex-shrink:0;}
+    .kartu-head-harf3 .kh3-arab{font-family:var(--font-arab);font-size:40px;color:#1a1a1a;line-height:1.6;direction:rtl;flex:0 0 auto;}
+    .kartu-head-harf3 .kh3-arti{font-size:13px;color:#555;font-style:italic;flex:1;}
+    /* Tadabur */
+    .tadabur-box{background:white;border:1px solid var(--border);border-left:5px solid var(--emas);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .tadabur-head{background:#fdf6ec;padding:12px 20px;border-bottom:1px solid #f0e8d0;display:flex;align-items:center;gap:10px;}
+    .tadabur-judul{font-size:13px;font-weight:700;color:#78350f;}
+    .tadabur-isi{padding:18px 20px;font-size:14.5px;line-height:1.9;color:#2d2d2d;}
+    .tadabur-isi p{margin-bottom:10px;} .tadabur-isi p:last-child{margin-bottom:0;}
+    /* Diagram */
+    .diagram-wrapper{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;margin-bottom:20px;overflow-x:auto;}
+    .diagram-legenda{margin-top:12px;background:#f8f6f1;border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:11px;color:#444;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;}
+    .legenda-label{font-weight:700;color:#888;letter-spacing:.5px;width:100%;margin-bottom:4px;}
+    .legenda-item{display:inline-flex;align-items:center;gap:5px;}
+    /* Nav / footer */
+    footer{background:var(--hijau-gelap);color:rgba(255,255,255,.6);text-align:center;padding:16px 24px;font-size:12px;}
+    footer a{color:var(--emas);text-decoration:none;}
+    .nav-bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 8px;flex-wrap:wrap;}
+    .nav-btn{background:white;border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;transition:background .2s;}
+    .nav-btn:hover{background:#e8f0e8;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda{background:var(--hijau-gelap);color:white;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda:hover{background:var(--hijau-medium);}
+    .nav-info{font-size:12px;color:#888;text-align:center;flex:1;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <div class="hi-label">Grammar Al-Qur'an</div>
+      <div class="hi-surah">Al-Qari'ah · 101 <span class="arab-surah">ٱلْقَارِعَةُ</span></div>
+      <div class="hi-ayat" id="hi-ayat-text">Ayat 11 · (101:11) · Ayat Terakhir</div>
+    </a>
+    <div class="nav-dropdowns">
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka →</button>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- §1 AYAT BOX -->
+<div class="ayat-box">
+  <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Qari'ah : 11 · Ayat Terakhir</div>
+  <div class="teks-ayat arab">نَارٌ حَامِيَةٌ</div>
+  <div class="terjemahan">"(Yaitu) api yang sangat panas."</div>
+</div>
+
+<!-- §2 KONTEKS -->
+<div class="konteks-box">
+  <strong>Konteks Ayat 11:</strong> Ayat 11 adalah <strong>ayat penutup</strong> Surah Al-Qari'ah sekaligus <strong>jawaban klimaks</strong> untuk pertanyaan pengagungan yang dibuka di <a href="101-10.html">ayat 10</a> — <em>"apakah dia (Hawiyah itu)?"</em>. Setelah membangun antisipasi dengan istifham ta'zhim, sekarang Allah Ta'ala menjawab langsung dengan dua kata yang sangat padat maknanya:
+  <ul class="poin-list" style="margin-top:8px;">
+    <li><strong>نَارٌ</strong> — "api" (isim-jamid). Sebagai khabar dari mubtada' yang tersembunyi (<em>mubtada' mahdzuf</em>), yaitu <span class="arab-inline">هِيَ</span> (dia = Hawiyah). Nakirah dengan tanwin menunjukkan <em>ta'zhim</em> (pengagungan) dalam konotasi kengerian.</li>
+    <li><strong>حَامِيَةٌ</strong> — "yang sangat panas" (isim-fa'il dari akar <span class="arab-inline">ح-م-ي</span>). Berperan sebagai na'at (sifat) untuk <span class="arab-inline">نَارٌ</span>. Bukan sekadar "yang sedang panas", tapi menunjukkan <em>sifat tetap</em> — api yang hakikatnya memang panas membara.</li>
+    <li><strong>Struktur yang dibuang</strong>: <em>mubtada' mahdzuf</em> <span class="arab-inline">هِيَ</span> — sudah tidak perlu disebut lagi karena jelas dari konteks <a href="101-10.html">ayat 10</a>. Pola ini disebut <em>ḥadhf al-mubtada'</em> (pembuangan mubtada' yang jelas dari konteks).</li>
+    <li>Ayat ini menutup surah dengan <strong>peringatan puncak</strong>: inilah hakikat Hawiyah — api yang sangat panas, membakar, dan tiada akhir. Sebuah penutup yang menghentak hati dan mendorong muhasabah.</li>
+  </ul>
+</div>
+
+<!-- §3 ANALISIS TINGKAT 1 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
+  <div class="sub-judul">Pembahasan kata per kata secara individual</div>
+</div>
+
+<!-- K1: نَارٌ -->
+<div class="kartu">
+  <div class="kartu-head-harf3" style="background:#f0f7f2;">
+    <span class="badge badge-kata kh3-badge">ISIM · Isim-Jamid · Marfu' · (101:11:1)</span>
+    <div class="kh3-arab arab">نَارٌ</div>
+    <div class="kh3-arti">api</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> isim-jamid (bukan diturunkan dari fi'il)</li>
+        <li>merujuk secara umum kepada "api" — dalam konteks surah ini: api neraka yang dijelaskan sebagai hakikat Hawiyah</li>
+        <li>tidak perlu tashrif — kata dasar (jamid) yang tidak memiliki akar fi'il</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS Al-Qari'ah</div>
+        <div class="konsep-label">Mubtada' Mahdzuf (Mubtada' yang Dibuang)</div>
+        <div class="konsep-isi">
+          Dalam bahasa Arab, <em>mubtada'</em> (subyek kalimat jumlah ismiyyah) terkadang <strong>dibuang</strong> (<em>mahdzuf</em>) ketika sudah jelas dari konteks. Pola ini dinamakan <em>ḥadhf al-mubtada'</em> dan banyak ditemukan di Al-Qur'an, khususnya ketika kalimat berfungsi sebagai jawaban untuk pertanyaan sebelumnya.
+          <br><br>
+          <strong>Analisis ayat 11 dengan mubtada' mahdzuf:</strong>
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+            <tr><th>Unsur</th><th>Penjelasan</th></tr>
+            <tr>
+              <td><em>Mubtada' (mahdzuf)</em></td>
+              <td>Tersembunyi: <span class="arab-inline" style="font-size:15px;">[هِيَ]</span> — merujuk kepada <span class="arab-inline" style="font-size:15px;">هَاوِيَةٌ</span> di <a href="101-09.html">ayat 9</a> / <span class="arab-inline" style="font-size:15px;">هِيَ</span> di <a href="101-10.html">ayat 10</a></td>
+            </tr>
+            <tr>
+              <td><em>Khabar</em></td>
+              <td><span class="arab-inline" style="font-size:15px;">نَارٌ حَامِيَةٌ</span> — marfu' dengan dhammah tanwin</td>
+            </tr>
+            <tr style="background:#fff3e0;">
+              <td><strong>Asal kalimat lengkap</strong></td>
+              <td><strong><span class="arab-inline" style="font-size:15px;">(هِيَ) نَارٌ حَامِيَةٌ</span> — "(dia) adalah api yang sangat panas"</strong></td>
+            </tr>
+          </table>
+          <br>
+          <strong>Mengapa mubtada' dibuang di sini?</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li><strong>Jelas dari konteks</strong>: <a href="101-10.html">Ayat 10</a> baru saja bertanya <em>مَا هِيَهْ؟</em> ("apakah dia?"). Ayat 11 sebagai jawaban tidak perlu mengulang <span class="arab-inline" style="font-size:15px;">هِيَ</span> — pembaca otomatis memahami bahwa yang dibahas tetap "dia" (Hawiyah)</li>
+            <li><strong>Efek balaghah</strong>: pembuangan mubtada' membuat jawab terasa lebih <em>langsung, tegas, dan menghentak</em>. Seperti orang menjawab "Apa itu?" dengan langsung "Api panas!" — bukan "Dia adalah api panas"</li>
+            <li><strong>Hemat struktur</strong>: Al-Qur'an sering menggunakan pembuangan untuk mencapai keindahan i'jaz (kemukjizatan bahasa) — makna padat dalam kata sedikit</li>
+          </ul>
+          <br>
+          <strong>Contoh pola mubtada' mahdzuf lain di Al-Qur'an:</strong>
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup><col style="width:34%"><col style="width:31%"><col style="width: 35%"></colgroup>
+            <tr><th>Ayat</th><th>Yang Tertulis</th><th>Dengan Mubtada' Mahdzuf</th></tr>
+            <tr><td>QS Al-Qari'ah: 11</td><td><span class="arab-inline" style="font-size:14px;">نَارٌ حَامِيَةٌ</span></td><td><span class="arab-inline" style="font-size:14px;">(هِيَ) نَارٌ حَامِيَةٌ</span></td></tr>
+            <tr><td>QS Al-Humazah: 6–7</td><td><span class="arab-inline" style="font-size:14px;">نَارُ ٱللَّهِ ٱلْمُوقَدَةُ</span></td><td><span class="arab-inline" style="font-size:14px;">(هِيَ) نَارُ ٱللَّهِ ٱلْمُوقَدَةُ</span></td></tr>
+            <tr><td>QS Al-Waqi'ah: 9</td><td><span class="arab-inline" style="font-size:14px;">وَأَصْحَـٰبُ ٱلْمَشْـَٔمَةِ</span></td><td><span class="arab-inline" style="font-size:14px;">(هُمْ) أَصْحَـٰبُ ٱلْمَشْـَٔمَةِ</span></td></tr>
+          </table>
+          <strong>Rujukan:</strong> Ibnu Hisyam dalam <em>Mughni al-Labib</em> membahas panjang lebar tentang pembuangan ini dalam bab <em>al-ḥadhf</em>. Imam az-Zamakhsyari dalam <em>Al-Kasysyaf</em> sering menunjukkan pembuangan mubtada' sebagai salah satu bentuk i'jaz Al-Qur'an.
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>api</li>
+        <li>dalam konteks ini: api neraka — hakikat dari Hawiyah yang sebelumnya disebut sebagai "tempat kembali" di <a href="101-09.html">ayat 9</a></li>
+      </ul>
+    </td></tr>
+    <tr><td>Status I'rab</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marfu">Marfu'</span> ditandai dengan tanda dhammah tanwin di akhir kata</li>
+        <li>Berstatus marfu' berperan sebagai <em>khabar</em> dari mubtada' yang tersembunyi (<span class="arab-inline">هِيَ</span> mahdzuf)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Jumlah</td><td>tunggal (mufrad)</td></tr>
+    <tr><td>Gender</td><td>perempuan (mu'annats) — <em>mu'annats sama'iy</em>: diperlakukan mu'annats karena kebiasaan bahasa Arab (tanpa tanda ta marbuthah), sama seperti <span class="arab-inline">شَمْس</span> (matahari), <span class="arab-inline">أَرْض</span> (bumi)</td></tr>
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-nakirah">Nakirah</span> — tidak diawali ال, ditandai dengan tanwin</li>
+        <li>dalam konteks ayat, tanwin ini bermakna <em>ta'zhim</em> (pengagungan dalam konotasi kengerian) — <em>"api yang begitu besar dan dahsyat"</em></li>
+      </ul>
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>sebagai <em>khabar</em> dari mubtada' mahdzuf <span class="arab-inline">[هِيَ]</span> — berstatus marfu'</li>
+        <li>sekaligus sebagai <em>man'ut</em> (yang disifati) untuk <span class="arab-inline">حَامِيَةٌ</span> setelahnya</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K2: حَامِيَةٌ -->
+<div class="kartu">
+  <div class="kartu-head-harf3" style="background:#f0f7f2;">
+    <span class="badge badge-kata kh3-badge">ISIM · Isim-Fa'il Mu'annats · Marfu' · (101:11:2)</span>
+    <div class="kh3-arab arab">حَامِيَةٌ</div>
+    <div class="kh3-arti">yang sangat panas · yang membara</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> isim pelaku aksi (isim-fa'il)</li>
+        <li>dari akar <span class="arab-inline" style="font-size:16px;">ح - م - ي</span> — panas, membara, menyala sangat panas</li>
+        <li>wazan <span class="arab-inline" style="font-size:15px;">فَاعِلَة</span> — pola isim-fa'il bentuk mu'annats</li>
+        <li>bentuk mu'annats dengan ta marbuthah mengikuti man'ut-nya <span class="arab-inline">نَارٌ</span> yang juga mu'annats</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS Al-Qari'ah</div>
+        <div class="konsep-label">Isim-Fa'il sebagai Sifat Tetap (Bukan Aksi Temporer)</div>
+        <div class="konsep-isi">
+          Secara umum, isim-fa'il (pola <em>فَاعِل</em> / <em>فَاعِلَة</em>) menunjukkan <em>pelaku suatu aksi</em>. Namun dalam beberapa konteks, pola ini digunakan untuk menunjukkan <strong>sifat yang melekat/tetap</strong> pada suatu objek, bukan aksi yang sedang atau baru terjadi. Hal ini dikenal dengan <em>al-waṣf ath-thābit</em> (sifat tetap).
+          <br><br>
+          <strong>Dua makna isim-fa'il <span class="arab-inline" style="font-size:15px;">حَامِيَةٌ</span>:</strong>
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+            <tr><th>Makna</th><th>Penjelasan</th></tr>
+            <tr>
+              <td><em>Aksi temporer</em><br>(wazn fi'il mudhari')</td>
+              <td>"yang sedang panas" — api yang saat ini panas, bisa jadi besok tidak</td>
+            </tr>
+            <tr style="background:#fff3e0;">
+              <td><strong><em>Sifat tetap</em><br>(watak/karakter)</strong></td>
+              <td><strong>"yang karakternya panas" — api yang hakikatnya memang panas, itulah sifatnya yang permanen</strong></td>
+            </tr>
+          </table>
+          <br>
+          <strong>Dalam ayat ini, <span class="arab-inline" style="font-size:15px;">حَامِيَةٌ</span> bermakna sifat tetap</strong> karena:
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li>Api neraka bukan api biasa yang bisa padam — ia <em>karakternya</em> memang panas membara selama-lamanya</li>
+            <li>Dalam hadits shahih: <em>"Api kalian (di dunia) adalah seperseratus dari api jahannam"</em> (HR. Bukhari-Muslim). Panasnya bukan fenomena temporer, tapi hakikat yang melekat</li>
+            <li>Pemilihan kata <span class="arab-inline" style="font-size:15px;">حَامِيَةٌ</span> (bukan hanya <span class="arab-inline" style="font-size:15px;">سَاخِنَةٌ</span> yang juga berarti "panas") menekankan <em>intensitas dan ketetapan</em> — membara terus, tidak mereda</li>
+          </ul>
+          <br>
+          <strong>Perbandingan dengan <span class="arab-inline" style="font-size:15px;">رَّاضِيَةٍ</span> di <a href="101-07.html">ayat 7</a>:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li><span class="arab-inline" style="font-size:15px;">عِيشَةٍ رَّاضِيَةٍ</span> — kehidupan yang <em>karakternya</em> ridha (sifat tetap)</li>
+            <li><span class="arab-inline" style="font-size:15px;">نَارٌ حَامِيَةٌ</span> — api yang <em>karakternya</em> sangat panas (sifat tetap)</li>
+            <li>Kedua ayat (<a href="101-07.html">7</a> dan 11) sama-sama penutup nasib — satu surga, satu neraka — dengan pola <em>mawshuf + ṣifah</em> yang menunjukkan sifat tetap, bukan aksi temporer</li>
+          </ul>
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>yang sangat panas · yang membara · yang menyala panas</li>
+        <li>bukan sekadar "hangat" atau "panas biasa" — tapi panas yang hakikatnya memang membakar dengan intensitas tertinggi</li>
+        <li>para mufassir: <em>"sudah mencapai puncak panasnya"</em> — <span class="arab-inline">قَدْ بَلَغَتْ غَايَةَ الْحَرَارَةِ</span></li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar</td><td>
+      Akar: <span class="arab-inline" style="font-size:16px;">ح - م - ي</span> — panas, membara
+      <div class="tashrif-box">
+        <div class="tashrif-label">TASHRIF — Bab I · Akar ke Isim-Fa'il Mu'annats</div>
+        <div class="tashrif-grid" style="grid-template-columns:1fr 28px 1fr 1fr 28px 1fr;">
+          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab">ح-م-ي</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Madhi</div><span class="tashrif-kotak-arab arab">حَمِيَ</span></div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Mudhari'</div><span class="tashrif-kotak-arab arab">يَحْمَى</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">Isim-Fa'il Mu'annats</div><span class="tashrif-kotak-arab arab">حَامِيَةٌ</span></div>
+        </div>
+        <div class="tashrif-isi">
+          <span class="arab-inline" style="font-size:16px;">حَمِيَ</span> = (dia) telah panas / membara · <span class="arab-inline" style="font-size:16px;">حَامٍ</span> (pola <em>فَاعِل</em>) = yang panas (mudzakkar) · <span class="arab-inline" style="font-size:16px;">حَامِيَةٌ</span> (pola <em>فَاعِلَة</em>) = yang sangat panas (mu'annats) — bentuk yang dipakai di ayat ini karena mengikuti man'ut-nya <span class="arab-inline" style="font-size:16px;">نَارٌ</span> yang mu'annats.
+        </div>
+        <div class="link-eksternal-wrapper">
+          Detail bentuk kata kerja (konjugasi) untuk kata kerja <span class="arab-inline" style="font-size:15px;">حَمِيَ</span> dapat dilihat pada link berikut:
+          <br>
+          <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%AD%D9%85%D9%8A.html"
+             target="_blank" rel="noopener noreferrer" class="link-eksternal">
+            Reverso Conjugator ↗
+          </a>
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Status I'rab</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marfu">Marfu'</span> ditandai dengan tanda dhammah tanwin di akhir kata</li>
+        <li>Berstatus marfu' karena mengikuti man'ut-nya (<span class="arab-inline">نَارٌ</span>) sesuai kaidah na'at-man'ut</li>
+      </ul>
+    </td></tr>
+    <tr><td>Jumlah</td><td>tunggal (mufrad) - mengikuti man'ut-nya (<span class="arab-inline">نَارٌ</span>)</td></tr>
+    <tr><td>Gender</td><td>perempuan (mu'annats) — ditandai dengan ta marbuthah; mengikuti gender man'ut-nya <span class="arab-inline">نَارٌ</span></td></tr>
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-nakirah">Nakirah</span> — mengikuti man'ut-nya yang juga nakirah</li>
+      </ul>
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>sebagai <em>na'at</em> (sifat) untuk <span class="arab-inline">نَارٌ</span></li>
+        <li>Mengikuti man'ut-nya dalam empat hal (karakter): i'rab (marfu'), jumlah (mufrad), gender (mu'annats), identitas (nakirah)</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §4 ANALISIS TINGKAT 2 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
+  <div class="sub-judul">Struktur dan makna frasa atau klausa dalam ayat</div>
+</div>
+
+<!-- F1: نَارٌ حَامِيَةٌ (na'at-man'ut) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa1">
+    <span class="badge badge-frasa1">FRASA 1 — NA'AT-MAN'UT</span>
+    <div class="kartu-arab-besar arab">نَارٌ حَامِيَةٌ</div>
+    <div class="kartu-arti">api yang sangat panas</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <ul class="poin-list">
+        <li>Gabungan dua isim: <span class="arab-inline">نَارٌ</span> (man'ut — yang disifati) + <span class="arab-inline">حَامِيَةٌ</span> (na'at — sifat)</li>
+        <li>Kedua kata sama persis dalam empat hal (karakter): i'rab (marfu'), jumlah (mufrad), gender (mu'annats), identitas (nakirah)</li>
+        <li>konsep lengkap na'at-man'ut sudah dibahas di <a href="101-04.html">ayat 4</a></li>
+      </ul>
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>"api yang sangat panas"</li>
+        <li>bukan api biasa — tapi api dengan <em>sifat tetap (wasf tsabit)</em> yang selalu membara, tidak pernah padam</li>
+        <li>tanwin pada <span class="arab-inline">نَارٌ</span> (nakirah) bermakna <em>ta'zhim</em>: <em>"api yang begitu besar dan dahsyat, tidak bisa dibayangkan"</em></li>
+      </ul>
+    </td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li>Berperan sebagai frasa na'at-man'ut — kesatuan isim + sifatnya</li>
+        <li>Bersama mubtada' mahdzuf membentuk jumlah ismiyyah yang lengkap <span class="arab-inline">[هِيَ] نَارٌ حَامِيَةٌ</span></li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- F2: [هِيَ] نَارٌ حَامِيَةٌ (jumlah ismiyyah dengan mubtada' mahdzuf) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa2">
+    <span class="badge badge-frasa2">FRASA 2 — JUMLAH ISMIYYAH DENGAN MUBTADA' MAHDZUF</span>
+    <div class="kartu-arab-besar arab">[هِيَ] نَارٌ حَامِيَةٌ</div>
+    <div class="kartu-arti">[dia] adalah api yang sangat panas</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <ul class="poin-list">
+        <li>Kalimat jumlah ismiyyah lengkap (diawali isim/dhamir mahdzuf)</li>
+        <li><em>Mubtada'</em> (mahdzuf/tersembunyi): <span class="arab-inline">[هِيَ]</span> — merujuk ke <span class="arab-inline">هَاوِيَةٌ</span> di <a href="101-09.html">ayat 9</a></li>
+        <li><em>Khabar</em>: <span class="arab-inline">نَارٌ حَامِيَةٌ</span> — marfu' dengan dhammah tanwin</li>
+        <li>Pembuangan mubtada' dimaksudkan untuk efek balaghah: jawab langsung dan tegas</li>
+      </ul>
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>"[dia, yaitu Hawiyah] adalah api yang sangat panas"</li>
+        <li>ini adalah <em>jawaban final</em> dari pertanyaan pengagungan di <a href="101-10.html">ayat 10</a>: <em>"tahukah kamu apakah dia itu?"</em></li>
+        <li>bentuk jumlah ismiyyah memberi kesan <em>ketetapan dan kepastian</em> — inilah hakikat Hawiyah yang pasti dan permanen</li>
+      </ul>
+    </td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li>Berperan sebagai <em>jawab istifham</em> (jawaban pertanyaan) untuk <span class="arab-inline">مَا هِيَهْ</span> di <a href="101-10.html">ayat 10</a></li>
+        <li>Mengungkap hakikat Hawiyah yang sebelumnya disebut sebagai "tempat kembali" (<a href="101-09.html">ayat 9</a>) dan "disagungkan" (<a href="101-10.html">ayat 10</a>)</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- F3: نَارٌ حَامِيَةٌ (ayah kamilah) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa3">
+    <span class="badge badge-frasa3">FRASA 3 — AYAH KAMILAH (AYAT LENGKAP)</span>
+    <div class="kartu-arab-besar arab" style="font-size:34px;">نَارٌ حَامِيَةٌ</div>
+    <div class="kartu-arti">(yaitu) api yang sangat panas</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <ul class="poin-list">
+        <li>Ayat pendek yang <em>hanya menampilkan khabar</em> — mubtada'-nya dibuang karena jelas dari konteks</li>
+        <li>Hanya dua kata, tapi mengandung seluruh makna final surah</li>
+        <li>Tidak ada huruf tambahan di awal (tidak ada fa', wawu, dll) — sangat langsung dan lugas</li>
+      </ul>
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>"(yaitu) api yang sangat panas"</li>
+        <li>penutup surah yang menjawab seluruh rangkaian pertanyaan dan pengagungan sebelumnya</li>
+        <li>ayat ini adalah "palu penutup" — setelah membangun kengerian secara bertahap di <a href="101-09.html">ayat 9</a>–<a href="101-10.html">10</a>, sekarang hakikatnya diungkapkan</li>
+      </ul>
+    </td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li>Ayat penutup Surah Al-Qari'ah — sebagai <em>jawaban dan penjelasan</em></li>
+        <li>Menjawab: <strong>apa itu Hawiyah?</strong> → <em>api yang sangat panas</em></li>
+        <li>Menutup narasi dengan <em>peringatan puncak</em> yang menggetarkan hati — inilah akhir nasib yang ringan timbangannya</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §5 ANALISIS TINGKAT 3 -->
+<div class="section-header biru">
+  <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
+  <div class="sub-judul">Posisi dan fungsi ayat 11 dalam Surah Al-Qari'ah</div>
+</div>
+<div class="kartu">
+  <div class="kartu-head warna-kata"><span class="badge badge-kata">KEDUDUKAN AYAT 11 — PENUTUP &amp; JAWABAN KLIMAKS</span></div>
+  <table class="kartu-tabel">
+    <tr><td>Posisi</td><td>Ayat 11 adalah <strong>ayat penutup Surah Al-Qari'ah</strong> sekaligus <strong>jawaban klimaks</strong> dari seluruh rangkaian narasi surah. Setelah <a href="101-09.html">ayat 9</a> menyebut nama "Hawiyah" dan <a href="101-10.html">ayat 10</a> mengagungkannya dengan pertanyaan retorikal, ayat 11 memberikan <em>jawaban final</em> yang menghentak: <em>"api yang sangat panas"</em>.</td></tr>
+    <tr><td>Hubungan dengan Ayat Sebelumnya</td><td>
+      <p style="margin:0 0 8px 0;">Ayat 11 memiliki hubungan langsung dengan <strong>dua ayat sebelumnya</strong> — secara gramatikal maupun makna.</p>
+      <ul class="poin-list">
+        <li><strong>Jawab dari istifham <a href="101-10.html">ayat 10</a></strong>: <span class="arab-inline">مَا هِيَهْ</span> (apakah dia?) → <span class="arab-inline">نَارٌ حَامِيَةٌ</span> (api yang sangat panas). Pola <em>pertanyaan pengagungan + jawaban</em> yang sempurna</li>
+        <li><strong>Tafsir untuk <a href="101-09.html">ayat 9</a></strong>: <span class="arab-inline">أُمُّهُۥ هَاوِيَةٌ</span> (tempat kembalinya Hawiyah) → <em>Hawiyah itu apa?</em> → <span class="arab-inline">نَارٌ حَامِيَةٌ</span>. Ayat 11 mengungkap <em>hakikat</em> Hawiyah yang sebelumnya hanya disebut namanya</li>
+        <li><strong>Mubtada' mahdzuf yang merujuk ke <a href="101-09.html">ayat 9</a>–<a href="101-10.html">10</a></strong>: <span class="arab-inline">[هِيَ]</span> = merujuk ke <span class="arab-inline">هَاوِيَةٌ</span> dan <span class="arab-inline">هِيَ</span> di ayat sebelumnya — ikatan makna yang kuat sekali</li>
+      </ul>
+    </td></tr>
+    <tr><td>Pola Penutup Dua Kelompok</td><td>
+      <ul class="poin-list">
+        <li><strong>Kelompok 1</strong> (<a href="101-07.html">ayat 7</a>): <span class="arab-inline">فَهُوَ فِى عِيشَةٍ رَّاضِيَةٍ</span> — kehidupan yang diridhai (surga)</li>
+        <li><strong>Kelompok 2</strong> (ayat 11 ini): <span class="arab-inline">نَارٌ حَامِيَةٌ</span> — api yang sangat panas (neraka)</li>
+        <li>Kedua ayat menggunakan pola <em>mawshuf + ṣifah</em> (isim-fa'il mu'annats sebagai sifat tetap): <span class="arab-inline">رَّاضِيَةٍ</span> vs <span class="arab-inline">حَامِيَةٌ</span> — paralelisme sempurna dengan kontras 180 derajat</li>
+        <li>Balaghah penutup: kedua nasib digambarkan dengan <em>sifat yang melekat</em> pada tempatnya — surga yang hakikatnya ridha, neraka yang hakikatnya membara</li>
+      </ul>
+    </td></tr>
+    <tr><td>Kedudukan dalam Keseluruhan Surah</td><td>Ayat 11 menutup <strong>seluruh 11 ayat Surah Al-Qari'ah</strong> dengan gambaran final yang tegas dan mengerikan. Seluruh rangkaian — nama, gambaran, pembagian, dan pengagungan — mengerucut pada dua kata ini: <em>nār ḥāmiyah</em>. Ayat ini adalah <em>palu penutup</em> yang membuat pembaca berhenti dan merenungi nasib akhirnya. Penjelasan lengkap seluruh surah akan dibahas di <strong>Khatimah Surah</strong> di bagian akhir halaman ini.</td></tr>
+  </table>
+</div>
+
+<!-- §6 TADABUR -->
+<div class="section-header tadabur">
+  <div class="judul">Tadabur</div>
+  <div class="sub-judul">Renungan makna dan hikmah ayat 11</div>
+</div>
+<div class="tadabur-box">
+  <div class="tadabur-head">
+    <span class="badge" style="background:#92400e;color:white;">TADABUR</span>
+    <div class="tadabur-judul">نَارٌ حَامِيَةٌ — "Api yang Sangat Panas"</div>
+  </div>
+  <div class="tadabur-isi">
+    <p>Hanya dua kata. Tapi dua kata yang menutup seluruh surah dengan kekuatan yang menghentak. Setelah perjalanan panjang — dari penamaan <em>Al-Qari'ah</em>, gambaran huru-hara kiamat, pembagian dua kelompok, pengungkapan nama <em>Hawiyah</em>, pengagungannya — semuanya mengerucut ke dua kata: <em>nār ḥāmiyah</em>. Allah Ta'ala seolah berkata: <em>"Inilah akhirnya. Tidak perlu panjang lebar. Inilah yang menanti mereka yang ringan timbangannya."</em> Dalam balaghah Arab, pembuangan mubtada' (<span class="arab-inline">هِيَ</span>) membuat jawab terasa jauh lebih tegas dan menghentak — seperti orang yang ditanya "Apa itu?" lalu menjawab langsung "Api panas!" — tanpa kata tambahan yang melunakkan.</p>
+    <p>Perhatikan pilihan kata <span class="arab-inline">حَامِيَةٌ</span> — bukan sekadar <span class="arab-inline">سَاخِنَةٌ</span> (panas), bukan juga <span class="arab-inline">حَارَّةٌ</span> (panas/terik). Kata <span class="arab-inline">حَامِيَة</span> dari akar <span class="arab-inline">ح-م-ي</span> punya nuansa khusus: <em>panas yang sudah mencapai puncak, membara, tidak lagi bisa ditambah</em>. Ini seperti perbedaan antara "hangat" dan "mendidih" — ḥāmiyah adalah api yang sudah dalam keadaan <em>mendidih paling tinggi</em>. Para mufassir seperti Ibnu Katsir rahimahullah menjelaskan: <em>"Sudah mencapai puncak panasnya, hebat nyalanya"</em> (<span class="arab-inline">قَدْ بَلَغَتْ غَايَةَ الْحَرَارَةِ وَشِدَّةِ الِاتِّقَادِ</span>).</p>
+    <p>Rasulullah ﷺ pernah bersabda: <em>"Api kalian (di dunia) ini yang digunakan anak cucu Adam adalah seperseratus dari api jahannam"</em>. Para sahabat berkata, <em>"Wahai Rasulullah, sungguh ia (api dunia) sudah cukup (panasnya)!"</em> Beliau ﷺ menjawab, <em>"Sungguh api jahannam dilebihkan atasnya sembilan puluh sembilan kali lipat, dan masing-masing semisal panasnya dengan api dunia"</em> (HR. Bukhari-Muslim). Kata <span class="arab-inline">حَامِيَةٌ</span> di ayat ini bukan hiperbol — ini adalah <em>deskripsi hakikat</em>. Api yang panasnya bukan hanya lebih — tapi berlipat-lipat puluhan kali dari apa yang pernah kita kenal.</p>
+    <p>Kontras sempurna dengan ayat 7 mengajak kita merenung: dua kelompok yang timbangannya hanya berbeda dalam satu kata — <span class="arab-inline">ثَقُلَتْ</span> (berat) vs <span class="arab-inline">خَفَّتْ</span> (ringan) — tapi akhirnya berbeda 180 derajat. Satu berakhir di kehidupan yang "karakternya ridha" (<span class="arab-inline">عِيشَةٍ رَّاضِيَةٍ</span>). Satu lagi berakhir di api yang "karakternya membara" (<span class="arab-inline">نَارٌ حَامِيَةٌ</span>). Kedua sifat ini <em>tetap</em>, bukan temporer. Siapa yang masuk surga, hidupnya selamanya ridha. Siapa yang masuk neraka, tempatnya selamanya membara. Tidak ada jalan tengah. Tidak ada pengecualian. Hanya dua pintu yang berseberangan.</p>
+    <p>Pertanyaan yang perlu kita renungkan dalam-dalam sebagai penutup surah ini: <em>Selama hidup di dunia, apakah kita sedang mengumpulkan amal yang akan berat di timbangan? Atau sekadar mengumpulkan amal yang banyak secara kuantitas tapi rapuh karena tidak ikhlas, tidak sesuai sunnah, atau tercampur dengan riya'? Al-Qari'ah adalah peringatan yang sangat serius — ayat-ayatnya tidak bicara tentang hari-hari yang jauh dan abstrak, tetapi tentang nasib yang akan kita hadapi dengan pasti. Setiap dari kita akan ditimbang. Setiap dari kita akan masuk ke salah satu dari dua pintu ini. Semoga Allah menjadikan amal kita berat di timbangan — bukan dengan jumlahnya, tapi dengan keikhlasannya. Semoga Allah melindungi kita dari nār ḥāmiyah, dari Hawiyah, dari segala azab-Nya. Āmīn yā Rabbal-'ālamīn.</em></p>
+    <p style="text-align:center;font-style:italic;color:#92400e;margin-top:14px;"><span class="arab-inline" style="font-size:18px;">اللَّهُمَّ أَجِرْنَا مِنَ النَّارِ · اللَّهُمَّ ثَقِّلْ مَوَازِينَنَا</span><br>"Ya Allah, lindungi kami dari neraka — Ya Allah, beratkanlah timbangan kami."</p>
+  </div>
+</div>
+
+<!-- §7 DIAGRAM SVG — Model-Pohon 3-Level -->
+<div class="section-header">
+  <div class="judul">Diagram Sintaksis</div>
+  <div class="sub-judul">Model-Pohon · Surah Al-Qari'ah 101:11</div>
+</div>
+<div class="diagram-wrapper" id="diagram-ayat11">
+<svg viewBox="0 0 980 560" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;max-width:980px;display:block;margin:0 auto;">
+
+  <!-- ============================================================ -->
+  <!-- REFERENSI SEJAJAR: Ayat 10 (istifham مَا هِيَهْ) di KANAN ATAS (pojok) -->
+  <text x="920" y="40" text-anchor="middle" font-size="9" fill="#888" font-style="italic">Ayat 10 · Istifham</text>
+  <text x="920" y="56" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="14" fill="#999" font-weight="700" direction="rtl">مَا هِيَهْ</text>
+  <text x="920" y="70" text-anchor="middle" font-size="7.5" fill="#aaa" font-style="italic">(pertanyaan pengagungan)</text>
+
+  <!-- ============================================================ -->
+  <!-- BARIS KATA (RTL, urutan asli Arab: mubtada' mahdzuf → khabar → na'at) -->
+
+  <!-- [هِيَ] MUBTADA' MAHDZUF di paling kanan (karena dalam RTL, mubtada' datang sebelum khabar) -->
+  <text x="820" y="112" text-anchor="middle" font-size="9" fill="#888" font-style="italic">mubtada' mahdzuf</text>
+  <text x="820" y="134" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#888" font-weight="700" direction="rtl">[هِيَ]</text>
+  <text x="820" y="150" text-anchor="middle" font-size="8" fill="#888" font-style="italic">(dibuang — jelas dari konteks)</text>
+
+  <!-- نَارٌ — khabar/man'ut (di tengah-kanan) -->
+  <text x="600" y="112" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">نَارٌ</text>
+  <text x="600" y="130" text-anchor="middle" font-size="9" fill="#1a472a">isim-jamid · marfu'</text>
+  <text x="600" y="142" text-anchor="middle" font-size="8" fill="#888">khabar (man'ut)</text>
+
+  <!-- حَامِيَةٌ — na'at (di kiri) -->
+  <text x="250" y="112" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">حَامِيَةٌ</text>
+  <text x="250" y="130" text-anchor="middle" font-size="9" fill="#1a472a">isim-fa'il mu'annats · marfu'</text>
+  <text x="250" y="142" text-anchor="middle" font-size="8" fill="#888">na'at (sifat)</text>
+
+  <!-- ============================================================ -->
+  <!-- GARIS VERTIKAL dari tiap kata turun ke Level 1 -->
+  <line x1="600" y1="152" x2="600" y2="230" stroke="#1a472a" stroke-width="2.2"/>
+  <line x1="250" y1="152" x2="250" y2="230" stroke="#1a472a" stroke-width="2.2"/>
+  <!-- Garis teal putus dari [هِيَ] mubtada' mahdzuf langsung ke Level 2 -->
+  <line x1="820" y1="154" x2="820" y2="340" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 1 — HIJAU SOLID: نَارٌ + حَامِيَةٌ = na'at-man'ut (khabar) -->
+  <line x1="250" y1="230" x2="600" y2="230" stroke="#1a472a" stroke-width="2.2"/>
+  <text x="425" y="226" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">man'ut + na'at</text>
+  <polygon points="425,230 418,222 432,222" fill="#1a472a"/>
+  <line x1="425" y1="230" x2="425" y2="268" stroke="#1a472a" stroke-width="2.2"/>
+  <text x="425" y="282" text-anchor="middle" font-size="9" fill="#1a472a" font-style="italic">Level 1 · Na'at-Man'ut (khabar)</text>
+  <text x="425" y="302" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="16" fill="#1a472a" font-weight="700" direction="rtl">نَارٌ حَامِيَةٌ</text>
+  <text x="425" y="316" text-anchor="middle" font-size="8" fill="#555">nārun ḥāmiyah — api yang sangat panas</text>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 2 — TEAL PUTUS: [هِيَ mahdzuf] + L1 = jumlah ismiyyah lengkap -->
+  <line x1="425" y1="319" x2="425" y2="340" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <line x1="425" y1="340" x2="820" y2="340" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <text x="622" y="336" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">[mubtada' mahdzuf] + khabar</text>
+  <polygon points="622,340 615,332 629,332" fill="#0e7490"/>
+  <line x1="622" y1="340" x2="622" y2="378" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <text x="622" y="392" text-anchor="middle" font-size="9" fill="#0e7490" font-style="italic">Level 2 · Jumlah Ismiyyah Lengkap</text>
+  <text x="622" y="412" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="14" fill="#0e7490" font-weight="700" direction="rtl">[هِيَ] نَارٌ حَامِيَةٌ</text>
+  <text x="622" y="426" text-anchor="middle" font-size="8" fill="#555">[hiya] nārun ḥāmiyah</text>
+
+  <!-- ============================================================ -->
+  <!-- LEVEL 3 — UNGU PUTUS: [L2] = ayat lengkap (ayah kamilah) + keterkaitan ke Ayat 10 -->
+  <line x1="622" y1="429" x2="622" y2="470" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <text x="622" y="484" text-anchor="middle" font-size="9" fill="#5b21b6" font-style="italic">Level 3 · Ayat Lengkap (ayah kamilah)</text>
+  <text x="622" y="504" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="16" fill="#5b21b6" font-weight="700" direction="rtl">نَارٌ حَامِيَةٌ</text>
+  <text x="622" y="518" text-anchor="middle" font-size="8" fill="#555">nārun ḥāmiyah</text>
+
+  <!-- ============================================================ -->
+  <!-- KETERKAITAN ke Ayat 10 — sebagai JAWAB ISTIFHAM مَا هِيَهْ -->
+  <line x1="622" y1="521" x2="622" y2="542" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <line x1="622" y1="542" x2="920" y2="542" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <text x="770" y="538" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">jawab dari istifham مَا هِيَهْ (Ayat 10)</text>
+  <polygon points="770,542 763,534 777,534" fill="#1e3a8a"/>
+
+  <!-- Garis referensi silang ke Ayat 10 (abu putus) -->
+  <line x1="920" y1="542" x2="920" y2="80" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+</svg>
+<div class="diagram-legenda">
+  <div class="legenda-label">LEGENDA</div>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>L1 — نَارٌ حَامِيَةٌ na'at-man'ut / khabar (hijau solid)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — [هِيَ] نَارٌ حَامِيَةٌ jumlah ismiyyah dengan mubtada' mahdzuf (teal putus)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L3 — ayat lengkap (ungu putus)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,3"/></svg>Keterkaitan ke Ayat 10 — jawab istifham مَا هِيَهْ (biru gelap putus)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/></svg>Referensi silang ke Ayat 10 (abu putus)</span>
+</div>
+</div>
+
+<!-- §9 KHATIMAH SURAH — Rekap Lengkap Surah Al-Qari'ah -->
+<div class="section-header" style="background:#3b0764;margin-top:50px;">
+  <div class="judul">Khatimah Surah Al-Qari'ah</div>
+  <div class="sub-judul" style="color:#d8b4fe;">Rekap lengkap &amp; konsep gramatikal kumulatif</div>
+</div>
+
+<!-- REKAP SINGKAT SURAH -->
+<div class="kartu" style="margin-bottom:20px;">
+  <div class="kartu-head" style="background:#faf5ff;border-left:5px solid #6b21a8;">
+    <span class="badge" style="background:#6b21a8;color:white;">RANGKUMAN SURAH</span>
+    <div class="kartu-arab-besar arab">سُورَةُ الْقَارِعَةِ</div>
+    <div class="kartu-arti">Surah Al-Qari'ah — Makkiyyah · 11 ayat</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li>Surah ke-101 dalam urutan mushaf · Makkiyyah (diturunkan di Makkah)</li>
+        <li>11 ayat, tergolong surah-surah pendek di juz 30 (juz 'amma)</li>
+        <li>Nama <em>Al-Qari'ah</em> diambil dari kata pertama ayat 1 — berarti <em>"yang mengetuk/menggoncang"</em></li>
+      </ul>
+    </td></tr>
+    <tr><td>Tema Utama</td><td>
+      <ul class="poin-list">
+        <li>Peringatan tentang <strong>Hari Kiamat</strong> dan pembagian nasib manusia berdasarkan timbangan amal</li>
+        <li>Menggunakan pola balaghah yang kuat: pengagungan, pertanyaan retorikal, kontras, dan kiasan</li>
+        <li>Ditutup dengan deskripsi final neraka Hawiyah sebagai <em>api yang sangat panas</em></li>
+      </ul>
+    </td></tr>
+    <tr><td>Struktur Tiga Babak</td><td>
+      <ul class="poin-list">
+        <li><strong>Babak 1 (<a href="101-01.html">Ayat 1–3</a>)</strong>: Penamaan &amp; pengagungan Al-Qari'ah — pembuka yang menghentak</li>
+        <li><strong>Babak 2 (<a href="101-04.html">Ayat 4–5</a>)</strong>: Gambaran peristiwa kiamat — manusia seperti laron beterbangan, gunung seperti bulu dihambur-hamburkan</li>
+        <li><strong>Babak 3 (<a href="101-06.html">Ayat 6–11</a>)</strong>: Pembagian nasib manusia menjadi dua kelompok + penjelasan Hawiyah sebagai penutup</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- TABEL PER-AYAT -->
+<div class="kartu" style="margin-bottom:20px;">
+  <div class="kartu-head" style="background:#faf5ff;border-left:5px solid #6b21a8;">
+    <span class="badge" style="background:#6b21a8;color:white;">TABEL SELURUH AYAT · 11 AYAT</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td colspan="2">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:4px;">
+        <colgroup>
+          <col style="width:8%">
+          <col style="width:32%">
+          <col style="width:60%">
+        </colgroup>
+        <thead>
+          <tr style="background:#f3e8ff;color:#5b21b6;border-bottom:2px solid #6b21a8;">
+            <th style="padding:8px;text-align:left;">Ayat</th>
+            <th style="padding:8px;text-align:right;">Teks Arab</th>
+            <th style="padding:8px;text-align:left;">Makna &amp; Struktur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-01.html">1</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">ٱلْقَارِعَةُ</span></td><td style="padding:6px 8px;">"(Hari) yang mengetuk" — mubtada' dengan khabar mahdzuf, pola <em>idhhar fi maqam al-idmar</em></td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-02.html">2</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">مَا ٱلْقَارِعَةُ</span></td><td style="padding:6px 8px;">"Apakah itu Al-Qari'ah?" — istifham li-ta'zhim (pengagungan) pertama</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-03.html">3</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">وَمَآ أَدْرَىٰكَ مَا ٱلْقَارِعَةُ</span></td><td style="padding:6px 8px;">"Dan tahukah kamu apakah Al-Qari'ah itu?" — istifham li-ta'zhim dengan wawu isti'nafiyyah + fi'il muta'addi dua maf'ul</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-04.html">4</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">يَوْمَ يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ ٱلْمَبْثُوثِ</span></td><td style="padding:6px 8px;">"Pada hari manusia seperti laron yang beterbangan" — kaana wa akhawatuha (ism + khabar), kaf tasybih, isim-maf'ul</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-05.html">5</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</span></td><td style="padding:6px 8px;">"Dan gunung-gunung seperti bulu yang dihambur-hamburkan" — jamak taksir benda mati diperlakukan mu'annats</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-06.html">6</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">فَأَمَّا مَن ثَقُلَتْ مَوَٰزِينُهُۥ</span></td><td style="padding:6px 8px;">"Adapun orang yang berat timbangannya" — fa' al-fashihah + harf-tafshil + isim-syarat, kelompok 1</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-07.html">7</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">فَهُوَ فِى عِيشَةٍ رَّاضِيَةٍ</span></td><td style="padding:6px 8px;">"Maka dia berada dalam kehidupan yang diridhai" — fa' rabithah + dhamir-munfasil + isnad majazi</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-08.html">8</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">وَأَمَّا مَنْ خَفَّتْ مَوَٰزِينُهُۥ</span></td><td style="padding:6px 8px;">"Dan adapun orang yang ringan timbangannya" — wawu athaf (athaf nasq), kelompok 2</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-09.html">9</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">فَأُمُّهُۥ هَاوِيَةٌ</span></td><td style="padding:6px 8px;">"Maka tempat kembalinya adalah Hawiyah" — isti'arah (ibu = tempat kembali), isim-fa'il sebagai nama alam</td></tr>
+          <tr style="border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><a href="101-10.html">10</a></td><td style="padding:6px 8px;text-align:right;" class="arab"><span style="font-size:18px;">وَمَآ أَدْرَىٰكَ مَا هِيَهْ</span></td><td style="padding:6px 8px;">"Dan tahukah kamu apakah dia itu?" — wawu isti'nafiyyah + isti'naf bayani + ha' as-sakt</td></tr>
+          <tr style="background:#fef3c7;border-bottom:1px solid #e9d5ff;"><td style="padding:6px 8px;"><strong>11</strong></td><td style="padding:6px 8px;text-align:right;" class="arab"><strong><span style="font-size:18px;">نَارٌ حَامِيَةٌ</span></strong></td><td style="padding:6px 8px;"><strong>"(Yaitu) api yang sangat panas" — mubtada' mahdzuf + khabar, ayat penutup &amp; jawaban klimaks</strong></td></tr>
+        </tbody>
+      </table>
+    </td></tr>
+  </table>
+</div>
+
+<!-- KONSEP GRAMATIKAL KUMULATIF -->
+<div class="kartu" style="margin-bottom:20px;">
+  <div class="kartu-head" style="background:#faf5ff;border-left:5px solid #6b21a8;">
+    <span class="badge" style="background:#6b21a8;color:white;">KONSEP GRAMATIKAL KUMULATIF</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Konsep Nahwu</td><td>
+      <ul class="poin-list">
+        <li><strong>Kaana wa Akhawatuha</strong> (ayat 4–5): fi'il naqish dengan ism (marfu') dan khabar (manshub)</li>
+        <li><strong>Empat jenis fa'</strong> (ayat 6–7): 'athifah, isti'nafiyyah, al-fashihah, rabithah lil-jawab</li>
+        <li><strong>Isim-syarat &amp; fi'il-syarat</strong> (ayat 6, 8): مَنْ menjazmkan dua fi'il, majzum mahallan</li>
+        <li><strong>Isim-alat</strong> (ayat 6, 8): pola <em>مِفْعَال</em> → <em>مَفَاعِيل</em> untuk jamak taksir</li>
+        <li><strong>Dhamir-munfasil vs muttashil</strong> (ayat 7, 10): kata ganti independen vs yang menempel</li>
+        <li><strong>Athaf nasq</strong> (ayat 8): ma'thuf mewarisi hukum ma'thuf 'alaih</li>
+        <li><strong>Wawu isti'nafiyyah</strong> (ayat 10): pembuka kalimat baru tanpa mewariskan hukum</li>
+        <li><strong>Ha' as-sakt</strong> (ayat 10): penanda fonologis untuk waqaf</li>
+        <li><strong>Mubtada' mahdzuf</strong> (ayat 11): pembuangan mubtada' untuk efek balaghah</li>
+        <li><strong>Na'at-man'ut</strong> (ayat 4, 5, 7, 11): kesesuaian dalam 4 karakter (i'rab, jumlah, gender, identitas)</li>
+        <li><strong>Idhafah</strong> (ayat 6, 8, 9): penyandaran isim ke dhamir/isim lain</li>
+      </ul>
+    </td></tr>
+    <tr><td>Konsep Balaghah</td><td>
+      <ul class="poin-list">
+        <li><strong>Istifham li-ta'zhim</strong> (ayat 2, 3, 10): pertanyaan untuk pengagungan, bukan mencari jawaban</li>
+        <li><strong>Idhhar fi maqam al-idmar</strong> (ayat 2): pengulangan eksplisit kata Al-Qari'ah untuk pengagungan</li>
+        <li><strong>Tasybih &amp; kaf tasybih</strong> (ayat 4–5): perumpamaan manusia dan gunung</li>
+        <li><strong>Isnad majazi</strong> (ayat 7): penyandaran sifat ke tempat, bukan ke pelakunya</li>
+        <li><strong>Isti'arah tashrihiyyah</strong> (ayat 9): kiasan "ibu" untuk "tempat kembali"</li>
+        <li><strong>Isti'naf bayani</strong> (ayat 10): dualitas gramatikal-balaghi — terputus struktur, terikat makna</li>
+        <li><strong>Ta'zhim via tanwin nakirah</strong> (berulang): <em>عِيشَةٍ</em>, <em>هَاوِيَةٌ</em>, <em>نَارٌ حَامِيَةٌ</em> — pengagungan via nakirah</li>
+        <li><strong>Wasf tsabit (sifat tetap)</strong> (ayat 7, 11): isim-fa'il menunjukkan sifat permanen, bukan aksi temporer</li>
+        <li><strong>Hadhf lil-balaghah</strong> (ayat 6, 11): pembuangan untuk efek retorikal (fa' al-fashihah, mubtada' mahdzuf)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Pelajaran Struktur &amp; Balaghah Surah</td><td>
+      <ul class="poin-list">
+        <li><strong>Pola pengagungan berulang</strong>: Al-Qari'ah (ayat 1–3) dan Hawiyah (ayat 9–11) keduanya melalui formula <em>idhhar → istifham li-ta'zhim → penjelasan</em> — pola kembar yang membangun struktur "tangga dahsyat"</li>
+        <li><strong>Paralelisme kontras sempurna</strong>: kelompok 1 (ayat 6–7) vs kelompok 2 (ayat 8–9) — struktur nyaris identik dengan perubahan hanya di satu kata kunci, memaksimalkan efek kontras</li>
+        <li><strong>Kontras penutup</strong>: <em>عِيشَةٍ رَّاضِيَةٍ</em> (ayat 7) vs <em>نَارٌ حَامِيَةٌ</em> (ayat 11) — kedua ayat dengan pola <em>mawshuf + ṣifah</em> yang menyoroti sifat tetap (bukan aksi temporer)</li>
+        <li><strong>Ekonomi kata</strong>: ayat-ayat akhir (9 dan 11) sangat pendek — menunjukkan bahwa makna puncak tidak butuh kata banyak, justru kepadatan yang menghentak</li>
+        <li><strong>Rima &amp; fonologi</strong>: seluruh surah menjaga rima akhir <em>-ah</em>/<em>-iyah</em> (qari'ah, mabtsuts, manfusy, rhāḍiyah, hāwiyah, hiyah, ḥāmiyah) — termasuk ha' as-sakt di ayat 10 yang mempertahankan pola rima ini</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- DOA PENUTUP -->
+<div class="kartu" style="margin-bottom:20px;">
+  <div class="kartu-head" style="background:#fef3c7;border-left:5px solid #92400e;">
+    <span class="badge" style="background:#92400e;color:white;">DOA PENUTUP</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td colspan="2" style="text-align:center;padding:24px 16px;">
+      <p style="font-family:'Scheherazade New',serif;font-size:24px;color:#92400e;line-height:2;margin:0 0 16px;">
+        رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً<br>
+        وَفِي الْآخِرَةِ حَسَنَةً<br>
+        وَقِنَا عَذَابَ النَّارِ
+      </p>
+      <p style="font-style:italic;color:#78350f;margin:0 0 16px;">
+        "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan lindungilah kami dari azab neraka."<br>
+        (QS Al-Baqarah: 201)
+      </p>
+      <hr style="border:none;border-top:1px dashed #92400e;margin:16px 0;">
+      <p style="font-family:'Scheherazade New',serif;font-size:22px;color:#92400e;line-height:2;margin:0 0 16px;">
+        اللَّهُمَّ ثَقِّلْ مَوَازِينَنَا بِالْحَسَنَاتِ<br>
+        وَأَجِرْنَا مِنَ النَّارِ
+      </p>
+      <p style="font-style:italic;color:#78350f;margin:0;">
+        "Ya Allah, beratkanlah timbangan kami dengan kebaikan-kebaikan, dan lindungilah kami dari neraka."
+      </p>
+    </td></tr>
+  </table>
+</div>
+
+<!-- UCAPAN SYUKUR -->
+<div class="kartu" style="margin-bottom:20px;">
+  <div class="kartu-head" style="background:#ecfdf5;border-left:5px solid #166534;">
+    <span class="badge" style="background:#166534;color:white;">ALHAMDULILLAH</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td colspan="2" style="text-align:center;padding:20px 16px;">
+      <p style="font-family:'Scheherazade New',serif;font-size:22px;color:#166534;margin:0 0 12px;">
+        الْحَمْدُ لِلَّهِ الَّذِي بِنِعْمَتِهِ تَتِمُّ الصَّالِحَاتُ
+      </p>
+      <p style="font-style:italic;color:#14532d;margin:0 0 8px;">
+        "Segala puji bagi Allah yang dengan nikmat-Nya sempurnalah segala amal shalih."
+      </p>
+      <p style="color:#14532d;margin:8px 0 0;font-size:13px;">
+        Semoga proyek analisis gramatikal Surah Al-Qari'ah ini menjadi <em>amal jariyah</em> yang bermanfaat<br>
+        bagi pembaca dan penulisnya — di dunia dan akhirat. Āmīn.
+      </p>
+    </td></tr>
+  </table>
+</div>
+
+<div class="nav-bawah" id="nav-bawah-container"></div>
+</div><!-- /container -->
+
+<footer>
+  <p><a href="index.html">grammar-quran.com</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>const PAGE_CONFIG = { nomorSurah: 101, nomorAyat: 11, ayatTerakhir: true };</script>
+<script>
+(function(){
+  const surah=(typeof getSurahByNomor==='function')?getSurahByNomor(PAGE_CONFIG.nomorSurah):null;
+  const ayatSaat=PAGE_CONFIG.nomorAyat,totalAyat=surah?surah.jumlahAyat:11,surahNama=surah?surah.namaLatin:'Al-Qari\'ah';
+  if(surah){
+    document.title='Grammar '+surah.namaLatin+' '+surah.nomor+':'+ayatSaat;
+    const lbl=document.getElementById('label-ayat-box');if(lbl)lbl.textContent='Ayat Lengkap · '+surah.namaLatin+' : '+ayatSaat;
+    const hiA=document.getElementById('hi-ayat-text');if(hiA)hiA.textContent='Ayat '+ayatSaat+' · ('+surah.nomor+':'+ayatSaat+')';
+    const ddS=document.getElementById('dd-surah');
+    SURAH_DATA.filter(s=>s.status==='tersedia').sort((a,b)=>a.nomor-b.nomor).forEach(s=>{const o=document.createElement('option');o.value=s.nomorStr;o.textContent=s.nomorStr+'  '+s.namaLatin+' \u2014 '+s.jumlahAyat+' Ayat';if(s.nomor===surah.nomor)o.selected=true;ddS.appendChild(o);});
+    function isiAyat(n){const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';const ops=getOpsiDropdownAyat(n);if(!ops.length){dd.disabled=true;return;}dd.disabled=false;ops.forEach(o=>{const opt=document.createElement('option');opt.value=o.path;opt.textContent=o.label;if(o.value===ayatSaat&&n===surah.nomor)opt.selected=true;dd.appendChild(opt);});}
+    isiAyat(surah.nomor);
+    document.getElementById('dd-surah').addEventListener('change',function(){const n=parseInt(this.value);if(n)isiAyat(n);else{const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';dd.disabled=true;}});
+  }
+  window.navigasiKeAyat=function(){const p=document.getElementById('dd-ayat').value;if(p)window.location.href=p;else alert('Pilih surah dan ayat terlebih dahulu.');};
+  const c=document.getElementById('nav-bawah-container');
+  const bp=document.createElement('a');bp.className='nav-btn';bp.href='101-10.html';bp.textContent='\u2190 Ayat 10';
+  const bh=document.createElement('a');bh.className='nav-btn beranda';bh.href='index.html';bh.textContent='\u2302 Beranda';
+  const bn=document.createElement('a');bn.className='nav-btn';bn.href='index.html';bn.textContent='Selesai \u2713';
+  const info=document.createElement('span');info.className='nav-info';info.textContent=surahNama+' \u00b7 Ayat '+ayatSaat+' dari '+totalAyat;
+  c.appendChild(bp);c.appendChild(bh);c.appendChild(info);c.appendChild(bn);
+})();
+</script>
+</body>
+</html>

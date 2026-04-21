@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar At-Takatsur 102:3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hijau-gelap:#1a472a; --hijau-medium:#2d6a4f; --hijau-muda:#40916c;
+      --biru-tua:#1e3a8a; --ungu:#5b21b6; --coklat:#92400e;
+      --merah-fi:#c2410c; --emas:#d4af37; --emas-muda:#f0d060;
+      --bg-utama:#f7f5f0; --border:#e0d9c8;
+      --font-arab:'Scheherazade New',serif; --font-latin:'Lato',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-latin);background:var(--bg-utama);color:#1c1c1c;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+    .arab{font-family:var(--font-arab);direction:rtl;}
+    header{background:var(--hijau-gelap);color:white;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
+    .header-info{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;justify-content:center;}
+    .header-info .hi-label{font-size:.60rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas);margin-bottom:3px;}
+    .header-info .hi-surah{font-size:.90rem;font-weight:700;color:white;display:flex;align-items:baseline;gap:10px;}
+    .header-info .hi-surah .arab-surah{font-family:var(--font-arab);font-size:.88rem;color:var(--emas);direction:rtl;}
+    .header-info .hi-ayat{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:3px;}
+    .nav-dropdowns{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .dropdown-wrapper{display:flex;flex-direction:column;gap:3px;}
+    .nav-dropdowns label{font-size:.72rem;color:rgba(255,255,255,.65);white-space:nowrap;}
+    .nav-dropdowns select{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;font-family:var(--font-latin);font-size:.82rem;cursor:pointer;outline:none;transition:background .2s;max-width:240px;}
+    .nav-dropdowns select:hover,.nav-dropdowns select:focus{background:rgba(255,255,255,.2);border-color:var(--emas);}
+    .nav-dropdowns select option{background:var(--hijau-gelap);}
+    .btn-go{background:var(--emas);color:var(--hijau-gelap);border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-latin);font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s;align-self:flex-end;}
+    .btn-go:hover{background:var(--emas-muda);}
+    .nav-home{color:#1a472a;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;background:#c8d0c8;border:1px solid #b0bab0;border-radius:8px;padding:6px 12px;transition:background .2s;flex-shrink:0;}
+    .nav-home:hover{background:#e8f0e8;border-color:var(--emas);}
+    .container{max-width:780px;width:100%;margin:0 auto;padding:32px 24px;flex:1;}
+    .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
+    .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
+    .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2.2;color:#1a1a1a;}
+    .transliterasi{margin-top:10px;font-size:14px;color:var(--hijau-medium);font-style:italic;}
+    .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
+    .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
+    .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
+    .section-header .judul{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;}
+    .section-header .sub-judul{font-size:12px;color:#a8d5b5;margin-top:2px;}
+    .section-header.biru{background:#1e3a5f;} .section-header.biru .sub-judul{color:#93c5fd;}
+    .section-header.tadabur{background:#5b3a1a;} .section-header.tadabur .sub-judul{color:var(--emas);opacity:.8;}
+    .kartu{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .kartu-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid #f0ebe0;}
+    .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
+    .kartu-head.warna-fi{background:#fff7ed;} .kartu-head.warna-frasa1{background:#eef4fb;}
+    .kartu-head.warna-frasa2{background:#f5f0fb;}
+    .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
+    .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
+    .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
+    .badge-frasa2{background:var(--ungu);color:white;}
+    .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
+    .kartu-arti{font-size:13px;color:#555;font-style:italic;}
+    .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
+    .kartu-tabel tr{border-bottom:1px solid #f5f0e8;} .kartu-tabel tr:last-child{border-bottom:none;}
+    .kartu-tabel td{padding:9px 20px;vertical-align:top;word-wrap:break-word;}
+    .kartu-tabel td:first-child{color:#777;width:22%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+    .kartu-tabel td:last-child{color:#1a1a1a;width:78%;}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.3px;margin-right:4px;margin-bottom:2px;}
+    .tag-n{background:#dbeafe;color:#1e3a8a;} .tag-harf{background:#cffafe;color:#155e75;}
+    .tag-fi{background:#ffedd5;color:#9a3412;} .tag-marfu{background:#dcfce7;color:#166534;}
+    .tag-manshub{background:#fce7f3;color:#9d174d;} .tag-majrur{background:#fef3c7;color:#92400e;}
+    .tag-nakirah{background:#fee2e2;color:#991b1b;} .tag-marifah{background:#dbeafe;color:#1e3a8a;}
+    .tag-mabni{background:#f3e8ff;color:#6b21a8;}
+    .arab-inline{font-family:var(--font-arab);font-size:20px;color:var(--hijau-gelap);direction:rtl;display:inline-block;}
+    .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
+    .poin-list{list-style:none;padding:0;margin:0;}
+    .poin-list li{padding:3px 0 3px 16px;position:relative;}
+    .poin-list li::before{content:'·';position:absolute;left:4px;color:#aaa;}
+    /* Tashrif */
+    .tashrif-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .tashrif-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:10px;}
+    .tashrif-grid{display:grid;grid-template-columns:1fr 28px 1fr;grid-template-rows:auto auto;gap:10px 0;margin:12px 0 8px;align-items:center;}
+    .tashrif-grid .tashrif-panah{justify-content:center;font-size:18px;color:#c2410c;font-weight:700;display:flex;align-items:center;}
+    .tashrif-kotak{border:1px solid #fed7aa;border-radius:6px;padding:8px 12px;text-align:center;}
+    .tashrif-kotak.akar{background:#f0f7f2;border-color:#1a472a;}
+    .tashrif-kotak.subyek{background:#fff3e0;border:2px solid #c2410c;}
+    .tashrif-kotak-label{font-size:9px;color:#888;font-style:italic;margin-bottom:4px;}
+    .tashrif-kotak-arab{font-family:var(--font-arab);font-size:22px;direction:rtl;display:block;line-height:1.6;}
+    .tashrif-kotak.akar .tashrif-kotak-arab{color:#1a472a;font-size:22px;}
+    .tashrif-kotak.subyek .tashrif-kotak-arab{color:#c2410c;font-weight:700;}
+    .tashrif-isi{font-size:12.5px;color:#374151;line-height:1.8;margin-top:8px;}
+    /* Konsep / iltifat boxes */
+    .iltifat-box{background:#fdf4ff;border:1px solid #e9d5ff;border-left:5px solid #7e22ce;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .iltifat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7e22ce;margin-bottom:8px;}
+    .iltifat-isi{font-size:13px;color:#374151;line-height:1.8;}
+    .konsep-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .konsep-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:8px;}
+    .konsep-isi{font-size:13px;color:#374151;line-height:1.9;}
+    .konsep-tabel{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+    .konsep-tabel th{background:#fff3e0;padding:6px 10px;text-align:left;font-weight:700;color:#92400e;border:1px solid #fed7aa;}
+    .konsep-tabel td{padding:6px 10px;border:1px solid #fde8c8;}
+    /* kartu-head-harf3 */
+    .kartu-head-harf3{display:flex;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid #f0ebe0;background:#ecfeff;}
+    .kartu-head-harf3 .kh3-badge{flex-shrink:0;}
+    .kartu-head-harf3 .kh3-arab{font-family:var(--font-arab);font-size:40px;color:#1a1a1a;line-height:1.6;direction:rtl;flex:0 0 auto;}
+    .kartu-head-harf3 .kh3-arti{font-size:13px;color:#555;font-style:italic;flex:1;}
+    /* Tadabur */
+    .tadabur-box{background:white;border:1px solid var(--border);border-left:5px solid var(--emas);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .tadabur-head{background:#fdf6ec;padding:12px 20px;border-bottom:1px solid #f0e8d0;display:flex;align-items:center;gap:10px;}
+    .tadabur-judul{font-size:13px;font-weight:700;color:#78350f;}
+    .tadabur-isi{padding:18px 20px;font-size:14.5px;line-height:1.9;color:#2d2d2d;}
+    .tadabur-isi p{margin-bottom:10px;} .tadabur-isi p:last-child{margin-bottom:0;}
+    /* Diagram */
+    .diagram-wrapper{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;margin-bottom:20px;overflow-x:auto;}
+    .diagram-legenda{margin-top:12px;background:#f8f6f1;border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:11px;color:#444;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;}
+    .legenda-label{font-weight:700;color:#888;letter-spacing:.5px;width:100%;margin-bottom:4px;}
+    .legenda-item{display:inline-flex;align-items:center;gap:5px;}
+    /* Nav / footer */
+    footer{background:var(--hijau-gelap);color:rgba(255,255,255,.6);text-align:center;padding:16px 24px;font-size:12px;}
+    footer a{color:var(--emas);text-decoration:none;}
+    .nav-bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 8px;flex-wrap:wrap;}
+    .nav-btn{background:white;border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;transition:background .2s;}
+    .nav-btn:hover{background:#e8f0e8;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda{background:var(--hijau-gelap);color:white;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda:hover{background:var(--hijau-medium);}
+    .nav-info{font-size:12px;color:#888;text-align:center;flex:1;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <div class="hi-label">Grammar Al-Qur'an</div>
+      <div class="hi-surah">At-Takatsur · 102 <span class="arab-surah">ٱلتَّكَاثُرُ</span></div>
+      <div class="hi-ayat" id="hi-ayat-text">Ayat 3 · (102:3)</div>
+    </a>
+    <div class="nav-dropdowns">
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Pergi →</button>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- §1 AYAT BOX -->
+<div class="ayat-box">
+  <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · At-Takatsur : 3</div>
+  <div class="teks-ayat arab">كَلَّا سَوْفَ تَعْلَمُونَ</div>
+  <div class="transliterasi">Kallā sawfa ta'lamūn</div>
+  <div class="terjemahan">"Sekali-kali tidak! Sungguh kamu akan mengetahui (akibat perbuatanmu itu)."</div>
+</div>
+
+<!-- §2 KONTEKS -->
+<div class="konteks-box">
+  <strong>Konteks Ayat 3:</strong> Setelah dua ayat pertama menggambarkan kelalaian manusia akibat التَّكَاثُرُ, ayat ini hadir sebagai <em>raddu</em> (penolakan keras) dan ancaman terselubung. Tiga hal penting:
+  <ul class="poin-list" style="margin-top:8px;">
+    <li><strong>كَلَّا</strong> — bukan sekadar "tidak" biasa. Ini adalah harf yang paling tegas dalam Al-Qur'an untuk menolak suatu kondisi dan memperingatkan pelakunya</li>
+    <li><strong>سَوْفَ تَعْلَمُونَ</strong> — ancaman tanpa menyebutkan apa yang akan diketahui (<em>maf'ul bih mahdzuf</em>). Keheningan ini justru lebih mencekam — membiarkan imajinasi pembaca mengisi sendiri apa yang dimaksud</li>
+    <li>Ayat ini diulang kembali di <a href="102-04.html">ayat 4</a> dengan redaksi yang sama — pengulangan (<em>tikrar</em>) untuk memperkuat ancaman dan menekankan kepastiannya</li>
+  </ul>
+</div>
+
+<!-- §3 ANALISIS TINGKAT 1 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
+  <div class="sub-judul">Pembahasan kata per kata secara individual</div>
+</div>
+
+<!-- K1: كَلَّا — harf raddu/zajr -->
+<div class="kartu">
+  <div class="kartu-head-harf3">
+    <span class="badge badge-harf kh3-badge">HARF · Harf Raddu/Zajr · (102:3:1)</span>
+    <div class="kh3-arab arab">كَلَّا</div>
+    <div class="kh3-arti">sekali-kali tidak · sungguh tidak demikian</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <span class="tag tag-harf">Harf</span> <em>ḥarf al-raddu wal-zajr</em> (harf penolakan dan pencegahan) · termasuk huruf yang paling kuat maknanya dalam Al-Qur'an
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">📌 Konsep Gramatikal At-Takatsur — كَلَّا: Dua Fungsi Utama</div>
+        <div class="konsep-isi">
+          <strong>كَلَّا hadir 33 kali dalam Al-Qur'an — seluruhnya di juz 29–30</strong> (surah-surah Makkiyyah akhir). Ini bukan kebetulan: كَلَّا adalah ciri khas khitab Al-Qur'an kepada kaum Makkah yang sombong dan membantah. Para ulama nahwu membagi fungsinya menjadi dua:
+          <br><br>
+          <!-- Muqaranah: Rad' vs Istiftah -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
+            <div style="background:#fef9f0;border:1px solid #f59e0b;border-top:3px solid #c2410c;border-radius:8px;padding:12px;">
+              <div style="font-size:11px;font-weight:700;color:#c2410c;letter-spacing:.5px;margin-bottom:6px;">كَلَّا SEBAGAI RAD' (PENOLAKAN)</div>
+              <div style="font-size:12.5px;line-height:1.8;color:#374151;">
+                Fungsi utama dan paling kuat: menolak, membantah, dan menyangkal pernyataan/keyakinan yang ada sebelumnya. Selalu merujuk ke belakang (<em>li-mā qablah</em>). Di sini menolak kondisi yang digambarkan di ayat 1–2:
+                <div style="font-family:'Scheherazade New',serif;font-size:17px;direction:rtl;text-align:center;margin:8px 0;color:#1a472a;">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ ۝ حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</div>
+                Mayoritas ulama menjadikan ini fungsi utama كَلَّا. Hadir 33 kali dalam Al-Qur'an, seluruhnya di juz 29–30 — ciri khas khitab Al-Qur'an kepada kaum Makkah yang sombong.
+              </div>
+            </div>
+            <div style="background:#f0f9ff;border:1px solid #7dd3fc;border-top:3px solid #0e7490;border-radius:8px;padding:12px;">
+              <div style="font-size:11px;font-weight:700;color:#0e7490;letter-spacing:.5px;margin-bottom:6px;">كَلَّا SEBAGAI ISTIFTAH (PEMBUKA)</div>
+              <div style="font-size:12.5px;line-height:1.8;color:#374151;">
+                Sebagian ulama membolehkan كَلَّا berfungsi sebagai <em>istiftāḥ</em> (pembuka babak baru) — bermakna "ingatlah" atau "ketahuilah", merujuk ke depan (<em>li-mā ba'dah</em>). Contoh yang sering diperdebatkan: Al-Fajr (89:21)
+                <div style="font-family:'Scheherazade New',serif;font-size:15px;direction:rtl;text-align:center;margin:8px 0;color:#0e7490;">كَلَّآ إِذَا دُكَّتِ ٱلْأَرْضُ دَكًّا دَكًّا</div>
+                — di mana كَلَّا seolah membuka gambaran kiamat yang temanya berbeda dari ayat-ayat sebelumnya (17–20). Di At-Takatsur 3, fungsi <em>rad'</em> lebih dominan karena kondisi yang dibantah (التَّكَاثُرُ) sangat jelas di ayat 1–2 tepat sebelumnya.
+              </div>
+            </div>
+          </div>
+          <br>
+          <strong>Hubungan كَلَّا dengan Ayat 1–2:</strong><br>
+          Pertanyaan penting: apakah ayat 3 terhubung dengan ayat 1–2, atau berdiri sendiri tanpa kaitan?<br><br>
+          Jawabannya: <em>terhubung secara semantik/retoris, namun tidak terhubung secara sintaksis</em>.
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <tr><th>Jenis Hubungan</th><th>Penjelasan</th></tr>
+            <tr>
+              <td><strong>Semantik/Retoris</strong> ✅</td>
+              <td>كَلَّا berfungsi sebagai <em>raddu li-mā qablah</em> — menolak dan membantah apa yang ada sebelumnya. Objek yang ditolak adalah perilaku التَّكَاثُرُ di ayat 1–2. Jadi ayat 3 <em>maknanya</em> terikat erat dengan ayat 1–2.</td>
+            </tr>
+            <tr>
+              <td><strong>Sintaksis</strong> ❌</td>
+              <td>Tidak ada harf 'ataf (وَ/فَ), tidak ada harf rabth, tidak ada partikel penghubung eksplisit. Ayat 3 adalah <em>jumlah musta'nafah</em> — kalimat baru yang berdiri sendiri secara gramatikal. كَلَّا sendiri tidak memiliki kedudukan i'rab dan tidak men-jar atau men-nashab apapun.</td>
+            </tr>
+          </table>
+          <br>
+          Kesimpulan: dalam tata bahasa Arab, ini disebut <em>al-iqtirān al-ma'nawī dūna al-iqtirān al-lafzhī</em> — keterkaitan maknawi tanpa keterkaitan lafzhi (sintaksis). Gaya ini khas Al-Qur'an: perpindahan mendadak dari deskripsi ke respons tanpa jembatan kata.
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>sekali-kali tidak · sungguh tidak demikian · penolakan dan teguran keras terhadap kondisi yang disebutkan sebelumnya</td></tr>
+    <tr><td>Fungsi</td><td>
+      <ul class="poin-list">
+        <li>Menolak (<em>radd</em>) kelalaian akibat التَّكَاثُرُ di ayat 1–2</li>
+        <li>Mengantarkan (<em>istiʼnāf</em> — permulaan baru) kalimat ancaman <span class="arab-inline">سَوْفَ تَعْلَمُونَ</span></li>
+      </ul>
+    </td></tr>
+    <tr><td>Status I'rab</td><td><span class="tag tag-mabni">Mabni</span> <em>mabni 'alā al-fatḥ</em> · <em>lā maḥalla lahu minal-i'rāb</em> (tidak memiliki kedudukan i'rab)</td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>Harf yang berdiri sendiri (<em>musta'naf</em>) · tidak terikat secara sintaksis dengan kata setelahnya</li>
+        <li>Memisahkan antara gambaran kelalaian (ayat 1–2) dengan ancaman (ayat 3–4)</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K2: سَوْفَ — harf istiqbal -->
+<div class="kartu">
+  <div class="kartu-head-harf3">
+    <span class="badge badge-harf kh3-badge">HARF · Harf Istiqbal · (102:3:2)</span>
+    <div class="kh3-arab arab">سَوْفَ</div>
+    <div class="kh3-arti">akan (nanti) · kelak</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <span class="tag tag-harf">Harf</span> <em>ḥarf al-istiqbāl</em> (harf penanda masa akan datang) · termasuk <em>nawāṣib al-fi'l</em> (harf-harf yang dapat menashabkan fi'il) versi ringan — bukan nashab, melainkan hanya mengkhususkan mudhari' untuk masa depan
+      <div class="iltifat-box" style="margin-top:8px;">
+        <div class="iltifat-label">📖 Catatan — سَوْفَ vs سَ (Sin Istiqbal)</div>
+        <div class="iltifat-isi">
+          Dua harf yang menunjukkan masa depan, namun berbeda nuansa:
+          <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;">
+            <tr style="background:#f0f7f2;">
+              <th style="padding:5px 8px;border:1px solid #d1fae5;text-align:left;">Harf</th>
+              <th style="padding:5px 8px;border:1px solid #d1fae5;text-align:left;">Istilah</th>
+              <th style="padding:5px 8px;border:1px solid #d1fae5;text-align:left;">Jarak Waktu</th>
+              <th style="padding:5px 8px;border:1px solid #d1fae5;text-align:left;">Nuansa Tambahan</th>
+            </tr>
+            <tr>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;font-family:'Scheherazade New',serif;font-size:17px;">سَ</td>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;"><em>sīn al-istiqbāl</em></td>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;">Dekat / segera</td>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;">Lebih mendesak, sebentar lagi terjadi</td>
+            </tr>
+            <tr style="background:#fafafa;">
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;font-family:'Scheherazade New',serif;font-size:17px;">سَوْفَ</td>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;"><em>sawfa — istiqbāl ba'īd</em></td>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;">Jauh / kelak</td>
+              <td style="padding:5px 8px;border:1px solid #e5e7eb;">Kepastian mutlak — justru karena jauh, ia pasti terjadi dan tidak bisa dihindari</td>
+            </tr>
+          </table>
+          <br>
+          Dalam ayat ini, penggunaan <strong>سَوْفَ</strong> (bukan سَ) menegaskan: "kalian pasti akan mengetahui — entah di dunia saat kematian, atau di akhirat saat penghisaban — tidak ada yang bisa lari dari kepastian ini."
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>akan · kelak · nanti — menunjukkan kepastian di masa depan yang lebih jauh dari سَ</td></tr>
+    <tr><td>Fungsi</td><td>
+      <ul class="poin-list">
+        <li>Mengkhususkan fi'il mudhari' <span class="arab-inline">تَعْلَمُونَ</span> untuk masa akan datang</li>
+        <li>Tidak mengubah i'rab fi'il — تَعْلَمُونَ tetap marfu' (سَوْفَ bukan nashib/jazim)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Status I'rab</td><td><span class="tag tag-mabni">Mabni</span> <em>mabni 'alā al-fatḥ</em> · <em>lā maḥalla lahu minal-i'rāb</em> (tidak memiliki kedudukan i'rab)</td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>Harf yang menempel sebelum fi'il mudhari' — menjadikannya bermakna masa depan yang pasti</li>
+        <li>Tidak mempengaruhi i'rab — <span class="arab-inline">تَعْلَمُونَ</span> tetap marfu' bi-thabutil-nun</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K3: تَعْلَمُونَ — fi'il mudhari' af'al khamsah -->
+<div class="kartu">
+  <div class="kartu-head-harf3" style="background:#fff7ed;">
+    <span class="badge badge-fi kh3-badge">FI'IL · Mudhari' · Al-Af'al Al-Khamsah · (102:3:3)</span>
+    <div class="kh3-arab arab">تَعْلَمُونَ</div>
+    <div class="kh3-arti">kalian mengetahui / kalian akan mengetahui</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <span class="tag tag-fi">Fi'il Mudhari'</span> <em>bab I</em> (<em>fa'ala yaf'alu</em>) · <em>muta'addī</em> (membutuhkan obyek) · termasuk <em>al-af'āl al-khamsah</em> (lima bentuk fi'il) karena bertemu <em>wāw al-jamā'ah</em>
+    </td></tr>
+    <tr><td>Makna Leksikal</td><td>mengetahui · memahami · menyadari · mendapatkan pengetahuan tentang sesuatu</td></tr>
+    <tr><td>Makna Gramatikal</td><td>
+      (Kalian, أَنْتُمْ) akan mengetahui. Maf'ul bih tidak disebutkan (<em>mahdhūf</em>) — disengaja untuk menciptakan efek <em>ta'zhīm</em> (pembesaran perkara): apa yang akan diketahui dibiarkan tak terucap agar lebih mencekam.
+    </td></tr>
+    <tr><td>Fa'il</td><td>
+      <em>dhamir muttashil</em> (kata ganti melekat) — <span class="arab-inline">وَاو</span> (waw al-jamā'ah — "kalian"), yang melekat pada fi'il, sebagai bentuk fa'il eksplisit
+    </td></tr>
+    <tr><td>Akar + Tashrif</td><td>
+      Akar: ع - ل - م
+      <div class="tashrif-box">
+        <div class="tashrif-label">TASHRIF — Bab I · Fi'il Mudhari' · Al-Af'al Al-Khamsah</div>
+        <div class="tashrif-grid">
+          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab">ع - ل - م</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Madhi هو</div><span class="tashrif-kotak-arab arab">عَلِمَ</span></div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Mudhari' هو</div><span class="tashrif-kotak-arab arab">يَعْلَمُ</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">dalam ayat (subyek أنتم)</div><span class="tashrif-kotak-arab arab">تَعْلَمُونَ</span></div>
+        </div>
+        <div class="tashrif-isi">
+          <em>Al-af'āl al-khamsah:</em> fi'il mudhari' mukhatab jamak (أنتم) → <strong>تَفْعَلُونَ</strong>. Tanda raf'-nya = <em>thabūt al-nūn</em> (tetapnya nun). Tanda nashab/jazm-nya = <em>hadzf al-nūn</em> (gugurnya nun).
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Status I'rab</td><td>
+      <span class="tag tag-marfu">Marfu'</span> · 'alāmah raf' = <em>thabūt al-nūn</em> (tetapnya nun di akhir) — karena termasuk <em>al-af'āl al-khamsah</em>. Tidak manshub/majzum oleh سَوْفَ (سَوْفَ bukan amil nashab/jazm).
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>Fi'il dari jumlah fi'liyyah <span class="arab-inline">سَوْفَ تَعْلَمُونَ</span> · bersama سَوْفَ membentuk kalimat ancaman</li>
+        <li>Maf'ul bih sengaja dihilangkan (<em>mahdhūf li-l-ta'zhīm</em>) — meninggalkan pertanyaan: "mengetahui apa?" agar lebih menakutkan</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §4 ANALISIS TINGKAT 2 -->
+<div class="section-header biru">
+  <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
+  <div class="sub-judul">Analisis frasa dan klausa yang membentuk kalimat</div>
+</div>
+
+<!-- Frasa 1: سَوْفَ تَعْلَمُونَ -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa1">
+    <span class="badge badge-frasa1">FRASA 1</span>
+    <div class="kartu-arab-besar arab">سَوْفَ تَعْلَمُونَ</div>
+    <div class="kartu-arti">kalian akan mengetahui</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <span class="arab-inline">سَوْفَ</span> (harf istiqbal) +
+      <span class="arab-inline">تَعْلَمُونَ</span> (fi'il mudhari' marfu' + fa'il waw jama')
+      <br><em>Jumlah Fi'liyyah</em> — harf + fi'il (fa'il terintegrasi)
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>"kalian pasti akan mengetahui" — kalimat verbal lengkap: fa'il terintegrasi (waw jama'), maf'ul bih sengaja dihilangkan. سَوْفَ menambahkan dimensi kepastian di masa depan yang jauh namun tidak terelakkan.</td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li><em>Jumlah fi'liyyah</em> (kalimat verbal) yang berkedudukan sebagai kalimat ancaman setelah كَلَّا</li>
+        <li>Berdiri sebagai <em>jumlah musta'nafah</em> (kalimat permulaan baru) setelah harf raddu كَلَّا</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- Frasa 2: كَلَّا سَوْفَ تَعْلَمُونَ -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa2">
+    <span class="badge badge-frasa2">FRASA 2</span>
+    <div class="kartu-arab-besar arab">كَلَّا سَوْفَ تَعْلَمُونَ</div>
+    <div class="kartu-arti">sekali-kali tidak — kalian pasti akan mengetahui</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <span class="arab-inline">كَلَّا</span> (harf raddu/zajr · musta'naf) +
+      [<span class="arab-inline">سَوْفَ تَعْلَمُونَ</span>] (jumlah fi'liyyah)
+      <br><em>Jumlah Fi'liyyah Kamilah</em> (kalimat verbal yang sempurna)
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>"Sekali-kali tidak — kalian pasti akan mengetahui." كَلَّا menolak dan menegur, kemudian سَوْفَ تَعْلَمُونَ hadir sebagai ancaman yang tidak menyebutkan objeknya. Struktur ini secara retoris sangat kuat: penolakan → ancaman tanpa penjelasan.</td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li><em>Jumlah fi'liyyah kamilah</em> (kalimat verbal yang sempurna) · berdiri sebagai kalimat mandiri (ayat 3)</li>
+        <li>Kalimat ini diulang verbatim di <a href="102-04.html">ayat 4</a> — pengulangan (<em>tikrār lil-ta'kīd</em>) menandakan ancaman ini bukan sekadar peringatan, melainkan kepastian mutlak</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §5 ANALISIS TINGKAT 3 -->
+<div class="section-header biru">
+  <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
+  <div class="sub-judul">Posisi dan fungsi ayat dalam kerangka Surah At-Takatsur</div>
+</div>
+<div class="kartu">
+  <div class="kartu-head warna-kata"><span class="badge badge-kata">KEDUDUKAN AYAT 3</span></div>
+  <table class="kartu-tabel">
+    <tr><td>Posisi</td><td>Ayat ketiga — titik balik surah. Setelah dua ayat menggambarkan kondisi manusia (ayat 1–2), ayat ini memulai babak respons ilahi: penolakan + ancaman.</td></tr>
+    <tr><td>Fungsi</td><td>Menjadi jembatan antara gambaran kelalaian (ayat 1–2) dan konsekuensinya (ayat 5–8). كَلَّا membabat habis justifikasi التَّكَاثُرُ, sementara سَوْفَ تَعْلَمُونَ membuka "ruang ketakutan" tanpa menjelaskan isinya.</td></tr>
+    <tr><td>Pengulangan</td><td>Ayat 3 diulang di ayat 4 dengan redaksi identik. Para ulama menjelaskan pengulangan ini sebagai <em>tikrār lil-ta'kīd</em> (pengulangan untuk penekanan) — ancaman disampaikan dua kali agar tidak ada keraguan tentang kepastiannya. Ada pula pendapat: ayat 3 = ancaman di dunia, ayat 4 = ancaman di akhirat.</td></tr>
+    <tr><td>Maf'ul Bih Mahdzuf</td><td>"Kalian akan mengetahui (apa?)" — tidak disebutkan, dan para ulama berselisih: apakah yang dimaksud adalah azab neraka, dahsyatnya kematian, hisab, atau seluruhnya? Keheningan ini disengaja — <em>al-ijāz bi-l-ḥadhf</em> (keringkasan dengan penghilangan) yang justru memperluas makna ancaman.</td></tr>
+  </table>
+</div>
+
+<!-- §6 TADABUR -->
+<div class="section-header tadabur">
+  <div class="judul">Tadabur</div>
+  <div class="sub-judul">Renungan makna dan hikmah ayat</div>
+</div>
+<div class="tadabur-box">
+  <div class="tadabur-head">
+    <span class="badge" style="background:#92400e;color:white;">TADABUR</span>
+    <div class="tadabur-judul">كَلَّا سَوْفَ تَعْلَمُونَ — Ancaman yang Lebih Menakutkan dari Penjelasan</div>
+  </div>
+  <div class="tadabur-isi">
+    <p>Bayangkan seseorang yang bersalah dipanggil oleh atasannya, dan atasan itu hanya berkata: <em>"Kamu akan tahu nanti."</em> Tidak ada rincian, tidak ada penjelasan, tidak ada tanggal. Justru itu yang paling menakutkan — karena imajinasi manusia selalu akan membayangkan yang terburuk.</p>
+    <p>Itulah yang dilakukan كَلَّا سَوْفَ تَعْلَمُونَ. Allah tidak berfirman: "kalian akan merasakan azab neraka" atau "kalian akan dihisab" — Dia hanya berfirman: <em>"kalian pasti akan mengetahui."</em> Dan dengan memilih سَوْفَ (masa depan jauh) bukan سَ (masa depan dekat), pesan ini menyiratkan: "kepastian ini tidak terburu-buru — ia pasti datang, entah besok, entah saat kematian, entah saat kebangkitan."</p>
+    <p>Imam Ibnu Katsir rahimahullah menjelaskan bahwa كَلَّا di sini adalah <em>zajr</em> yang memutus secara tegas: manusia yang sibuk dengan التَّكَاثُرُ perlu mendengar satu kata keras untuk membangunkannya dari lamunan duniawinya. Dan memang, terkadang satu kata tegas lebih efektif dari seribu kalimat lembut.</p>
+    <p>Pengulangan ancaman ini di ayat 4 bukan karena Allah lupa atau kehabisan kata — melainkan karena manusia mudah lupa. Diingatkan sekali, mereka abai. Maka diingatkan dua kali — dan ini pola Al-Qur'an yang penuh hikmah: pengulangan bukan redundansi, melainkan kepedulian.</p>
+  </div>
+</div>
+
+<!-- §7 DIAGRAM SVG — PLACEHOLDER -->
+<div class="section-header">
+  <div class="judul">Diagram Sintaksis</div>
+  <div class="sub-judul">Model-Pohon · Pola-Bertingkat · Surah At-Takatsur 102:3</div>
+</div>
+<div class="diagram-wrapper" id="diagram-ayat3">
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;max-width:720px;display:block;margin:0 auto;">
+
+  <!-- ══ BARIS KATA (RTL: kanan = pertama) ══ -->
+  <!-- Kata 1: كَلَّا · X=600 (paling kanan) -->
+  <text x="600" y="38" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="20" fill="#0e7490" font-weight="700" direction="rtl">كَلَّا</text>
+  <text x="600" y="55" text-anchor="middle" font-size="8.5" fill="#0e7490">harf raddu/zajr · musta'naf</text>
+  <text x="600" y="67" text-anchor="middle" font-size="8" fill="#888">lā maḥalla lahu minal-i'rāb</text>
+
+  <!-- Kata 2: سَوْفَ · X=390 -->
+  <text x="390" y="38" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="20" fill="#0e7490" font-weight="700" direction="rtl">سَوْفَ</text>
+  <text x="390" y="55" text-anchor="middle" font-size="8.5" fill="#0e7490">harf istiqbāl ba'īd</text>
+  <text x="390" y="67" text-anchor="middle" font-size="8" fill="#888">lā maḥalla lahu minal-i'rāb</text>
+
+  <!-- Kata 3: تَعْلَمُونَ · X=155 (paling kiri) -->
+  <text x="155" y="38" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="19" fill="#c2410c" font-weight="700" direction="rtl">تَعْلَمُونَ</text>
+  <text x="155" y="55" text-anchor="middle" font-size="8.5" fill="#c2410c">fi'il muḍāri' · al-af'āl al-khamsah</text>
+  <text x="155" y="67" text-anchor="middle" font-size="8" fill="#888">marfū' · thabūt al-nūn · fa'il: wāw</text>
+
+  <!-- ══ GARIS VERTIKAL ══ -->
+  <!-- كَلَّا (harf · lā maḥall): dashed teal tipis, turun hanya ke Y=240 (titik koneksi L2) -->
+  <line x1="600" y1="74" x2="600" y2="240" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <!-- سَوْفَ (harf · lā maḥall): dashed teal tipis, turun ke Y=110 (titik koneksi L1) -->
+  <line x1="390" y1="74" x2="390" y2="110" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <!-- تَعْلَمُونَ: merah solid, turun ke Y=110 -->
+  <line x1="155" y1="74" x2="155" y2="110" stroke="#c2410c" stroke-width="2.2"/>
+
+  <!-- ══ L1 — TEAL SOLID: سَوْفَ تَعْلَمُونَ ══ -->
+  <!-- Garis horizontal L1: X=155 ke X=390 di Y=110 -->
+  <line x1="155" y1="110" x2="390" y2="110" stroke="#0e7490" stroke-width="2"/>
+  <!-- Label di atas garis -->
+  <text x="272" y="107" text-anchor="middle" font-size="7.5" fill="#0e7490" font-style="italic">istiqbāl (masa depan)</text>
+  <!-- Segitiga ▼ di midpoint X=272 -->
+  <polygon points="272,110 265,102 279,102" fill="#0e7490"/>
+  <!-- Garis vertikal L1 turun ke node -->
+  <line x1="272" y1="110" x2="272" y2="148" stroke="#0e7490" stroke-width="2"/>
+  <!-- NODE L1 — 3 baris -->
+  <text x="272" y="160" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">Jumlah Fi'liyyah (Harf Istiqbal + Fi'il)</text>
+  <text x="272" y="176" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="15" fill="#0e7490" font-weight="700" direction="rtl">سَوْفَ تَعْلَمُونَ</text>
+  <text x="272" y="190" text-anchor="middle" font-size="8" fill="#555">Sawfa ta'lamūn — ancaman masa depan</text>
+
+  <!-- ══ L2 — UNGU PUTUS: كَلَّا سَوْفَ تَعْلَمُونَ ══ -->
+  <!-- L1 node naik ke Y=240 -->
+  <line x1="272" y1="193" x2="272" y2="240" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <!-- Garis horizontal L2: X=272 ke X=600 di Y=240 -->
+  <line x1="272" y1="240" x2="600" y2="240" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <!-- Label di atas garis L2 -->
+  <text x="436" y="237" text-anchor="middle" font-size="7.5" fill="#5b21b6" font-style="italic">raddu/zajr (penolakan · teguran)</text>
+  <!-- Segitiga ▼ di midpoint X=436 -->
+  <polygon points="436,240 429,232 443,232" fill="#5b21b6"/>
+  <!-- Garis vertikal L2 turun ke node -->
+  <line x1="436" y1="240" x2="436" y2="278" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <!-- NODE L2 — 3 baris -->
+  <text x="436" y="290" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">Jumlah Fi'liyyah Kamilah (Ayat 3)</text>
+  <text x="420" y="306" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="14" fill="#5b21b6" font-weight="700" direction="rtl">كَلَّا سَوْفَ تَعْلَمُونَ</text>
+  <text x="436" y="320" text-anchor="middle" font-size="8" fill="#555">Kallā sawfa ta'lamūn — raddu + ancaman</text>
+
+</svg>
+<div class="diagram-legenda">
+  <div class="legenda-label">LEGENDA</div>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#c2410c" stroke-width="2.5"/></svg>Fi'il mudhari' تَعْلَمُونَ (merah solid)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/></svg>Harf كَلَّا · سَوْفَ — lā maḥall (teal tipis)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2"/></svg>L1 — سَوْفَ تَعْلَمُونَ (teal solid)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — Jumlah Kamilah (ungu putus)</span>
+</div>
+</div>
+
+<div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <p><a href="index.html">grammar-quran.com</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>const PAGE_CONFIG = { nomorSurah: 102, nomorAyat: 3, ayatTerakhir: false };</script>
+<script>
+(function(){
+  const surah=(typeof getSurahByNomor==='function')?getSurahByNomor(PAGE_CONFIG.nomorSurah):null;
+  const ayatSaat=PAGE_CONFIG.nomorAyat, totalAyat=surah?surah.jumlahAyat:8, surahNama=surah?surah.namaLatin:'At-Takatsur';
+  if(surah){
+    document.title='Grammar '+surah.namaLatin+' '+surah.nomor+':'+ayatSaat;
+    const lbl=document.getElementById('label-ayat-box'); if(lbl) lbl.textContent='Ayat Lengkap · '+surah.namaLatin+' : '+ayatSaat;
+    const hiA=document.getElementById('hi-ayat-text'); if(hiA) hiA.textContent='Ayat '+ayatSaat+' · ('+surah.nomor+':'+ayatSaat+')';
+    const ddS=document.getElementById('dd-surah');
+    SURAH_DATA.filter(s=>s.status==='tersedia').sort((a,b)=>a.nomor-b.nomor).forEach(s=>{
+      const o=document.createElement('option');
+      o.value=s.nomorStr; o.textContent=s.nomorStr+'  '+s.namaLatin+' \u2014 '+s.jumlahAyat+' Ayat';
+      if(s.nomor===surah.nomor) o.selected=true; ddS.appendChild(o);
+    });
+    function isiAyat(n){
+      const dd=document.getElementById('dd-ayat'); dd.innerHTML='<option value="">— Pilih Ayat —</option>';
+      const ops=getOpsiDropdownAyat(n); if(!ops.length){dd.disabled=true;return;} dd.disabled=false;
+      ops.forEach(o=>{const opt=document.createElement('option');opt.value=o.path;opt.textContent=o.label;if(o.value===ayatSaat&&n===surah.nomor)opt.selected=true;dd.appendChild(opt);});
+    }
+    isiAyat(surah.nomor);
+    document.getElementById('dd-surah').addEventListener('change',function(){const n=parseInt(this.value);if(n)isiAyat(n);else{const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';dd.disabled=true;}});
+  }
+  window.navigasiKeAyat=function(){const p=document.getElementById('dd-ayat').value;if(p)window.location.href=p;else alert('Pilih surah dan ayat terlebih dahulu.');};
+  const c=document.getElementById('nav-bawah-container');
+  const bp=document.createElement('a'); bp.className='nav-btn'; bp.href='102-02.html'; bp.textContent='\u2190 Ayat 2';
+  const bh=document.createElement('a'); bh.className='nav-btn beranda'; bh.href='index.html'; bh.textContent='\u2302 Beranda';
+  const bn=document.createElement('a'); bn.className='nav-btn'; bn.href='102-04.html'; bn.textContent='Ayat 4 \u2192';
+  const info=document.createElement('span'); info.className='nav-info'; info.textContent=surahNama+' \u00b7 Ayat '+ayatSaat+' dari '+totalAyat;
+  c.appendChild(bp); c.appendChild(bh); c.appendChild(info); c.appendChild(bn);
+})();
+</script>
+</body>
+</html>

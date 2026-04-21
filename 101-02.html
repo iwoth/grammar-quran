@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Qari'ah 101:2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hijau-gelap:#1a472a; --hijau-medium:#2d6a4f; --hijau-muda:#40916c;
+      --biru-tua:#1e3a8a; --ungu:#5b21b6; --coklat:#92400e;
+      --merah-fi:#c2410c; --emas:#d4af37; --emas-muda:#f0d060;
+      --bg-utama:#f7f5f0; --border:#e0d9c8;
+      --font-arab:'Scheherazade New',serif; --font-latin:'Lato',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-latin);background:var(--bg-utama);color:#1c1c1c;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+    .arab{font-family:var(--font-arab);direction:rtl;}
+    header{background:var(--hijau-gelap);color:white;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
+    .header-info{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;justify-content:center;}
+    .header-info .hi-label{font-size:.60rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas);margin-bottom:3px;}
+    .header-info .hi-surah{font-size:.90rem;font-weight:700;color:white;display:flex;align-items:baseline;gap:10px;}
+    .header-info .hi-surah .arab-surah{font-family:var(--font-arab);font-size:.88rem;color:var(--emas);direction:rtl;}
+    .header-info .hi-ayat{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:3px;}
+    .nav-dropdowns{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .dropdown-wrapper{display:flex;flex-direction:column;gap:3px;}
+    .nav-dropdowns label{font-size:.72rem;color:rgba(255,255,255,.65);white-space:nowrap;}
+    .nav-dropdowns select{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;font-family:var(--font-latin);font-size:.82rem;cursor:pointer;outline:none;transition:background .2s;max-width:240px;}
+    .nav-dropdowns select:hover,.nav-dropdowns select:focus{background:rgba(255,255,255,.2);border-color:var(--emas);}
+    .nav-dropdowns select option{background:var(--hijau-gelap);}
+    .btn-go{background:var(--emas);color:var(--hijau-gelap);border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-latin);font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s;align-self:flex-end;}
+    .btn-go:hover{background:var(--emas-muda);}
+    .nav-home{color:#1a472a;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;background:#c8d0c8;border:1px solid #b0bab0;border-radius:8px;padding:6px 12px;transition:background .2s;flex-shrink:0;}
+    .nav-home:hover{background:#e8f0e8;border-color:var(--emas);}
+    .container{max-width:780px;width:100%;margin:0 auto;padding:32px 24px;flex:1;}
+    .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
+    .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
+    .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2.2;color:#1a1a1a;}
+    .transliterasi{margin-top:10px;font-size:14px;color:var(--hijau-medium);font-style:italic;}
+    .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
+    .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
+    .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
+    .section-header .judul{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;}
+    .section-header .sub-judul{font-size:12px;color:#a8d5b5;margin-top:2px;}
+    .section-header.biru{background:#1e3a5f;} .section-header.biru .sub-judul{color:#93c5fd;}
+    .section-header.tadabur{background:#5b3a1a;} .section-header.tadabur .sub-judul{color:var(--emas);opacity:.8;}
+    .kartu{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .kartu-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid #f0ebe0;}
+    .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
+    .kartu-head.warna-fi{background:#fff7ed;} .kartu-head.warna-frasa1{background:#eef4fb;}
+    .kartu-head.warna-frasa2{background:#f5f0fb;}
+    .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
+    .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
+    .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
+    .badge-frasa2{background:var(--ungu);color:white;}
+    .badge-dhamir-mut{background:#0284c7;color:white;}
+    .badge-dhamir-mun{background:#8b5cf6;color:white;}
+    .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
+    .kartu-arti{font-size:13px;color:#555;font-style:italic;}
+    .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
+    .kartu-tabel tr{border-bottom:1px solid #f5f0e8;} .kartu-tabel tr:last-child{border-bottom:none;}
+    .kartu-tabel td{padding:9px 20px;vertical-align:top;word-wrap:break-word;}
+    .kartu-tabel td:first-child{color:#777;width:17%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+    .kartu-tabel td:last-child{color:#1a1a1a;width:83%;}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.3px;margin-right:4px;margin-bottom:2px;}
+    .tag-n{background:#dbeafe;color:#1e3a8a;} .tag-harf{background:#cffafe;color:#155e75;}
+    .tag-fi{background:#ffedd5;color:#9a3412;} .tag-marfu{background:#dcfce7;color:#166534;}
+    .tag-manshub{background:#fce7f3;color:#9d174d;} .tag-majrur{background:#fef3c7;color:#92400e;}
+    .tag-nakirah{background:#fee2e2;color:#991b1b;} .tag-marifah{background:#dbeafe;color:#1e3a8a;}
+    .tag-mabni{background:#f3e8ff;color:#6b21a8;}
+    .arab-inline{font-family:var(--font-arab);font-size:20px;color:var(--hijau-gelap);direction:rtl;display:inline-block;}
+    .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
+    .poin-list{list-style:none;padding:0;margin:0;}
+    .poin-list li{padding:3px 0 3px 16px;position:relative;}
+    .poin-list li::before{content:'•';position:absolute;left:4px;color:#1a472a;font-weight:700;}
+    .konsep-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .konsep-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:8px;}
+    .konsep-isi{font-size:13px;color:#374151;line-height:1.9;}
+    .konsep-tabel{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+    .konsep-tabel th{background:#fff3e0;padding:6px 10px;text-align:left;font-weight:700;color:#92400e;border:1px solid #fed7aa;}
+    .konsep-tabel td{padding:6px 10px;border:1px solid #fde8c8;}
+    .kartu-head-harf3{display:flex;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid #f0ebe0;background:#ecfeff;}
+    .kartu-head-harf3 .kh3-badge{flex-shrink:0;}
+    .kartu-head-harf3 .kh3-arab{font-family:var(--font-arab);font-size:40px;color:#1a1a1a;line-height:1.6;direction:rtl;flex:0 0 auto;}
+    .kartu-head-harf3 .kh3-arti{font-size:13px;color:#555;font-style:italic;flex:1;}
+    .tadabur-box{background:white;border:1px solid var(--border);border-left:5px solid var(--emas);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .tadabur-head{background:#fdf6ec;padding:12px 20px;border-bottom:1px solid #f0e8d0;display:flex;align-items:center;gap:10px;}
+    .tadabur-judul{font-size:13px;font-weight:700;color:#78350f;}
+    .tadabur-isi{padding:18px 20px;font-size:14.5px;line-height:1.9;color:#2d2d2d;}
+    .tadabur-isi p{margin-bottom:10px;} .tadabur-isi p:last-child{margin-bottom:0;}
+    .diagram-wrapper{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;margin-bottom:20px;overflow-x:auto;}
+    .diagram-legenda{margin-top:12px;background:#f8f6f1;border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:11px;color:#444;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;}
+    .legenda-label{font-weight:700;color:#888;letter-spacing:.5px;width:100%;margin-bottom:4px;}
+    .legenda-item{display:inline-flex;align-items:center;gap:5px;}
+    footer{background:var(--hijau-gelap);color:rgba(255,255,255,.6);text-align:center;padding:16px 24px;font-size:12px;}
+    footer a{color:var(--emas);text-decoration:none;}
+    .nav-bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 8px;flex-wrap:wrap;}
+    .nav-btn{background:white;border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;transition:background .2s;}
+    .nav-btn:hover{background:#e8f0e8;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda{background:var(--hijau-gelap);color:white;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda:hover{background:var(--hijau-medium);}
+    .nav-info{font-size:12px;color:#888;text-align:center;flex:1;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <div class="hi-label">Grammar Al-Qur'an</div>
+      <div class="hi-surah">Al-Qari'ah · 101 <span class="arab-surah">ٱلْقَارِعَةُ</span></div>
+      <div class="hi-ayat" id="hi-ayat-text">Ayat 2 · (101:2)</div>
+    </a>
+    <div class="nav-dropdowns">
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka →</button>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- §1 AYAT BOX -->
+<div class="ayat-box">
+  <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Qari'ah : 2</div>
+  <div class="teks-ayat arab">مَا ٱلْقَارِعَةُ</div>
+  <div class="transliterasi">Mal-qāri'ah</div>
+  <div class="terjemahan">"Apakah hari Kiamat itu?"</div>
+</div>
+
+<!-- §2 KONTEKS -->
+<div class="konteks-box">
+  <strong>Konteks Ayat 2:</strong> Ayat 2 adalah <strong>predikat (khabar)</strong> dari mubtada' yang hadir di <a href="101-01.html">ayat 1</a>. Secara gramatikal, ayat 1 dan 2 sebenarnya adalah <strong>satu kalimat</strong>. Dua hal yang menjadi kunci ayat ini:
+  <ul class="poin-list" style="margin-top:8px;">
+    <li><strong>مَا</strong> — kata tanya yang bertanya tentang hakikat/esensi sesuatu. Namun di sini bukan pertanyaan biasa — ini adalah pertanyaan untuk pengagungan  (<em>istifham li-ta'zhim</em>), bukan untuk mencari informasi, melainkan untuk menunjukkan bahwa "benda" yang ditanyakan itu begitu besar sampai sulit didefinisikan.</li>
+    <li><strong>ٱلْقَارِعَةُ</strong> — diulang lagi. Padahal biasanya, setelah sebuah subyek disebutkan, kalimat berikutnya akan memakai kata ganti (dhamir). Di sini Al-Qur'an justru mengulang kata aslinya. Secara balaghah, hal ini disebut sebagai  <em>izh-har fi maqām al-idmār</em> (menampakkan di tempat yang seharusnya dhamir) untuk pengagungan.</li>
+    <li>Susunan <span class="arab-inline">مَا ٱلْقَارِعَةُ</span> sendiri adalah <strong> kalimat jumlah-ismiyah</strong> (kalimat dengan subyek isim) yang berperan sebagai <strong>khabar</strong> bagi mubtada' ayat 1.</li>
+  </ul>
+</div>
+
+<!-- §3 ANALISIS TINGKAT 1 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
+  <div class="sub-judul">Pembahasan kata per kata secara individual</div>
+</div>
+
+<!-- K1: مَا -->
+<div class="kartu">
+  <div class="kartu-head-harf3" style="background:#f0f7f2;">
+    <span class="badge badge-kata kh3-badge">ISIM · Isim Istifham · Mabni · (101:2:1)</span>
+    <div class="kh3-arab arab">مَا</div>
+    <div class="kh3-arti">apa(kah) — pertanyaan untuk pengagungan</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> kata tanya (isim-istifham)</li>
+        <li>bertanya tentang <em>hakikat/esensi</em> sesuatu — bukan tentang manusia (yang dipakai مَنْ)</li>
+        <li>مَا disini berfungsi sebagai subyek (mubtada') dalam kalimat jumlah-ismiyah</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS Al-Qari'ah</div>
+        <div class="konsep-label">Istifham li-Ta'zhim (Pertanyaan untuk Pengagungan)</div>
+        <div class="konsep-isi">
+          Dalam bahasa Arab, pertanyaan tidak selalu dimaksudkan untuk mencari jawaban. Kadang pertanyaan digunakan untuk tujuan retoris — salah satunya adalah <em>pengagungan</em> (li-ta'zhim). Gayanya: bertanya tentang sesuatu bukan karena tidak tahu, melainkan untuk menunjukkan bahwa hal itu <strong>begitu besar sampai sulit dijangkau oleh kata-kata biasa</strong>.<br><br>
+          <strong>Perbandingan dua gaya bertanya:</strong>
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup>
+              <col style="width:30%;">
+              <col style="width:35%;">
+              <col style="width:35%;">
+            </colgroup>
+            <tr><th>Gaya</th><th>Contoh</th><th>Tujuan</th></tr>
+            <tr>
+              <td>Istifham biasa (informatif)</td>
+              <td><span style="font-family:'Scheherazade New',serif;font-size:15px;">مَا اسْمُكَ؟</span><br>(Apa namamu?)</td>
+              <td>Mencari informasi yang belum diketahui</td>
+            </tr>
+            <tr>
+              <td>Istifham li-ta'zhim</td>
+              <td><span style="font-family:'Scheherazade New',serif;font-size:15px;">مَا ٱلْقَارِعَةُ</span><br>(Apa itu Al-Qari'ah?)</td>
+              <td>Menunjukkan kedahsyatan — "terlalu besar untuk disebutkan dengan kata biasa"</td>
+            </tr>
+          </table>
+          <br>
+          Pola ini juga muncul di surah Al-Haaqqah: <span class="arab-inline" style="font-size:15px;">ٱلْحَاقَّةُ . مَا ٱلْحَاقَّةُ . وَمَآ أَدْرَىٰكَ مَا ٱلْحَاقَّةُ</span>. Dua pertanyaan berturut-turut — semuanya bukan untuk mencari jawaban, melainkan untuk mengagumkan pembaca.
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>apa; apakah</li>
+        <li>makna konteks: "Apa (itu) hari yang menggemparkan?" — bentuk pertanyaan untuk mengagungkan kedahsyatannya</li>
+      </ul>
+    </td></tr>
+    <tr><td>Status I'rab</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-mabni">Mabni</span> bentuk tetap (mabni) dengan sukun — bentuk akhirannya tetap</li>
+        <li>Berstatus marfu' sebagai subyek kalimat (mubtada')</li>
+      </ul>
+    </td></tr>
+    <tr><td>Jumlah</td><td>tunggal (mufrad)</td></tr>
+    <tr><td>Gender</td><td>مَا dipakai baik untuk laki-laki maupun perempuan</td></tr>
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li>مَا sebagai isim-istifham tidak masuk kategori ma'rifah maupun nakirah standar dalam pengklasifikasian nahwu klasik.</li>
+      </ul>
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>sebagai subyek kalimat (mubtada')</li>
+        <li>predikatnya (khabar): kata <span class="arab-inline">ٱلْقَارِعَةُ</span> yang datang setelahnya</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K2: ٱلْقَارِعَةُ (ulang) -->
+<div class="kartu">
+  <div class="kartu-head-harf3" style="background:#f0f7f2;">
+    <span class="badge badge-kata kh3-badge">ISIM · Isim-Fa'il · Marfu' · (101:2:2)</span>
+    <div class="kh3-arab arab">ٱلْقَارِعَةُ</div>
+    <div class="kh3-arti">(hari) yang menggemparkan</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> jenis: isim-fa'il mu'annats (pelaku aksi perempuan)</li>
+        <li>pengulangan dari <a href="101-01.html">ayat 1</a> — analisis lengkap akar, tashrif, dan wazan ada di ayat 1</li>
+        <li><span class="arab-inline">ٱلْقَارِعَةُ</span>  berkedudukan sebagai predikat (khabar) untuk <span class="arab-inline">مَا</span></li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS Al-Qari'ah</div>
+        <div class="konsep-label">Izh-har fi Maqām al-Idmār (Menampakkan di Tempat Dhamir)</div>
+        <div class="konsep-isi">
+          Dalam bahasa Arab (dan bahasa Indonesia sebenarnya), jika kita sudah menyebut sesuatu, kalimat berikutnya biasanya memakai kata ganti. Contoh: <em>"Toni datang. Dia bawa oleh-oleh."</em> — "dia" menggantikan "Toni".<br><br>
+          Begitu pula aturan normal dalam bahasa Arab. Jika ayat 1 sudah menyebut <span class="arab-inline" style="font-size:16px;">ٱلْقَارِعَةُ</span>, maka ayat 2 seharusnya cukup dengan dhamir: <em>"مَا هِيَ"</em> (apa itu dia?). Tapi Al-Qur'an justru mengulang kata aslinya: <span class="arab-inline" style="font-size:16px;">مَا ٱلْقَارِعَةُ</span>.<br><br>
+          <strong>Gaya ini disebut <em>izh-har fi maqām al-idmār</em></strong> — menampakkan (kata asli) di tempat yang seharusnya dhamir (kata ganti). Tujuannya:
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup>
+              <col style="width:28%;">
+              <col style="width:72%;">
+            </colgroup>
+            <tr><th>Tujuan</th><th>Penjelasan</th></tr>
+            <tr>
+              <td>Pengagungan (<em>tafkhim</em>)</td>
+              <td>Mengulang nama "Al-Qari'ah" menambah rasa hormat dan kedahsyatan. Dhamir "dia" terasa ringan; nama asli terasa berat.</td>
+            </tr>
+            <tr>
+              <td>Penekanan (<em>ta'kid</em>)</td>
+              <td>Pengulangan menegaskan bahwa yang dibicarakan memang benar-benar <span class="arab-inline" style="font-size:15px;">ٱلْقَارِعَةُ</span> — bukan peristiwa lain.</td>
+            </tr>
+            <tr>
+              <td>Menghindari ambiguitas</td>
+              <td>Dhamir bisa membingungkan, nama asli selalu jelas.</td>
+            </tr>
+          </table>
+          <br>
+          Inilah mengapa kata <span class="arab-inline" style="font-size:15px;">ٱلْقَارِعَةُ</span> diulang tiga kali berturut-turut dalam tiga ayat pembuka surah ini.
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>(hari) yang menggemparkan</li>
+        <li>nama untuk Hari Kiamat — diulang dari ayat 1 untuk pengagungan</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar</td><td>
+      <ul class="poin-list">
+        <li><span class="arab-inline" style="font-size:16px;">ق - ر - ع</span> — menggemparkan · mengetuk keras · mengguncang</li>
+        <li>tashrif lengkap (akar → fi'il → isim-fa'il) ada di <a href="101-01.html">ayat 1</a></li>
+      </ul>
+    </td></tr>
+    <tr><td>Status I'rab</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marfu">Marfu'</span> ditandai dengan tanda dhammah di akhir kata</li>
+        <li>Kedudukan: predikat (khabar) dari <span class="arab-inline">مَا</span></li>
+      </ul>
+    </td></tr>
+    <tr><td>Jumlah</td><td>tunggal (mufrad)</td></tr>
+    <tr><td>Gender</td><td>perempuan (mu'annats) — ditandai dengan ta marbuthah di akhir kata</td></tr>
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marifah">Ma'rifah</span> ma'rifah karena ال</li>
+      </ul>
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>sebagai predikat (khabar) dari mubtada' <span class="arab-inline">مَا</span></li>
+        <li>Bersama مَا membentuk kalimat jumlah-ismiyah yang utuh: <span class="arab-inline">مَا ٱلْقَارِعَةُ</span></li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §4 ANALISIS TINGKAT 2 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
+  <div class="sub-judul">Struktur dan makna frasa atau klausa dalam ayat</div>
+</div>
+
+<!-- F1: مَا ٱلْقَارِعَةُ -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa1">
+    <span class="badge badge-frasa1">FRASA 1 — JUMLAH ISMIYAH</span>
+    <div class="kartu-arab-besar arab">مَا ٱلْقَارِعَةُ</div>
+    <div class="kartu-arti">apakah hari yang menggemparkan itu?</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <ul class="poin-list">
+        <li>Kalimat jumlah-ismiyah yang terdiri dari: <span class="arab-inline">مَا</span> (mubtada' — subyek) dan <span class="arab-inline">ٱلْقَارِعَةُ</span> (khabar — predikat)</li>
+        <li>Susunan sederhana tetapi sangat padat: dua kata membentuk kalimat pertanyaan retoris untuk pengagungan.</li>
+      </ul>
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>"Apakah (itu) Al-Qari'ah?" — bukan pertanyaan mencari jawaban, melainkan <em>istifham li-ta'zhim</em> (pertanyaan untuk pengagungan).</li>
+        <li>Maknanya: "Al-Qari'ah itu terlalu dahsyat untuk dijelaskan dengan kata-kata biasa!"</li>
+      </ul>
+    </td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li>Sebagai jumlah-ismiyah (kalimat dengan subyek isim) yang utuh</li>
+        <li>Berkedudukan sebagai predikat (khabar) dari mubtada' <span class="arab-inline">ٱلْقَارِعَةُ</span> di <a href="101-01.html">ayat 1</a></li>
+        <li>Jadi gabungan ayat 1 + ayat 2 = satu kalimat utuh: <em>"Hari yang menggemparkan — apakah (itu) hari yang menggemparkan?"</em></li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §5 ANALISIS TINGKAT 3 -->
+<div class="section-header biru">
+  <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
+  <div class="sub-judul">Posisi dan fungsi ayat 2 dalam alur Surah Al-Qari'ah</div>
+</div>
+<div class="kartu">
+  <div class="kartu-head warna-kata"><span class="badge badge-kata">KEDUDUKAN AYAT 2 — PERTANYAAN PENGAGUNGAN PERTAMA</span></div>
+  <table class="kartu-tabel">
+    <tr><td>Posisi</td><td>Ayat 2 adalah lanjutan langsung dari ayat 1 — bersama-sama membentuk <strong>satu kalimat gramatikal</strong>. Ini adalah pertanyaan pengagungan yang <strong>pertama</strong> dari dua pertanyaan berurutan di pembukaan surah (yang kedua di <a href="101-03.html">ayat 3</a>).</td></tr>
+    <tr><td>Fungsi Retoris</td><td>
+      <ul class="poin-list">
+        <li>Menguatkan kesan dahsyat yang sudah dibentuk oleh ayat 1</li>
+        <li>Menyiapkan hati pembaca untuk menerima gambaran peristiwa kiamat di ayat 4–5</li>
+        <li>Mengikuti pola piramida retoris: sebutkan namanya (ayat 1) → pertanyakan hakikatnya (ayat 2) → pertanyakan lagi dengan intensitas lebih (ayat 3)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Pola Tiga-Ayat</td><td>Pola <em>"sebut → tanya → tanya lagi"</em> ini adalah template retoris yang Allah pakai di beberapa surah untuk memperkenalkan peristiwa dahsyat. Perhatikan paralelnya di surah Al-Haaqqah (69:1–3): <span class="arab-inline" style="font-size:16px;">ٱلْحَاقَّةُ . مَا ٱلْحَاقَّةُ . وَمَآ أَدْرَىٰكَ مَا ٱلْحَاقَّةُ</span>. Struktur yang sama persis dengan surah ini.</td></tr>
+    <tr><td>Struktur Surah</td><td>Surah Al-Qari'ah tersusun dalam tiga babak: <strong>① Pengenalan yang mengagumkan</strong> (ayat 1–3 — termasuk ayat ini) → <strong>② Gambaran peristiwa</strong> (ayat 4–5) → <strong>③ Pembagian nasib</strong> (ayat 6–11).</td></tr>
+  </table>
+</div>
+
+<!-- §6 TADABUR -->
+<div class="section-header tadabur">
+  <div class="judul">Tadabur</div>
+  <div class="sub-judul">Renungan makna dan hikmah ayat 2</div>
+</div>
+<div class="tadabur-box">
+  <div class="tadabur-head">
+    <span class="badge" style="background:#92400e;color:white;">TADABUR</span>
+    <div class="tadabur-judul">مَا ٱلْقَارِعَةُ — Ketika Al-Qur'an "Tidak Sanggup" Menjelaskan</div>
+  </div>
+  <div class="tadabur-isi">
+    <p>Bayangkan Anda bertanya kepada seseorang yang baru pulang dari perang dahsyat: <em>"Bagaimana keadaan di sana?"</em> Dia terdiam sejenak, lalu menggelengkan kepala: <em>"Apa yang bisa kukatakan? Kamu tidak akan bisa membayangkannya."</em></p>
+    <p>Ayat <span class="arab-inline">مَا ٱلْقَارِعَةُ</span> punya nuansa yang serupa. Ini bukan pertanyaan untuk mencari jawaban — karena jawabannya sebenarnya sudah disebut di ayat 1: <em>Al-Qari'ah itu hari kiamat yang menggemparkan</em>. Tapi Al-Qur'an seolah "menolak" memberi jawaban yang datar. Ia justru bertanya balik, seakan berkata: <em>"Kalian mau tahu apa itu Al-Qari'ah? Pertanyaan itu sendiri terlalu kecil untuk menjawab kenyataannya."</em></p>
+    <p>Inilah kekuatan gaya bahasa Al-Qur'an. Ketika suatu peristiwa terlalu besar untuk deskripsi biasa, Al-Qur'an memilih untuk <strong>tidak mendeskripsikan</strong> — justru dengan itulah pembaca dipaksa merasakan kedahsyatannya sendiri. Kita diam sejenak, merenung, dan hati kita mulai bergetar — bahkan sebelum gambaran peristiwa itu dilukis di ayat 4–5.</p>
+    <p>Pertanyaan yang perlu kita renungkan: <em>Ketika Al-Qur'an sendiri "berhenti" untuk menegaskan kedahsyatan suatu hari, apakah pantas kita melewati hari-hari dunia tanpa pernah memikirkannya sejenak? Ataukah kita sedang menghabiskan hidup pada hal-hal yang — dibandingkan dengan Al-Qari'ah — sesungguhnya sangat kecil?</em></p>
+  </div>
+</div>
+
+<!-- §7 DIAGRAM SVG -->
+<div class="section-header">
+  <div class="judul">Diagram Sintaksis</div>
+  <div class="sub-judul">Model-Pohon · Surah Al-Qari'ah 101:2</div>
+</div>
+<div class="diagram-wrapper" id="diagram-ayat2">
+<svg viewBox="0 0 780 430" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;max-width:780px;display:block;margin:0 auto;">
+
+  <!-- REFERENSI SEJAJAR: ٱلْقَارِعَةُ dari Ayat 1 (mubtada') — DI KANAN (sebelum ayat 2 dalam urutan RTL) -->
+  <text x="720" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="16" fill="#999" font-weight="700" direction="rtl">ٱلْقَارِعَةُ</text>
+  <text x="720" y="56" text-anchor="middle" font-size="7.5" fill="#aaa" font-style="italic">Ayat 1 · mubtada' (subyek kalimat)</text>
+
+  <!-- BARIS KATA (2 kata RTL): مَا · X=500 | ٱلْقَارِعَةُ · X=290 -->
+  <text x="500" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">مَا</text>
+  <text x="500" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-istifham · mabni sukun</text>
+  <text x="500" y="72" text-anchor="middle" font-size="8" fill="#888">mubtada' · berstatus marfu'</text>
+
+  <text x="290" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْقَارِعَةُ</text>
+  <text x="290" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-fa'il-mu'annats · marfu'</text>
+  <text x="290" y="72" text-anchor="middle" font-size="8" fill="#888">khabar · ma'rifah karena ال</text>
+
+  <!-- GARIS VERTIKAL ke L1 -->
+  <line x1="500" y1="78" x2="500" y2="140" stroke="#1a472a" stroke-width="2.2"/>
+  <line x1="290" y1="78" x2="290" y2="140" stroke="#1a472a" stroke-width="2.2"/>
+
+  <!-- L1 — HIJAU SOLID: مَا + ٱلْقَارِعَةُ = mubtada' + khabar -->
+  <line x1="290" y1="140" x2="500" y2="140" stroke="#1a472a" stroke-width="2.2"/>
+  <text x="395" y="136" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">mubtada' + khabar</text>
+  <polygon points="395,140 388,132 402,132" fill="#1a472a"/>
+  <line x1="395" y1="140" x2="395" y2="178" stroke="#1a472a" stroke-width="2.2"/>
+  <text x="395" y="192" text-anchor="middle" font-size="9" fill="#1a472a" font-style="italic">Jumlah-Ismiyah (kalimat dengan subyek isim)</text>
+  <text x="395" y="212" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="16" fill="#1a472a" font-weight="700" direction="rtl">مَا ٱلْقَارِعَةُ</text>
+  <text x="395" y="226" text-anchor="middle" font-size="8" fill="#555">mal-qāri'ah — jumlah-ismiyah</text>
+
+  <!-- L2 — TEAL PUTUS: Jumlah ini menjadi khabar untuk ٱلْقَارِعَةُ di ayat 1 -->
+  <!-- Dari pusat L1 (395) turun, lalu ke kanan menuju referensi ayat 1 -->
+  <line x1="395" y1="229" x2="395" y2="288" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <line x1="395" y1="288" x2="600" y2="288" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+
+  <!-- Garis referensi silang ke node ayat 1 (kanan atas) -->
+  <line x1="600" y1="288" x2="600" y2="65" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="600" y1="65" x2="720" y2="65" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+  <text x="497" y="284" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">khabar untuk mubtada' (ayat 1)</text>
+
+  <polygon points="497,288 490,280 504,280" fill="#0e7490"/>
+  <line x1="497" y1="288" x2="497" y2="326" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+  <text x="497" y="341" text-anchor="middle" font-size="9" fill="#0e7490" font-style="italic">Kalimat Jumlah-Ismiyah Utuh (ayat 1 + ayat 2)</text>
+  <text x="497" y="362" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="13" fill="#0e7490" font-weight="700" direction="rtl">ٱلْقَارِعَةُ · مَا ٱلْقَارِعَةُ</text>
+  <text x="497" y="376" text-anchor="middle" font-size="8" fill="#555">al-qāri'ah — mal-qāri'ah (mubtada' + khabar)</text>
+
+</svg>
+<div class="diagram-legenda">
+  <div class="legenda-label">LEGENDA</div>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>L1 — Jumlah-ismiyah مَا ٱلْقَارِعَةُ (hijau solid)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — Kalimat gabungan ayat 1 + 2 (teal putus)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/></svg>Referensi silang ke Ayat 1 (abu putus)</span>
+</div>
+</div>
+
+<div class="nav-bawah" id="nav-bawah-container"></div>
+</div><!-- /container -->
+
+<footer>
+  <p><a href="index.html">grammar-quran.com</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>const PAGE_CONFIG = { nomorSurah: 101, nomorAyat: 2, ayatTerakhir: false };</script>
+<script>
+(function(){
+  const surah=(typeof getSurahByNomor==='function')?getSurahByNomor(PAGE_CONFIG.nomorSurah):null;
+  const ayatSaat=PAGE_CONFIG.nomorAyat,totalAyat=surah?surah.jumlahAyat:11,surahNama=surah?surah.namaLatin:'Al-Qari\'ah';
+  if(surah){
+    document.title='Grammar '+surah.namaLatin+' '+surah.nomor+':'+ayatSaat;
+    const lbl=document.getElementById('label-ayat-box');if(lbl)lbl.textContent='Ayat Lengkap · '+surah.namaLatin+' : '+ayatSaat;
+    const hiA=document.getElementById('hi-ayat-text');if(hiA)hiA.textContent='Ayat '+ayatSaat+' · ('+surah.nomor+':'+ayatSaat+')';
+    const ddS=document.getElementById('dd-surah');
+    SURAH_DATA.filter(s=>s.status==='tersedia').sort((a,b)=>a.nomor-b.nomor).forEach(s=>{const o=document.createElement('option');o.value=s.nomorStr;o.textContent=s.nomorStr+'  '+s.namaLatin+' \u2014 '+s.jumlahAyat+' Ayat';if(s.nomor===surah.nomor)o.selected=true;ddS.appendChild(o);});
+    function isiAyat(n){const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';const ops=getOpsiDropdownAyat(n);if(!ops.length){dd.disabled=true;return;}dd.disabled=false;ops.forEach(o=>{const opt=document.createElement('option');opt.value=o.path;opt.textContent=o.label;if(o.value===ayatSaat&&n===surah.nomor)opt.selected=true;dd.appendChild(opt);});}
+    isiAyat(surah.nomor);
+    document.getElementById('dd-surah').addEventListener('change',function(){const n=parseInt(this.value);if(n)isiAyat(n);else{const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';dd.disabled=true;}});
+  }
+  window.navigasiKeAyat=function(){const p=document.getElementById('dd-ayat').value;if(p)window.location.href=p;else alert('Pilih surah dan ayat terlebih dahulu.');};
+  const c=document.getElementById('nav-bawah-container');
+  const bp=document.createElement('a');bp.className='nav-btn';bp.href='101-01.html';bp.textContent='\u2190 Ayat 1';
+  const bh=document.createElement('a');bh.className='nav-btn beranda';bh.href='index.html';bh.textContent='\u2302 Beranda';
+  const bn=document.createElement('a');bn.className='nav-btn';bn.href='101-03.html';bn.textContent='Ayat 3 \u2192';
+  const info=document.createElement('span');info.className='nav-info';info.textContent=surahNama+' \u00b7 Ayat '+ayatSaat+' dari '+totalAyat;
+  c.appendChild(bp);c.appendChild(bh);c.appendChild(info);c.appendChild(bn);
+})();
+</script>
+</body>
+</html>
