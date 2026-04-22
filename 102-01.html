@@ -39,7 +39,6 @@
     .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
     .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
     .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2.2;color:#1a1a1a;}
-    .transliterasi{margin-top:10px;font-size:14px;color:var(--hijau-medium);font-style:italic;}
     .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
     .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
     .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
@@ -52,10 +51,12 @@
     .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
     .kartu-head.warna-fi{background:#fff7ed;} .kartu-head.warna-frasa1{background:#eef4fb;}
     .kartu-head.warna-frasa2{background:#f5f0fb;}
+    .kartu-head.warna-frasa3{background:#ecfdf5;}
     .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
     .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
     .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
     .badge-frasa2{background:var(--ungu);color:white;}
+    .badge-frasa3{background:#047857;color:white;}
     .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
     .kartu-arti{font-size:13px;color:#555;font-style:italic;}
     .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
@@ -73,7 +74,7 @@
     .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
     .poin-list{list-style:none;padding:0;margin:0;}
     .poin-list li{padding:3px 0 3px 16px;position:relative;}
-    .poin-list li::before{content:'·';position:absolute;left:4px;color:#aaa;}
+    .poin-list li::before{content:'•';position:absolute;left:4px;color:#1a472a;font-weight:700;}
     /* Tashrif */
     .tashrif-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
     .tashrif-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:10px;}
@@ -84,9 +85,12 @@
     .tashrif-kotak.subyek{background:#fff3e0;border:2px solid #c2410c;}
     .tashrif-kotak-label{font-size:9px;color:#888;font-style:italic;margin-bottom:4px;}
     .tashrif-kotak-arab{font-family:var(--font-arab);font-size:22px;direction:rtl;display:block;line-height:1.6;}
-    .tashrif-kotak.akar .tashrif-kotak-arab{color:#1a472a;font-size:14px;letter-spacing:2px;font-family:var(--font-latin);font-weight:700;}
+    .tashrif-kotak.akar .tashrif-kotak-arab{color:#1a472a;font-size:22px;}
     .tashrif-kotak.subyek .tashrif-kotak-arab{color:#c2410c;font-weight:700;}
     .tashrif-isi{font-size:12.5px;color:#374151;line-height:1.8;margin-top:8px;}
+    .link-eksternal-wrapper{margin-top:10px;padding-top:8px;border-top:1px dashed #d1c7b0;font-size:12px;color:#374151;line-height:1.7;}
+    .link-eksternal{display:inline-block;margin-top:4px;padding:4px 10px;background:#fff7ed;border:1px solid #fbbf24;border-radius:4px;color:#92400e;text-decoration:none;font-size:11.5px;font-weight:600;word-break:break-all;}
+    .link-eksternal:hover{background:#fef3c7;border-color:#d97706;}
     /* Konsep / iltifat boxes */
     .iltifat-box{background:#fdf4ff;border:1px solid #e9d5ff;border-left:5px solid #7e22ce;border-radius:10px;padding:14px 18px;margin-top:8px;}
     .iltifat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7e22ce;margin-bottom:8px;}
@@ -142,7 +146,7 @@
         <label for="dd-ayat">Pilih Ayat</label>
         <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
       </div>
-      <button class="btn-go" onclick="navigasiKeAyat()">Pergi →</button>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka →</button>
     </div>
     <a href="index.html" class="nav-home">⌂ Beranda</a>
   </div>
@@ -154,17 +158,17 @@
 <div class="ayat-box">
   <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · At-Takatsur : 1</div>
   <div class="teks-ayat arab">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</div>
-  <div class="transliterasi">Alhākumut-takāthur</div>
-  <div class="terjemahan">"Bermegah-megahan (dalam menambah harta dan keturunan) telah melalaikan kamu,"</div>
+  <div class="terjemahan">"Bermegah-megahan telah melalaikan kamu,"</div>
 </div>
 
 <!-- §2 KONTEKS -->
 <div class="konteks-box">
-  <strong>Konteks Ayat 1:</strong> Ayat pembuka Surah At-Takatsur hadir tanpa qasam (sumpah) dan tanpa nida' (seruan) — langsung menghantam dengan vonis. Subjek kalimat adalah <span class="arab-inline">ٱلتَّكَاثُرُ</span> (berlomba menambah) yang berperan sebagai pelaku (<em>fa'il</em>), seolah sifat buruk itu sendiri yang memiliki kekuatan aktif untuk "menyerang" dan melalaikan manusia. Tiga hal penting:
+  <strong>Konteks Ayat 1:</strong> Surah At-Takatsur dibuka dengan <strong>tanpa qasam (sumpah) dan tanpa nida' (seruan)</strong> — Allah langsung menyampaikan <em>vonis</em> kepada manusia. Gaya pembuka yang menggebrak ini disebut <em>jumlah ibtida'iyyah</em> (kalimat pembuka yang berdiri sendiri).
   <ul class="poin-list" style="margin-top:8px;">
-    <li>Kata kerja <strong>أَلْهَى</strong> (melalaikan) berbeda dari أَنْسَى (melupakan) — lalai berarti masih sadar tapi perhatiannya teralihkan</li>
-    <li>Maf'ul bih (كُمُ — kalian) didahulukan dari fa'il zhahir (التَّكَاثُرُ) karena kaidah dhamir wajib menempel pada fi'ilnya</li>
-    <li>Ayat ini adalah tesis utama surah yang dilanjutkan dengan konsekuensi (<a href="102-02.html">ayat 2</a>–<a href="102-08.html">8</a>)</li>
+    <li>Kata kerja <strong>أَلْهَى</strong> (melalaikan) berbeda dari <em>أَنْسَى</em> (melupakan) — <em>lalai</em> berarti masih sadar tapi perhatiannya teralihkan; <em>lupa</em> berarti ingatannya benar-benar hilang.</li>
+    <li>Urutan kata dalam ayat ini <strong>bukan</strong> urutan biasa fi'il → fa'il → maf'ul. Dhamir muttashil <span class="arab-inline">كُمُ</span> (maf'ul bih) <em>wajib</em> menempel langsung pada fi'ilnya, sehingga mendahului fa'il <span class="arab-inline">ٱلتَّكَاثُرُ</span> yang berupa isim zhahir. Ini disebut <em>fa'il muakhkhar</em> (fa'il diakhirkan).</li>
+    <li>Pelaku kelalaian di sini bukan manusia, bukan setan secara langsung, melainkan <strong>ٱلتَّكَاثُرُ</strong> itu sendiri — sebuah <em>perilaku abstrak</em> yang Allah personifikasikan sebagai "agen aktif" yang melalaikan manusia. Ini gaya balaghah yang disebut <em>isnad majazi</em> (penyandaran kiasan).</li>
+    <li>Ayat 1 adalah <strong>tesis utama</strong> surah. Ayat-ayat berikutnya merincikan konsekuensinya: <a href="102-02.html">ayat 2</a> (sampai ke kubur), <a href="102-03.html">ayat 3–4</a> (peringatan), <a href="102-05.html">ayat 5–7</a> (tingkat keyakinan), <a href="102-08.html">ayat 8</a> (hisab di akhirat).</li>
   </ul>
 </div>
 
@@ -179,62 +183,98 @@
   <div class="kartu-head-harf3" style="background:#fff7ed;">
     <span class="badge badge-fi kh3-badge">FI'IL · Madhi Bab IV (Af'ala) · Naqis Wawi · (102:1:1)</span>
     <div class="kh3-arab arab">أَلْهَى</div>
-    <div class="kh3-arti">melalaikan, menyibukkan</div>
+    <div class="kh3-arti">(dia / sesuatu) telah melalaikan</div>
   </div>
   <table class="kartu-tabel">
     <tr><td>Jenis Kata</td><td>
-      <span class="tag tag-fi">Fi'il Madhi</span>
-      <em>bab IV</em> (<em>af'ala — if'āl</em>) · <em>muta'addī</em> (transitif) · <em>nāqiṣ wāwī</em> (huruf akhir akar = waw)
-    </td></tr>
-    <tr><td>Makna Leksikal</td><td>melalaikan · menyibukkan · mengalihkan perhatian sehingga seseorang abai dari yang penting</td></tr>
-    <tr><td>Makna Gramatikal</td><td>
-      (Dia) telah melalaikan. Dengan dhamir muttashil <span class="arab-inline">كُمُ</span> membentuk <span class="arab-inline">أَلْهَىٰكُمُ</span> — (Dia) telah melalaikan kalian.
-    </td></tr>
-    <tr><td>Fa'il</td><td>
-      <span class="arab-inline">ٱلتَّكَاثُرُ</span> — isim zhahir <em>muakhkhar</em> (fa'il datang setelah maf'ul bih) ·
-      ini adalah kaidah: bila maf'ul bih berupa <em>dhamir muttashil</em>, ia wajib menempel langsung pada fi'il sehingga mendahului fa'il isim zhahir
-    </td></tr>
-    <tr><td>Akar + Tashrif</td><td>
-      Akar: ل - ه - و
-      <div class="tashrif-box">
-        <div class="tashrif-label">TASHRIF — Bab IV (Af'ala) · Naqis Wawi · Fi'il Madhi</div>
-        <div class="tashrif-grid">
-          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab" style="font-size:22px;color:#1a472a;">ل - ه - و</span></div>
-          <div class="tashrif-panah">→</div>
-          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Madhi هو (Bab IV)</div><span class="tashrif-kotak-arab arab">أَلْهَى</span></div>
-          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Mudhari' هو</div><span class="tashrif-kotak-arab arab">يُلْهِي</span></div>
-          <div class="tashrif-panah">→</div>
-          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">dalam ayat (subyek هو)</div><span class="tashrif-kotak-arab arab">أَلْهَى</span></div>
-        </div>
-        <div class="tashrif-isi">
-          <em>Fa'il dalam ayat:</em> <span class="arab-inline">ٱلتَّكَاثُرُ</span> (isim mudzakkar, maka fi'il tetap <em>mufrad mudzakkar</em>).
+      <ul class="poin-list">
+        <li><span class="tag tag-fi">Fi'il Madhi</span> Kata kerja bentuk lampau — menunjukkan aksi yang telah selesai dilakukan</li>
+        <li>dari akar <span class="arab-inline" style="font-size:16px;">ل - ه - و</span> — bermain, lalai, teralihkan perhatian</li>
+        <li>wazan <span class="arab-inline" style="font-size:15px;">أَفْعَلَ</span> (af'ala) — pola Bab IV yang mengubah fi'il lazim (intransitif) menjadi muta'addi (transitif), dengan makna <em>membuat / menjadikan</em> seseorang melakukan aksi</li>
+        <li>termasuk <em>naqis wawi</em> — fi'il yang huruf akhir akarnya berupa waw (و), yang kemudian mengalami <em>i'lal</em> (perubahan huruf) menjadi alif maqshurah (ى) di bentuk madhi</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS At-Takatsur</div>
+        <div class="konsep-label">Fi'il Bab IV (Af'ala) — Pola Transitif dari Lazim</div>
+        <div class="konsep-isi">
+          <em>Bab IV</em> adalah salah satu dari sepuluh bab tashrif fi'il tsulatsi mazid (fi'il tiga huruf dengan tambahan). Wazan bab IV adalah <span class="arab-inline" style="font-size:15px;">أَفْعَلَ — يُفْعِلُ — إِفْعَالًا</span>.
+          <br><br>
+          <strong>Fungsi utama Bab IV:</strong> mengubah fi'il <em>lazim</em> (intransitif) menjadi <em>muta'addi</em> (transitif). Tambahan huruf hamzah di awal memberikan makna <em>membuat / menjadikan</em> seseorang / sesuatu melakukan aksi.
+          <br><br>
+          <strong>Dari <span class="arab-inline">لَهَا</span> ke <span class="arab-inline">أَلْهَى</span>:</strong>
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup><col style="width:25%"><col style="width:25%"><col style="width:50%"></colgroup>
+            <tr><th>Bab</th><th>Bentuk</th><th>Makna</th></tr>
+            <tr>
+              <td>Bab I (lazim)</td>
+              <td><span class="arab-inline" style="font-size:16px;">لَهَا — يَلْهُو</span></td>
+              <td>(dia) lalai / bermain — aksi berdiri sendiri, tidak butuh obyek</td>
+            </tr>
+            <tr style="background:#fff3e0;">
+              <td><strong>Bab IV (muta'addi)</strong></td>
+              <td><strong><span class="arab-inline" style="font-size:16px;">أَلْهَى — يُلْهِي</span></strong></td>
+              <td><strong>(dia / sesuatu) melalaikan (orang lain) — aksi berpindah kepada obyek</strong></td>
+            </tr>
+          </table>
+          <br>
+          <strong>Kaidah i'lal naqis wawi di Bab IV:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li>Madhi: bentuk asli <span class="arab-inline" style="font-size:15px;">أَلْهَوَ</span> → waw akhir di-i'lal menjadi alif maqshurah (ى) → <span class="arab-inline" style="font-size:15px;">أَلْهَى</span></li>
+            <li>Mudhari': bentuk asli <span class="arab-inline" style="font-size:15px;">يُلْهِيُ</span> → dhammah di akhir dihilangkan karena berat → <span class="arab-inline" style="font-size:15px;">يُلْهِي</span></li>
+            <li>Alif maqshurah tidak menerima harakat, sehingga i'rab-nya <em>muqaddar 'alā al-alif</em> (dikira-kirakan pada alif)</li>
+          </ul>
+          <strong>Dalam ayat ini:</strong> <span class="arab-inline" style="font-size:15px;">أَلْهَى</span> artinya <em>"(sesuatu) telah melalaikan"</em> — yang melalaikan adalah <span class="arab-inline" style="font-size:15px;">ٱلتَّكَاثُرُ</span> (fa'il), dan yang dilalaikan adalah <span class="arab-inline" style="font-size:15px;">كُمُ</span> (maf'ul bih).
         </div>
       </div>
-      <div class="konsep-box" style="margin-top:10px;">
-        <div class="konsep-label">📌 Konsep Gramatikal At-Takatsur — Fi'il Bab IV Naqis Wawi (أَلْهَى)</div>
-        <div class="konsep-isi">
-          <strong>Akar ل-ه-و (naqis wawi) dalam Bab IV:</strong>
-          <table class="konsep-tabel" style="margin-top:8px;">
-            <tr><th>Bentuk</th><th>Arab</th><th>Keterangan</th></tr>
-            <tr><td>Bab I madhi</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">لَهَا</span></td><td>bermain, lalai dari (bab I: لَهَا يَلْهُو)</td></tr>
-            <tr><td>Bab IV madhi</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">أَلْهَى</span></td><td>melalaikan (asal: أَلْهَوَ → wa + fathah → alif maqsura)</td></tr>
-            <tr><td>Bab IV mudhari'</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">يُلْهِي</span></td><td>asal يُلْهِيُ → ya' + dhammah → ya' akhir dibuang</td></tr>
-            <tr><td>Masdar bab IV</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">إِلْهَاءٌ</span></td><td>kelalaian / tindakan melalaikan</td></tr>
-          </table>
-          <br><strong>Kaidah i'lal naqis wawi dalam bab IV:</strong><br>
-          · Madhi: waw akhir + fathah sebelumnya → diganti <em>alif maqsura</em> → <strong>أَلْهَى</strong><br>
-          · Mudhari': waw akhir bergeser ke ya' dalam pola يُفعِل (karena kasrah sebelumnya) → <strong>يُلْهِي</strong><br>
-          · Alif maqsura menghalangi harakat → i'rab <em>muqaddar 'alā al-alif</em>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>(dia / sesuatu) telah melalaikan · menyibukkan · mengalihkan perhatian</li>
+        <li>dengan dhamir muttashil <span class="arab-inline">كُمُ</span> membentuk <span class="arab-inline">أَلْهَىٰكُمُ</span> — "(sesuatu) telah melalaikan kalian"</li>
+      </ul>
+    </td></tr>
+    <tr><td>Fa'il (Pelaku)</td><td>
+      <ul class="poin-list">
+        <li><span class="arab-inline">ٱلتَّكَاثُرُ</span> — isim zhahir (bukan dhamir), datang <em>setelah</em> maf'ul bih (kita sebut <em>fa'il muakhkhar</em>)</li>
+        <li>Kaidah wajib: bila maf'ul bih berupa <em>dhamir muttashil</em> (kata ganti menempel), ia <em>wajib menempel langsung</em> pada fi'il — sehingga fa'il isim zhahir otomatis tergeser ke belakang</li>
+        <li>Fi'il tetap <em>mufrad mudzakkar</em> (tunggal, laki-laki) mengikuti <span class="arab-inline">ٱلتَّكَاثُرُ</span> yang berupa masdar mudzakkar tunggal</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar + Tashrif</td><td>
+      Akar: <span class="arab-inline" style="font-size:16px;">ل - ه - و</span> — bermain, lalai, teralihkan
+      <div class="tashrif-box">
+        <div class="tashrif-label">TASHRIF — Bab IV (Af'ala) · Naqis Wawi · Fi'il Madhi</div>
+        <div class="tashrif-grid" style="grid-template-columns:1fr 28px 1fr 1fr 28px 1fr;">
+          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab">ل-ه-و</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Madhi (هو)</div><span class="tashrif-kotak-arab arab">أَلْهَى</span></div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Mudhari' (هو)</div><span class="tashrif-kotak-arab arab">يُلْهِي</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">Fi'il dalam Ayat</div><span class="tashrif-kotak-arab arab">أَلْهَى</span></div>
+        </div>
+        <div class="tashrif-isi">
+          <em>Fa'il dalam ayat:</em> <span class="arab-inline" style="font-size:16px;">ٱلتَّكَاثُرُ</span> (isim mudzakkar tunggal), maka fi'il tetap <em>mufrad mudzakkar</em> ghaib (subyek هو). Bentuk yang hadir di ayat adalah bentuk madhi dasar <span class="arab-inline" style="font-size:16px;">أَلْهَى</span> — "(sesuatu) telah melalaikan".
+        </div>
+        <div class="link-eksternal-wrapper">
+          Detail bentuk kata kerja (konjugasi) untuk kata kerja <span class="arab-inline" style="font-size:15px;">أَلْهَى</span> dapat dilihat pada link berikut:
+          <br>
+          <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%A3%D9%84%D9%87%D9%89.html"
+             target="_blank" rel="noopener noreferrer" class="link-eksternal">
+            Reverso Conjugator ↗
+          </a>
         </div>
       </div>
     </td></tr>
     <tr><td>Status I'rab</td><td>
-      <span class="tag tag-mabni">Mabni</span> <em>mabni 'alā al-fatḥ al-muqaddar 'alā al-alif</em> — mabni di atas fathah yang dikira-kirakan (tidak tampak) pada alif, karena alif maqsura tidak menerima harakat zhahir
+      <ul class="poin-list">
+        <li><span class="tag tag-mabni">Mabni</span> bentuk tetap dengan <em>fathah muqaddarah</em> (fathah yang dikira-kirakan) pada alif maqshurah</li>
+        <li>Alif maqshurah di akhir kata tidak menerima harakat zhahir, sehingga fathah-nya hanya "dikira-kirakan" ada — istilah teknisnya <em>mabni 'alā al-fatḥ al-muqaddar 'alā al-alif</em></li>
+      </ul>
     </td></tr>
     <tr><td>Kedudukan Gramatikal</td><td>
       <ul class="poin-list">
-        <li>Fi'il dari <em>jumlah fi'liyyah</em> (kalimat verbal) · predikat utama ayat</li>
-        <li>Bersama <span class="arab-inline">كُمُ</span> dan <span class="arab-inline">ٱلتَّكَاثُرُ</span> membentuk jumlah fi'liyyah kamilah <span class="arab-inline">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</span></li>
+        <li>Berperan sebagai fi'il utama dari <em>jumlah fi'liyyah</em> (kalimat verbal) — predikat pembuka ayat</li>
+        <li>Bersama <span class="arab-inline">كُمُ</span> (maf'ul bih) dan <span class="arab-inline">ٱلتَّكَاثُرُ</span> (fa'il) membentuk kalimat <em>jumlah fi'liyyah kamilah</em> (jumlah verbal yang sempurna) <span class="arab-inline">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</span></li>
       </ul>
     </td></tr>
   </table>
@@ -243,27 +283,42 @@
 <!-- K2: كُمُ — dhamir muttashil -->
 <div class="kartu">
   <div class="kartu-head-harf3" style="background:#f0f7f2;">
-    <span class="badge badge-kata kh3-badge">ISIM · Dhamir Muttashil · Maf'ul Bih · (102:1:2)</span>
+    <span class="badge badge-kata kh3-badge">DHAMIR MUTTASHIL · Maf'ul Bih · (102:1:2)</span>
     <div class="kh3-arab arab">كُمُ</div>
-    <div class="kh3-arti">kalian / kamu sekalian</div>
+    <div class="kh3-arti">kalian (laki-laki, jamak) — menempel di akhir fi'il</div>
   </div>
   <table class="kartu-tabel">
     <tr><td>Jenis Kata</td><td>
-      <span class="tag tag-n">Isim</span> <em>dhamir muttashil</em> (kata ganti yang menempel) · <em>mukhaṭab jamak</em> (orang kedua jamak)
+      <ul class="poin-list">
+        <li>Kata ganti yang menempel (<em>dhamir-muttashil</em>) — kata ganti yang tidak berdiri sendiri, selalu menempel pada kata lain</li>
+        <li>jenis <em>mukhatab jamak mudzakkar</em> (orang kedua, jamak, laki-laki) — "kalian"</li>
+        <li>menempel di akhir fi'il <span class="arab-inline">أَلْهَى</span> sebagai <em>maf'ul bih</em> (obyek yang dikenai aksi)</li>
+      </ul>
     </td></tr>
-    <tr><td>Arti</td><td>kalian / kamu sekalian — merujuk kepada manusia secara umum yang dialamatkan ayat ini</td></tr>
-    <tr><td>Akar</td><td>Isim mabni — tidak memiliki akar kata seperti isim biasa</td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>kalian · kamu sekalian</li>
+        <li>ditujukan kepada manusia secara umum yang dialamatkan oleh ayat ini — mencakup seluruh pembaca Al-Qur'an, tidak terbatas pada satu kaum</li>
+      </ul>
+    </td></tr>
     <tr><td>Status I'rab</td><td>
-      <span class="tag tag-mabni">Mabni</span> <em>mabni 'alā al-ḍammah</em> · <em>fī maḥall naṣb</em> (maf'ul bih dari <span class="arab-inline">أَلْهَى</span>)
+      <ul class="poin-list">
+        <li><span class="tag tag-mabni">Mabni</span> bentuk tetap dengan dhammah — istilahnya <em>mabni 'alā al-ḍammah</em></li>
+        <li>Berstatus manshub secara posisi (<em>fī maḥall naṣb</em>) berperan sebagai maf'ul bih</li>
+      </ul>
     </td></tr>
-    <tr><td>Jumlah</td><td><em>jamak</em> (mukhatab jamak — orang kedua banyak)</td></tr>
-    <tr><td>Gender</td><td><em>mudzakkar</em> (default untuk mukhatab jamak)</td></tr>
-    <tr><td>Identitas</td><td><span class="tag tag-marifah">Ma'rifah</span> — dhamir adalah ma'rifah tertinggi · merujuk kepada manusia yang dialamatkan</td></tr>
+    <tr><td>Jumlah</td><td>jamak (jam') — dhamir <span class="arab-inline">كُمُ</span> khusus untuk orang banyak</td></tr>
+    <tr><td>Gender</td><td>laki-laki (mudzakkar) — dalam bahasa Arab, bentuk mudzakkar jamak digunakan sebagai default untuk kelompok campuran (laki-laki dan perempuan)</td></tr>
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marifah">Ma'rifah</span> — dhamir (kata ganti) selalu ma'rifah, karena menunjuk pihak yang sudah dikenal oleh pembicara dan pendengar</li>
+      </ul>
+    </td></tr>
     <tr><td>Kedudukan Gramatikal</td><td>
       <ul class="poin-list">
-        <li><em>Maf'ul bih</em> pertama dari fi'il <span class="arab-inline">أَلْهَى</span> · <em>fī maḥall naṣb</em></li>
-        <li>Sebagai <em>dhamir muttashil</em>, wajib mendahului fa'il isim zhahir (<span class="arab-inline">ٱلتَّكَاثُرُ</span>)</li>
-        <li>Dhammat setelahnya (<span class="arab-inline">كُمُ</span>) berubah menjadi kasrah di bacaan washol: <em>كُمُ ٱلتَّكَاثُرُ</em> → <em>kumut-takāthur</em></li>
+        <li>Berperan sebagai <em>maf'ul bih</em> (obyek langsung) dari fi'il <span class="arab-inline">أَلْهَى</span> — berstatus manshub secara posisi (<em>fī maḥall naṣb</em>)</li>
+        <li>Sebagai dhamir-muttashil, <em>wajib</em> menempel langsung di akhir fi'il, sehingga mendahului fa'il <span class="arab-inline">ٱلتَّكَاثُرُ</span> yang berupa isim zhahir</li>
+        <li>Catatan bacaan: dhammah di akhir <span class="arab-inline">كُمُ</span> berubah menjadi kasrah ketika disambung (washl) dengan alif-lam di kata berikutnya — dibaca <em>"kumut-takātsur"</em></li>
       </ul>
     </td></tr>
   </table>
@@ -272,102 +327,268 @@
 <!-- K3: ٱلتَّكَاثُرُ — fa'il, masdar bab VI -->
 <div class="kartu">
   <div class="kartu-head-harf3" style="background:#f0f7f2;">
-    <span class="badge badge-kata kh3-badge">ISIM · Masdar Bab VI (Tafa'ala) · Fa'il · (102:1:3)</span>
+    <span class="badge badge-kata kh3-badge">ISIM · Isim Masdar Bab VI · Fa'il · (102:1:3)</span>
     <div class="kh3-arab arab">ٱلتَّكَاثُرُ</div>
-    <div class="kh3-arti">berlomba memperbanyak / saling berbangga dengan kelimpahan</div>
+    <div class="kh3-arti">berlomba memperbanyak · saling berbangga dengan kelimpahan</div>
   </div>
   <table class="kartu-tabel">
     <tr><td>Jenis Kata</td><td>
-      <span class="tag tag-n">Isim</span> <em>isim masdar</em> (isim aksi) · <em>masdar bab VI</em> (<em>tafa'ala — tafā'ul</em>) · dari akar ك-ث-ر
-      <div class="konsep-box" style="margin-top:8px;">
-        <div class="konsep-label">📌 Konsep Gramatikal At-Takatsur — Masdar Bab VI (Wazan تَفَاعُل)</div>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> isim masdar (isim aksi) — kata benda yang menunjukkan <em>aktivitas / aksi</em> itu sendiri sebagai konsep</li>
+        <li>dari akar <span class="arab-inline" style="font-size:16px;">ك - ث - ر</span> — banyak, melimpah</li>
+        <li>wazan <span class="arab-inline" style="font-size:15px;">تَفَاعُل</span> — pola masdar Bab VI (<em>tafā'ala</em>), yang menunjukkan makna <em>musyarakah</em> (dua pihak atau lebih saling melakukan aksi secara timbal balik)</li>
+        <li>diawali <em>ال</em> (al-ta'rif) yang mengubahnya menjadi ma'rifah — menunjuk perilaku <em>at-takātsur</em> yang sudah dikenal dalam masyarakat Arab saat itu</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS At-Takatsur</div>
+        <div class="konsep-label">Masdar Bab VI (Wazan تَفَاعُل) — Aksi Timbal Balik</div>
         <div class="konsep-isi">
-          <strong>Bab VI (Tafa'ala):</strong> wazan تَفَاعَلَ يَتَفَاعَلُ تَفَاعُلًا · makna dasar: <em>musharakah</em> (dua pihak atau lebih saling melakukan sesuatu secara timbal balik).
+          <em>Bab VI</em> adalah salah satu dari sepuluh bab tashrif fi'il tsulatsi mazid. Wazannya <span class="arab-inline" style="font-size:15px;">تَفَاعَلَ — يَتَفَاعَلُ — تَفَاعُلًا</span>.
           <br><br>
-          <strong>Dari akar ك-ث-ر (menjadi banyak):</strong>
+          <strong>Makna khas Bab VI:</strong> <em>musyārakah</em> — dua pihak atau lebih saling melakukan aksi secara timbal balik. Bentuk ini menekankan <em>kompetisi</em>, <em>interaksi bolak-balik</em>, atau <em>kerja sama</em>.
+          <br><br>
+          <strong>Dari akar <span class="arab-inline" style="font-size:15px;">ك - ث - ر</span> (banyak):</strong>
           <table class="konsep-tabel" style="margin-top:6px;">
-            <tr><th>Bentuk</th><th>Arab</th><th>Makna</th></tr>
-            <tr><td>Bab I madhi</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">كَثُرَ</span></td><td>menjadi banyak (lazim)</td></tr>
-            <tr><td>Bab II madhi</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">كَثَّرَ</span></td><td>memperbanyak (tadh'if/intensif)</td></tr>
-            <tr><td>Bab VI madhi</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">تَكَاثَرَ</span></td><td>saling berlomba memperbanyak (musharakah)</td></tr>
-            <tr><td>Masdar bab VI</td><td><span style="font-family:'Scheherazade New',serif;font-size:16px;">تَكَاثُرٌ</span></td><td>perlombaan memperbanyak · aktivitas saling berbangga</td></tr>
+            <colgroup><col style="width:25%"><col style="width:28%"><col style="width:47%"></colgroup>
+            <tr><th>Bab</th><th>Bentuk</th><th>Makna</th></tr>
+            <tr>
+              <td>Bab I (lazim)</td>
+              <td><span class="arab-inline" style="font-size:16px;">كَثُرَ</span></td>
+              <td>menjadi banyak — sifat/keadaan, intransitif</td>
+            </tr>
+            <tr>
+              <td>Bab II (intensif)</td>
+              <td><span class="arab-inline" style="font-size:16px;">كَثَّرَ</span></td>
+              <td>memperbanyak — aksi searah dari pelaku ke obyek</td>
+            </tr>
+            <tr style="background:#fff3e0;">
+              <td><strong>Bab VI (musyarakah)</strong></td>
+              <td><strong><span class="arab-inline" style="font-size:16px;">تَكَاثَرَ</span></strong></td>
+              <td><strong>saling berlomba memperbanyak — kompetisi dua arah</strong></td>
+            </tr>
+            <tr style="background:#fff3e0;">
+              <td><strong>Masdar Bab VI</strong></td>
+              <td><strong><span class="arab-inline" style="font-size:16px;">تَكَاثُر</span></strong></td>
+              <td><strong>perlombaan memperbanyak — aktivitas saling berbangga dengan kelimpahan</strong></td>
+            </tr>
           </table>
           <br>
-          <strong>Dalam ayat:</strong> <span class="arab-inline">ٱلتَّكَاثُرُ</span> = <em>ma'rifah</em> dengan al-ta'rif, menunjukkan perilaku berlomba-lomba yang sudah dikenal dan nyata di masyarakat Arab saat itu (membangga-banggakan banyaknya harta, anak, suku).
-          <br><br>
-          <strong>Perbedaan Bab II vs Bab VI:</strong><br>
-          · <span class="arab-inline">كَثَّرَ</span> (bab II): memperbanyak secara searah (A menambah miliknya sendiri)<br>
-          · <span class="arab-inline">تَكَاثَرَ</span> (bab VI): berlomba memperbanyak, saling membanding (A vs B saling mengklaim lebih banyak)
+          <strong>Perhatikan perbedaan Bab II vs Bab VI:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li><span class="arab-inline" style="font-size:15px;">كَثَّرَ</span> (Bab II): A memperbanyak miliknya sendiri — <em>searah, tanpa perlu lawan</em></li>
+            <li><span class="arab-inline" style="font-size:15px;">تَكَاثَرَ</span> (Bab VI): A dan B saling berlomba, masing-masing mengklaim lebih banyak — <em>dua arah, butuh lawan banding</em></li>
+          </ul>
+          <strong>Dalam ayat ini:</strong> <span class="arab-inline" style="font-size:15px;">ٱلتَّكَاثُرُ</span> bermakna <em>perlombaan berbangga</em> — baik dalam harta, anak, pengikut, nasab, jabatan, atau apa saja yang bisa <em>dibanding-bandingkan</em> dengan orang lain. Huruf <em>ال</em> menunjukkan perilaku ini sudah <em>dikenal</em> dan <em>merajalela</em>.
         </div>
       </div>
     </td></tr>
-    <tr><td>Arti</td><td>berlomba-lomba memperbanyak · saling berbangga dengan kelimpahan (harta, anak, pengikut, nasab) · kompetisi akumulasi yang melalaikan</td></tr>
-    <tr><td>Akar</td><td>ك - ث - ر · (bab VI: تَكَاثَرَ يَتَكَاثَرُ تَكَاثُرًا)</td></tr>
-    <tr><td>Status I'rab</td><td>
-      <span class="tag tag-marfu">Marfu'</span> · 'alāmah raf'-nya <em>dhammah zhāhirah</em> di akhir kata
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>berlomba-lomba memperbanyak · saling berbangga dengan kelimpahan</li>
+        <li>mencakup kompetisi dalam harta, anak, pengikut, nasab, jabatan — apa saja yang bisa dibanding-bandingkan</li>
+        <li>sifat negatif yang Allah sebut sebagai <em>biang kelalaian</em> manusia dari akhirat</li>
+      </ul>
     </td></tr>
-    <tr><td>Jumlah</td><td><em>mufrad</em> — masdar (isim aksi) selalu diperlakukan mufrad</td></tr>
-    <tr><td>Gender</td><td><em>mudzakkar</em> — masdar secara default mudzakkar (kecuali ada dalil lain)</td></tr>
-    <tr><td>Identitas</td><td><span class="tag tag-marifah">Ma'rifah</span> — ma'rifah bil-al (<em>al-ta'rīf</em>) · menunjukkan التَّكَاثُرُ yang dikenal</td></tr>
+    <tr><td>Akar</td><td>
+      Akar: <span class="arab-inline" style="font-size:16px;">ك - ث - ر</span> — banyak, melimpah
+      <div class="tashrif-box">
+        <div class="tashrif-label">TASHRIF — Bab VI (Tafā'ala) · Akar ke Isim Masdar</div>
+        <div class="tashrif-grid" style="grid-template-columns:1fr 28px 1fr 1fr 28px 1fr;">
+          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab">ك-ث-ر</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Madhi Bab VI</div><span class="tashrif-kotak-arab arab">تَكَاثَرَ</span></div>
+          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Mudhari' Bab VI</div><span class="tashrif-kotak-arab arab">يَتَكَاثَرُ</span></div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">Isim Masdar Bab VI</div><span class="tashrif-kotak-arab arab">تَكَاثُرٌ</span></div>
+        </div>
+        <div class="tashrif-isi">
+          <span class="arab-inline" style="font-size:16px;">كَثُرَ</span> = (dia) menjadi banyak (Bab I, lazim) · <span class="arab-inline" style="font-size:16px;">كَثَّرَ</span> = (dia) memperbanyak (Bab II, intensif) · <span class="arab-inline" style="font-size:16px;">تَكَاثَرَ</span> = (mereka) saling berlomba memperbanyak (Bab VI, musyarakah) · <span class="arab-inline" style="font-size:16px;">تَكَاثُرٌ</span> = <em>perlombaan memperbanyak</em> sebagai konsep/aksi — bentuk masdar yang dipakai di ayat ini dengan tambahan <em>ال</em>.
+        </div>
+        <div class="link-eksternal-wrapper">
+          Detail bentuk kata kerja (konjugasi) untuk kata kerja <span class="arab-inline" style="font-size:15px;">كَثُرَ</span> dapat dilihat pada link berikut:
+          <br>
+          <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D9%83%D8%AB%D8%B1.html"
+             target="_blank" rel="noopener noreferrer" class="link-eksternal">
+            Reverso Conjugator ↗
+          </a>
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Status I'rab</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marfu">Marfu'</span> ditandai dengan dhammah zhahirah di akhir kata (ـُ)</li>
+        <li>Berstatus marfu' berperan sebagai <em>fa'il</em> (pelaku) dari fi'il <span class="arab-inline">أَلْهَى</span></li>
+      </ul>
+    </td></tr>
+    <tr><td>Jumlah</td><td>tunggal (mufrad) — masdar (isim aksi) secara default selalu diperlakukan mufrad</td></tr>
+    <tr><td>Gender</td><td>laki-laki (mudzakkar) — masdar secara default mudzakkar, karena tidak memiliki penanda mu'annats (seperti ta marbuthah)</td></tr>
+    <tr><td>Identitas</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-marifah">Ma'rifah</span> — diawali <em>ال</em> (al-ta'rif), menunjuk perilaku <em>at-takātsur</em> yang sudah dikenal dalam masyarakat</li>
+      </ul>
+    </td></tr>
     <tr><td>Kedudukan Gramatikal</td><td>
       <ul class="poin-list">
-        <li><em>Fa'il</em> dari fi'il <span class="arab-inline">أَلْهَى</span> · <em>marfu'</em> · datang setelah maf'ul bih (dhamir <span class="arab-inline">كُمُ</span>)</li>
-        <li>Posisi fa'il <em>muakhkhar</em> (diakhirkan) karena kaidah: maf'ul bih dhamir wajib mendahului fa'il isim zhahir</li>
-        <li>Pilihan masdar (bukan fi'il) sebagai fa'il: التَّكَاثُرُ bukan pelaku personal — melainkan sebuah <em>kondisi/perilaku</em> yang dijadikan "agen" aktif, penekanan balaghah yang kuat</li>
+        <li>Berperan sebagai <em>fa'il muakhkhar</em> (pelaku yang diakhirkan) dari fi'il <span class="arab-inline">أَلْهَى</span> — berstatus marfu'</li>
+        <li>Datang <em>setelah</em> maf'ul bih (<span class="arab-inline">كُمُ</span>) karena kaidah: dhamir muttashil wajib menempel pada fi'il, sehingga otomatis mendahului fa'il isim zhahir</li>
+        <li>Pemilihan bentuk masdar (bukan fi'il atau isim fa'il) sebagai fa'il memberi kesan <em>isnad majazi</em>: <span class="arab-inline">ٱلتَّكَاثُرُ</span> — yang sebenarnya adalah <em>perilaku</em> — dipersonifikasikan sebagai "agen aktif" yang melakukan tindakan melalaikan</li>
       </ul>
     </td></tr>
   </table>
 </div>
 
 <!-- §4 ANALISIS TINGKAT 2 -->
-<div class="section-header biru">
+<div class="section-header">
   <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
-  <div class="sub-judul">Analisis frasa dan klausa yang membentuk kalimat</div>
+  <div class="sub-judul">Struktur dan makna frasa atau klausa dalam ayat</div>
 </div>
 
-<!-- Frasa 1: أَلْهَىٰكُمُ -->
+<!-- F1: أَلْهَىٰكُمُ (fi'il + maf'ul bih) -->
 <div class="kartu">
   <div class="kartu-head warna-frasa1">
-    <span class="badge badge-frasa1">FRASA 1</span>
+    <span class="badge badge-frasa1">FRASA 1 — FI'IL + MAF'UL BIH</span>
     <div class="kartu-arab-besar arab">أَلْهَىٰكُمُ</div>
-    <div class="kartu-arti">telah melalaikan kalian</div>
+    <div class="kartu-arti">(sesuatu) telah melalaikan kalian</div>
   </div>
   <table class="kartu-tabel">
     <tr><td>Struktur</td><td>
-      <span class="arab-inline">أَلْهَى</span> (fi'il madhi bab IV) +
-      <span class="arab-inline">كُمُ</span> (dhamir muttashil maf'ul bih)
-      <br><em>Fi'il + Maf'ul Bih</em>
+      <ul class="poin-list">
+        <li>Gabungan fi'il <span class="arab-inline">أَلْهَى</span> (fi'il madhi Bab IV) + dhamir <span class="arab-inline">كُمُ</span> (dhamir-muttashil, maf'ul bih)</li>
+        <li>Dhamir muttashil <em>wajib</em> menempel langsung pada fi'il — tidak boleh dipisah oleh kata lain</li>
+        <li>Bentuk <span class="arab-inline">أَلْهَىٰ</span> (dengan alif panjang yang dibaca <em>imalah</em>) adalah bentuk bacaan <em>washl</em> ketika bersambung dengan dhamir <span class="arab-inline">كُمُ</span></li>
+      </ul>
     </td></tr>
-    <tr><td>Makna Frasa</td><td>"telah melalaikan kalian" — verba transitif bersama objek pronomina · frasa verbal dengan maf'ul bih terintegrasi</td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>"(sesuatu) telah melalaikan kalian" · "(sesuatu) telah menyibukkan kalian"</li>
+        <li>fi'il transitif yang membawa obyek langsung — aksi berpindah dari pelaku (belum disebut) kepada obyek (kalian)</li>
+      </ul>
+    </td></tr>
     <tr><td>Peran / Kedudukan</td><td>
       <ul class="poin-list">
-        <li>Membentuk inti predikat (<em>jumlah fi'liyyah parsial</em>: fi'il + maf'ul bih tanpa fa'il)</li>
-        <li>Fa'il (<span class="arab-inline">ٱلتَّكَاثُرُ</span>) belum hadir pada tahap ini — hadir di Level 2</li>
-        <li>Urutan ini wajar dalam bahasa Arab: dhamir muttashil maf'ul bih mendahului fa'il isim zhahir</li>
+        <li>Berperan sebagai <em>inti predikat</em> — fi'il + maf'ul bih yang belum lengkap, menunggu fa'il-nya</li>
+        <li>Pada tahap ini kalimat belum sempurna — pendengar/pembaca "digantung" menunggu fa'il: <em>siapa / apa yang melalaikan?</em></li>
+        <li>Bersama fa'il <span class="arab-inline">ٱلتَّكَاثُرُ</span> membentuk jumlah fi'liyyah kamilah <span class="arab-inline">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</span> pada frasa berikutnya</li>
       </ul>
     </td></tr>
   </table>
 </div>
 
-<!-- Frasa 2: أَلْهَىٰكُمُ ٱلتَّكَاثُرُ -->
+<!-- F2: أَلْهَىٰكُمُ ٱلتَّكَاثُرُ (jumlah fi'liyyah kamilah) -->
 <div class="kartu">
   <div class="kartu-head warna-frasa2">
-    <span class="badge badge-frasa2">FRASA 2</span>
-    <div class="kartu-arab-besar arab">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</div>
+    <span class="badge badge-frasa2">FRASA 2 — JUMLAH FI'LIYYAH KAMILAH</span>
+    <div class="kartu-arab-besar arab" style="font-size:34px;">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</div>
     <div class="kartu-arti">bermegah-megahan telah melalaikan kamu</div>
   </div>
   <table class="kartu-tabel">
     <tr><td>Struktur</td><td>
-      [<span class="arab-inline">أَلْهَى</span> + <span class="arab-inline">كُمُ</span>] (fi'il + maf'ul bih) +
-      <span class="arab-inline">ٱلتَّكَاثُرُ</span> (fa'il muakhkhar)
-      <br><em>Jumlah Fi'liyyah Kamilah</em>
+      <ul class="poin-list">
+        <li>Kalimat <em>jumlah fi'liyyah</em> (diawali fi'il, bukan isim/dhamir)</li>
+        <li><em>Fi'il</em>: <span class="arab-inline">أَلْهَى</span> — fi'il madhi Bab IV, mabni fathah muqaddarah</li>
+        <li><em>Maf'ul bih</em>: <span class="arab-inline">كُمُ</span> — dhamir-muttashil, manshub mahallan</li>
+        <li><em>Fa'il muakhkhar</em>: <span class="arab-inline">ٱلتَّكَاثُرُ</span> — isim masdar Bab VI, marfu' dengan dhammah zhahirah</li>
+        <li>Urutan: Fi'il → Maf'ul Bih → Fa'il (bukan urutan biasa Fi'il → Fa'il → Maf'ul Bih)</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS At-Takatsur</div>
+        <div class="konsep-label">Fa'il Muakhkhar — Kaidah Urutan Dhamir Muttashil</div>
+        <div class="konsep-isi">
+          Dalam bahasa Arab, urutan <em>default</em> kalimat verbal adalah: <strong>Fi'il → Fa'il → Maf'ul Bih</strong>.
+          <br><br>
+          <strong>Namun ada satu kaidah wajib yang mengubah urutan ini:</strong><br>
+          Bila maf'ul bih berupa <em>dhamir muttashil</em> (kata ganti yang menempel), ia <em>wajib</em> menempel langsung pada fi'ilnya. Akibatnya, fa'il isim zhahir otomatis tergeser ke belakang, menjadi <em>fa'il muakhkhar</em> (fa'il yang diakhirkan).
+          <br><br>
+          <strong>Perbandingan urutan:</strong>
+          <table class="konsep-tabel" style="margin-top:6px;">
+            <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+            <tr><th>Jenis Maf'ul Bih</th><th>Urutan</th><th>Contoh</th></tr>
+            <tr>
+              <td>Isim zhahir (kata benda)</td>
+              <td>Fi'il → Fa'il → Maf'ul</td>
+              <td><span class="arab-inline" style="font-size:15px;">قَرَأَ زَيْدٌ ٱلْكِتَابَ</span><br>(Zaid membaca buku itu)</td>
+            </tr>
+            <tr style="background:#fff3e0;">
+              <td><strong>Dhamir muttashil (kata ganti menempel)</strong></td>
+              <td><strong>Fi'il + dhamir → Fa'il</strong></td>
+              <td><strong><span class="arab-inline" style="font-size:15px;">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</span><br>(at-takātsur telah melalaikan kalian)</strong></td>
+            </tr>
+          </table>
+          <br>
+          <strong>Dalam ayat ini:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li>Maf'ul bih <span class="arab-inline" style="font-size:15px;">كُمُ</span> adalah dhamir muttashil — wajib menempel di akhir fi'il <span class="arab-inline" style="font-size:15px;">أَلْهَى</span></li>
+            <li>Fa'il <span class="arab-inline" style="font-size:15px;">ٱلتَّكَاثُرُ</span> berupa isim zhahir — otomatis tergeser ke belakang menjadi <em>fa'il muakhkhar</em></li>
+            <li>Urutan ini bukan pengecualian atau pilihan balaghah — melainkan <em>kaidah wajib</em> yang tidak bisa dibolak-balik</li>
+          </ul>
+        </div>
+      </div>
     </td></tr>
-    <tr><td>Makna Frasa</td><td>"Berlomba memperbanyak telah melalaikan kalian" — jumlah verbal yang sempurna: fi'il + maf'ul bih + fa'il. Subjek gramatikal (التَّكَاثُرُ) hadir di akhir untuk memberikan penekanan: <em>inilah biang kelalaian itu</em>.</td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>"berlomba-lomba memperbanyak telah melalaikan kalian"</li>
+        <li>pelaku kelalaian adalah sifat <em>at-takātsur</em> itu sendiri — bukan orang, bukan setan, melainkan <em>perilaku abstrak</em> yang Allah personifikasikan</li>
+        <li>posisi fa'il di akhir memberi <em>penekanan</em> — seperti berkata: <em>"yang telah melalaikan kalian, inilah ia — perlombaan memperbanyak itu!"</em></li>
+      </ul>
+    </td></tr>
     <tr><td>Peran / Kedudukan</td><td>
       <ul class="poin-list">
-        <li><em>Jumlah fi'liyyah kamilah</em> (kalimat verbal yang sempurna) · berdiri sebagai <em>jumlah ibtidā'iyyah</em> (kalimat pembuka) surah</li>
-        <li>Keseluruhan ayat ini merupakan satu kalimat tunggal yang lengkap: fi'il + maf'ul + fa'il</li>
-        <li>Dilanjutkan oleh <a href="102-02.html">ayat 2</a> (<span class="arab-inline">حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</span>) sebagai <em>ḥattā al-ghā'iyyah</em> (penjelas tujuan/akibat)</li>
+        <li>Berperan sebagai <em>jumlah fi'liyyah kamilah</em> (kalimat verbal yang sempurna) — fi'il, maf'ul bih, dan fa'il semua hadir</li>
+        <li>Berkedudukan sebagai <em>jumlah ibtida'iyyah</em> (kalimat pembuka) — tidak punya i'rab karena berdiri sendiri sebagai pembuka surah</li>
+        <li>Ayat ini adalah <em>ayat lengkap</em> (ayah kāmilah) — lengkap secara gramatikal, hanya dilanjutkan oleh <a href="102-02.html">ayat 2</a> (<span class="arab-inline">حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</span>) sebagai penjelas <em>batas waktu</em> kelalaian itu</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- F3: Isnad Majazi (kartu konsep balaghah) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa3">
+    <span class="badge badge-frasa3">FRASA 3 — LAPISAN BALAGHAH (ISNAD MAJAZI)</span>
+    <div class="kartu-arab-besar arab" style="font-size:34px;">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</div>
+    <div class="kartu-arti">— dibaca ulang dari sisi makna kiasan</div>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Struktur</td><td>
+      <ul class="poin-list">
+        <li>Secara gramatikal, <span class="arab-inline">ٱلتَّكَاثُرُ</span> adalah <em>fa'il</em> (pelaku) — yang "melalaikan"</li>
+        <li>Tapi secara hakikat, <em>at-takātsur</em> adalah sebuah <em>perilaku / sifat abstrak</em>, bukan pelaku personal yang bisa "melakukan" sesuatu</li>
+        <li>Yang benar-benar lalai adalah <em>manusia yang terjebak dalam at-takātsur</em> — namun Allah menyandarkan aksi "melalaikan" pada sifatnya, bukan pada pelakunya</li>
+      </ul>
+      <div class="konsep-box" style="margin-top:10px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS At-Takatsur</div>
+        <div class="konsep-label">Penyandaran Kiasan (Isnad Majazi)</div>
+        <div class="konsep-isi">
+          <strong>Perhatikan keunikan ayat ini:</strong><br>
+          Secara logika, yang bisa "melalaikan" adalah pelaku aktif (manusia, setan, pikiran). Tapi di ayat ini yang "melalaikan" adalah <span class="arab-inline" style="font-size:15px;">ٱلتَّكَاثُرُ</span> — sebuah <em>perilaku abstrak</em>. Sebuah sifat tidak bisa benar-benar "melakukan" sesuatu; yang bertindak adalah pelakunya.
+          <br><br>
+          <strong>Ini disebut penyandaran kiasan (<em>isnad majazi</em>):</strong><br>
+          Aksi disandarkan kepada <em>sebabnya</em>, bukan kepada pelaku sejatinya. Teknik ini sering dipakai Al-Qur'an untuk memberi efek <em>dramatisasi</em> — seolah sifat buruk itu punya <em>kekuatan otonom</em> yang menyerang manusia.
+          <br><br>
+          <strong>Efek retoris:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li><em>"At-takātsur"</em> digambarkan seperti musuh aktif yang menyergap manusia dari dalam — bukan sekadar sifat pasif yang manusia pilih</li>
+            <li>Pendengar jadi lebih waspada — karena "musuh" ini tidak datang dari luar, melainkan tumbuh dalam diri sendiri</li>
+            <li>Konsep lengkap <em>isnad majazi</em> sudah dibahas di <a href="101-07.html">ayat Al-Qari'ah 7</a> (<span class="arab-inline" style="font-size:15px;">عِيشَةٍ رَّاضِيَةٍ</span>)</li>
+          </ul>
+          <strong>Contoh lain di Al-Qur'an:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li><span class="arab-inline" style="font-size:15px;">يَوْمًا عَبُوسًا</span> (QS Al-Insan: 10) — "hari yang bermuka masam" — yang bermasam wajah sebenarnya manusianya, bukan harinya</li>
+            <li><span class="arab-inline" style="font-size:15px;">نَهَارُهُ صَائِمٌ</span> — "siangnya puasa" — yang puasa sebenarnya orangnya, bukan siangnya</li>
+          </ul>
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Makna Frasa</td><td>
+      <ul class="poin-list">
+        <li>Terjemahan literalnya adalah: <em>"(perilaku) berlomba-berbangga telah melalaikan kalian"</em></li>
+        <li>tetapi makna sebenarnya adalah: <em>"kalian telah teralihkan perhatiannya — bukan oleh musuh dari luar, melainkan oleh sifat berlomba-bangga yang tumbuh dalam diri kalian sendiri"</em></li>
+      </ul>
+    </td></tr>
+    <tr><td>Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li>Lapisan balaghah yang menambahkan <em>kedalaman makna</em> di atas analisis gramatikal</li>
+        <li>Menjelaskan <em>mengapa</em> Allah memilih bentuk masdar <span class="arab-inline">ٱلتَّكَاثُرُ</span> sebagai fa'il, bukan memilih pelaku personal seperti "manusia" atau "setan"</li>
       </ul>
     </td></tr>
   </table>
@@ -376,116 +597,128 @@
 <!-- §5 ANALISIS TINGKAT 3 -->
 <div class="section-header biru">
   <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
-  <div class="sub-judul">Posisi dan fungsi ayat dalam kerangka surah At-Takatsur</div>
+  <div class="sub-judul">Posisi dan fungsi ayat 1 dalam Surah At-Takatsur</div>
 </div>
 <div class="kartu">
-  <div class="kartu-head warna-kata"><span class="badge badge-kata">KEDUDUKAN AYAT 1</span></div>
+  <div class="kartu-head warna-kata"><span class="badge badge-kata">KEDUDUKAN AYAT 1 — TESIS PEMBUKA SURAH</span></div>
   <table class="kartu-tabel">
-    <tr><td>Posisi</td><td>Ayat pembuka surah · <em>jumlah ibtidā'iyyah</em> (kalimat yang mengawali) · tidak didahului qasam atau nida'</td></tr>
-    <tr><td>Fungsi</td><td>Tesis utama surah: التَّكَاثُرُ telah melalaikan manusia. Seluruh ayat berikutnya merupakan konsekuensi (ayat 2 — sampai ke kubur), peringatan (ayat 3–5), dan ancaman (ayat 6–8).</td></tr>
-    <tr><td>Gaya Bahasa</td><td>
+    <tr><td>Posisi</td><td>Ayat 1 adalah <strong>ayat pembuka</strong> Surah At-Takatsur. Merupakan <em>jumlah ibtida'iyyah</em> (kalimat pembuka yang berdiri sendiri) — tidak didahului qasam (sumpah), nida' (seruan), atau harf athaf (kata sambung). Allah langsung menyampaikan <em>vonis</em> kepada manusia sebagai pembuka surah.</td></tr>
+    <tr><td>Fungsi</td><td>
       <ul class="poin-list">
-        <li><em>Isnad majāzī</em> (sandar kiasan): التَّكَاثُرُ (sifat/perilaku abstrak) dijadikan fa'il aktif yang "melakukan" tindakan — seolah memiliki kekuatan otonom untuk menyerang manusia</li>
-        <li>Kata <em>alhā</em> (melalaikan) lebih tajam dari sekedar "menyibukkan" — ia menyiratkan teralihnya perhatian dari sesuatu yang lebih penting</li>
-        <li>Mukhatab <span class="arab-inline">كُمُ</span> (kalian) bersifat umum: mencakup seluruh manusia, bukan hanya orang kafir</li>
+        <li><strong>Tesis utama surah</strong>: manusia telah dilalaikan oleh sifat <em>at-takātsur</em> (berlomba memperbanyak)</li>
+        <li>Seluruh ayat setelahnya merupakan <em>perincian</em> dari tesis ini: konsekuensi, peringatan, dan ancaman</li>
+        <li>Gaya pembuka ini disebut <em>uslub al-ikhbar al-mubasyir</em> (gaya pernyataan langsung) — menggebrak, tidak bertele-tele</li>
       </ul>
     </td></tr>
-    <tr><td>Hubungan ke Ayat 2</td><td>Ayat 1 (<span class="arab-inline">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</span>) dilanjutkan ayat 2 (<span class="arab-inline">حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</span>) dengan <em>ḥattā ghā'iyyah</em> (hingga): kelalaian berlanjut sampai seseorang mengunjungi kubur — yakni kematian.</td></tr>
+    <tr><td>Struktur Tiga Babak Surah</td><td>
+      <ul class="poin-list">
+        <li><strong>Babak 1 — Diagnosa</strong> (<a href="102-01.html">ayat 1–2</a>): <em>at-takātsur</em> melalaikan hingga manusia mencapai kubur</li>
+        <li><strong>Babak 2 — Peringatan Berlapis</strong> (<a href="102-03.html">ayat 3–5</a>): <em>kallā sawfa ta'lamūn</em> (sekali-kali tidak, kelak kalian akan tahu) — diulang dua kali untuk menegaskan</li>
+        <li><strong>Babak 3 — Konfirmasi Bertingkat</strong> (<a href="102-06.html">ayat 6–8</a>): tingkat keyakinan manusia tentang Jahannam, lalu ditutup dengan hisab</li>
+      </ul>
+    </td></tr>
+    <tr><td>Lingkaran Tematik Surah</td><td>
+      Perhatikan <em>munāsabah</em> (keterhubungan) antara ayat pembuka dan ayat penutup surah:
+      <ul class="poin-list" style="margin-top:6px;">
+        <li>Ayat 1: <span class="arab-inline">ٱلتَّكَاثُرُ</span> (berlomba memperbanyak) — <strong>awal</strong></li>
+        <li>Ayat 8: <span class="arab-inline">ٱلنَّعِيمِ</span> (kenikmatan dunia) — <strong>akhir</strong></li>
+        <li>Keduanya adalah <em>dua sisi yang sama</em>: at-takātsur adalah <em>aktivitasnya</em>, an-na'īm adalah <em>obyeknya</em>. Surah dibuka dengan peringatan terhadap aktivitasnya, ditutup dengan hisab atas obyeknya.</li>
+        <li>Struktur ini disebut <em>al-radd 'alā al-'ajuz al-ṣadr</em> — penutup merujuk kembali ke pembuka.</li>
+      </ul>
+    </td></tr>
+    <tr><td>Hubungan dengan Ayat 2</td><td>
+      Ayat 1 (<span class="arab-inline">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</span>) dilanjutkan <a href="102-02.html">ayat 2</a> (<span class="arab-inline">حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ</span>) dengan <em>ḥattā al-ghā'iyyah</em> (hingga yang menunjukkan batas akhir): <em>"kelalaian berlanjut sampai kalian mengunjungi kubur"</em> — yakni sampai kematian menjemput. Ayat 1–2 membentuk satu kesatuan <em>diagnosa</em> yang tidak boleh dipisah.
+    </td></tr>
   </table>
 </div>
 
 <!-- §6 TADABUR -->
 <div class="section-header tadabur">
   <div class="judul">Tadabur</div>
-  <div class="sub-judul">Renungan makna dan hikmah ayat</div>
+  <div class="sub-judul">Renungan makna dan hikmah ayat 1</div>
 </div>
 <div class="tadabur-box">
   <div class="tadabur-head">
     <span class="badge" style="background:#92400e;color:white;">TADABUR</span>
-    <div class="tadabur-judul">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ — Saat Kelimpahan Menjadi Penjara</div>
+    <div class="tadabur-judul">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ — Ketika Kelimpahan Menjadi Penjara</div>
   </div>
   <div class="tadabur-isi">
-    <p>Allah membuka surah ini bukan dengan "wahai orang-orang yang beriman" atau dengan qasam yang megah — melainkan langsung dengan <em>tuduhan</em>: <strong>"berlomba memperbanyak telah melalaikan kalian."</strong> Ini adalah gaya Al-Qur'an yang menggebrak, membangunkan yang terlena.</p>
-    <p>Perhatikan pilihan kata <strong>أَلْهَى</strong>. Kata ini berbeda dari <em>ansā</em> (lupa total). Alhā berarti teralihkan — kamu masih sadar ada kewajiban kepada Allah, ada kematian yang menunggu, ada akhirat yang nyata — tapi perhatianmu terganggu. Seperti orang yang tahu ia harus shalat tapi terus menunda karena sibuk mengecek portofolio atau bermain media sosial.</p>
-    <p>Dan siapa pelakunya? Bukan orang lain, bukan setan secara langsung, melainkan <strong>التَّكَاثُرُ</strong> itu sendiri — perilaku berlomba-lomba mengumpulkan lebih banyak. Para mufassir menyebut ini mencakup berlomba dalam harta, anak, pengikut, hingga kebanggaan nasab. Di zaman kita: prestise, followers, jabatan, rumah, kendaraan. Objeknya berubah, tapi التَّكَاثُرُ tetap bekerja dengan cara yang sama.</p>
-    <p>Imam Ibnu Katsir rahimahullah menyebutkan bahwa ayat ini turun menegur orang-orang yang larut dalam kebanggaan duniawi hingga melupakan akhirat — bahkan ada riwayat mereka sampai pergi ke kuburan untuk menghitung leluhur demi membuktikan klan mana yang lebih banyak. Inilah التَّكَاثُرُ dalam bentuk paling ekstremnya.</p>
+    <p>Allah Ta'ala membuka surah ini bukan dengan sapaan lembut <em>"wahai orang-orang yang beriman"</em>, bukan pula dengan qasam yang megah seperti <em>"demi masa"</em> atau <em>"demi matahari"</em> — melainkan langsung dengan sebuah <strong>vonis</strong>: <em>"bermegah-megahan telah melalaikan kalian."</em> Gaya pembuka yang menggebrak ini adalah cara Al-Qur'an membangunkan manusia yang sedang terlena, yang sudah terlalu nyaman dalam kelalaiannya sehingga butuh guncangan untuk tersadar.</p>
+    <p>Perhatikan pilihan kata <strong>أَلْهَى</strong>. Kata ini berbeda dari <em>أَنْسَى</em> (melupakan total). <em>Alhā</em> berarti <strong>teralihkan</strong> — manusia masih <em>sadar</em> bahwa ada kewajiban kepada Allah, ada kematian yang menunggu, ada akhirat yang nyata. Tapi perhatiannya <em>teralihkan</em>. Seperti orang yang tahu harus shalat tapi terus menunda karena sibuk mengecek portofolio investasi, atau yang tahu harus menghafal Al-Qur'an tapi habiskan malamnya scrolling sosial media. Mereka tidak lupa — mereka hanya <em>teralihkan</em>.</p>
+    <p>Dan siapa pelakunya? Bukan orang lain, bukan setan secara langsung, melainkan <strong>ٱلتَّكَاثُرُ</strong> itu sendiri. Allah mempersonifikasikan sifat ini sebagai <em>agen aktif</em> yang menyerang manusia dari dalam. Di zaman salaf, <em>at-takātsur</em> muncul dalam bentuk berlomba harta, anak, pengikut, dan nasab suku. Di zaman kita, ia menjelma dalam bentuk berlomba <em>followers</em>, <em>likes</em>, jabatan, merek, dan prestise. Obyeknya berubah-ubah, tapi penyakitnya satu: selalu ingin <em>lebih banyak</em> dari orang lain, selalu mengukur diri dari perbandingan.</p>
+    <p>Imam Ibnu Katsir rahimahullah menukilkan dalam tafsirnya bahwa ayat ini turun menegur orang-orang yang larut dalam kebanggaan duniawi hingga melupakan akhirat. Beliau menyebut riwayat bahwa sebagian orang Arab sampai pergi ke kuburan untuk <em>menghitung</em> leluhur mereka — demi membuktikan klan mana yang lebih banyak jumlahnya. Itulah bentuk <em>at-takātsur</em> paling ekstrem: bahkan orang mati pun diperdagangkan untuk kesombongan orang hidup.</p>
+    <p><strong>Pertanyaan yang perlu kita renungkan:</strong> apa "at-takātsur" yang hari ini mengalihkan perhatian kita? Angka di rekening? Jumlah <em>follower</em>? Merek kendaraan? Luasnya rumah? Prestasi anak? Semua ini tidak salah pada dirinya sendiri — yang salah adalah ketika <em>perlombaan</em> terhadapnya membuat kita lupa pada hakikat tujuan hidup. Rasulullah ﷺ bersabda: <em>"Seandainya anak Adam memiliki satu lembah penuh emas, ia akan menginginkan lembah kedua. Dan tidak akan mengisi mulut anak Adam kecuali tanah (kuburan)."</em> (HR Bukhari dan Muslim).</p>
   </div>
 </div>
 
-<!-- §7 DIAGRAM SVG — PLACEHOLDER -->
+<!-- §7 DIAGRAM SVG -->
 <div class="section-header">
   <div class="judul">Diagram Sintaksis</div>
   <div class="sub-judul">Model-Pohon · Pola-Bertingkat · Surah At-Takatsur 102:1</div>
 </div>
 <div class="diagram-wrapper" id="diagram-ayat1">
-<svg viewBox="0 0 740 335" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 740 340" xmlns="http://www.w3.org/2000/svg"
      style="width:100%;max-width:740px;display:block;margin:0 auto;">
 
-  <!-- ══ BARIS KATA (RTL: kanan = pertama) ══ -->
-  <!-- Kata 1: أَلْهَى · X=590 (paling kanan = kata pertama) -->
-  <text x="590" y="40" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="20" fill="#c2410c" font-weight="700" direction="rtl">أَلْهَى</text>
-  <text x="590" y="57" text-anchor="middle" font-size="8.5" fill="#c2410c">fi'il madhi · bab IV (af'ala)</text>
-  <text x="590" y="69" text-anchor="middle" font-size="8" fill="#888">nāqiṣ wāwī · mabni fatḥ muqaddar</text>
+  <!-- ============================================================ -->
+  <!-- BARIS KATA (3 morfem, RTL: X besar di kanan = kata pertama) -->
+  <!-- أَلْهَى · X=600 (paling kanan = kata pertama dalam ayat) -->
+  <text x="600" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">أَلْهَى</text>
+  <text x="600" y="60" text-anchor="middle" font-size="9" fill="#1a472a">fi'il madhi · Bab IV</text>
+  <text x="600" y="72" text-anchor="middle" font-size="8" fill="#888">mabni fathah muqaddarah</text>
 
-  <!-- Kata 2: كُمُ · X=390 -->
-  <text x="390" y="40" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="20" fill="#1a472a" font-weight="700" direction="rtl">كُمُ</text>
-  <text x="390" y="57" text-anchor="middle" font-size="8.5" fill="#1a472a">dhamir muttashil · maf'ūl bih</text>
-  <text x="390" y="69" text-anchor="middle" font-size="8" fill="#888">fī maḥall naṣb</text>
+  <!-- كُمُ · X=400 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">كُمُ</text>
+  <text x="400" y="60" text-anchor="middle" font-size="9" fill="#1a472a">dhamir-muttashil · mabni dhammah</text>
+  <text x="400" y="72" text-anchor="middle" font-size="8" fill="#888">maf'ul bih (manshub mahallan)</text>
 
-  <!-- Kata 3: ٱلتَّكَاثُرُ · X=155 (paling kiri = kata terakhir) -->
-  <text x="155" y="40" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="18" fill="#1a472a" font-weight="700" direction="rtl">ٱلتَّكَاثُرُ</text>
-  <text x="155" y="57" text-anchor="middle" font-size="8.5" fill="#1a472a">masdar bab VI · fā'il muakhkhar</text>
-  <text x="155" y="69" text-anchor="middle" font-size="8" fill="#888">marfū' · ḍammah zhāhirah</text>
+  <!-- ٱلتَّكَاثُرُ · X=150 (paling kiri = kata terakhir dalam ayat) -->
+  <text x="150" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلتَّكَاثُرُ</text>
+  <text x="150" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim masdar · Bab VI</text>
+  <text x="150" y="72" text-anchor="middle" font-size="8" fill="#888">fa'il muakhkhar (marfu')</text>
 
-  <!-- ══ GARIS VERTIKAL ══ -->
-  <!-- أَلْهَى → turun ke L1 (y=110) · merah solid -->
-  <line x1="590" y1="76" x2="590" y2="110" stroke="#c2410c" stroke-width="2.2"/>
-  <!-- كُمُ → turun ke L1 (y=110) · hijau solid -->
-  <line x1="390" y1="76" x2="390" y2="110" stroke="#1a472a" stroke-width="2.2"/>
-  <!-- ٱلتَّكَاثُرُ → turun langsung ke L2 (y=240) · hijau solid -->
-  <line x1="155" y1="76" x2="155" y2="240" stroke="#1a472a" stroke-width="2.2"/>
+  <!-- ============================================================ -->
+  <!-- GARIS VERTIKAL dari tiap kata ke L1 -->
+  <line x1="600" y1="82" x2="600" y2="150" stroke="#1a472a" stroke-width="2.2"/>
+  <line x1="400" y1="82" x2="400" y2="150" stroke="#1a472a" stroke-width="2.2"/>
+  <line x1="150" y1="82" x2="150" y2="230" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/>
 
-  <!-- ══ L1 — HIJAU SOLID: أَلْهَىٰكُمُ ══ -->
-  <!-- Garis horizontal L1: X=390 ke X=590 -->
-  <line x1="390" y1="110" x2="590" y2="110" stroke="#1a472a" stroke-width="2.2"/>
-  <!-- Label peran di atas garis -->
-  <text x="490" y="107" text-anchor="middle" font-size="7.5" fill="#1a472a" font-style="italic">maf'ūl bih</text>
-  <!-- Segitiga ▼ di midpoint X=490 -->
-  <polygon points="490,110 483,102 497,102" fill="#1a472a"/>
-  <!-- Garis vertikal turun ke node L1 -->
-  <line x1="490" y1="110" x2="490" y2="148" stroke="#1a472a" stroke-width="2.2"/>
-  <!-- NODE L1 — 3 baris -->
-  <text x="490" y="160" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">Jumlah Fi'liyyah (Fi'il + Maf'ūl Bih)</text>
-  <text x="490" y="176" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="15" fill="#1a472a" font-weight="700" direction="rtl">أَلْهَىٰكُمُ</text>
-  <text x="490" y="190" text-anchor="middle" font-size="8" fill="#555">Alhākum — fi'il + dhamir maf'ūl bih</text>
+  <!-- ============================================================ -->
+  <!-- LEVEL 1a — HIJAU SOLID: [fi'il + maf'ul bih] = frasa fi'il + maf'ul -->
+  <!-- Garis horizontal di y=150 dari X=400 ke X=600 -->
+  <line x1="400" y1="150" x2="600" y2="150" stroke="#1a472a" stroke-width="2.2"/>
+  <text x="500" y="146" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">fi'il + maf'ul bih (dhamir muttashil wajib menempel)</text>
+  <polygon points="500,150 493,142 507,142" fill="#1a472a"/>
+  <line x1="500" y1="150" x2="500" y2="182" stroke="#1a472a" stroke-width="2.2"/>
+  <!-- NODE L1a -->
+  <text x="500" y="195" text-anchor="middle" font-size="9" fill="#1a472a" font-style="italic">Fi'il + Maf'ul Bih</text>
+  <text x="500" y="213" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="16" fill="#1a472a" font-weight="700" direction="rtl">أَلْهَىٰكُمُ</text>
+  <text x="500" y="227" text-anchor="middle" font-size="8" fill="#555">alhākum — (sesuatu) telah melalaikan kalian</text>
 
-  <!-- ══ L2 — UNGU PUTUS: أَلْهَىٰكُمُ ٱلتَّكَاثُرُ ══ -->
-  <!-- Garis dari L1 node turun ke L2 horizontal (y=240) -->
-  <line x1="490" y1="193" x2="490" y2="240" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <!-- Garis horizontal L2: X=155 ke X=490 -->
-  <line x1="155" y1="240" x2="490" y2="240" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <!-- Label peran di atas garis L2 -->
-  <text x="310" y="237" text-anchor="middle" font-size="7.5" fill="#5b21b6" font-style="italic">fā'il (pelaku)</text>
-  <!-- Segitiga ▼ di midpoint X=322 -->
-  <polygon points="322,240 315,232 329,232" fill="#5b21b6"/>
-  <!-- Garis vertikal turun ke node L2 -->
-  <line x1="322" y1="240" x2="322" y2="278" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <!-- NODE L2 — 3 baris -->
-  <text x="322" y="290" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">Jumlah Fi'liyyah Kamilah (Ayat 1)</text>
-  <text x="322" y="306" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="13" fill="#5b21b6" font-weight="700" direction="rtl">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</text>
-  <text x="322" y="320" text-anchor="middle" font-size="8" fill="#555">Alhākumut-takāthur — jumlah fi'liyyah kamilah</text>
+  <!-- ============================================================ -->
+  <!-- LEVEL 2 — TEAL PUTUS: [L1a] + [ٱلتَّكَاثُرُ fa'il muakhkhar] = Jumlah Fi'liyyah Kamilah -->
+  <!-- Garis dari L1a node turun ke L2 horizontal (y=260) -->
+  <line x1="500" y1="230" x2="500" y2="260" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- Garis horizontal L2: X=150 ke X=500 -->
+  <line x1="150" y1="260" x2="500" y2="260" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="325" y="256" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">[fi'il + maf'ul bih] + fa'il muakhkhar</text>
+  <polygon points="325,260 318,252 332,252" fill="#0e7490"/>
+  <line x1="325" y1="260" x2="325" y2="292" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- NODE L2 -->
+  <text x="325" y="305" text-anchor="middle" font-size="9" fill="#0e7490" font-style="italic">Jumlah Fi'liyyah Kamilah (Ayat 1 Lengkap)</text>
+  <text x="325" y="323" text-anchor="middle" font-family="'Scheherazade New',serif"
+        font-size="15" fill="#0e7490" font-weight="700" direction="rtl">أَلْهَىٰكُمُ ٱلتَّكَاثُرُ</text>
+  <text x="325" y="337" text-anchor="middle" font-size="8" fill="#555">alhākumut-takātsur — jumlah ibtida'iyyah pembuka surah</text>
 
 </svg>
 <div class="diagram-legenda">
   <div class="legenda-label">LEGENDA</div>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#c2410c" stroke-width="2.5"/></svg>Fi'il madhi أَلْهَى (merah solid)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>L1a — أَلْهَىٰكُمُ (hijau solid)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — Jumlah Fi'liyyah Kamilah (ungu putus)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>L1a — أَلْهَىٰكُمُ fi'il + maf'ul bih (hijau solid)</span>
+  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — Jumlah Fi'liyyah Kamilah (teal putus)</span>
 </div>
 </div>
 
@@ -514,12 +747,12 @@
       if(s.nomor===surah.nomor) o.selected=true; ddS.appendChild(o);
     });
     function isiAyat(n){
-      const dd=document.getElementById('dd-ayat'); dd.innerHTML='<option value="">— Pilih Ayat —</option>';
+      const dd=document.getElementById('dd-ayat'); dd.innerHTML='';
       const ops=getOpsiDropdownAyat(n); if(!ops.length){dd.disabled=true;return;} dd.disabled=false;
       ops.forEach(o=>{const opt=document.createElement('option');opt.value=o.path;opt.textContent=o.label;if(o.value===ayatSaat&&n===surah.nomor)opt.selected=true;dd.appendChild(opt);});
     }
     isiAyat(surah.nomor);
-    document.getElementById('dd-surah').addEventListener('change',function(){const n=parseInt(this.value);if(n)isiAyat(n);else{const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';dd.disabled=true;}});
+    document.getElementById('dd-surah').addEventListener('change',function(){const n=parseInt(this.value);if(n)isiAyat(n);else{const dd=document.getElementById('dd-ayat');dd.innerHTML='';dd.disabled=true;}});
   }
   window.navigasiKeAyat=function(){const p=document.getElementById('dd-ayat').value;if(p)window.location.href=p;else alert('Pilih surah dan ayat terlebih dahulu.');};
   const c=document.getElementById('nav-bawah-container');
