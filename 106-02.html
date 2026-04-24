@@ -9,144 +9,127 @@
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --hijau-gelap:  #1a472a;
-      --hijau-medium: #2d6a4f;
-      --hijau-muda:   #40916c;
-      --biru-tua:     #1e3a8a;
-      --ungu:         #5b21b6;
-      --coklat:       #92400e;
-      --merah-fi:     #c2410c;
-      --emas:         #d4af37;
-      --emas-muda:    #f0d060;
-      --bg-utama:     #f7f5f0;
-      --border:       #e0d9c8;
-      --font-arab:    'Scheherazade New', serif;
-      --font-latin:   'Lato', sans-serif;
+      --hijau-gelap:#1a472a; --hijau-medium:#2d6a4f; --hijau-muda:#40916c;
+      --biru-tua:#1e3a8a; --ungu:#5b21b6; --coklat:#92400e;
+      --merah-fi:#c2410c; --emas:#d4af37; --emas-muda:#f0d060;
+      --bg-utama:#f7f5f0; --border:#e0d9c8;
+      --font-arab:'Scheherazade New',serif; --font-latin:'Lato',sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
-    .arab { font-family: var(--font-arab); direction: rtl; }
-    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
-    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
-    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; }
-    .header-info .hi-label { font-size: .60rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
-    .header-info .hi-surah { font-size: .90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
-    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: .88rem; color: var(--emas); direction: rtl; }
-    .header-info .hi-ayat { font-size: .70rem; color: rgba(255,255,255,.55); margin-top: 3px; }
-    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
-    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
-    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s; max-width: 240px; }
-    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
-    .nav-dropdowns select option { background: var(--hijau-gelap); }
-    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
-    .btn-go:hover { background: var(--emas-muda); }
-    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s; flex-shrink: 0; }
-    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
-    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
-    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
-    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
-    .teks-ayat { font-family: var(--font-arab); font-size: 36px; line-height: 2; color: #1a1a1a; }
-    .transliterasi { margin-top: 10px; font-size: 14px; color: var(--hijau-medium); font-style: italic; }
-    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
-    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
-    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
-    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
-    .section-header .sub-judul { font-size: 12px; color: #a8d5b5; margin-top: 2px; }
-    .section-header.biru { background: #1e3a5f; }
-    .section-header.biru .sub-judul { color: #93c5fd; }
-    .section-header.tadabur { background: #5b3a1a; }
-    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
-    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-    .kartu-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 13px 20px; border-bottom: 1px solid #f0ebe0; }
-    .kartu-head.warna-kata   { background: #f0f7f2; }
-    .kartu-head.warna-harf   { background: #ecfeff; }
-    .kartu-head.warna-fi     { background: #fff7ed; }
-    .kartu-head.warna-frasa1 { background: #eef4fb; }
-    .kartu-head.warna-frasa2 { background: #f5f0fb; }
-    .kartu-head.warna-frasa3 { background: #fdf6ec; }
-    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
-    .badge-kata   { background: var(--hijau-gelap); color: white; }
-    .badge-harf   { background: #0e7490; color: white; }
-    .badge-fi     { background: var(--merah-fi); color: white; }
-    .badge-frasa1 { background: var(--biru-tua); color: white; }
-    .badge-frasa2 { background: var(--ungu); color: white; }
-    .badge-frasa3 { background: var(--coklat); color: white; }
-    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
-    .kartu-arab-besar { font-size: 40px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.6; }
-    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
-    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
-    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
-    .kartu-tabel tr:last-child { border-bottom: none; }
-    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
-    .kartu-tabel td:first-child { color: #777; width: 28%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
-    .kartu-tabel td:last-child  { color: #1a1a1a; width: 72%; }
-    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
-    .tag-n       { background: #dbeafe; color: #1e3a8a; }
-    .tag-harf    { background: #cffafe; color: #155e75; }
-    .tag-fi      { background: #ffedd5; color: #9a3412; }
-    .tag-marfu   { background: #dcfce7; color: #166534; }
-    .tag-manshub { background: #fce7f3; color: #9d174d; }
-    .tag-majrur  { background: #fef3c7; color: #92400e; }
-    .tag-nakirah { background: #fee2e2; color: #991b1b; }
-    .tag-marifah { background: #dbeafe; color: #1e3a8a; }
-    .tag-mabni   { background: #f3e8ff; color: #6b21a8; }
-    .arab-inline { font-family: var(--font-arab); font-size: 20px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
-    .poin-list { list-style: none; padding: 0; margin: 0; }
-    .poin-list li { padding: 3px 0 3px 16px; position: relative; }
-    .poin-list li::before { content: '·'; position: absolute; left: 4px; color: #aaa; }
-    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
-    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
-    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
-    .muqaranah-box { background: #f0f9ff; border: 1px solid #bae6fd; border-left: 5px solid #0369a1; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
-    .muqaranah-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0369a1; margin-bottom: 10px; }
-    .muqaranah-baris { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
-    .muqaranah-baris:last-of-type { margin-bottom: 0; }
-    .muqaranah-arab { font-family: var(--font-arab); font-size: 22px; color: #1a1a1a; direction: rtl; min-width: 160px; text-align: right; flex-shrink: 0; }
-    .muqaranah-detail { font-size: 13px; color: #444; line-height: 1.6; }
-    .muqaranah-divider { border: none; border-top: 1px dashed #bae6fd; margin: 8px 0; }
-    .tashrif-box { background: #fff8f0; border: 1px solid #fed7aa; border-left: 5px solid #c2410c; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
-    .tashrif-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #c2410c; margin-bottom: 10px; }
-    .tashrif-isi { font-size: 13px; color: #374151; line-height: 1.9; }
-    .tashrif-kotak-wrap { display: flex; align-items: stretch; gap: 0; margin: 12px 0 8px; flex-wrap: wrap; }
-    .tashrif-kotak { border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 12px; text-align: center; min-width: 110px; flex: 1; }
-    .tashrif-kotak.akar { background: #f0f7f2; border-color: #1a472a; }
-    .tashrif-kotak.subyek { background: #fff3e0; border: 2px solid #c2410c; }
-    .tashrif-kotak-label { font-size: 9px; color: #888; font-style: italic; margin-bottom: 4px; }
-    .tashrif-kotak-arab { font-family: var(--font-arab); font-size: 22px; direction: rtl; display: block; line-height: 1.6; }
-    .tashrif-kotak.akar .tashrif-kotak-arab { color: #1a472a; font-size: 16px; letter-spacing: 3px; font-family: var(--font-latin); font-weight: 700; }
-    .tashrif-kotak.subyek .tashrif-kotak-arab { color: #c2410c; font-weight: 700; }
-    .tashrif-panah { display: flex; align-items: center; padding: 0 4px; font-size: 18px; color: #c2410c; font-weight: 700; }
-    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
-    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
-    .tadabur-isi { padding: 18px 20px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
-    .tadabur-isi p { margin-bottom: 10px; }
-    .tadabur-isi p:last-child { margin-bottom: 0; }
-    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 30px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
-    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
-    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
-    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
-    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
-    .video-section { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
-    .video-header  { text-align: center; margin-bottom: 18px; }
-    .video-badge   { display: inline-block; background: var(--emas); color: #1a1a1a; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 12px; }
-    .video-judul   { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
-    .video-sub     { font-size: 13px; color: #777; }
-    .nav-bawah { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .nav-btn { display: inline-block; padding: 9px 20px; border: 1px solid var(--hijau-gelap); color: var(--hijau-gelap); border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: all .2s; }
-    .nav-btn:hover { background: var(--hijau-gelap); color: white; }
-    .nav-info { font-size: 13px; color: #aaa; text-align: center; }
-    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
-    footer a { color: var(--emas); text-decoration: none; }
-    @media (max-width: 680px) {
-      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
-      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
-      .container { padding: 20px 14px; }
-      .teks-ayat { font-size: 26px; }
-      .kartu-arab-besar { font-size: 34px; }
-      .tashrif-kotak-wrap { gap: 4px; }
-      .tashrif-kotak { min-width: 80px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-latin);background:var(--bg-utama);color:#1c1c1c;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
+    .arab{font-family:var(--font-arab);direction:rtl;}
+    header{background:var(--hijau-gelap);color:white;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
+    .header-info{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;justify-content:center;}
+    .header-info .hi-label{font-size:.60rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas);margin-bottom:3px;}
+    .header-info .hi-surah{font-size:.90rem;font-weight:700;color:white;display:flex;align-items:baseline;gap:10px;}
+    .header-info .hi-surah .arab-surah{font-family:var(--font-arab);font-size:.88rem;color:var(--emas);direction:rtl;}
+    .header-info .hi-ayat{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:3px;}
+    .nav-dropdowns{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .dropdown-wrapper{display:flex;flex-direction:column;gap:3px;}
+    .nav-dropdowns label{font-size:.72rem;color:rgba(255,255,255,.65);white-space:nowrap;}
+    .nav-dropdowns select{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;font-family:var(--font-latin);font-size:.82rem;cursor:pointer;outline:none;transition:background .2s;max-width:240px;}
+    .nav-dropdowns select:hover,.nav-dropdowns select:focus{background:rgba(255,255,255,.2);border-color:var(--emas);}
+    .nav-dropdowns select option{background:var(--hijau-gelap);}
+    .btn-go{background:var(--emas);color:var(--hijau-gelap);border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-latin);font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s;align-self:flex-end;}
+    .btn-go:hover{background:var(--emas-muda);}
+    .nav-home{color:#1a472a;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;background:#c8d0c8;border:1px solid #b0bab0;border-radius:8px;padding:6px 12px;transition:background .2s;flex-shrink:0;}
+    .nav-home:hover{background:#e8f0e8;border-color:var(--emas);}
+    .container{max-width:780px;width:100%;margin:0 auto;padding:32px 24px;flex:1;}
+    .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
+    .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
+    .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2.2;color:#1a1a1a;}
+    .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
+    .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
+    .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
+    .section-header .judul{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;}
+    .section-header .sub-judul{font-size:12px;color:#a8d5b5;margin-top:2px;}
+    .section-header.biru{background:#1e3a5f;} .section-header.biru .sub-judul{color:#93c5fd;}
+    .section-header.tadabur{background:#5b3a1a;} .section-header.tadabur .sub-judul{color:var(--emas);opacity:.8;}
+    .kartu{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .kartu-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid #f0ebe0;}
+    .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
+    .kartu-head.warna-fi{background:#fff7ed;} .kartu-head.warna-frasa1{background:#eef4fb;}
+    .kartu-head.warna-frasa2{background:#f5f0fb;}
+    .kartu-head.warna-frasa3{background:#ecfdf5;}
+    .kartu-head.warna-frasa4{background:#fefce8;}
+    .kartu-head.warna-frasa5{background:#fef2f2;}
+    .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
+    .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
+    .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
+    .badge-frasa2{background:var(--ungu);color:white;}
+    .badge-frasa3{background:#047857;color:white;}
+    .badge-frasa4{background:#a16207;color:white;}
+    .badge-frasa5{background:#991b1b;color:white;}
+    .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
+    .kartu-arti{font-size:13px;color:#555;font-style:italic;}
+    .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
+    .kartu-tabel tr{border-bottom:1px solid #f5f0e8;} .kartu-tabel tr:last-child{border-bottom:none;}
+    .kartu-tabel td{padding:9px 20px;vertical-align:top;word-wrap:break-word;}
+    .kartu-tabel td:first-child{color:#777;width:22%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+    .kartu-tabel td:last-child{color:#1a1a1a;width:78%;}
+    .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.3px;margin-right:4px;margin-bottom:2px;}
+    .tag-n{background:#dbeafe;color:#1e3a8a;} .tag-harf{background:#cffafe;color:#155e75;}
+    .tag-fi{background:#ffedd5;color:#9a3412;} .tag-marfu{background:#dcfce7;color:#166534;}
+    .tag-manshub{background:#fce7f3;color:#9d174d;} .tag-majrur{background:#fef3c7;color:#92400e;}
+    .tag-nakirah{background:#fee2e2;color:#991b1b;} .tag-marifah{background:#dbeafe;color:#1e3a8a;}
+    .tag-mabni{background:#f3e8ff;color:#6b21a8;}
+    .arab-inline{font-family:var(--font-arab);font-size:20px;color:var(--hijau-gelap);direction:rtl;display:inline-block;}
+    .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
+    .poin-list{list-style:none;padding:0;margin:0;}
+    .poin-list li{padding:3px 0 3px 16px;position:relative;}
+    .poin-list li::before{content:'\2022';position:absolute;left:4px;color:#1a472a;font-weight:700;}
+    /* Dhamir badge V14 */
+    .badge-dhamir-muttashil{background:#0284c7;color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.3px;margin-right:4px;}
+    /* Tashrif */
+    .tashrif-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .tashrif-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:10px;}
+    .tashrif-grid{display:grid;grid-template-columns:1fr 28px 1fr 1fr 28px 1fr;grid-template-rows:auto auto;gap:10px 0;margin:12px 0 8px;align-items:center;}
+    .tashrif-grid .tashrif-panah{justify-content:center;font-size:18px;color:#c2410c;font-weight:700;display:flex;align-items:center;}
+    .tashrif-kotak{border:1px solid #fed7aa;border-radius:6px;padding:8px 12px;text-align:center;}
+    .tashrif-kotak.akar{background:#f0f7f2;border-color:#1a472a;}
+    .tashrif-kotak.subyek{background:#fff3e0;border:2px solid #c2410c;}
+    .tashrif-kotak-label{font-size:9px;color:#888;font-style:italic;margin-bottom:4px;}
+    .tashrif-kotak-arab{font-family:var(--font-arab);font-size:22px;direction:rtl;display:block;line-height:1.6;}
+    .tashrif-kotak.akar .tashrif-kotak-arab{color:#1a472a;font-size:22px;}
+    .tashrif-kotak.subyek .tashrif-kotak-arab{color:#c2410c;font-weight:700;}
+    .tashrif-isi{font-size:12.5px;color:#374151;line-height:1.8;margin-top:8px;}
+    .link-eksternal-wrapper{margin-top:10px;padding-top:8px;border-top:1px dashed #d1c7b0;font-size:12px;color:#374151;line-height:1.7;}
+    .link-eksternal{display:inline-block;margin-top:4px;padding:4px 10px;background:#fff7ed;border:1px solid #fbbf24;border-radius:4px;color:#92400e;text-decoration:none;font-size:11.5px;font-weight:600;word-break:break-all;}
+    .link-eksternal:hover{background:#fef3c7;border-color:#d97706;}
+    /* Konsep / iltifat boxes */
+    .iltifat-box{background:#fffbeb;border:1px solid #fde68a;border-left:5px solid #d97706;border-radius:10px;padding:14px 18px;margin-top:10px;}
+    .iltifat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b45309;margin-bottom:8px;}
+    .iltifat-isi{font-size:13px;color:#374151;line-height:1.85;}
+    .konsep-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
+    .konsep-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:8px;}
+    .konsep-isi{font-size:13px;color:#374151;line-height:1.9;}
+    /* Tadabur */
+    .tadabur-box{background:white;border:1px solid var(--border);border-left:5px solid var(--emas);border-radius:10px;margin-bottom:20px;overflow:hidden;}
+    .tadabur-head{background:#fdf6ec;padding:12px 20px;border-bottom:1px solid #f0e8d0;display:flex;align-items:center;gap:10px;}
+    .tadabur-judul{font-size:13px;font-weight:700;color:#78350f;}
+    .badge-tadabur{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;background:#92400e;color:white;letter-spacing:.5px;}
+    .tadabur-isi{padding:18px 20px;font-size:14.5px;line-height:1.9;color:#2d2d2d;}
+    .tadabur-isi p{margin-bottom:10px;} .tadabur-isi p:last-child{margin-bottom:0;}
+    /* Diagram */
+    .diagram-wrapper{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;margin-bottom:20px;overflow-x:auto;}
+    .diagram-legenda{margin-top:12px;background:#f8f6f1;border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:11px;color:#444;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;}
+    .legenda-label{font-weight:700;color:#888;letter-spacing:.5px;width:100%;margin-bottom:4px;}
+    .legenda-item{display:inline-flex;align-items:center;gap:5px;}
+    /* Nav / footer */
+    footer{background:var(--hijau-gelap);color:rgba(255,255,255,.6);text-align:center;padding:16px 24px;font-size:12px;}
+    footer a{color:var(--emas);text-decoration:none;}
+    .nav-bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 8px;flex-wrap:wrap;}
+    .nav-btn{background:white;border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;transition:background .2s;}
+    .nav-btn:hover{background:#e8f0e8;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda{background:var(--hijau-gelap);color:white;border-color:var(--hijau-gelap);}
+    .nav-btn.beranda:hover{background:var(--hijau-medium);}
+    .nav-info{font-size:12px;color:#888;text-align:center;flex:1;}
+    @media (max-width:680px){
+      .header-inner{height:auto;padding:12px 0;flex-wrap:wrap;}
+      .nav-dropdowns{flex-direction:column;align-items:flex-start;gap:6px;}
+      .container{padding:20px 14px;}
+      .teks-ayat{font-size:26px;} .kartu-arab-besar{font-size:34px;}
     }
   </style>
 </head>
@@ -155,11 +138,9 @@
 <header>
   <div class="header-inner">
     <a href="index.html" class="header-info">
-      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
-      <span class="hi-surah" id="hi-surah-text">
-        Surah Al-Quraisy <span class="arab-surah">قُرَيْش</span>
-      </span>
-      <span class="hi-ayat" id="hi-ayat-text">Ayat 2 · (106:2)</span>
+      <div class="hi-label">Grammar Al-Qur'an</div>
+      <div class="hi-surah">Al-Quraisy · 106 <span class="arab-surah">قُرَيْشٍ</span></div>
+      <div class="hi-ayat" id="hi-ayat-text">Ayat 2 · (106:2)</div>
     </a>
     <div class="nav-dropdowns">
       <div class="dropdown-wrapper">
@@ -170,923 +151,819 @@
         <label for="dd-ayat">Pilih Ayat</label>
         <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
       </div>
-      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka →</button>
     </div>
     <a href="index.html" class="nav-home">⌂ Beranda</a>
   </div>
 </header>
 
-
 <div class="container">
 
-  <!-- § 1 — AYAT LENGKAP -->
-  <div class="ayat-box">
-    <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Quraisy : 2</div>
-    <div class="teks-ayat arab">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</div>
-    <div class="transliterasi">Īlāfihim riḥlata al-shitā'i wa al-ṣaif</div>
-    <div class="terjemahan">"(yaitu) kebiasaan mereka melakukan perjalanan pada musim dingin dan musim panas"</div>
+<!-- §1 AYAT BOX -->
+<div class="ayat-box">
+  <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Quraisy : 2</div>
+  <div class="teks-ayat arab">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</div>
+  <div class="terjemahan">"(yaitu) kebiasaan mereka melakukan perjalanan pada musim dingin dan musim panas"</div>
+</div>
+
+<!-- §2 KONTEKS -->
+<div class="konteks-box">
+  <strong>Hubungan dengan Ayat 1:</strong> Ayat 2 adalah <strong>badal</strong> (بَدَل — pengganti penjelas) atau <strong>'athf bayan</strong> (عَطْف بَيَان — sambungan penjelas) dari <span class="arab-inline">إِيلَافِ قُرَيْشٍ</span> di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a>. Kata <span class="arab-inline">إِيلَافِهِمْ</span> mengulang <span class="arab-inline">إِيلَافِ</span> dari ayat 1 — hanya mudhaf-ilaih-nya saja yang diganti: dari isim 'alam <span class="arab-inline">قُرَيْشٍ</span> menjadi dhamir <span class="arab-inline">هِمْ</span>. Lalu ayat 2 menambahkan <strong>maf'ul bih</strong> (obyek langsung) yang tidak ada di ayat 1: <span class="arab-inline">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> — "perjalanan musim dingin dan musim panas".
+  <br><br>
+  <strong>Keistimewaan gramatikal:</strong> <span class="arab-inline">إِيلَافِهِمْ</span> adalah isim masdar (isim aksi) yang <strong>beramal seperti fi'il</strong> (<em>yaʿmalu ʿamal al-fiʿl</em>) — ia bukan sekadar kata benda statis, tetapi mengambil maf'ul bih seperti layaknya fi'il <span class="arab-inline">آلَفَ</span>. Di sinilah letak keindahan bahasa Arab: satu kata masdar bisa mengaktifkan seluruh dinamika sintaksis kalimat fi'liyyah dalam balutan struktur ismiyyah.
+  <br><br>
+  <strong>Dua Perjalanan Dagang:</strong> <span class="arab-inline">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> merujuk pada tradisi ekonomi Quraisy pra-Islam: perjalanan <strong>musim dingin</strong> ke Yaman (selatan) untuk mengambil rempah-rempah, kemenyan, dan barang dari Afrika &amp; India; dan perjalanan <strong>musim panas</strong> ke Syam/Suriah (utara) untuk gandum, pakaian, dan barang-barang dari Mediterania &amp; Persia. Kedua perjalanan ini adalah <em>nadi ekonomi Mekah</em>, dan keamanan mereka adalah nikmat khusus yang tidak dimiliki kafilah dagang Arab lainnya.
+</div>
+
+<!-- §3 ANALISIS TINGKAT 1 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
+  <div class="sub-judul">Enam morfem · إِيلَافِ · هِمْ · رِحْلَةَ · الشِّتَاءِ · وَ · الصَّيْفِ</div>
+</div>
+
+<!-- K1: إِيلَافِ (bagian dari إِيلَافِهِمْ) -->
+<div class="kartu">
+  <div class="kartu-head warna-kata">
+    <span class="badge badge-kata">ISIM · isim-masdar bab IV · mudhaf · badal / 'athf bayan · (106:2:1)</span>
+    <span class="kartu-arab-besar arab">إِيلَافِ</span>
+    <span class="kartu-arti">"pembiasaan" — isim masdar yang beramal seperti fi'il, mudhaf kepada هِمْ</span>
   </div>
-
-
-  <!-- § 2 — CATATAN KONTEKS -->
-  <div class="konteks-box">
-    <strong>Catatan konteks:</strong> Ayat 2 merupakan
-    <strong>بَدَل</strong> (badal — pengganti/penjelas) dari
-    <span class="arab-inline">لِإِيلَافِ قُرَيْشٍ</span> di
-    <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a> —
-    atau lebih tepatnya <strong>عَطْف بَيَان</strong>
-    (athf bayan — sambungan penjelas) yang merinci isi kata
-    <span class="arab-inline">إِيلَافِ قُرَيْشٍ</span>.
-    Kata <span class="arab-inline">إِيلَافِهِمْ</span> mengulang kata
-    <span class="arab-inline">إِيلَافِ</span> dari ayat 1, namun mudhaf ilaih-nya
-    diganti dari <span class="arab-inline">قُرَيْشٍ</span> (isim alam — nama diri)
-    menjadi <span class="arab-inline">هِمْ</span> (dhamir — kata ganti),
-    lalu ditambahkan maf'ul bih-nya:
-    <span class="arab-inline">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>.
-    <br><br>
-    Keistimewaan gramatikal ayat ini:
-    <span class="arab-inline">إِيلَافِهِمْ</span> adalah isim masdar (isim aksi) yang
-    <strong>يَعْمَلُ عَمَلَ الْفِعْل</strong>
-    (ya'malu 'amal al-fi'l — beramal seperti fi'il),
-    sehingga mampu mengambil maf'ul bih (obyek langsung) yaitu
-    <span class="arab-inline">رِحْلَةَ</span> yang manshub.
-    Ini berbeda dari isim masdar biasa yang tidak mengambil maf'ul.
-    <br><br>
-    <span class="arab-inline">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
-    merujuk kepada dua perjalanan dagang tahunan Quraisy yang telah menjadi tradisi aman:
-    perjalanan <strong>musim dingin</strong> ke Yaman (selatan) untuk rempah-rempah dan kemenyan,
-    dan perjalanan <strong>musim panas</strong> ke Syam/Syria (utara) untuk gandum dan pakaian.
-    Kata <span class="arab-inline">وَالصَّيْفِ</span> —
-    <strong>وَاو الْعَطْف</strong> (waw athf — waw penghubung setara)
-    menghubungkan مَعْطُوف
-    <span class="arab-inline">الصَّيْفِ</span>
-    kepada مَعْطُوف عَلَيْهِ
-    <span class="arab-inline">الشِّتَاءِ</span> —
-    menjadikan keduanya dua mudhaf ilaih dari satu
-    <span class="arab-inline">رِحْلَةَ</span>.
-  </div>
-
-
-  <!-- § 3 — ANALISIS TINGKAT 1: KATA -->
-  <div class="section-header">
-    <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
-    <div class="sub-judul">إِيلَافِ · هِمْ · رِحْلَةَ · الشِّتَاءِ · وَ · الصَّيْفِ — enam morfem</div>
-  </div>
-
-
-  <!-- MORFEM 1: إِيلَافِ (dalam إِيلَافِهِمْ) -->
-  <div class="kartu">
-    <div class="kartu-head warna-kata">
-      <span class="badge badge-kata">ISIM · (106:2:1) · مَصْدَر · مُضَاف · بَدَل / عَطْف بَيَان من إِيلَافِ قُرَيْشٍ</span>
-      <span class="kartu-arab-besar arab">إِيلَافِ</span>
-      <span class="kartu-arti">"pembiasaan" — isim masdar (isim aksi), mudhaf kepada هِمْ, bagian dari إِيلَافِهِمْ</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Jenis kata</td>
-        <td>
-          <span class="tag tag-n">Isim</span>
-          Isim masdar (مَصْدَر — isim aksi) dari fi'il mazid bab IV
-          <strong>آلَفَ يُؤْلِفُ إِيلَافًا</strong> —
-          "menjadikan seseorang terbiasa / mengakrabkan".
-          Sama persis dengan <span class="arab-inline">إِيلَافِ</span> di
-          <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a>,
-          namun kini mudhaf ilaih-nya adalah dhamir
-          <span class="arab-inline">هِمْ</span> bukan
-          <span class="arab-inline">قُرَيْشٍ</span>.
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> <strong>isim masdar</strong> (isim aksi) dari fi'il mazid bab IV <span class="arab-inline" style="font-size:16px;">آلَفَ يُؤْلِفُ إِيلَافًا</span> — sama persis dengan <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a>, namun di sini mudhaf-ilaih-nya adalah dhamir <span class="arab-inline" style="font-size:16px;">هِمْ</span> (bukan isim 'alam <span class="arab-inline" style="font-size:16px;">قُرَيْشٍ</span>)</li>
+        <li>Keistimewaan istimewa di ayat ini: isim masdar ini <strong>beramal seperti fi'il</strong> — ia mengambil <em>maf'ul bih</em> (obyek langsung) yaitu <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> (manshub), sebagaimana fi'il <span class="arab-inline" style="font-size:16px;">آلَفَ</span> mengambil maf'ul bih</li>
+        <li>Bentuknya mengikuti proses morfologis <em>ibdal hamzah → ya' madd</em> yang sudah dibahas rinci di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a></li>
+      </ul>
+      <div class="konsep-box" style="margin-top:12px;">
+        <div class="konsep-label">Konsep Gramatikal dalam QS Al-Quraisy</div>
+        <div class="konsep-label">Masdar 'Amil — Isim Masdar yang Beramal seperti Fi'il</div>
+        <div class="konsep-isi">
+          <strong>Apa itu masdar 'amil?</strong><br>
+          Dalam bahasa Arab, <em>isim masdar</em> (kata benda aksi) biasanya hanya berperan statis sebagai isim. Tetapi dalam kondisi tertentu, masdar bisa <strong>beramal seperti fi'il asalnya</strong> — yaitu: mengambil <em>fa'il</em> (subyek), <em>maf'ul bih</em> (obyek langsung), <em>maf'ul li-ajlih</em> (sebab), dan sebagainya. Inilah yang disebut <strong>al-masdar al-'āmil</strong> (المَصْدَر العَامِل — masdar yang beramal).
           <br><br>
-          Isim masdar ini bersifat <strong>يَعْمَلُ عَمَلَ الْفِعْل</strong>
-          (ya'malu 'amal al-fi'l — beramal seperti fi'il):
-          ia mengambil maf'ul bih (obyek langsung) berupa
-          <span class="arab-inline">رِحْلَةَ</span> yang manshub,
-          sebagaimana fi'il آلَفَ mengambil maf'ul bih.
-        </td>
-      </tr>
-      <tr>
-        <td>Arti</td>
-        <td>
-          "Pembiasaan mereka" — إِيلَافِهِمْ menegaskan ulang bahwa yang dimaksud
-          di ayat 1 adalah pembiasaan yang dimiliki kaum Quraisy secara khusus,
-          lalu merinci bentuknya: dua perjalanan dagang musiman yang aman
-        </td>
-      </tr>
-      <tr>
-        <td>Akar &amp; Tashrif</td>
-        <td>
-          Akar: <strong>أ-ل-ف</strong> — lihat tashrif lengkap di
-          <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a>
-          <div class="tashrif-box">
-            <div class="tashrif-label">TASHRIF — آلَفَ · بَاب IV (أَفْعَلَ) — pengulangan dari ayat 1</div>
-            <div class="tashrif-kotak-wrap">
-              <div class="tashrif-kotak akar">
-                <div class="tashrif-kotak-label">akar kata</div>
-                <span class="tashrif-kotak-arab">أ-ل-ف</span>
-              </div>
-              <div class="tashrif-panah">→</div>
-              <div class="tashrif-kotak">
-                <div class="tashrif-kotak-label">madhy (هو) · bab IV</div>
-                <span class="tashrif-kotak-arab">آلَفَ</span>
-              </div>
-              <div class="tashrif-panah">→</div>
-              <div class="tashrif-kotak">
-                <div class="tashrif-kotak-label">mudhari' (هو)</div>
-                <span class="tashrif-kotak-arab">يُؤْلِفُ</span>
-              </div>
-              <div class="tashrif-panah">→</div>
-              <div class="tashrif-kotak subyek">
-                <div class="tashrif-kotak-label">masdar — dalam ayat ini</div>
-                <span class="tashrif-kotak-arab">إِيلَافِ</span>
-              </div>
-            </div>
+          <strong>Syarat masdar beramal:</strong>
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li>Masdar diucapkan bersambung dengan fa'il-nya (secara eksplisit atau via idhafah)</li>
+            <li>Masdar punya makna yang setara dengan fi'il aktif (bukan hasil aksi)</li>
+            <li>Kalimat bisa digantikan dengan fi'il madhy/mudhari' + fa'il tanpa mengubah makna dasar</li>
+          </ul>
+          <strong>Penerapan di ayat ini:</strong><br>
+          <span class="arab-inline" style="font-size:15px;">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ</span> (masdar bentuk) ≈ <span class="arab-inline" style="font-size:15px;">أَنْ آلَفُوا رِحْلَةَ الشِّتَاءِ</span> (fi'il bentuk) — "bahwa mereka membiasakan perjalanan musim dingin".
+          <br><br>
+          <strong>Pengaruh pada i'rab:</strong> Karena masdar beramal seperti fi'il <em>muta'addi</em> (transitif), <span class="arab-inline" style="font-size:15px;">رِحْلَةَ</span> mendapat i'rab <strong>manshub</strong> sebagai maf'ul bih — bukan majrur sebagai mudhaf-ilaih. Di sinilah keindahan gramatikal Al-Qur'an: satu kata <span class="arab-inline" style="font-size:15px;">إِيلَافِهِمْ</span> menggabungkan ketegasan ismiyyah (statis, ma'rifah via idhafah) dengan dinamika fi'liyyah (beraksi, mengambil obyek).
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>"Pembiasaan mereka" — menegaskan ulang bahwa yang dimaksud di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a> adalah pembiasaan yang dimiliki kaum Quraisy secara khusus</li>
+        <li>Lalu merinci bentuk konkret pembiasaan itu: dua perjalanan dagang musiman yang aman</li>
+        <li>Pola penyampaian: <em>ijmal</em> (global, di ayat 1) → <em>tafshil</em> (rinci, di ayat 2)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar &amp; Tashrif</td><td>
+      Akar: <strong><span class="arab-inline" style="font-size:16px;">أ-ل-ف</span></strong> (bab IV · <span class="arab-inline" style="font-size:16px;">أَفْعَلَ</span>) — tashrif lengkap sudah dibahas di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a>. Berikut ringkasan ulangnya:
+      <div class="tashrif-box">
+        <div class="tashrif-label">Tashrif — آلَفَ (pengulangan dari ayat 1)</div>
+        <div class="tashrif-isi">
+          Madhy bab IV: <span class="arab-inline" style="font-size:16px;">آلَفَ</span>. Mudhari': <span class="arab-inline" style="font-size:16px;">يُؤْلِفُ</span>. Masdar: <span class="arab-inline" style="font-size:16px;">إِيلَافٌ</span> (dengan ibdal hamzah → ya' madd).
+        </div>
+        <div class="tashrif-grid">
+          <div class="tashrif-kotak akar">
+            <div class="tashrif-kotak-label">akar kata</div>
+            <span class="tashrif-kotak-arab" style="font-size:16px;letter-spacing:3px;font-family:var(--font-latin);font-weight:700;">أ-ل-ف</span>
           </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Status i'rab</td>
-        <td>
-          <span class="tag tag-majrur">Majrur</span>
-          Majrur karena menjadi <strong>بَدَل / عَطْف بَيَان</strong>
-          (badal/athf bayan — pengganti/penjelas) dari
-          <span class="arab-inline">إِيلَافِ</span> di ayat 1 yang majrur bi al-lam.
-          Tanda: <strong>kasrah</strong>. Tanwin gugur karena mudhaf kepada هِمْ
-        </td>
-      </tr>
-      <tr>
-        <td>Jumlah</td>
-        <td>Mufrad (tunggal)</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>Mudzakkar</td>
-      </tr>
-      <tr>
-        <td>Identitas</td>
-        <td>
-          <span class="tag tag-marifah">Ma'rifah</span>
-          Ma'rifah bi al-idhafah — menjadi ma'rifah karena mudhaf kepada
-          <span class="arab-inline">هِمْ</span> (dhamir, selalu ma'rifah)
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li><strong>مُضَاف</strong> (mudhaf — kata yang bersandar) kepada هِمْ</li>
-            <li><strong>بَدَل / عَطْف بَيَان</strong> dari إِيلَافِ قُرَيْشٍ di ayat 1 — mahall جرّ</li>
-            <li>Beramal seperti fi'il: mengambil مَفْعُول بِهِ (maf'ul bih — obyek langsung) berupa رِحْلَةَ</li>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak">
+            <div class="tashrif-kotak-label">madhy (هو) · bab IV</div>
+            <span class="tashrif-kotak-arab">آلَفَ</span>
+          </div>
+          <div class="tashrif-kotak">
+            <div class="tashrif-kotak-label">mudhari' (هو)</div>
+            <span class="tashrif-kotak-arab">يُؤْلِفُ</span>
+          </div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak subyek">
+            <div class="tashrif-kotak-label">masdar · dalam ayat ini</div>
+            <span class="tashrif-kotak-arab">إِيلَافِ</span>
+          </div>
+        </div>
+        <div class="link-eksternal-wrapper">
+          Rujukan konjugasi lengkap fi'il <span class="arab-inline" style="font-size:15px;">آلَفَ</span> di Reverso Conjugator:
+          <br>
+          <a class="link-eksternal" href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%A2%D9%84%D9%81.html" target="_blank" rel="noopener">Buka konjugasi آلَفَ di Reverso →</a>
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Status i'rab</td><td>
+      <span class="tag tag-majrur">Majrur</span>
+      Majrur karena menjadi <strong>badal / 'athf bayan</strong> dari <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a> (yang majrur bi al-lam) — badal mengikuti i'rab mubdal-minhu-nya. Tanda: <strong>kasrah zhahirah</strong>. Tanwin gugur karena mudhaf kepada <span class="arab-inline" style="font-size:16px;">هِمْ</span>.
+    </td></tr>
+    <tr><td>Jumlah</td><td>Mufrad (tunggal)</td></tr>
+    <tr><td>Gender</td><td>Mudzakkar</td></tr>
+    <tr><td>Identitas</td><td>
+      <span class="tag tag-marifah">Ma'rifah</span>
+      Ma'rifah bi al-idhafah — menjadi ma'rifah karena mudhaf kepada dhamir <span class="arab-inline" style="font-size:16px;">هِمْ</span> (dhamir selalu ma'rifah)
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li><strong>Mudhaf</strong> (kepala idhafah) — bersandar kepada dhamir <span class="arab-inline" style="font-size:16px;">هِمْ</span>, membentuk idhafah <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span></li>
+        <li><strong>Badal / 'athf bayan</strong> dari <span class="arab-inline" style="font-size:16px;">إِيلَافِ قُرَيْشٍ</span> di ayat 1 — berada dalam kedudukan <em>majrur</em> (mahall jarr)</li>
+        <li><strong>Masdar 'amil</strong> — mengambil maf'ul bih (obyek langsung) berupa <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> yang manshub</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K2: هِمْ -->
+<div class="kartu">
+  <div class="kartu-head warna-kata">
+    <span class="badge badge-kata">ISIM · dhamir-muttashil · mudhaf-ilaih · (106:2:2)</span>
+    <span class="kartu-arab-besar arab">هِمْ</span>
+    <span class="kartu-arti">"mereka" — dhamir-muttashil jamak mudzakkar, mudhaf-ilaih dari إِيلَافِ</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> <span class="badge-dhamir-muttashil">DHAMIR-MUTTASHIL</span> dhamir-muttashil (kata ganti yang melekat) — <strong>jamak mudzakkar ghaib</strong> (mereka, laki-laki, orang ketiga)</li>
+        <li>Melekat pada isim <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> sebagai <strong>mudhaf-ilaih</strong> (kata tempat bersandar dalam idhafah)</li>
+        <li>Bentuk aslinya <span class="arab-inline" style="font-size:16px;">هُمْ</span> (dengan dhammah untuk posisi marfu') — berubah menjadi <span class="arab-inline" style="font-size:16px;">هِمْ</span> (dengan kasrah) karena mengikuti harakat majrur kata sebelumnya (<span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> yang majrur)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>"Mereka (punya)" — merujuk kepada <span class="arab-inline" style="font-size:16px;">قُرَيْشٍ</span> di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a></li>
+        <li>Pergantian dari isim 'alam <span class="arab-inline" style="font-size:16px;">قُرَيْشٍ</span> (ayat 1) ke dhamir <span class="arab-inline" style="font-size:16px;">هِمْ</span> (ayat 2) adalah gaya Al-Qur'an yang normal: setelah nama disebut eksplisit, selanjutnya cukup dengan dhamir</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar</td><td>Dhamir tidak memiliki akar fi'il. Bentuknya <em>jamid</em> — varian: <span class="arab-inline" style="font-size:15px;">هُمْ</span> (marfu') · <span class="arab-inline" style="font-size:15px;">هِمْ</span> (majrur/manshub setelah kasrah atau ya' sukun)</td></tr>
+    <tr><td>Status i'rab</td><td>
+      <span class="tag tag-mabni">Mabni Sukun</span>
+      Mabni 'ala al-sukun — berada dalam kedudukan <strong>majrur</strong> sebagai mudhaf-ilaih (mahall jarr)
+    </td></tr>
+    <tr><td>Jumlah</td><td>Jamak (plural — merujuk pada kaum Quraisy)</td></tr>
+    <tr><td>Gender</td><td>Mudzakkar (laki-laki — sesuai perlakuan kaum Quraisy sebagai <em>al-hayyu</em>)</td></tr>
+    <tr><td>Identitas</td><td>
+      <span class="tag tag-marifah">Ma'rifah</span>
+      Ma'rifah bi al-dhamīriyyah — ma'rifah karena dhamir (kata ganti selalu definit, karena merujuk pada entitas yang sudah dikenal konteksnya)
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li><strong>Mudhaf-ilaih</strong> dari <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> — mahall jarr</li>
+        <li>Bersama <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> membentuk <strong>idhafah</strong>: <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span> (pembiasaan mereka)</li>
+        <li>Sekaligus berperan sebagai <strong>fa'il ma'nawi</strong> (subyek makna) dari masdar 'amil <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> — karena dalam bentuk fi'il-nya, mereka (هُمْ) adalah subyek yang dibiasakan (maf'ul bih) atau yang membiasakan (fa'il)</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K3: رِحْلَةَ -->
+<div class="kartu">
+  <div class="kartu-head warna-kata">
+    <span class="badge badge-kata">ISIM · isim-masdar · maf'ul-bih · mudhaf · manshub · (106:2:3)</span>
+    <span class="kartu-arab-besar arab">رِحْلَةَ</span>
+    <span class="kartu-arti">"perjalanan" — maf'ul-bih dari masdar 'amil إِيلَافِهِمْ, mudhaf kepada الشِّتَاءِ</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> <strong>isim masdar</strong> (isim aksi) atau <em>isim jenis</em> (nama aktivitas) dari fi'il <span class="arab-inline" style="font-size:16px;">رَحَلَ يَرْحَلُ</span> — "berangkat · bepergian · pindah tempat"</li>
+        <li>Wazan: <strong><span class="arab-inline" style="font-size:16px;">فِعْلَة</span></strong> — wazan yang menunjuk pada <em>satu kali</em> perjalanan atau <em>jenis</em> perjalanan tertentu (bukan perjalanan secara umum)</li>
+        <li>Perhatikan: <span class="arab-inline" style="font-size:16px;">رِحْلَة</span> (mufrad) berbeda dari <span class="arab-inline" style="font-size:16px;">رِحْلَات</span> (jamak — perjalanan-perjalanan berulang). Di ayat ini yang dipakai adalah bentuk <em>mufrad</em>, meskipun maknanya dua perjalanan (dijelaskan di bawah)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>"Perjalanan" — merujuk pada tradisi perjalanan dagang Quraisy</li>
+        <li>Karena <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> di-idhafah-kan ke <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> dan di-athf-kan ke <span class="arab-inline" style="font-size:16px;">وَالصَّيْفِ</span>, maka maknanya mencakup dua perjalanan sekaligus: perjalanan musim dingin (ke Yaman) dan perjalanan musim panas (ke Syam)</li>
+        <li>Gaya bahasa ringkas: satu kata <span class="arab-inline" style="font-size:16px;">رِحْلَة</span> + dua musim (idhafah ganda via athf), lebih elegan daripada mengulang kata <span class="arab-inline" style="font-size:16px;">رِحْلَة</span> dua kali</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar &amp; Tashrif</td><td>
+      Akar: <strong><span class="arab-inline" style="font-size:16px;">ر-ح-ل</span></strong> (tsulasi mujarrad · bab I) — makna dasar: pergi · berpindah tempat · mengadakan perjalanan
+      <div class="tashrif-box">
+        <div class="tashrif-label">Tashrif — رَحَلَ (bab I · tsulasi mujarrad)</div>
+        <div class="tashrif-isi">
+          Madhy: <span class="arab-inline" style="font-size:16px;">رَحَلَ</span> ("telah bepergian"). Mudhari': <span class="arab-inline" style="font-size:16px;">يَرْحَلُ</span> ("sedang/akan bepergian"). Isim jenis / masdar mim-yyah wazan <span class="arab-inline" style="font-size:16px;">فِعْلَة</span>: <span class="arab-inline" style="font-size:16px;">رِحْلَة</span> (satu perjalanan / jenis perjalanan).
+        </div>
+        <div class="tashrif-grid">
+          <div class="tashrif-kotak akar">
+            <div class="tashrif-kotak-label">akar kata</div>
+            <span class="tashrif-kotak-arab" style="font-size:16px;letter-spacing:3px;font-family:var(--font-latin);font-weight:700;">ر-ح-ل</span>
+          </div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak">
+            <div class="tashrif-kotak-label">madhy (هو) · bab I</div>
+            <span class="tashrif-kotak-arab">رَحَلَ</span>
+          </div>
+          <div class="tashrif-kotak">
+            <div class="tashrif-kotak-label">mudhari' (هو)</div>
+            <span class="tashrif-kotak-arab">يَرْحَلُ</span>
+          </div>
+          <div class="tashrif-panah">→</div>
+          <div class="tashrif-kotak subyek">
+            <div class="tashrif-kotak-label">isim jenis · dalam ayat ini</div>
+            <span class="tashrif-kotak-arab">رِحْلَةَ</span>
+          </div>
+        </div>
+        <div class="link-eksternal-wrapper">
+          Rujukan konjugasi lengkap fi'il <span class="arab-inline" style="font-size:15px;">رَحَلَ</span> di Reverso Conjugator:
+          <br>
+          <a class="link-eksternal" href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%B1%D8%AD%D9%84.html" target="_blank" rel="noopener">Buka konjugasi رَحَلَ di Reverso →</a>
+        </div>
+      </div>
+    </td></tr>
+    <tr><td>Status i'rab</td><td>
+      <span class="tag tag-manshub">Manshub</span>
+      Manshub sebagai <strong>maf'ul-bih</strong> (obyek langsung) dari isim masdar 'amil <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span> yang beramal seperti fi'il. Tanda: <strong>fathah zhahirah</strong>. Tanwin gugur karena mudhaf (bersambung kepada <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span>).
+    </td></tr>
+    <tr><td>Jumlah</td><td>Mufrad (tunggal — secara <em>lafazh</em>, meskipun maknanya mencakup dua perjalanan karena idhafah ganda via athf)</td></tr>
+    <tr><td>Gender</td><td>Mu'annats (berakhiran <em>ta' marbuthah</em> <span class="arab-inline" style="font-size:16px;">ة</span>)</td></tr>
+    <tr><td>Identitas</td><td>
+      <span class="tag tag-marifah">Ma'rifah</span>
+      Ma'rifah bi al-idhafah — menjadi ma'rifah karena mudhaf kepada <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> yang ma'rifah bi al-ta'rif (alif-lam)
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li><strong>Maf'ul-bih</strong> (obyek langsung) dari masdar 'amil <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span> — mahall nashb</li>
+        <li><strong>Mudhaf</strong> (kepala idhafah) — bersandar kepada <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span>, membentuk idhafah <span class="arab-inline" style="font-size:16px;">رِحْلَةَ الشِّتَاءِ</span></li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K4: الشِّتَاءِ -->
+<div class="kartu">
+  <div class="kartu-head warna-kata">
+    <span class="badge badge-kata">ISIM · isim-jenis · mudhaf-ilaih · majrur · (106:2:4)</span>
+    <span class="kartu-arab-besar arab">الشِّتَاءِ</span>
+    <span class="kartu-arti">"musim dingin" — mudhaf-ilaih dari رِحْلَةَ, majrur bi al-kasrah</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> <strong>isim jenis</strong> (nama musim) — <span class="arab-inline" style="font-size:16px;">الشِّتَاء</span> merujuk pada musim dingin di Jazirah Arab (sekitar Oktober–Februari)</li>
+        <li>Berakar dari <strong><span class="arab-inline" style="font-size:16px;">ش-ت-و</span></strong> — <em>naqis wawi</em> (fi'il yang lam-fi'il-nya berupa wawu)</li>
+        <li>Ma'rifah dengan <strong>alif-lam ta'rif</strong> (<span class="arab-inline" style="font-size:16px;">ال</span> — alat definitisasi) — bukan alif-lam <em>zaidah</em> atau alif-lam <em>jinsiyyah</em> biasa, melainkan <em>'ahdiyyah</em> (merujuk pada musim yang sudah dikenal pendengar)</li>
+      </ul>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>"Musim dingin"</li>
+        <li>Dalam konteks ayat, merujuk pada <em>perjalanan dagang Quraisy ke selatan</em> (Yaman dan sekitarnya, termasuk jalur ke Habasyah/Ethiopia) yang biasa dilakukan di musim dingin</li>
+        <li>Mengapa selatan di musim dingin? Karena jalur utara (Syam) terhalang cuaca dingin ekstrem di musim dingin — sementara Yaman beriklim lebih hangat dan lembab</li>
+        <li>Barang yang dibawa pulang: rempah-rempah, kemenyan, emas, dan komoditas dari Afrika &amp; India yang masuk via pelabuhan Yaman</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar</td><td>
+      <strong><span class="arab-inline" style="font-size:16px;">ش-ت-و</span></strong> (tsulasi naqis wawi) — fi'il: <span class="arab-inline" style="font-size:16px;">شَتَا يَشْتُو</span> ("melewati musim dingin"). Isim jenis: <span class="arab-inline" style="font-size:16px;">الشِّتَاء</span>.
+      <br>
+      Catatan: karena ini isim jenis (bukan isim musytaq), tidak dibuatkan tashrif-box.
+    </td></tr>
+    <tr><td>Status i'rab</td><td>
+      <span class="tag tag-majrur">Majrur</span>
+      Majrur karena menjadi <strong>mudhaf-ilaih</strong> dari <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span>. Tanda: <strong>kasrah zhahirah</strong>.
+    </td></tr>
+    <tr><td>Jumlah</td><td>Mufrad (tunggal — nama musim sebagai entitas kolektif)</td></tr>
+    <tr><td>Gender</td><td>Mudzakkar</td></tr>
+    <tr><td>Identitas</td><td>
+      <span class="tag tag-marifah">Ma'rifah</span>
+      Ma'rifah bi al-ta'rif — definit dengan alif-lam ta'rif
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li><strong>Mudhaf-ilaih</strong> <em>pertama</em> dari <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> — majrur</li>
+        <li>Bersama <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> membentuk idhafah: <span class="arab-inline" style="font-size:16px;">رِحْلَةَ الشِّتَاءِ</span> (perjalanan musim dingin)</li>
+        <li>Jenis idhafah-nya: <strong>idhafah zharfiyyah</strong> (penyandaran keterangan waktu) — bermakna <em>fī</em>: "perjalanan <em>pada</em> musim dingin"</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K5: وَ -->
+<div class="kartu">
+  <div class="kartu-head warna-harf">
+    <span class="badge badge-harf">HARF · harf-'athf · waw 'athf · mabni fathah · (106:2:5)</span>
+    <span class="kartu-arab-besar arab">وَ</span>
+    <span class="kartu-arti">"dan" — waw 'athf, menghubungkan الصَّيْفِ kepada الشِّتَاءِ</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-harf">Harf</span> <strong>waw 'athf</strong> (<span class="arab-inline" style="font-size:16px;">وَاو العَطْف</span>) — harf penghubung setara, salah satu dari <em>huruf 'athf</em> yang paling umum</li>
+        <li>Fungsi: menghubungkan dua unsur yang setara <em>secara sintaksis</em> (kedudukan i'rab) dan <em>secara makna</em> (tanpa menetapkan urutan waktu atau prioritas)</li>
+        <li>Berbeda dengan <span class="arab-inline" style="font-size:16px;">ثُمَّ</span> (tertib dengan jeda), <span class="arab-inline" style="font-size:16px;">فَ</span> (tertib tanpa jeda), atau <span class="arab-inline" style="font-size:16px;">أَوْ</span> (pilihan) — waw 'athf paling netral, hanya menggabungkan</li>
+      </ul>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>"Dan" — menggabungkan dua mudhaf-ilaih dari satu <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span></li>
+        <li>Implikasi makna: dua musim berperan <em>setara</em> sebagai keterangan waktu perjalanan — tidak ada yang lebih utama atau didahulukan</li>
+      </ul>
+    </td></tr>
+    <tr><td>Ma'thuf &amp; Ma'thuf-'alaih</td><td>
+      Waw 'athf menghubungkan:
+      <ul class="poin-list" style="margin-top:6px;">
+        <li><strong>Ma'thuf</strong> (yang disambungkan) = <span class="arab-inline" style="font-size:16px;">الصَّيْفِ</span> — kata setelah waw</li>
+        <li><strong>Ma'thuf-'alaih</strong> (yang disambungi) = <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> — kata sebelum waw</li>
+      </ul>
+      Keduanya berkedudukan sebagai mudhaf-ilaih dari <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> — makna utuh: "perjalanan musim dingin <em>dan</em> musim panas".
+    </td></tr>
+    <tr><td>Status i'rab</td><td>
+      <span class="tag tag-mabni">Mabni Fathah</span>
+      Mabni 'ala al-fathah — <strong>lā maḥalla lahu min al-i'rāb</strong> (tidak memiliki kedudukan i'rab)
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li>Harf-'athf — menghubungkan <span class="arab-inline" style="font-size:16px;">الصَّيْفِ</span> kepada <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span></li>
+        <li>Lā maḥalla lahu min al-i'rāb (tidak memiliki kedudukan i'rab, karena harf adalah kata tugas)</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- K6: الصَّيْفِ -->
+<div class="kartu">
+  <div class="kartu-head warna-kata">
+    <span class="badge badge-kata">ISIM · isim-jenis · ma'thuf · majrur · (106:2:6)</span>
+    <span class="kartu-arab-besar arab">الصَّيْفِ</span>
+    <span class="kartu-arti">"musim panas" — ma'thuf kepada الشِّتَاءِ, majrur mengikuti ma'thuf-'alaih</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>Jenis Kata</td><td>
+      <ul class="poin-list">
+        <li><span class="tag tag-n">Isim</span> <strong>isim jenis</strong> (nama musim) — <span class="arab-inline" style="font-size:16px;">الصَّيْف</span> merujuk pada musim panas di Jazirah Arab (sekitar April–September)</li>
+        <li>Berakar dari <strong><span class="arab-inline" style="font-size:16px;">ص-ي-ف</span></strong> — <em>ajwaf ya'i</em> (fi'il yang 'ain-fi'il-nya berupa ya')</li>
+        <li>Ma'rifah dengan <strong>alif-lam ta'rif</strong>, sama seperti <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span></li>
+      </ul>
+    </td></tr>
+    <tr><td>Arti</td><td>
+      <ul class="poin-list">
+        <li>"Musim panas"</li>
+        <li>Dalam konteks ayat, merujuk pada <em>perjalanan dagang Quraisy ke utara</em> (Syam/Suriah dan sekitarnya) yang biasa dilakukan di musim panas</li>
+        <li>Mengapa utara di musim panas? Karena di musim panas jalur utara dapat dilalui dengan aman (tidak ada salju/badai) — sementara daerah selatan (Yaman) menjadi sangat panas dan gersang</li>
+        <li>Barang yang dibawa pulang: gandum, pakaian, dan komoditas dari Mediterania (Romawi Timur/Bizantium) &amp; Persia</li>
+      </ul>
+    </td></tr>
+    <tr><td>Akar</td><td>
+      <strong><span class="arab-inline" style="font-size:16px;">ص-ي-ف</span></strong> (tsulasi ajwaf ya'i) — fi'il: <span class="arab-inline" style="font-size:16px;">صَافَ يَصِيفُ</span> ("melewati musim panas"). Isim jenis: <span class="arab-inline" style="font-size:16px;">الصَّيْف</span>.
+      <br>
+      Catatan: karena ini isim jenis (bukan isim musytaq), tidak dibuatkan tashrif-box.
+    </td></tr>
+    <tr><td>Status i'rab</td><td>
+      <span class="tag tag-majrur">Majrur</span>
+      Majrur karena menjadi <strong>ma'thuf</strong> kepada <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> yang majrur (mudhaf-ilaih). Kaidah: <em>ma'thuf mengikuti i'rab ma'thuf-'alaih-nya</em>. Tanda: <strong>kasrah zhahirah</strong>.
+    </td></tr>
+    <tr><td>Jumlah</td><td>Mufrad (tunggal — nama musim)</td></tr>
+    <tr><td>Gender</td><td>Mudzakkar</td></tr>
+    <tr><td>Identitas</td><td>
+      <span class="tag tag-marifah">Ma'rifah</span>
+      Ma'rifah bi al-ta'rif — definit dengan alif-lam ta'rif
+    </td></tr>
+    <tr><td>Kedudukan Gramatikal</td><td>
+      <ul class="poin-list">
+        <li><strong>Ma'thuf</strong> kepada <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> — ikut majrur</li>
+        <li>Secara makna, berperan sebagai <strong>mudhaf-ilaih kedua</strong> dari <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> — sehingga satu mudhaf (<span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span>) memiliki dua mudhaf-ilaih yang di-athf-kan</li>
+      </ul>
+      <div class="iltifat-box" style="margin-top:12px;">
+        <div class="iltifat-label">✦ Pola Balaghah — Simetri Dua Musim</div>
+        <div class="iltifat-isi">
+          Penyebutan dua musim yang <em>berlawanan</em> (<span class="arab-inline" style="font-size:15px;">الشِّتَاء</span> &amp; <span class="arab-inline" style="font-size:15px;">الصَّيْف</span>) adalah pola balaghah yang disebut <strong>thibāq</strong> (طِبَاق — penggabungan dua lawan kata). Di sini ia berfungsi sebagai <em>kināyah</em> tentang <strong>sepanjang tahun</strong>: dengan menyebut kedua musim yang berseberangan, Allah menyatakan bahwa perlindungan-Nya atas Quraisy tidak berjeda — <em>setiap saat</em>, <em>setiap musim</em>, Dia yang memelihara rezeki mereka. Pola serupa: <span class="arab-inline" style="font-size:15px;">أَحْيَاءً وَأَمْوَاتًا</span> (hidup dan mati), <span class="arab-inline" style="font-size:15px;">اللَّيْلِ وَالنَّهَارِ</span> (malam dan siang) — keduanya menyatakan kontinuitas lengkap melalui dua ujung.
+        </div>
+      </div>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §4 ANALISIS TINGKAT 2 -->
+<div class="section-header">
+  <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
+  <div class="sub-judul">Empat frasa bertingkat · dibangun dari awal ke akhir ayat</div>
+</div>
+
+<!-- FRASA 1: إِيلَافِهِمْ (idhafah masdar + dhamir) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa1">
+    <span class="badge badge-frasa1">FRASA 1 · Idhafah (Masdar + Dhamir)</span>
+    <span class="kartu-arab-besar arab">إِيلَافِهِمْ</span>
+    <span class="kartu-arti">"pembiasaan mereka" — idhafah: masdar 'amil + dhamir-muttashil</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>① Struktur</td><td>
+      <strong>Idhafah</strong> (frasa penyandaran):
+      <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> (mudhaf — isim masdar, majrur) + <span class="arab-inline" style="font-size:16px;">هِمْ</span> (mudhaf-ilaih — dhamir-muttashil, mabni sukun dalam mahall jarr).
+      <br><br>
+      Karena mudhaf-ilaih adalah dhamir (selalu ma'rifah), seluruh idhafah menjadi <strong>ma'rifah</strong>.
+    </td></tr>
+    <tr><td>② Makna Frasa</td><td>
+      Literalnya <strong>adalah</strong>: <em>"pembiasaan mereka"</em> — <strong>tetapi</strong> makna sebenarnya <strong>adalah</strong> menunjuk pada <em>pembiasaan yang menjadi milik / keistimewaan / anugerah khusus bagi kaum Quraisy</em>.
+      <br><br>
+      Dhamir <span class="arab-inline" style="font-size:16px;">هِمْ</span> menggantikan isim 'alam <span class="arab-inline" style="font-size:16px;">قُرَيْشٍ</span> yang sudah disebut di ayat 1 — gaya <em>taʿwīḍ bi al-ḍamīr</em> (penggantian dengan kata ganti) yang standar dalam bahasa Arab.
+    </td></tr>
+    <tr><td>③ Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li><strong>Badal / 'athf bayan</strong> dari <span class="arab-inline" style="font-size:16px;">إِيلَافِ قُرَيْشٍ</span> di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a> — berada dalam kedudukan <em>majrur</em> (mahall jarr, mengikuti mubdal-minhu)</li>
+        <li>Sekaligus berfungsi sebagai <strong>masdar 'amil</strong> — isim masdar yang akan mengambil <em>maf'ul-bih</em> (obyek langsung) berupa <span class="arab-inline" style="font-size:16px;">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> di frasa berikutnya</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- FRASA 2: رِحْلَةَ الشِّتَاءِ (idhafah pertama) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa2">
+    <span class="badge badge-frasa2">FRASA 2 · Idhafah (Zharfiyyah)</span>
+    <span class="kartu-arab-besar arab">رِحْلَةَ الشِّتَاءِ</span>
+    <span class="kartu-arti">"perjalanan musim dingin" — idhafah: mudhaf + mudhaf-ilaih pertama</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>① Struktur</td><td>
+      <strong>Idhafah</strong>:
+      <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> (mudhaf — isim, manshub sebagai maf'ul-bih) + <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> (mudhaf-ilaih — isim jenis, majrur).
+      <br><br>
+      Perhatikan: meskipun <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> sendiri manshub (sebagai maf'ul-bih), tanwinnya gugur karena menjadi mudhaf — tanda <em>fathah zhahirah</em> tetap terlihat tanpa tanwin.
+    </td></tr>
+    <tr><td>② Makna Frasa</td><td>
+      Literalnya <strong>adalah</strong>: <em>"perjalanan musim dingin"</em> — <strong>tetapi</strong> makna sebenarnya <strong>adalah</strong> menunjuk pada <em>perjalanan yang dilakukan <strong>pada</strong> musim dingin</em> (bukan perjalanan yang "dimiliki" musim dingin).
+      <br><br>
+      Jenis idhafah-nya: <strong>idhafah zharfiyyah</strong> (إِضَافَة ظَرْفِيَّة — penyandaran keterangan waktu). Ini adalah idhafah bermakna <em>fī</em> (di / pada): <span class="arab-inline" style="font-size:15px;">رِحْلَةٌ فِي الشِّتَاءِ</span> = <span class="arab-inline" style="font-size:15px;">رِحْلَةُ الشِّتَاءِ</span>.
+    </td></tr>
+    <tr><td>③ Peran / Kedudukan</td><td>
+      <ul class="poin-list">
+        <li>Bagian dari <strong>maf'ul-bih</strong> (obyek langsung) dari masdar 'amil <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span></li>
+        <li>Akan diperluas dengan <em>'athf</em> (sambungan setara) berupa <span class="arab-inline" style="font-size:16px;">وَالصَّيْفِ</span> di frasa berikutnya — membentuk idhafah ganda</li>
+      </ul>
+    </td></tr>
+  </table>
+</div>
+
+<!-- FRASA 3: رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ (idhafah ganda via athf) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa3">
+    <span class="badge badge-frasa3">FRASA 3 · Idhafah Ganda (via 'Athf)</span>
+    <span class="kartu-arab-besar arab">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
+    <span class="kartu-arti">"perjalanan musim dingin dan musim panas" — satu mudhaf, dua mudhaf-ilaih</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>① Struktur</td><td>
+      <strong>Idhafah muzdawajah</strong> (إِضَافَة مُزْدَوَجَة — idhafah ganda):
+      <span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span> (satu mudhaf) + <span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> (mudhaf-ilaih pertama) + <span class="arab-inline" style="font-size:16px;">وَ</span> (waw 'athf) + <span class="arab-inline" style="font-size:16px;">الصَّيْفِ</span> (ma'thuf — secara sintaksis, menjadi mudhaf-ilaih kedua secara makna).
+      <br><br>
+      Ma'thuf <span class="arab-inline" style="font-size:16px;">الصَّيْفِ</span> mengikuti i'rab ma'thuf-'alaih-nya (<span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span>) — keduanya majrur.
+    </td></tr>
+    <tr><td>② Makna Frasa</td><td>
+      Literalnya <strong>adalah</strong>: <em>"perjalanan musim dingin dan musim panas"</em> — <strong>tetapi</strong> makna sebenarnya <strong>adalah</strong> menunjuk pada <em>dua perjalanan dagang tahunan</em> Quraisy yang telah menjadi tradisi aman.
+      <br><br>
+      Gaya bahasa <em>ringkas</em>: daripada menulis <span class="arab-inline" style="font-size:15px;">رِحْلَةَ الشِّتَاءِ وَرِحْلَةَ الصَّيْفِ</span> (yang boleh dan eksplisit), Al-Qur'an cukup menyebut <span class="arab-inline" style="font-size:15px;">رِحْلَة</span> sekali lalu meng-athf-kan kedua musimnya — pola <strong>ījāz bi al-ḥadzf</strong> (إِيجَاز بِالْحَذْف — keringkasan dengan pembuangan).
+    </td></tr>
+    <tr><td>③ Peran / Kedudukan</td><td>
+      <strong>Maf'ul-bih</strong> (obyek langsung) dari masdar 'amil <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span> — mahall nashb (manshub).
+      <br><br>
+      Jadi dalam bentuk fi'il-nya, ayat ini setara dengan: <span class="arab-inline" style="font-size:15px;">آلَفُوا رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> ("mereka membiasakan perjalanan musim dingin dan musim panas") — di mana <span class="arab-inline" style="font-size:15px;">رِحْلَةَ</span> adalah maf'ul-bih dari fi'il <span class="arab-inline" style="font-size:15px;">آلَفَ</span>.
+    </td></tr>
+  </table>
+</div>
+
+<!-- FRASA 4: إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ (frasa lengkap ayat 2) -->
+<div class="kartu">
+  <div class="kartu-head warna-frasa4">
+    <span class="badge badge-frasa4">FRASA 4 · Kāmilah — Seluruh Isi Ayat 2</span>
+    <span class="kartu-arab-besar arab" style="font-size:28px;">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
+    <span class="kartu-arti">frasa lengkap ayat 2 — badal / 'athf bayan dari إِيلَافِ قُرَيْشٍ (106:1)</span>
+  </div>
+  <table class="kartu-tabel">
+    <tr><td>① Struktur</td><td>
+      <strong>Masdar 'amil + maf'ul-bih-nya</strong>:
+      <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span> (masdar 'amil — idhafah dengan dhamir) + <span class="arab-inline" style="font-size:16px;">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> (maf'ul-bih — idhafah ganda).
+      <br><br>
+      Ini adalah seluruh isi ayat 2 — enam morfem yang terintegrasi menjadi satu struktur sintaksis yang kompleks namun padu.
+    </td></tr>
+    <tr><td>② Makna Frasa</td><td>
+      Literalnya <strong>adalah</strong>: <em>"pembiasaan mereka (akan) perjalanan musim dingin dan musim panas"</em> — <strong>tetapi</strong> makna sebenarnya <strong>adalah</strong> <em>merinci secara konkret apa yang dimaksud dengan <span class="arab-inline" style="font-size:15px;">إِيلَافِ قُرَيْشٍ</span> di ayat 1</em>: yaitu dua perjalanan dagang tahunan yang telah Allah amankan bagi mereka.
+      <br><br>
+      Pola balaghah: <strong>ījmāl → tafshīl</strong> (إِجْمَال → تَفْصِيل — global → rinci). Ayat 1 menyebut nikmat secara global (<em>pembiasaan Quraisy</em>); ayat 2 merinci konkret apa pembiasaan itu (<em>dua perjalanan musiman</em>).
+    </td></tr>
+    <tr><td>③ Peran / Kedudukan</td><td>
+      <strong>Badal / 'athf bayan</strong> dari <span class="arab-inline" style="font-size:16px;">إِيلَافِ قُرَيْشٍ</span> di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a> — mahall jarr (mengikuti i'rab <span class="arab-inline" style="font-size:16px;">إِيلَافِ</span> yang majrur bi al-lam di ayat 1).
+      <br><br>
+      Seluruh frasa ayat 1 + ayat 2 bersama-sama menjadi <strong>ta'lil</strong> (keterangan sebab) bagi perintah <span class="arab-inline" style="font-size:16px;">فَلْيَعْبُدُوا</span> di <a href="106-03.html" style="color:#0369a1;font-weight:700;">ayat 3</a> — berdasarkan pendapat pertama yang kita jadikan model visualisasi di diagram SVG (lihat analisis muta'alliq lengkap di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a>).
+      <div class="iltifat-box" style="margin-top:12px;">
+        <div class="iltifat-label">✦ Badal vs 'Athf Bayan — Apa Bedanya?</div>
+        <div class="iltifat-isi">
+          Para ulama berbeda pendapat apakah <span class="arab-inline" style="font-size:15px;">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> itu <strong>badal</strong> (بَدَل — pengganti) atau <strong>'athf bayan</strong> (عَطْف بَيَان — sambungan penjelas). Perbedaannya tipis:
+          <ul style="margin:6px 0 4px 16px;padding:0;">
+            <li><strong>Badal</strong>: unsur kedua <em>menggantikan</em> unsur pertama — bisa berdiri sendiri tanpa unsur pertama tanpa mengubah makna inti</li>
+            <li><strong>'Athf bayan</strong>: unsur kedua hanya <em>menjelaskan</em> unsur pertama — ia setara status dengan sifat (<em>na'at</em>), bukan mengganti</li>
           </ul>
-        </td>
-      </tr>
-    </table>
+          Di ayat ini, keduanya sama-sama sah. Yang penting adalah fungsi gramatikalnya: <em>merinci dan memperjelas</em> makna <span class="arab-inline" style="font-size:15px;">إِيلَافِ قُرَيْشٍ</span> dengan menambahkan maf'ul-bih yang konkret.
+        </div>
+      </div>
+    </td></tr>
+  </table>
+</div>
+
+<!-- §5 ANALISIS TINGKAT 3 -->
+<div class="section-header biru">
+  <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
+  <div class="sub-judul">Posisi ayat 2 dalam struktur argumen Al-Quraisy</div>
+</div>
+
+<div class="kartu">
+  <div class="kartu-head warna-frasa3">
+    <span class="badge badge-frasa3">STRUKTUR SURAH</span>
+    <span class="kartu-arab-besar arab" style="font-size:24px;">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
+    <span class="kartu-arti">Perincian ta'lil — merinci isi nikmat yang disebut global di ayat 1</span>
   </div>
-
-
-  <!-- MORFEM 2: هِمْ -->
-  <div class="kartu">
-    <div class="kartu-head warna-kata">
-      <span class="badge badge-kata">ISIM · (106:2:2) · دَمِير مُتَّصِل · مُضَاف إِلَيْه</span>
-      <span class="kartu-arab-besar arab">هِمْ</span>
-      <span class="kartu-arti">"mereka (punya)" — dhamir muttashil, mudhaf ilaih dari إِيلَافِ</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Jenis kata</td>
-        <td>
-          <span class="tag tag-n">Isim</span>
-          Dhamir muttashil (kata ganti yang melekat) —
-          <strong>هِمْ</strong>, jamak mudzakkar ghaib (mereka, laki-laki).
-          Melekat pada isim <span class="arab-inline">إِيلَافِ</span>
-          sebagai <strong>مُضَاف إِلَيْه</strong> (mudhaf ilaih — kata tempat bersandar).
-          Berbeda dari هُمْ (marfu') — bentuknya berubah menjadi هِمْ (kasrah)
-          karena mengikuti harakat majrur kata sebelumnya
-        </td>
-      </tr>
-      <tr>
-        <td>Arti</td>
-        <td>
-          "Mereka (punya)" — merujuk kepada
-          <span class="arab-inline">قُرَيْشٍ</span> di ayat 1.
-          Pergantian dari isim alam قُرَيْشٍ ke dhamir هِمْ adalah gaya Al-Qur'an
-          yang normal: setelah nama disebut, selanjutnya cukup dengan dhamir
-        </td>
-      </tr>
-      <tr>
-        <td>Akar</td>
-        <td>Dhamir — tidak memiliki akar fi'il. Bentuk: هُمْ (marfu') / هِمْ (majrur/manshub setelah kasrah atau ya')</td>
-      </tr>
-      <tr>
-        <td>Status i'rab</td>
-        <td>
-          <span class="tag tag-mabni">Mabni Sukun</span>
-          Mabni 'ala al-sukun — mahall
-          <strong>جرّ مُضَاف إِلَيْه</strong> (mudhaf ilaih — kata tempat bersandar)
-        </td>
-      </tr>
-      <tr>
-        <td>Jumlah</td>
-        <td>Jamak</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>Mudzakkar</td>
-      </tr>
-      <tr>
-        <td>Identitas</td>
-        <td>
-          <span class="tag tag-marifah">Ma'rifah</span>
-          Ma'rifah bi al-dhamiriyyah (ma'rifah karena dhamir — kata ganti selalu definit)
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li><strong>مُضَاف إِلَيْه</strong> (mudhaf ilaih — kata tempat bersandar) dari إِيلَافِ — mahall جرّ</li>
-            <li>Bersama إِيلَافِ membentuk إِضَافَة (idhafah — frasa penyandaran): إِيلَافِهِمْ</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- MORFEM 3: رِحْلَةَ -->
-  <div class="kartu">
-    <div class="kartu-head warna-kata">
-      <span class="badge badge-kata">ISIM · (106:2:3) · مَفْعُول بِهِ · مُضَاف · مَنْصُوب</span>
-      <span class="kartu-arab-besar arab">رِحْلَةَ</span>
-      <span class="kartu-arti">"perjalanan" — maf'ul bih dari إِيلَافِهِمْ, mudhaf kepada الشِّتَاءِ, manshub</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Jenis kata</td>
-        <td>
-          <span class="tag tag-n">Isim</span>
-          Isim masdar (مَصْدَر — isim aksi) atau isim jenis (nama aktivitas sekali jalan)
-          dari fi'il <strong>رَحَلَ يَرْحَلُ</strong> (berangkat / bepergian).
-          Wazan: <strong>فِعْلَة</strong> — merujuk pada satu kali perjalanan atau jenis perjalanan.
-          رِحْلَة berbeda dari رِحْلَة-رِحْلَات (jamak) yang berarti perjalanan berulang
-        </td>
-      </tr>
-      <tr>
-        <td>Arti</td>
-        <td>
-          "Perjalanan" — di sini merujuk pada tradisi perjalanan dagang Quraisy.
-          Karena دِيَافَة (idhafah) ke الشِّتَاءِ وَالصَّيْفِ (dua musim),
-          maka رِحْلَةَ di sini mencakup dua perjalanan sekaligus:
-          <em>perjalanan musim dingin</em> (ke Yaman) dan
-          <em>perjalanan musim panas</em> (ke Syam)
-        </td>
-      </tr>
-      <tr>
-        <td>Akar</td>
-        <td>
-          <strong>ر-ح-ل</strong> (tsulasi, bab I) — makna dasar: pergi/berpindah tempat.
-          رَحَلَ → يَرْحَلُ → رِحْلَة (masdar/isim jenis, wazan فِعْلَة)
-        </td>
-      </tr>
-      <tr>
-        <td>Status i'rab</td>
-        <td>
-          <span class="tag tag-manshub">Manshub</span>
-          Manshub sebagai <strong>مَفْعُول بِهِ</strong>
-          (maf'ul bih — obyek langsung) dari isim masdar
-          <span class="arab-inline">إِيلَافِهِمْ</span>
-          yang beramal seperti fi'il.
-          Tanda: <strong>fathah zhahirah</strong>. Tanwin gugur karena mudhaf
-        </td>
-      </tr>
-      <tr>
-        <td>Jumlah</td>
-        <td>Mufrad (tunggal — namun makna mencakup dua perjalanan karena idhafah ganda)</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>Mu'annats (perempuan) — berakhiran تاء مربوطة</td>
-      </tr>
-      <tr>
-        <td>Identitas</td>
-        <td>
-          <span class="tag tag-marifah">Ma'rifah</span>
-          Ma'rifah bi al-idhafah — menjadi ma'rifah karena mudhaf kepada
-          <span class="arab-inline">الشِّتَاءِ</span> (ma'rifah bi al-ta'rif)
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li><strong>مَفْعُول بِهِ</strong> (maf'ul bih — obyek langsung) dari إِيلَافِهِمْ (masdar beramal) — mahall نصب</li>
-            <li><strong>مُضَاف</strong> (mudhaf — kata yang bersandar) — kepala idhafah رِحْلَةَ الشِّتَاءِ</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- MORFEM 4: الشِّتَاءِ -->
-  <div class="kartu">
-    <div class="kartu-head warna-kata">
-      <span class="badge badge-kata">ISIM · (106:2:4) · مُضَاف إِلَيْه · مَجْرُور</span>
-      <span class="kartu-arab-besar arab">الشِّتَاءِ</span>
-      <span class="kartu-arti">"musim dingin" — mudhaf ilaih dari رِحْلَةَ, majrur bi al-kasrah</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Jenis kata</td>
-        <td>
-          <span class="tag tag-n">Isim</span>
-          Isim jenis (nama musim) — <strong>الشِّتَاء</strong>,
-          musim dingin di Jazirah Arab (sekitar bulan Oktober–Februari).
-          Berakar dari <strong>ش-ت-و</strong> (naqis wawi).
-          Ma'rifah dengan <strong>أَلِف لَام التَّعْرِيف</strong>
-          (alif lam ta'rif — alif lam yang mendefinitkan)
-        </td>
-      </tr>
-      <tr>
-        <td>Arti</td>
-        <td>
-          "Musim dingin" — merujuk pada perjalanan dagang Quraisy ke selatan (Yaman dan Habasyah/Ethiopia)
-          yang dilakukan di musim dingin karena jalan utara terhalang cuaca.
-          Tujuan: mendapatkan rempah-rempah, kemenyan, dan emas dari Afrika dan India
-        </td>
-      </tr>
-      <tr>
-        <td>Akar</td>
-        <td><strong>ش-ت-و</strong> (naqis wawi) — الشِّتَاء adalah isim jenis dari fi'il شَتَا يَشْتُو (melewati musim dingin)</td>
-      </tr>
-      <tr>
-        <td>Status i'rab</td>
-        <td>
-          <span class="tag tag-majrur">Majrur</span>
-          Majrur karena <strong>مُضَاف إِلَيْه</strong>
-          (mudhaf ilaih — kata tempat bersandar) dari رِحْلَةَ.
-          Tanda: <strong>kasrah zhahirah</strong>
-        </td>
-      </tr>
-      <tr>
-        <td>Jumlah</td>
-        <td>Mufrad (tunggal — nama musim)</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>Mudzakkar</td>
-      </tr>
-      <tr>
-        <td>Identitas</td>
-        <td>
-          <span class="tag tag-marifah">Ma'rifah</span>
-          Ma'rifah bi al-ta'rif — dengan alif lam ta'rif (أَلِف لَام التَّعْرِيف)
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li><strong>مُضَاف إِلَيْه</strong> (mudhaf ilaih — kata tempat bersandar) pertama dari رِحْلَةَ — majrur</li>
-            <li>Bersama رِحْلَةَ membentuk إِضَافَة (idhafah): رِحْلَةَ الشِّتَاءِ</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- MORFEM 5: وَ -->
-  <div class="kartu">
-    <div class="kartu-head warna-harf">
-      <span class="badge badge-harf">HARF · (106:2:5) · وَاو الْعَطْف</span>
-      <span class="kartu-arab-besar arab">وَ</span>
-      <span class="kartu-arti">"dan" — waw athf, menghubungkan الصَّيْفِ kepada الشِّتَاءِ</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Jenis kata</td>
-        <td>
-          <span class="tag tag-harf">Harf</span>
-          <strong>وَاو الْعَطْف</strong> (waw athf — waw penghubung setara) —
-          menghubungkan dua unsur yang setara dalam struktur dan kedudukan i'rab
-        </td>
-      </tr>
-      <tr>
-        <td>Arti</td>
-        <td>"Dan" — menggabungkan الشِّتَاءِ (musim dingin) dan الصَّيْفِ (musim panas) sebagai dua mudhaf ilaih dari satu رِحْلَةَ</td>
-      </tr>
-      <tr>
-        <td>Ma'thuf & Ma'thuf alaih</td>
-        <td>
-          وَاو الْعَطْف (waw athf — waw penghubung setara) menghubungkan
-          <strong>مَعْطُوف</strong> (ma'thuf — yang disambungkan):
-          <span class="arab-inline">الصَّيْفِ</span>
-          kepada
-          <strong>مَعْطُوف عَلَيْهِ</strong> (ma'thuf alaih — yang disambungi):
-          <span class="arab-inline">الشِّتَاءِ</span>.
-          Keduanya berkedudukan sebagai mudhaf ilaih dari رِحْلَةَ —
-          makna: "perjalanan musim dingin <em>dan</em> musim panas"
-        </td>
-      </tr>
-      <tr>
-        <td>Status i'rab</td>
-        <td>
-          <span class="tag tag-mabni">Mabni Fathah</span>
-          Mabni 'ala al-fathah —
-          <strong>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب</strong>
-          (tidak memiliki kedudukan i'rab)
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li>Harf athf — menghubungkan الصَّيْفِ kepada الشِّتَاءِ</li>
-            <li>لَا مَحَلَّ لَهُ مِنَ الإِعْرَاب (tidak memiliki kedudukan i'rab)</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- MORFEM 6: الصَّيْفِ -->
-  <div class="kartu">
-    <div class="kartu-head warna-kata">
-      <span class="badge badge-kata">ISIM · (106:2:6) · مَعْطُوف على الشِّتَاءِ · مَجْرُور</span>
-      <span class="kartu-arab-besar arab">الصَّيْفِ</span>
-      <span class="kartu-arti">"musim panas" — ma'thuf kepada الشِّتَاءِ, majrur bi al-kasrah</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Jenis kata</td>
-        <td>
-          <span class="tag tag-n">Isim</span>
-          Isim jenis (nama musim) — <strong>الصَّيْف</strong>,
-          musim panas di Jazirah Arab (sekitar bulan April–September).
-          Berakar dari <strong>ص-ي-ف</strong> (ajwaf ya'i).
-          Ma'rifah dengan أَلِف لَام التَّعْرِيف (alif lam ta'rif)
-        </td>
-      </tr>
-      <tr>
-        <td>Arti</td>
-        <td>
-          "Musim panas" — merujuk pada perjalanan dagang Quraisy ke utara (Syam/Syria dan sekitarnya)
-          yang dilakukan di musim panas. Tujuan: mendapatkan gandum, pakaian, dan barang-barang dari
-          Mediterania dan Persia
-        </td>
-      </tr>
-      <tr>
-        <td>Akar</td>
-        <td><strong>ص-ي-ف</strong> (ajwaf ya'i) — صَافَ يَصِيفُ (melewati musim panas). Isim: الصَّيْف</td>
-      </tr>
-      <tr>
-        <td>Status i'rab</td>
-        <td>
-          <span class="tag tag-majrur">Majrur</span>
-          Majrur karena <strong>مَعْطُوف</strong> (ma'thuf — yang disambungkan)
-          kepada الشِّتَاءِ yang majrur (mudhaf ilaih).
-          Ma'thuf mengikuti i'rab ma'thuf alaih-nya.
-          Tanda: <strong>kasrah zhahirah</strong>
-        </td>
-      </tr>
-      <tr>
-        <td>Jumlah</td>
-        <td>Mufrad (tunggal — nama musim)</td>
-      </tr>
-      <tr>
-        <td>Gender</td>
-        <td>Mudzakkar</td>
-      </tr>
-      <tr>
-        <td>Identitas</td>
-        <td>
-          <span class="tag tag-marifah">Ma'rifah</span>
-          Ma'rifah bi al-ta'rif — dengan alif lam ta'rif
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li><strong>مَعْطُوف</strong> (ma'thuf — yang disambungkan) kepada الشِّتَاءِ — ikut majrur</li>
-            <li>Berfungsi sebagai <strong>مُضَاف إِلَيْه</strong> (mudhaf ilaih — kata tempat bersandar) kedua dari رِحْلَةَ (secara makna)</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- § 4 — ANALISIS TINGKAT 2: FRASA -->
-  <div class="section-header">
-    <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
-    <div class="sub-judul">Dibangun dari depan ke belakang · enam morfem → empat frasa bertingkat</div>
-  </div>
-
-  <!-- FRASA 1: إِيلَافِهِمْ (idhafah) -->
-  <div class="kartu">
-    <div class="kartu-head warna-frasa1">
-      <span class="badge badge-frasa1">FRASA 1 · إِضَافَة (Idhafah)</span>
-      <span class="kartu-arab-besar arab">إِيلَافِهِمْ</span>
-      <span class="kartu-arti">"pembiasaan mereka" — idhafah: masdar + dhamir</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>① Struktur</td>
-        <td>
-          <strong>إِضَافَة</strong> (idhafah — frasa penyandaran):
-          <span class="arab-inline">إِيلَافِ</span>
-          (<strong>مُضَاف</strong> — kata yang bersandar, isim masdar/isim aksi)
-          + <span class="arab-inline">هِمْ</span>
-          (<strong>مُضَاف إِلَيْه</strong> — kata tempat bersandar, dhamir muttashil)
-        </td>
-      </tr>
-      <tr>
-        <td>② Makna frasa</td>
-        <td>
-          "Pembiasaan mereka" — idhafah masdar kepada dhamir menjadikan frasa ini
-          spesifik: pembiasaan yang menjadi milik/keistimewaan kaum Quraisy.
-          Idhafah kepada dhamir (ma'rifah) menjadikan إِيلَافِهِمْ
-          <strong>ma'rifah</strong> (definit)
-        </td>
-      </tr>
-      <tr>
-        <td>③ Peran</td>
-        <td>
-          <strong>بَدَل / عَطْف بَيَان</strong>
-          (badal/athf bayan — pengganti/penjelas) dari
-          <span class="arab-inline">إِيلَافِ قُرَيْشٍ</span>
-          di <a href="106-01.html" style="color:#0369a1;font-weight:700;">ayat 1</a> —
-          mahall جرّ. Idhafah <span class="arab-inline">إِيلَافِهِمْ</span>
-          berperan sebagai masdar yang dapat mengambil
-          مَفْعُول بِهِ (maf'ul bih — obyek langsung):
-          <span class="arab-inline">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- FRASA 2: رِحْلَةَ الشِّتَاءِ (idhafah) -->
-  <div class="kartu">
-    <div class="kartu-head warna-frasa2">
-      <span class="badge badge-frasa2">FRASA 2 · إِضَافَة (Idhafah)</span>
-      <span class="kartu-arab-besar arab">رِحْلَةَ الشِّتَاءِ</span>
-      <span class="kartu-arti">"perjalanan musim dingin" — idhafah: mudhaf + mudhaf ilaih pertama</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>① Struktur</td>
-        <td>
-          <strong>إِضَافَة</strong> (idhafah — frasa penyandaran):
-          <span class="arab-inline">رِحْلَةَ</span>
-          (<strong>مُضَاف</strong> — kata yang bersandar)
-          + <span class="arab-inline">الشِّتَاءِ</span>
-          (<strong>مُضَاف إِلَيْه</strong> — kata tempat bersandar, majrur)
-        </td>
-      </tr>
-      <tr>
-        <td>② Makna frasa</td>
-        <td>
-          "Perjalanan musim dingin" — idhafah zharf (penyandaran keterangan waktu):
-          perjalanan yang dilakukan <em>pada</em> musim dingin.
-          Ini adalah idhafah <strong>فِي</strong>-iyyah (makna: رِحْلَة فِي الشِّتَاءِ)
-        </td>
-      </tr>
-      <tr>
-        <td>③ Peran</td>
-        <td>
-          Menjadi bagian dari مَفْعُول بِهِ (maf'ul bih — obyek langsung)
-          dari إِيلَافِهِمْ. Diperluas oleh عَطْف (athf — sambungan setara)
-          وَالصَّيْفِ di frasa berikutnya
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- FRASA 3: رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ (idhafah + athf) -->
-  <div class="kartu">
-    <div class="kartu-head warna-frasa3">
-      <span class="badge badge-frasa3">FRASA 3 · إِضَافَة + عَطْف (Idhafah Ganda)</span>
-      <span class="kartu-arab-besar arab">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
-      <span class="kartu-arti">"perjalanan musim dingin dan musim panas" — satu mudhaf, dua mudhaf ilaih</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>① Struktur</td>
-        <td>
-          <strong>إِضَافَة مُزْدَوَجَة</strong> (idhafah ganda — satu mudhaf dengan dua mudhaf ilaih):
-          <span class="arab-inline">رِحْلَةَ</span> (مُضَاف — kata yang bersandar)
-          + <span class="arab-inline">الشِّتَاءِ</span> (مُضَاف إِلَيْه — kata tempat bersandar pertama)
-          + <span class="arab-inline">وَ</span> (وَاو الْعَطْف — waw penghubung setara)
-          + <span class="arab-inline">الصَّيْفِ</span>
-          (مَعْطُوف — yang disambungkan, ma'thuf kepada الشِّتَاءِ, ikut majrur)
-        </td>
-      </tr>
-      <tr>
-        <td>② Makna frasa</td>
-        <td>
-          "Perjalanan musim dingin dan musim panas" — dua perjalanan dalam satu kata رِحْلَةَ.
-          Ini adalah gaya bahasa Arab yang ringkas: daripada menulis
-          <em>رِحْلَةَ الشِّتَاءِ وَرِحْلَةَ الصَّيْفِ</em>
-          (yang boleh), Al-Qur'an cukup menyebut رِحْلَة sekali lalu athf-kan kedua musimnya
-        </td>
-      </tr>
-      <tr>
-        <td>③ Peran</td>
-        <td>
-          Menjadi <strong>مَفْعُول بِهِ</strong> (maf'ul bih — obyek langsung)
-          dari isim masdar (isim aksi) إِيلَافِهِمْ yang beramal seperti fi'il —
-          mahall نصب (manshub)
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- FRASA 4: إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ (frasa lengkap) -->
-  <div class="kartu">
-    <div class="kartu-head warna-frasa1">
-      <span class="badge badge-frasa1">FRASA 4 · الْفِرَاسَة الْكَامِلَة (Frasa Lengkap Ayat 2)</span>
-      <span class="kartu-arab-besar arab" style="font-size:28px;">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
-      <span class="kartu-arti">frasa lengkap ayat 2 — badal/athf bayan dari إِيلَافِ قُرَيْشٍ (ayat 1)</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>① Struktur</td>
-        <td>
-          <strong>إِيلَافِهِمْ</strong> (مُضَاف — masdar yang beramal)
-          + <strong>رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</strong>
-          (مَفْعُول بِهِ — obyek langsung dari masdar إِيلَافِهِمْ)
-        </td>
-      </tr>
-      <tr>
-        <td>② Makna frasa</td>
-        <td>
-          "Pembiasaan mereka akan perjalanan musim dingin dan musim panas" —
-          frasa ini merinci secara konkret apa yang dimaksud dengan إِيلَافِ قُرَيْشٍ
-          di ayat 1: yaitu dua perjalanan dagang tahunan yang telah Allah amankan
-          bagi mereka
-        </td>
-      </tr>
-      <tr>
-        <td>③ Peran</td>
-        <td>
-          <strong>بَدَل / عَطْف بَيَان</strong>
-          (badal/athf bayan — pengganti/penjelas) dari
-          <span class="arab-inline">إِيلَافِ قُرَيْشٍ</span>
-          di ayat 1 — mahall جرّ (mengikuti i'rab إِيلَافِ di ayat 1).
-          Seluruh frasa ayat 1–2 bersama-sama menjadi <strong>تَعْلِيل</strong>
-          (ta'lil — keterangan sebab) bagi perintah
-          <span class="arab-inline">فَلْيَعْبُدُوا</span>
-          di <a href="106-03.html" style="color:#0369a1;font-weight:700;">ayat 3</a>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- § 5 — KEDUDUKAN DALAM SURAH -->
-  <div class="section-header">
-    <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
-    <div class="sub-judul">Posisi ayat 2 dalam struktur argumen surah</div>
-  </div>
-
-  <div class="kartu">
-    <div class="kartu-head warna-frasa3">
-      <span class="badge badge-frasa3">STRUKTUR SURAH</span>
-      <span class="kartu-arab-besar arab" style="font-size:24px;">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
-      <span class="kartu-arti">Penjelas ta'lil — merinci isi nikmat di ayat 1</span>
-    </div>
-    <table class="kartu-tabel">
-      <tr>
-        <td>Posisi ayat 2</td>
-        <td>
-          Ayat 2 adalah <strong>perincian</strong> dari ayat 1.
-          Ayat 1 menyebut nikmat secara global (إِيلَافِ قُرَيْشٍ),
-          lalu ayat 2 menyebutnya secara konkret (dua perjalanan musiman).
-          Ini adalah pola balaghah:
-          <em>ijmal → tafshil</em> (global → rinci).
-          <br><br>
-          Bersama ayat 1, keduanya membentuk satu unit ta'lil yang panjang
-          sebelum perintah di ayat 3:
-          <br><br>
-          <span style="font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;display:block;text-align:right;margin-bottom:6px;">
-            لِإِيلَافِ قُرَيْشٍ ۝ إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ
-          </span>
-          → <strong>ta'lil / sebab</strong> (ayat 1–2)<br><br>
-          <span style="font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;display:block;text-align:right;margin-bottom:6px;">
-            فَلْيَعْبُدُوا رَبَّ هَذَا الْبَيْتِ
-          </span>
-          → <strong>perintah / jawab</strong> (ayat 3)
-        </td>
-      </tr>
-      <tr>
-        <td>Peran dua musim</td>
-        <td>
-          Penyebutan dua musim (الشِّتَاء dan الصَّيْف) menunjukkan
-          bahwa perlindungan Allah bagi Quraisy bersifat <em>sepanjang tahun</em> —
-          tidak ada jeda. Dua perjalanan ini merupakan nadi ekonomi Mekah:
-          tanpa keduanya, kota yang tidak memiliki ladang dan pertanian ini
-          tidak bisa bertahan. Allah menyebutkannya sebagai hujjah:
-          <em>"Nikmat ini nyata dan bisa kamu hitung — maka sembahlah Allah!"</em>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <!-- § 6 — TADABUR -->
-  <div class="section-header tadabur">
-    <div class="judul">Tadabur</div>
-    <div class="sub-judul">Renungan makna dan hikmah ayat</div>
-  </div>
-
-  <div class="tadabur-box">
-    <div class="tadabur-head">
-      <span class="badge-tadabur">HIKMAH</span>
-      <span class="tadabur-judul">Nikmat yang Bisa Dihitung — Argumentasi Ibadah</span>
-    </div>
-    <div class="tadabur-isi">
-      <p>
-        Allah tidak sekadar berkata "Kami telah memberi nikmat kepada Quraisy" —
-        Dia <em>merinci</em> nikmat itu: <strong>perjalanan musim dingin dan musim panas.</strong>
-        Perincian ini bukan pengulangan kosong. Ini adalah strategi argumen:
-        semakin spesifik nikmat yang disebut, semakin kuat keharusan untuk bersyukur.
-      </p>
-      <p>
-        <span class="arab-kutip">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span>
-        Dua perjalanan ini adalah sistem ekonomi lengkap: ke selatan (Yaman–Afrika) di musim dingin,
-        ke utara (Syam–Persia) di musim panas. Tidak ada kafilah Arab lain yang bisa melintas
-        dengan keamanan yang sama — suku-suku di padang pasir saling merampok.
-        Hanya Quraisy, karena status mereka sebagai penjaga Ka'bah,
-        yang mendapat jaminan keamanan dari seluruh kabilah Arab.
-        Ini adalah kemurahan Allah yang tak ternilai.
-      </p>
-      <p>
-        Pelajaran untuk kita: nikmat rezeki yang mengalir secara rutin dan "otomatis" —
-        pekerjaan, usaha, jaringan sosial — semuanya adalah
-        <em>kemurahan yang Allah atur, bukan kebetulan semata.</em>
-        Maka perintah yang datang di ayat 3 menjadi sangat masuk akal:
-        "Karena semua ini sudah Allah berikan... maka sembahlah Dia."
-      </p>
-    </div>
-  </div>
-
-
-  <!-- § 7 — DIAGRAM SVG -->
-  <div class="section-header biru">
-    <div class="judul">Diagram Sintaksis</div>
-    <div class="sub-judul">MODEL-POHON · POLA-BERTINGKAT · 3 Level</div>
-  </div>
-
-  <div class="diagram-wrapper">
-    <!--
-      STANDAR DIAGRAM v8.0+:
-      · Kata RTL: kata pertama paling kanan (X besar), terakhir paling kiri (X kecil)
-      · Baris kata: Arab + Latin jenis/i'rab + Latin info tambahan
-      · Node label: Arab (frasa) + Latin (deskripsi) — semua deskriptif dalam Latin
-      · L1 hijau solid · L2 teal putus · L3 ungu putus
-      · Harf (waw athf): teal dashed tipis (lā mahalla)
-    -->
-    <svg viewBox="0 0 920 430" xmlns="http://www.w3.org/2000/svg"
-         style="width:100%;max-width:920px;display:block;margin:0 auto;">
-
-      <!-- ══ REFERENSI AYAT 1: إِيلَافِ قُرَيْشٍ (abu — مبدل منه) ══ -->
-      <!-- Ditempatkan di kanan atas, terhubung ke إِيلَافِهِمْ -->
-      <text x="850" y="30" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="16"
-            fill="#999" direction="rtl">إِيلَافِ قُرَيْشٍ</text>
-      <text x="850" y="46" text-anchor="middle" font-size="8.5" fill="#aaa">dari ayat 1 · مُبْدَل مِنْهُ</text>
-      <!-- Garis dashed abu dari referensi ke إِيلَافِهِمْ -->
-      <line x1="820" y1="42" x2="720" y2="42"
-            stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/>
-      <polygon points="722,42 730,37 730,47" fill="#bbb"/>
-      <!-- Label badal di tengah garis -->
-      <text x="771" y="37" text-anchor="middle" font-size="8" fill="#aaa" font-style="italic">badal</text>
-
-      <!-- ══ BARIS ATAS: KATA RTL ══ -->
-      <!-- X kanan→kiri: إِيلَافِهِمْ=690 · رِحْلَةَ=548 · الشِّتَاءِ=400 · وَ=272 · الصَّيْفِ=130 -->
-
-      <!-- KATA 1 (kanan): إِيلَافِهِمْ -->
-      <text x="690" y="42" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="20"
-            fill="#1a472a" font-weight="700" direction="rtl">إِيلَافِهِمْ</text>
-      <text x="690" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim masdar · mudhaf</text>
-      <text x="690" y="73" text-anchor="middle" font-size="8.5" fill="#888">badal/athf bayan · majrur</text>
-
-      <!-- KATA 2: رِحْلَةَ -->
-      <text x="548" y="42" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="20"
-            fill="#1a472a" font-weight="700" direction="rtl">رِحْلَةَ</text>
-      <text x="548" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim masdar · mudhaf</text>
-      <text x="548" y="73" text-anchor="middle" font-size="8.5" fill="#888">maf'ul bih · manshub</text>
-
-      <!-- KATA 3: الشِّتَاءِ -->
-      <text x="400" y="42" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="20"
-            fill="#1a472a" font-weight="700" direction="rtl">الشِّتَاءِ</text>
-      <text x="400" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim jenis · mudhaf ilaih</text>
-      <text x="400" y="73" text-anchor="middle" font-size="8.5" fill="#888">majrur (kasrah)</text>
-
-      <!-- KATA 4: وَ (harf) -->
-      <text x="272" y="42" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="20"
-            fill="#0e7490" font-weight="700" direction="rtl">وَ</text>
-      <text x="272" y="60" text-anchor="middle" font-size="9" fill="#0e7490">harf athf · waw athf</text>
-      <text x="272" y="73" text-anchor="middle" font-size="8.5" fill="#888">lā mahalla lahu</text>
-
-      <!-- KATA 5 (kiri): الصَّيْفِ -->
-      <text x="130" y="42" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="20"
-            fill="#1a472a" font-weight="700" direction="rtl">الصَّيْفِ</text>
-      <text x="130" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim jenis · ma'thuf</text>
-      <text x="130" y="73" text-anchor="middle" font-size="8.5" fill="#888">majrur (kasrah)</text>
-
-      <!-- ══ GARIS VERTIKAL KE L1 ══ -->
-      <line x1="690" y1="79" x2="690" y2="108" stroke="#1a472a" stroke-width="2"/>
-      <line x1="548" y1="79" x2="548" y2="108" stroke="#1a472a" stroke-width="2"/>
-      <line x1="400" y1="79" x2="400" y2="108" stroke="#1a472a" stroke-width="2"/>
-      <!-- وَ: dashed teal tipis -->
-      <line x1="272" y1="79" x2="272" y2="108" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
-      <line x1="130" y1="79" x2="130" y2="108" stroke="#1a472a" stroke-width="2"/>
-
-      <!-- ══ L1A: IDHAFAH — رِحْلَةَ + الشِّتَاءِ (hijau solid) ══ -->
-      <line x1="400" y1="108" x2="548" y2="108" stroke="#1a472a" stroke-width="2.2"/>
-      <polygon points="474,108 467,100 481,100" fill="#1a472a"/>
-      <line x1="474" y1="108" x2="474" y2="148" stroke="#1a472a" stroke-width="2.2"/>
-      <text x="474" y="160" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">Idhafah (Frasa Penyandaran)</text>
-      <text x="474" y="174" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="16"
-            fill="#1a472a" font-weight="700" direction="rtl">رِحْلَةَ الشِّتَاءِ</text>
-      <text x="474" y="187" text-anchor="middle" font-size="8.5" fill="#555">Riḥlata al-Shitā'i — mudhaf + mudhaf ilaih</text>
-
-      <!-- ══ L1B: ATHF — الشِّتَاءِ + وَ + الصَّيْفِ ══ -->
-      <!-- وَ dashed ke الصَّيْفِ — L1B athf -->
-      <line x1="130" y1="108" x2="272" y2="108" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
-      <polygon points="201,108 194,100 208,100" fill="#0e7490"/>
-      <line x1="201" y1="108" x2="201" y2="148" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
-      <text x="201" y="160" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">Athf (Sambungan Setara)</text>
-      <text x="201" y="174" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="16"
-            fill="#0e7490" font-weight="700" direction="rtl">وَالصَّيْفِ</text>
-      <text x="201" y="187" text-anchor="middle" font-size="8.5" fill="#555">wa al-Ṣaifi — ma'thuf kepada al-Shitā'i</text>
-
-      <!-- ══ L2: IDHAFAH GANDA — رِحْلَةَ الشِّتَاءِ + وَالصَّيْفِ (teal putus) ══ -->
-      <line x1="201" y1="191" x2="201" y2="222" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="474" y1="191" x2="474" y2="222" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="201" y1="222" x2="474" y2="222" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <polygon points="337,222 330,214 344,214" fill="#0e7490"/>
-      <line x1="337" y1="222" x2="337" y2="262" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <text x="337" y="273" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">Idhafah Ganda (Maf'ul Bih Masdar)</text>
-      <text x="337" y="287" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="15"
-            fill="#0e7490" font-weight="700" direction="rtl">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</text>
-      <text x="337" y="300" text-anchor="middle" font-size="8.5" fill="#555">Riḥlata al-Shitā'i wa al-Ṣaifi — maf'ul bih dari إِيلَافِهِمْ</text>
-
-      <!-- ══ L3: FRASA LENGKAP — إِيلَافِهِمْ + L2 (ungu putus) ══ -->
-      <line x1="337" y1="304" x2="337" y2="334" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="690" y1="108" x2="690" y2="334" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="337" y1="334" x2="690" y2="334" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <polygon points="513,334 506,326 520,326" fill="#5b21b6"/>
-      <line x1="513" y1="334" x2="513" y2="374" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <text x="513" y="385" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">Frasa Lengkap Ayat 2 (Badal / Athf Bayan)</text>
-      <text x="513" y="399" text-anchor="middle"
-            font-family="'Scheherazade New',serif" font-size="14"
-            fill="#5b21b6" font-weight="700" direction="rtl">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</text>
-      <text x="513" y="413" text-anchor="middle" font-size="8.5" fill="#555">Īlāfihim Riḥlata al-Shitā'i wa al-Ṣaifi — badal dari إِيلَافِ قُرَيْشٍ (106:1)</text>
-
-    </svg>
-
-    <div class="diagram-legenda">
-      <span class="legenda-label">LEGENDA</span>
-      <span class="legenda-item">
-        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>
-        Idhafah — Riḥlata al-Shitā'i (L1A)
+  <table class="kartu-tabel">
+    <tr><td>Posisi Ayat 2</td><td>
+      Ayat 2 adalah <strong>perincian</strong> dari ayat 1. Ayat 1 menyebut nikmat secara <em>global</em> (<span class="arab-inline" style="font-size:16px;">إِيلَافِ قُرَيْشٍ</span> — "pembiasaan Quraisy"), lalu ayat 2 menyebutnya secara <em>konkret</em> (dua perjalanan musiman). Ini adalah pola balaghah Al-Qur'an: <strong>ījmāl → tafshīl</strong> (global → rinci).
+      <br><br>
+      Bersama ayat 1, keduanya membentuk <strong>satu unit ta'lil</strong> (keterangan sebab) yang panjang sebelum perintah di ayat 3. Struktur logis surah:
+      <br><br>
+      <span style="font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;display:block;text-align:right;margin-bottom:6px;">
+        لِإِيلَافِ قُرَيْشٍ ۝ إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ
       </span>
-      <span class="legenda-item">
-        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="3,3"/></svg>
-        Athf — wa al-Ṣaifi (L1B · harf lā mahalla)
+      → <strong>ta'lil / sebab</strong> (ayat 1–2 · unit pembuka)
+      <br><br>
+      <span style="font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;display:block;text-align:right;margin-bottom:6px;">
+        فَلْيَعْبُدُوا رَبَّ هَذَا الْبَيْتِ
       </span>
-      <span class="legenda-item">
-        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>
-        Idhafah Ganda + Athf — maf'ul bih masdar (L2)
+      → <strong>perintah / jawab</strong> (ayat 3 · titik pusat)
+      <br><br>
+      <span style="font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;display:block;text-align:right;margin-bottom:6px;">
+        الَّذِي أَطْعَمَهُمْ مِنْ جُوعٍ وَآمَنَهُمْ مِنْ خَوْفٍ
       </span>
-      <span class="legenda-item">
-        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>
-        Frasa Lengkap Ayat 2 — badal dari إِيلَافِ قُرَيْشٍ (L3)
-      </span>
-      <span class="legenda-item">
-        <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/></svg>
-        إِيلَافِ قُرَيْشٍ — مُبْدَل مِنْهُ (referensi ayat 1)
-      </span>
-    </div>
+      → <strong>penegasan nikmat</strong> (ayat 4 · unit penutup)
+    </td></tr>
+    <tr><td>Peran Dua Musim</td><td>
+      Penyebutan dua musim yang berseberangan (<span class="arab-inline" style="font-size:16px;">الشِّتَاء</span> &amp; <span class="arab-inline" style="font-size:16px;">الصَّيْف</span>) adalah pola <em>ṭibāq</em> (طِبَاق — penggabungan dua lawan kata) yang berfungsi sebagai <strong>kinayah</strong> (kiasan) tentang <em>kontinuitas sepanjang tahun</em>.
+      <br><br>
+      Dengan menyebut kedua ujung musim, Allah menyatakan bahwa perlindungan-Nya atas Quraisy <em>tidak berjeda</em> — setiap saat, setiap musim, Dia yang memelihara rezeki mereka. Dua perjalanan ini adalah <em>nadi ekonomi Mekah</em>: tanpa keduanya, kota yang tidak memiliki ladang dan pertanian ini tidak bisa bertahan.
+      <br><br>
+      Allah menyebutkan keduanya sebagai <em>hujjah</em> (argumen): <em>"Nikmat ini nyata, bisa kamu hitung, bisa kamu rasakan — maka sembahlah Allah!"</em>
+    </td></tr>
+    <tr><td>Keistimewaan Sintaksis</td><td>
+      Ayat 2 menampilkan <strong>dua keistimewaan gramatikal</strong> sekaligus yang jarang muncul dalam ayat pendek:
+      <ul class="poin-list" style="margin-top:6px;">
+        <li><strong>Masdar 'amil</strong>: isim <span class="arab-inline" style="font-size:16px;">إِيلَافِهِمْ</span> beramal seperti fi'il — mengambil maf'ul-bih (<span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span>) yang manshub</li>
+        <li><strong>Idhafah ganda via 'athf</strong>: satu mudhaf (<span class="arab-inline" style="font-size:16px;">رِحْلَةَ</span>) memiliki dua mudhaf-ilaih yang di-athf-kan (<span class="arab-inline" style="font-size:16px;">الشِّتَاءِ</span> dan <span class="arab-inline" style="font-size:16px;">الصَّيْفِ</span>) — struktur ringkas yang efisien</li>
+      </ul>
+      Keduanya adalah teknik balaghah tingkat tinggi yang jarang ditemukan <em>bersamaan</em> dalam satu ayat pendek — menunjukkan kekayaan linguistik Al-Qur'an yang luar biasa.
+    </td></tr>
+  </table>
+</div>
+
+<!-- §6 TADABUR -->
+<div class="section-header tadabur">
+  <div class="judul">Tadabur</div>
+  <div class="sub-judul">Renungan makna dan hikmah ayat</div>
+</div>
+
+<div class="tadabur-box">
+  <div class="tadabur-head">
+    <span class="badge-tadabur">HIKMAH</span>
+    <span class="tadabur-judul">Nikmat yang Bisa Dihitung — Rincian sebagai Argumen</span>
   </div>
+  <div class="tadabur-isi">
+    <p>
+      Bayangkan seseorang yang hendak meyakinkan kita untuk melakukan sesuatu. Dia tidak cukup berkata: <em>"Aku sudah banyak membantumu."</em> Bantuan umum seperti itu mudah dilupakan. Tetapi jika ia berkata: <em>"Ingatlah — saat kau sakit minggu lalu aku yang membawa obat, saat kau kehilangan pekerjaan aku yang memberi pinjaman, saat ibumu wafat aku yang menemanimu sampai pagi..."</em> — barulah hati kita bergetar. <strong>Rincian yang spesifik punya kekuatan yang tidak dimiliki oleh ringkasan.</strong> Inilah teknik yang Allah gunakan di ayat ini.
+    </p>
+    <p>
+      Di ayat 1, Allah berkata: <span class="arab-inline">لِإِيلَافِ قُرَيْشٍ</span> — "karena pembiasaan Quraisy". Jika berhenti di situ, Quraisy bisa mengatakan: <em>"Pembiasaan apa? Kami tidak merasa istimewa."</em> Maka ayat 2 datang merinci: <span class="arab-inline">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</span> — <em>"Dua perjalanan dagang kalian, musim dingin ke Yaman, musim panas ke Syam. Yang tidak ada kafilah Arab lain bisa melakukannya dengan aman. Yang menjadi sumber kekayaan dan martabat kalian di antara suku-suku."</em> Sekarang Quraisy tidak bisa berkata "tidak merasa" — karena semua orang tahu dua perjalanan itu adalah <em>nadi ekonomi Mekah</em>.
+    </p>
+    <p>
+      Ibnu Katsir rahimahullaah menjelaskan: dua perjalanan ini bukan sekadar aktivitas dagang — ia adalah <em>sistem kehidupan</em>. Di Mekah tidak ada ladang, tidak ada sungai besar, tidak ada pertanian. Kota ini hidup dari perdagangan. Jika salah satu perjalanan terganggu — entah karena perang, cuaca, atau wabah — ekonomi Mekah akan runtuh. As-Sa'di rahimahullaah menambahkan: Allah menyebut dua musim yang <em>berlawanan</em> (dingin &amp; panas) sebagai <strong>ṭibāq</strong> — untuk menyatakan bahwa perlindungan-Nya atas Quraisy bersifat <em>sepanjang tahun, tanpa jeda</em>. Setiap hari, setiap musim, setiap tahun — mereka dalam pemeliharaan-Nya.
+    </p>
+    <p>
+      Sekarang mari bertanya: <em>apa "perjalanan musim dingin dan musim panas" dalam hidup kita?</em> Mungkin itu: gaji yang masuk setiap tanggal 25. Makanan yang tersaji setiap waktu makan. Anak-anak yang pulang sekolah dengan selamat setiap hari. Tubuh yang bangun sehat setiap pagi. Semua itu adalah <em>rincian nikmat</em> yang — jika kita berhenti sejenak untuk melihatnya — <strong>akan mencegah kita dari kekufuran batin</strong>. Allah mengingatkan Quraisy dengan rincian; kita pun butuh mengingatkan diri kita sendiri dengan rincian. Bukan sekadar <em>"Alhamdulillah atas segala nikmat"</em> — tetapi <em>"Alhamdulillah atas nafas ini, Alhamdulillah atas teh hangat ini, Alhamdulillah atas rumah ini, Alhamdulillah atas keluarga ini..."</em>
+    </p>
+    <p>
+      Tiga komitmen praktis yang bisa kita ambil dari ayat ini:
+    </p>
+    <ul class="poin-list" style="margin-bottom:10px;">
+      <li><strong>Pertama:</strong> Setiap malam sebelum tidur, sebutkan <em>tiga nikmat spesifik</em> yang diterima hari itu — bukan nikmat umum. Semakin konkret, semakin kuat rasa syukur. Ini adalah "tafshil versi kita sendiri" atas "ijmal" kehidupan.</li>
+      <li><strong>Kedua:</strong> Ketika merasa kurang bersyukur, bacakan Al-Quraisy ayat 2 pelan-pelan sambil membayangkan dua perjalanan dagang Quraisy — lalu pikirkan: <em>apa dua "perjalanan" saya yang setara? Apa rezeki yang datang otomatis ke saya tanpa saya sadari?</em></li>
+      <li><strong>Ketiga:</strong> Saat memberi nasihat kepada orang lain, terapkan pola <em>ijmal → tafshil</em>: jangan hanya berkata "bersyukurlah" (umum), tetapi tunjukkan <em>nikmat-nikmat spesifik</em> yang ia miliki. Pola Al-Qur'an ini lebih menyentuh hati.</li>
+    </ul>
+    <p>
+      Rasulullah ﷺ bersabda: <em>"Barangsiapa yang diberi kebaikan lalu ia mengatakan kepada pelakunya <span class="arab-inline" style="font-size:16px;">جَزَاكَ اللَّهُ خَيْرًا</span>, sungguh ia telah menyempurnakan pujian."</em> (HR. At-Tirmidzi no. 2035, dinilai sahih oleh Al-Albani, dari Usamah bin Zaid radhiyallaahu 'anhu). Dan nikmat terbesar datang dari Allah — maka pujian tertinggi juga pantas dihadapkan kepada-Nya. Surah Al-Quraisy melatih kita untuk melihat nikmat <em>dengan rincian</em>, bukan dengan sapuan kuas yang samar. Jazakumullahu khairan, semoga Allah menjadikan kita hamba yang pandai menghitung nikmat-Nya dan menjawabnya dengan ibadah yang ikhlas.
+    </p>
+  </div>
+</div>
+
+<!-- §7 DIAGRAM SVG -->
+<div class="section-header biru">
+  <div class="judul">Diagram Sintaksis</div>
+  <div class="sub-judul">MODEL-POHON · 4 level + L4 cross-ref ke 106:1 · Pola 14 + 15</div>
+</div>
+
+<div class="diagram-wrapper">
+  <!--
+    STANDAR DIAGRAM V14.2:
+    · 5 kata RTL: إِيلَافِهِمْ (x=720) · رِحْلَةَ (x=560) · الشِّتَاءِ (x=410) · وَ (x=280) · الصَّيْفِ (x=130)
+    · L1a (y=138-210): Idhafah إِيلَافِهِمْ — hijau solid (masdar + dhamir)
+    · L1b (y=138-210): Idhafah رِحْلَةَ الشِّتَاءِ — hijau solid
+    · L1c (y=138-210): Athf وَالصَّيْفِ → الشِّتَاءِ — teal tipis (harf)
+    · L2 (y=238-320): Idhafah ganda (maf'ul-bih masdar) — teal putus
+    · L3 (y=350-420): Masdar 'amil + maf'ul-bih (frasa lengkap ayat 2) — ungu putus
+    · L4 (y=450-540): Muta'alliq / badal ke 106:1 — biru gelap putus (Pola 15)
+    · Cross-ref node kanan atas (Pola 14): إِيلَافِ قُرَيْشٍ 106:1 (mubdal-minhu)
+  -->
+  <svg viewBox="0 0 920 620" xmlns="http://www.w3.org/2000/svg"
+       style="width:100%;max-width:920px;display:block;margin:0 auto;">
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- CROSS-REF NODE — إِيلَافِ قُرَيْشٍ di 106:1 (Pola 14)   -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <rect x="760" y="18" width="140" height="82" fill="none"
+          stroke="#bbb" stroke-width="1.2" stroke-dasharray="3,3" rx="6"/>
+    <text x="830" y="34" text-anchor="middle" font-size="8.5" fill="#888" font-style="italic">Mubdal-minhu (sumber badal)</text>
+    <text x="830" y="46" text-anchor="middle" font-size="8" fill="#aaa">(106:1)</text>
+    <text x="830" y="70" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="14"
+          fill="#888" font-weight="700" direction="rtl">إِيلَافِ قُرَيْشٍ</text>
+    <text x="830" y="84" text-anchor="middle" font-size="8" fill="#aaa">īlāfi quraisyin — majrur bi al-lam</text>
+    <text x="830" y="94" text-anchor="middle" font-size="8" fill="#aaa">"pembiasaan Quraisy"</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- BARIS ATAS — 5 KATA RTL                                -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <!-- KATA 1 (paling kanan): إِيلَافِهِمْ — masdar 'amil, majrur, badal -->
+    <text x="720" y="42" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="22"
+          fill="#1a472a" font-weight="700" direction="rtl">إِيلَافِهِمْ</text>
+    <text x="720" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-masdar 'amil · mudhaf</text>
+    <text x="720" y="73" text-anchor="middle" font-size="8.5" fill="#888">badal · majrur · mahall jarr</text>
+
+    <!-- KATA 2: رِحْلَةَ — isim masdar, manshub, maf'ul-bih -->
+    <text x="560" y="42" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="22"
+          fill="#1a472a" font-weight="700" direction="rtl">رِحْلَةَ</text>
+    <text x="560" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-masdar · mudhaf</text>
+    <text x="560" y="73" text-anchor="middle" font-size="8.5" fill="#888">maf'ul-bih · manshub (fathah)</text>
+
+    <!-- KATA 3: الشِّتَاءِ — isim jenis, majrur, mudhaf-ilaih -->
+    <text x="410" y="42" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="22"
+          fill="#1a472a" font-weight="700" direction="rtl">الشِّتَاءِ</text>
+    <text x="410" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-jenis · mudhaf-ilaih</text>
+    <text x="410" y="73" text-anchor="middle" font-size="8.5" fill="#888">majrur (kasrah)</text>
+
+    <!-- KATA 4: وَ — harf 'athf -->
+    <text x="280" y="42" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="22"
+          fill="#0e7490" font-weight="700" direction="rtl">وَ</text>
+    <text x="280" y="60" text-anchor="middle" font-size="9" fill="#0e7490">harf-'athf · waw 'athf</text>
+    <text x="280" y="73" text-anchor="middle" font-size="8.5" fill="#888">mabni fathah · lā maḥalla lahu</text>
+
+    <!-- KATA 5 (paling kiri): الصَّيْفِ — isim jenis, majrur, ma'thuf -->
+    <text x="130" y="42" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="22"
+          fill="#1a472a" font-weight="700" direction="rtl">الصَّيْفِ</text>
+    <text x="130" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-jenis · ma'thuf</text>
+    <text x="130" y="73" text-anchor="middle" font-size="8.5" fill="#888">majrur (kasrah) — ikut الشِّتَاءِ</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- GARIS VERTIKAL KATA → L1                               -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- إِيلَافِهِمْ (x=720) → L1a (hijau solid) -->
+    <line x1="720" y1="80" x2="720" y2="138" stroke="#1a472a" stroke-width="2.2"/>
+    <!-- رِحْلَةَ (x=560) → L1b (hijau solid) -->
+    <line x1="560" y1="80" x2="560" y2="138" stroke="#1a472a" stroke-width="2.2"/>
+    <!-- الشِّتَاءِ (x=410) → L1b (hijau solid) -->
+    <line x1="410" y1="80" x2="410" y2="138" stroke="#1a472a" stroke-width="2.2"/>
+    <!-- وَ (x=280) → L1c (teal tipis dashed — harf lā maḥalla) -->
+    <line x1="280" y1="80" x2="280" y2="138" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <!-- الصَّيْفِ (x=130) → L1c (hijau solid) -->
+    <line x1="130" y1="80" x2="130" y2="138" stroke="#1a472a" stroke-width="2.2"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- L1a — IDHAFAH إِيلَافِهِمْ: node tunggal (transit)       -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <line x1="720" y1="138" x2="720" y2="178" stroke="#1a472a" stroke-width="2.2"/>
+    <text x="720" y="190" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">Idhafah (Masdar + Dhamir)</text>
+    <text x="720" y="206" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="15"
+          fill="#1a472a" font-weight="700" direction="rtl">إِيلَافِهِمْ</text>
+    <text x="720" y="220" text-anchor="middle" font-size="8" fill="#555">īlāfihim — masdar 'amil + dhamir-muttashil</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- L1b — IDHAFAH رِحْلَةَ + الشِّتَاءِ                      -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <line x1="410" y1="138" x2="560" y2="138" stroke="#1a472a" stroke-width="2.2"/>
+    <polygon points="485,138 478,130 492,130" fill="#1a472a"/>
+    <line x1="485" y1="138" x2="485" y2="178" stroke="#1a472a" stroke-width="2.2"/>
+    <text x="485" y="190" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">Idhafah (Zharfiyyah)</text>
+    <text x="485" y="206" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="15"
+          fill="#1a472a" font-weight="700" direction="rtl">رِحْلَةَ الشِّتَاءِ</text>
+    <text x="485" y="220" text-anchor="middle" font-size="8" fill="#555">riḥlata al-syitā'i — mudhaf + mudhaf-ilaih pertama</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- L1c — ATHF وَ + الصَّيْفِ                                -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <line x1="130" y1="138" x2="280" y2="138" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <polygon points="205,138 198,130 212,130" fill="#0e7490"/>
+    <line x1="205" y1="138" x2="205" y2="178" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="205" y="190" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">'Athf (Sambungan Setara)</text>
+    <text x="205" y="206" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="15"
+          fill="#0e7490" font-weight="700" direction="rtl">وَالصَّيْفِ</text>
+    <text x="205" y="220" text-anchor="middle" font-size="8" fill="#555">wa-al-ṣaifi — ma'thuf kepada الشِّتَاءِ</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- GARIS L1b + L1c → L2 (teal putus)                      -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <line x1="485" y1="224" x2="485" y2="238" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <line x1="205" y1="224" x2="205" y2="238" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <line x1="205" y1="238" x2="485" y2="238" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- L2 — IDHAFAH GANDA: رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ        -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <polygon points="345,238 338,230 352,230" fill="#0e7490"/>
+    <line x1="345" y1="238" x2="345" y2="280" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <text x="345" y="292" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">Idhafah Ganda (Maf'ul-bih Masdar 'Amil)</text>
+    <text x="345" y="308" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="15"
+          fill="#0e7490" font-weight="700" direction="rtl">رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</text>
+    <text x="345" y="322" text-anchor="middle" font-size="8" fill="#555">riḥlata al-syitā'i wa-al-ṣaifi — manshub (mahall nashb)</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- GARIS L1a + L2 → L3 (ungu putus)                        -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <line x1="720" y1="224" x2="720" y2="350" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <line x1="345" y1="326" x2="345" y2="350" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <line x1="345" y1="350" x2="720" y2="350" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- L3 — FRASA LENGKAP AYAT 2: masdar 'amil + maf'ul-bih    -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <polygon points="532,350 525,342 539,342" fill="#5b21b6"/>
+    <line x1="532" y1="350" x2="532" y2="392" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <text x="532" y="404" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">Kāmilah — Seluruh Isi Ayat 106:2</text>
+    <text x="532" y="420" text-anchor="middle"
+          font-family="'Scheherazade New',serif" font-size="14"
+          fill="#5b21b6" font-weight="700" direction="rtl">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ</text>
+    <text x="532" y="434" text-anchor="middle" font-size="8" fill="#555">īlāfihim riḥlata al-syitā'i wa-al-ṣaifi — masdar 'amil + maf'ul-bih</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- L4 — BADAL ke 106:1 (Pola 15 — biru gelap putus)        -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <line x1="532" y1="438" x2="532" y2="478" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+    <text x="532" y="492" text-anchor="middle" font-size="8.5" fill="#1e3a8a" font-style="italic">Kedudukan terhadap Ayat 1 (L4)</text>
+    <text x="532" y="510" text-anchor="middle" font-size="10" fill="#1e3a8a" font-weight="700">Badal / 'Athf Bayan dari إِيلَافِ قُرَيْشٍ (106:1)</text>
+    <text x="532" y="523" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">"merinci isi pembiasaan Quraisy secara konkret"</text>
+
+    <!-- Jalur horizontal L4 ke cross-ref node -->
+    <line x1="532" y1="530" x2="532" y2="548" stroke="#1e3a8a" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="532" y1="548" x2="830" y2="548" stroke="#1e3a8a" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="681" y="560" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">badal lintas ayat · ijmal → tafshil</text>
+
+    <!-- Vertical naik abu dari y=548 ke cross-ref node (y=100) -->
+    <line x1="830" y1="548" x2="830" y2="104" stroke="#bbb" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <polygon points="830,100 823,108 837,108" fill="#bbb"/>
+
+  </svg>
+
+  <div class="diagram-legenda">
+    <span class="legenda-label">LEGENDA</span>
+    <span class="legenda-item">
+      <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>
+      L1a / L1b — Idhafah (hijau solid)
+    </span>
+    <span class="legenda-item">
+      <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="3,3"/></svg>
+      L1c — 'Athf (harf lā maḥalla)
+    </span>
+    <span class="legenda-item">
+      <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>
+      L2 — Idhafah Ganda (teal putus · maf'ul-bih)
+    </span>
+    <span class="legenda-item">
+      <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>
+      L3 — Kāmilah Ayat 2 (ungu putus)
+    </span>
+    <span class="legenda-item">
+      <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,3"/></svg>
+      L4 — Badal lintas ayat ke 106:1 (biru gelap putus)
+    </span>
+    <span class="legenda-item">
+      <svg width="32" height="3"><line x1="0" y1="1.5" x2="32" y2="1.5" stroke="#bbb" stroke-width="1.2" stroke-dasharray="3,3"/></svg>
+      Cross-ref ke إِيلَافِ قُرَيْشٍ 106:1 (abu putus)
+    </span>
+  </div>
+</div>
 
 
-  <div class="nav-bawah" id="nav-bawah-container"></div>
+<div class="nav-bawah" id="nav-bawah-container"></div>
 
 </div>
 
 <footer>
-  <p><a href="index.html">iwoth.github.io/grammar-quran</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+  <p><a href="index.html">grammar-quran.com</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
 </footer>
 
 <script src="surah-data.js"></script>
@@ -1141,6 +1018,7 @@
       else alert('Pilih surah dan ayat terlebih dahulu.');
     };
 
+    // NAV BAWAH — ayat tengah: ada prev dan next
     const c = document.getElementById('nav-bawah-container');
     const bp = document.createElement('a');
     bp.className = 'nav-btn'; bp.href = '106-01.html'; bp.textContent = '\u2190 Ayat 1';
