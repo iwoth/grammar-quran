@@ -309,8 +309,8 @@ const SURAH_DATA = [
     arti: "Kuda Perang",
     jumlahAyat: 11,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-100 · 11 ayat · sumpah Allah ﷻ dengan kuda perang yang berlari kencang · saat ini ayat 1-3 telah dianalisis (rangkaian sumpah pembuka — pola isim fa'il + isim manshub) · konsep baru: rantai 'athaf tiga lapis lintas ayat, 4 jenis huruf fā' (Fā' 'Āthifah, Isti'nāfiyyah, al-Fashīhah, Rābithah), pergeseran nominal-verbal (set-up ayat 4-5), zhorf zaman vs maf'ul-mutlaq, paralelisme struktur antar-ayat"
   },
   {
     nomor: 101,
