@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Adiyat 100:2</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --hijau-gelap:  #1a472a;
+      --hijau-medium: #2d6a4f;
+      --biru-tua:     #1e3a8a;
+      --ungu:         #5b21b6;
+      --coklat:       #92400e;
+      --merah-fi:     #c2410c;
+      --emas:         #d4af37;
+      --emas-muda:    #f0d060;
+      --bg-utama:     #f7f5f0;
+      --border:       #e0d9c8;
+      --font-arab:    'Scheherazade New', serif;
+      --font-latin:   'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+    .arab { font-family: var(--font-arab); direction: rtl; }
+
+    /* HEADER */
+    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+
+    /* ── Info Surah di header (kiri) ── */
+    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; gap: 0; }
+    .header-info .hi-label { font-size: 0.60rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-surah { font-size: 0.90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
+    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: 0.98rem; color: var(--emas); direction: rtl; vertical-align: baseline; }
+    .header-info .hi-ayat { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 4px; }
+
+    /* ── Dropdown navigasi (tengah) ── */
+    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
+    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s, border-color .2s; max-width: 240px; }
+    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
+    .nav-dropdowns select option { background: var(--hijau-gelap); }
+    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
+    .btn-go:hover { background: var(--emas-muda); }
+
+    /* ── Tombol Beranda (kanan) ── */
+    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s, border-color .2s; flex-shrink: 0; }
+    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
+
+    /* ── Tombol Navigasi Header (prev/next ayat) — POLA 113-01 ── */
+    .nav-btn-hdr { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 34px; padding: 0 10px; background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; font-size: .85rem; font-weight: 700; text-decoration: none; transition: background .2s, border-color .2s; align-self: flex-end; flex-shrink: 0; white-space: nowrap; }
+    .nav-btn-hdr:hover { background: rgba(255,255,255,.22); border-color: var(--emas); }
+    .nav-btn-hdr.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: var(--emas); font-size: .72rem; padding: 0 8px; }
+    .nav-btn-hdr.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-btn-hdr.disabled { opacity: .3; pointer-events: none; }
+
+    /* CONTAINER */
+    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
+
+    /* AYAT BOX */
+    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
+    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .teks-ayat { font-family: var(--font-arab); font-size: 38px; line-height: 2.2; color: #1a1a1a; }
+    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
+
+    /* CATATAN KONTEKS */
+    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
+    .konteks-box .konteks-judul { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--hijau-gelap); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #d4d0c4; }
+    .konteks-box .konteks-isi { color: #1c1c1c; }
+
+    /* SECTION HEADER */
+    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
+    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+    .section-header .sub-judul { font-size: 12px; color: #a8d5b5; margin-top: 2px; }
+    .section-header.biru { background: #1e3a5f; }
+    .section-header.biru .sub-judul { color: #93c5fd; }
+    .section-header.tadabur { background: #5b3a1a; }
+    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
+
+    /* KARTU */
+    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-head { display: flex; align-items: center; gap: 10px; padding: 13px 20px; border-bottom: 1px solid #f0ebe0; flex-wrap: wrap; }
+    .kartu-head .kh-left   { flex: 1 1 0; min-width: 0; text-align: left; display: flex; justify-content: flex-start; align-items: center; }
+    .kartu-head .kh-center { flex: 1 1 0; min-width: 0; text-align: center; display: flex; justify-content: center; align-items: center; }
+    .kartu-head .kh-right  { flex: 1 1 0; min-width: 0; text-align: right; display: flex; justify-content: flex-end; align-items: center; }
+    .kartu-head.warna-kata   { background: #f0f7f2; }
+    .kartu-head.warna-fiil   { background: #fff7ed; }
+    .kartu-head.warna-harf   { background: #f1f5f9; }
+    .kartu-head.warna-frasa1 { background: #eef4fb; }
+    .kartu-head.warna-frasa2 { background: #f5f0fb; }
+    .kartu-head.warna-frasa3 { background: #fdf6ec; }
+
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
+    .badge-kata   { background: var(--hijau-gelap); color: white; }
+    .badge-fi     { background: var(--merah-fi); color: white; }
+    .badge-harf   { background: #475569; color: white; }
+    .badge-frasa1 { background: var(--biru-tua); color: white; }
+    .badge-frasa2 { background: var(--ungu); color: white; }
+    .badge-frasa3 { background: var(--coklat); color: white; }
+    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
+
+    .kartu-arab-besar { font-size: 52px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.5; }
+    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
+    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
+    .kartu-tabel tr:last-child { border-bottom: none; }
+    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
+    .kartu-tabel td:first-child { color: #777; width: 22%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .kartu-tabel td:last-child  { color: #1a1a1a; width: 78%; }
+
+    /* TAG */
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
+    .tag-n       { background: #dbeafe; color: #1e3a8a; }
+    .tag-fi      { background: #ffedd5; color: #9a3412; }
+    .tag-adj     { background: #d1fae5; color: #065f46; }
+    .tag-jar     { background: #fef3c7; color: #92400e; }
+    .tag-nashab  { background: #fce7f3; color: #9d174d; }
+    .tag-idhafah { background: #fce7f3; color: #831843; }
+    .tag-harf    { background: #f1f5f9; color: #475569; }
+    .tag-marfu   { background: #dcfce7; color: #166534; }
+    .tag-majrur  { background: #fef3c7; color: #92400e; }
+
+    .arab-inline  { font-family: var(--font-arab); font-size: 22px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
+    .arab-istilah { font-family: var(--font-arab); font-size: 19px; color: #555; direction: rtl; display: inline-block; }
+
+    /* POIN LIST — bullet bulat hijau besar (standar baku 001-07 deploy) */
+    .poin-list { list-style: none; padding: 0; margin: 0; }
+    .poin-list li { padding: 4px 0 4px 18px; position: relative; }
+    .poin-list li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 12px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--hijau-medium);
+    }
+
+    /* TASHRIF */
+    .tashrif-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-top: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .tashrif-item { text-align: center; }
+    .tashrif-arab { font-family: var(--font-arab); font-size: 24px; color: #9a3412; direction: rtl; display: block; line-height: 1.8; }
+    .tashrif-label { font-size: 11px; color: #888; margin-top: 2px; }
+    .tashrif-panah { font-size: 16px; color: #d97706; }
+    .tashrif-akar { background: #f0f7f2; border: 1px solid #1a472a; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-akar .tashrif-arab { color: #1a472a; }
+    .tashrif-subyek { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-subyek .tashrif-arab { color: #c2410c; font-weight: 700; }
+    .tashrif-link { font-size: 12px; color: #92400e; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #fed7aa; width: 100%; }
+    .tashrif-link a { color: #c2410c; text-decoration: underline; }
+
+    /* TADABUR */
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
+    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
+    .tadabur-isi { padding: 18px 20px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+    .tadabur-isi p { margin-bottom: 10px; }
+    .tadabur-isi p:last-child { margin-bottom: 0; }
+    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 28px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+
+    /* DIAGRAM */
+    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
+    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
+    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* NAV BAWAH (pola 113-01) */
+    .nav-bawah { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 32px 0 8px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .nav-btn { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700; color: var(--hijau-gelap); text-decoration: none; transition: background .2s, border-color .2s; }
+    .nav-btn:hover { background: #e8f0e8; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda { background: var(--hijau-gelap); color: white; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda:hover { background: var(--hijau-medium); }
+    .nav-btn.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: #92400e; }
+    .nav-btn.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-info { font-size: 12.5px; color: #888; text-align: center; flex: 1; min-width: 160px; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
+    footer a { color: var(--emas); text-decoration: none; }
+
+    /* ILTIFAT BOX */
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .iltifat-isi .iltifat-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+    .iltifat-isi .iltifat-row:last-of-type { margin-bottom: 0; }
+    .iltifat-nomor { font-size: 10px; font-weight: 700; background: #7e22ce; color: white; border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 3px; white-space: nowrap; }
+    .iltifat-arab-baris { font-family: var(--font-arab); font-size: 20px; direction: rtl; color: #1a1a1a; flex: 1; line-height: 1.8; }
+    .iltifat-keterangan { font-size: 12px; color: #555; flex-shrink: 0; padding-top: 4px; font-style: italic; }
+
+    /* KONSEP BOX */
+    .konsep-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid var(--biru-tua); border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .konsep-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--biru-tua); margin-bottom: 10px; }
+    .konsep-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .konsep-isi p { margin-bottom: 8px; }
+    .konsep-isi p:last-child { margin-bottom: 0; }
+    .konsep-tabel { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+    .konsep-tabel th, .konsep-tabel td { padding: 7px 10px; border: 1px solid #bfdbfe; text-align: left; vertical-align: top; }
+    .konsep-tabel th { background: #dbeafe; color: var(--biru-tua); font-weight: 700; }
+
+    /* MUQARANAH BOX */
+    .muqaranah-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #166534; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .muqaranah-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #166534; margin-bottom: 10px; }
+    .muqaranah-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+
+    @media (max-width: 680px) {
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .container { padding: 20px 14px; }
+      .teks-ayat { font-size: 32px; }
+      .kartu-arab-besar { font-size: 42px; }
+      .kartu-tabel td { padding: 8px 14px; }
+      .kartu-tabel td:first-child { width: 36%; font-size: 11px; }
+      .iltifat-isi .iltifat-row { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
+      <span class="hi-surah">
+        Surah Al-Adiyat
+        <span class="arab-surah">الْعَادِيَات</span>
+      </span>
+      <span class="hi-ayat">Ayat 2 &nbsp;·&nbsp; (100:2)</span>
+    </a>
+    <div class="nav-dropdowns">
+      <a id="hdr-prev" class="nav-btn-hdr" href="#" title="Ayat sebelumnya">←</a>
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+      <a id="hdr-next" class="nav-btn-hdr" href="#" title="Ayat berikutnya">→</a>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- § 1 — AYAT LENGKAP -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Surah Al-Adiyat — Ayat 2</div>
+    <div class="teks-ayat arab">فَٱلْمُورِيَٰتِ قَدْحًا</div>
+    <div class="terjemahan">"Dan kuda yang memercikkan api dengan pukulan (kuku-kukunya)."</div>
+  </div>
+
+  <!-- § 2 — CATATAN KONTEKS -->
+  <div class="konteks-box">
+    <div class="konteks-judul">Catatan Konteks:</div>
+    <div class="konteks-isi">
+      Ayat 2 adalah <strong>sumpah kedua</strong> dari rangkaian 5 sumpah pembuka Surah Al-Adiyat. Setelah ayat 1 menyumpahkan kuda perang yang berlari kencang sambil terengah, ayat ini melanjutkan dengan gambaran berikutnya: <strong>kuda yang memercikkan api dari hentakan kukunya</strong> di tanah keras saat berlari. Detail ini menunjukkan kecepatan dan kekuatan kuda — bahkan kuku-kuku mereka memantik api seperti batu pemantik. Ayat 2 ini terdiri dari 3 kata: <span class="arab-inline">فَ</span> (fā' al-'athaf — penyambung urutan ke ayat 1), <span class="arab-inline">ٱلْمُورِيَٰتِ</span> (kuda-kuda yang memantik api — ma'thūf ke <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> di ayat 1), dan <span class="arab-inline">قَدْحًا</span> (suara/aksi memantik — maf'ul-mutlaq dari fi'il yang dihilangkan). Karena <span class="arab-inline">فَ</span> menyambungkan ayat 2 ke ayat 1, wāw-al-qasam dan fungsi sumpah ayat 1 secara gramatikal "mengalir" ke ayat 2 ini.
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 3 — ANALISIS TINGKAT 1 : MORFEM -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 1 — Kata</div>
+    <div class="sub-judul">Analisis masing-masing kata secara individual</div>
+  </div>
+
+  <!-- KARTU MORFEM 1: فَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF 'ATHAF · (100:2:1)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">فَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "maka / lalu"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf 'Athaf</span> Fā'-al-'Athaf (huruf fā' untuk penyambung)</li>
+            <li>Berbeda dari fā'-al-jawābiyyah (fā' jawaban syarat) dan fā'-as-sababiyyah (fā' sebab) — fā' di sini berfungsi sebagai penyambung urutan dan kebersamaan aksi</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna harafiah: "maka", "lalu", "kemudian" — penyambung antar-klausa atau antar-ayat</li>
+            <li>Dalam konteks rangkaian sumpah ini: menunjukkan bahwa aksi memantik api (ayat 2) terjadi <strong>berurutan dan beriringan</strong> dengan aksi berlari kencang (ayat 1) — sama-sama dilakukan oleh kuda perang yang sama</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Harf tidak punya posisi i'rab</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menyambung <span class="arab-inline">ٱلْمُورِيَٰتِ</span> (ayat 2) sebagai <strong>ma'thūf</strong> kepada <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> (ayat 1) sebagai <strong>ma'thūf-'alayh</strong></li>
+            <li>Menandai bahwa ayat 2 melanjutkan rangkaian sumpah dari ayat 1 — bukan sumpah baru yang terpisah</li>
+            <li>Mewariskan status majrur dari ma'thūf-'alayh ke ma'thūf — sehingga <span class="arab-inline">ٱلْمُورِيَٰتِ</span> juga majrur</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf 'athaf yang menyambungkan dua jumlah-al-qasam (ayat 1 dan ayat 2)</li>
+            <li>Karena ma'thūf mewarisi status ma'thūf-'alayh: wāw-al-qasam dari ayat 1 secara gramatikal "mengalir" ke ayat 2</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">⓪ KONSEP — 4 Jenis Huruf Fā' (فَ)</div>
+      <div class="konsep-isi">
+        <p>Tidak semua <span class="arab-inline">فَ</span> dalam bahasa Arab punya fungsi yang sama. Ada <strong>4 jenis utama</strong> yang harus dibedakan dari konteks:</p>
+        <table class="konsep-tabel">
+          <tr><th>Jenis</th><th>Fungsi</th><th>Ciri Khas</th></tr>
+          <tr>
+            <td><strong>Fā' 'Āthifah</strong> (Fā' Penghubung) ★</td>
+            <td>Menghubungkan kata atau kalimat dengan yang sebelumnya secara setara</td>
+            <td>Ada ma'thūf-'alaih (yang disambung) yang jelas dan tersurat sebelumnya</td>
+          </tr>
+          <tr>
+            <td><strong>Fā' Isti'nāfiyyah</strong> (Fā' Permulaan Baru)</td>
+            <td>Memulai kalimat baru yang terpisah dari sebelumnya</td>
+            <td>Tidak ada hubungan gramatikal langsung dengan kalimat sebelumnya</td>
+          </tr>
+          <tr>
+            <td><strong>Fā' al-Fashīhah</strong> (Fā' yang Memperjelas)</td>
+            <td>Jawab dari syarat yang tersembunyi — "memperjelas" sesuatu yang tersirat</td>
+            <td>Di belakangnya ada syarat-mahdzūf (syarat yang dihilangkan) yang harus dipahami dari konteks</td>
+          </tr>
+          <tr>
+            <td><strong>Fā' Rābithah</strong> (Fā' Penghubung Jawab Syarat)</td>
+            <td>Menyambungkan jawab-syarath dengan kalimat syarat sebelumnya</td>
+            <td>Wajib hadir jika jawab-syarath berupa fi'il amr, fi'il madhy, atau jumlah-ismiyyah</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;">Di ayat 2 ini, <span class="arab-inline">فَ</span> yang dipakai adalah <strong>Fā' 'Āthifah</strong> (penghubung) — karena menyambungkan <span class="arab-inline">ٱلْمُورِيَٰتِ</span> (ayat 2) ke <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> (ayat 1) sebagai ma'thūf-'alaih yang tersurat dengan jelas. Identifikasi ini penting karena setiap jenis fā' membawa konsekuensi gramatikal yang berbeda — terutama dalam pewarisan i'rab dan struktur kalimat.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 2: ٱلْمُورِيَٰتِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ISIM FA'IL · (100:2:2)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">ٱلْمُورِيَٰتِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "kuda-kuda yang memantik api"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> termasuk isim-musytaq — diturunkan dari fi'il <span class="arab-inline">أَوْرَى</span></li>
+            <li>Klasifikasi: <strong>isim fa'il</strong> (pelaku aksi — "yang memercikkan api")</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Memantik / memercikkan api dari hentakan keras (khusus untuk gesekan logam, tapak kuda di batu, atau pemantik api)</li>
+            <li>Makna konteks (isim fa'il): "yang memercikkan api" — kuda perang yang kuku-kukunya memantik percikan api saat berlari di tanah berbatu</li>
+            <li>Imam Ibn Katsir menjelaskan: kekuatan dan kecepatan kuda begitu hebat sampai gesekan kuku besinya dengan batu menghasilkan percikan api saat malam — gambaran intensitas perang yang sangat hidup</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar &amp; Tashrif</td>
+        <td>
+          <div class="tashrif-box">
+            <div class="tashrif-item tashrif-akar">
+              <span class="tashrif-arab">و ر ي</span>
+              <span class="tashrif-label">akar</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">أَوْرَى</span>
+              <span class="tashrif-label">madhy (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">يُورِي</span>
+              <span class="tashrif-label">mudhari' (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item tashrif-subyek">
+              <span class="tashrif-arab">ٱلْمُورِيَٰتِ</span>
+              <span class="tashrif-label">isim fa'il (jamak mu'annats)</span>
+            </div>
+            <div class="tashrif-link">
+              Pembentukan kata sesuai tashrif dapat dilihat pada Konjugasi Reverso pada link berikut: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%A3%D9%88%D8%B1%D9%89.html" target="_blank" rel="noopener">أَوْرَى</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-majrur">Majrur</span> karena ber-'athaf (menyambung) dengan <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> di ayat 1 yang juga majrur — ma'thūf mengikuti status ma'thūf-'alayh</li>
+            <li>Tanda jar-nya: <strong>kasrah</strong> di akhir (<span class="arab-inline">ٱلْمُورِيَٰتِ</span>)</li>
+            <li>Catatan: Isim ini termasuk jamak-mu'annats-salim (Jamak perempuan normal): tanda jar-nya sama dengan isim tunggal yaitu berakhiran kasrah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-n">Jamak</span> Isim ini memiliki akhiran <span class="arab-inline">ـَات</span> (aati) — pola akhiran ini adalah tanda untuk isim jamak muannats yang berstatus jar. <span class="arab-inline">مُورِيَة</span> adalah bentuk isim tunggal mu'annats, sedangkan <span class="arab-inline">مُورِيَات</span> adalah bentuk isim jamak mu'annats</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-n">Perempuan (mu'annats)</span> — sama dengan ayat 1, mengikuti kaidah jamak hewan tidak berakal yang diperlakukan sebagai mu'annats (atau merujuk ke <span class="arab-inline">الخَيْل</span> yang mu'annats secara lafzhi)</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Ma'rifah karena diawali <span class="arab-inline">ال</span></span></li>
+            <li>Fungsi <span class="arab-inline">ال</span> di sini: <strong>al-'ahdiyyah</strong> — merujuk ke kuda perang yang sama dengan <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> di ayat 1, bukan kuda lain. Ini menjaga kontinuitas referensi rangkaian sumpah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Ma'thūf</strong> kepada <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> di ayat 1 — sebagai <strong>al-muqsam-bih kedua</strong> (yang disumpahkan dengan, lanjutan)</li>
+            <li>Membentuk jumlah-al-qasam kedua dalam rangkaian 5 sumpah pembuka</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim majrur — ma'thūf yang mewarisi status majrur dari ma'thūf-'alayh di ayat 1</li>
+            <li>Isim majrur <span class="arab-inline">ٱلْمُورِيَٰتِ</span> berperan sebagai fa'il (subyek; pelaku) dalam kalimat jumlah-fi'liyyah-mahdzūf <span class="arab-inline">يَقْدَحْنَ قَدْحًا</span> yang mengikuti setelahnya</li>
+            <li>Wāw-al-qasam dari ayat 1 secara gramatikal tetap "berlaku" untuk ayat ini melalui mekanisme 'athaf — menyambungkan rangkaian sumpah</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP — 'Athaf Lintas Ayat dan Pewarisan I'rab</div>
+      <div class="konsep-isi">
+        <p>Pola yang sangat khas Al-Qur'an: <strong>'athaf antar-ayat</strong> tanpa harus mengulang harf jar atau elemen klausa pembuka. Mekanismenya:</p>
+        <ul class="poin-list" style="margin-top:6px;">
+          <li>Ayat 1: <span class="arab-inline">وَ</span> + <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> (wāw-al-qasam + ma'thūf-'alayh)</li>
+          <li>Ayat 2: <span class="arab-inline">فَ</span> + <span class="arab-inline">ٱلْمُورِيَٰتِ</span> (fā'-al-'athaf + ma'thūf)</li>
+          <li>Ayat 3-5: <span class="arab-inline">فَ</span> + isim fa'il berikutnya (rangkaian ma'thūf)</li>
+        </ul>
+        <p style="margin-top:8px;">Kaidah pewarisan i'rab dalam 'athaf:</p>
+        <table class="konsep-tabel">
+          <tr><th>Aspek</th><th>Ma'thūf-'alayh (ayat 1)</th><th>Ma'thūf (ayat 2)</th></tr>
+          <tr><td>Status I'rab</td><td>Majrur (kasrah)</td><td>Majrur (kasrah) — diwariskan</td></tr>
+          <tr><td>Penyebab i'rab</td><td>Wāw-al-qasam langsung</td><td>'Athaf via fā', pewarisan tidak langsung</td></tr>
+          <tr><td>Fungsi</td><td>Al-muqsam-bih pertama</td><td>Al-muqsam-bih kedua (lanjutan)</td></tr>
+        </table>
+        <p style="margin-top:8px;">Hikmah balaghah-nya: dengan tidak mengulang <span class="arab-inline">وَ</span> di setiap ayat, ekspresi jadi <strong>lebih rapat dan dinamis</strong> — seperti seruan beruntun yang tidak terputus. Pembaca/pendengar merasakan rangkaian aksi kuda perang sebagai satu kesatuan bergerak yang utuh.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 3: قَدْحًا -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ISIM MASDAR · (100:2:3)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">قَدْحًا</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "(dengan benar-benar) memantik"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> Jenis: isim-musytaq (turunan dari fi'il - dari fi'il <span class="arab-inline">قَدَحَ</span>)</li>
+            <li>Klasifikasi: <strong>isim masdar</strong> (isim aksi/peristiwa)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna mashdar: "memantik dengan benar-benar memantik" — aksi memukul/menggesek dengan keras yang menghasilkan percikan api</li>
+            <li>Detail leksikal: al-qadh secara spesifik bermakna pukulan keras yang memantik api — sama seperti pemantik api memantik korek dengan batu</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar &amp; Tashrif</td>
+        <td>
+          <div class="tashrif-box">
+            <div class="tashrif-item tashrif-akar">
+              <span class="tashrif-arab">ق د ح</span>
+              <span class="tashrif-label">akar</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">قَدَحَ</span>
+              <span class="tashrif-label">madhy (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">يَقْدَحُ</span>
+              <span class="tashrif-label">mudhari' (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item tashrif-subyek">
+              <span class="tashrif-arab">قَدْحًا</span>
+              <span class="tashrif-label">mashdar (manshub)</span>
+            </div>
+            <div class="tashrif-link">
+              Pembentukan kata sesuai tashrif dapat dilihat pada Konjugasi Reverso pada link berikut: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D9%82%D8%AF%D8%AD.html" target="_blank" rel="noopener">قَدَحَ</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-nashab">Manshub</span> karena berperan sebagai maf'ul-mutlaq</li>
+            <li>Tanda nashab: harakat akhir fathah-tanwin (<span class="arab-inline">ـًا</span>)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-n">Tunggal (mufrad)</span></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-n">Laki-laki (mudzakkar)</span> — mashdar pada wazan ini secara default mudzakkar</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td><span class="tag tag-n">Nakirah</span> Ditandai dengan akhiran tanwin.</td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Maf'ul-mutlaq</strong> dari fi'il yang dihilangkan (<span class="arab-inline">يَقْدَحْنَ</span>)</li>
+            <li>Jumlah-fi'liyyah lengkap: <span class="arab-inline">فَٱلْمُورِيَٰتِ يَقْدَحْنَ قَدْحًا</span> ("Maka kuda-kuda yang memantik api dengan benar-benar memantik")</li>
+            <li>Fungsi maf'ul-mutlaq: sebagai penegasan terjadinya aksi memantik tersebut</li>
+            <li>Pola yang sama dengan <span class="arab-inline">ضَبْحًا</span> di ayat 1 — paralel struktur antar-ayat dalam rangkaian sumpah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim manshub yang berperan sebagai maf'ul-mutlaq dari fi'il-mahdzūf <span class="arab-inline">يَقْدَحْنَ</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="iltifat-box">
+      <div class="iltifat-label">⚖ KHILAF I'RAB — Status <span class="arab-istilah">قَدْحًا</span></div>
+      <div class="iltifat-isi">
+        <p>Para ulama nahwu dan mufassir berbeda pendapat tentang status i'rab <span class="arab-inline">قَدْحًا</span> — paralel persis dengan khilaf <span class="arab-inline">ضَبْحًا</span> di ayat 1:</p>
+        <div class="iltifat-row">
+          <span class="iltifat-nomor">A</span>
+          <div style="flex:1;">
+            <strong>Maf'ul-mutlaq</strong> ★ — pendapat utama (Az-Zamakhsyari, Al-Alusi, Abu Hayyan)<br>
+            <em style="font-size:12px;color:#555;">Mashdar dari fi'il yang dihilangkan: <span class="arab-istilah">يَقْدَحْنَ قَدْحًا</span>. Berfungsi menegaskan aksi.</em>
+          </div>
+        </div>
+        <div class="iltifat-row">
+          <span class="iltifat-nomor">B</span>
+          <div style="flex:1;">
+            <strong>Hāl</strong> (keterangan kondisi) — pendapat alternatif (Al-Akhfasy)<br>
+            <em style="font-size:12px;color:#555;">Mashdar nakirah berfungsi sebagai hāl, sejatinya: <span class="arab-istilah">قَادِحَاتٍ</span> (dalam keadaan memantik api).</em>
+          </div>
+        </div>
+        <p style="margin-top:8px;font-size:12px;color:#555;">Karena pola gramatikalnya identik dengan ayat 1, kami konsisten memilih Pendapat A (maf'ul-mutlaq) sebagai pendapat utama. Khilaf disampaikan untuk transparansi keilmuan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 4 — ANALISIS TINGKAT 2 : FRASA -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 2 — Frasa</div>
+    <div class="sub-judul">Analisis frasa, klausa, atau kalimat yang membentuk ayat</div>
+  </div>
+
+  <!-- KARTU FRASA 1: فَٱلْمُورِيَٰتِ ('Athaf + Jar-Majrur Qasam) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <div class="kh-left"><span class="badge badge-frasa1">FRASA · 'ATHAF + JAR-MAJRUR QASAM</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">فَٱلْمُورِيَٰتِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "maka kuda-kuda yang memantik api"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Fā'-al-'Athaf (<span class="arab-inline">فَ</span>) + Isim Majrur (<span class="arab-inline">ٱلْمُورِيَٰتِ</span>) — frasa ini ber'athaf kepada <span class="arab-inline">وَٱلْعَٰدِيَٰتِ</span> di ayat 1, melanjutkan klausa sumpah dengan urutan aksi berikutnya.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Maka (kuda-kuda) yang memercikkan api." Fā' bermakna urutan ("lalu/maka"), dan isim majrur sesudahnya adalah al-muqsam-bih lanjutan (yang juga disumpahkan dengan).
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa ini ber'athaf kepada <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> di ayat 1 — keduanya merujuk ke kelompok kuda perang yang sama dalam aksi yang berurutan</li>
+            <li>Membentuk jumlah-al-qasam kedua dari rangkaian 5 sumpah berurutan di pembukaan surah Al-Adiyat</li>
+            <li>Karena 'athaf, frasa ini secara gramatikal ikut muta'alliq (terikat) ke fi'il-qasam-mahdzūf yang sama dengan ayat 1: <span class="arab-inline">أُقْسِمُ</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 2: [يَقْدَحْنَ] قَدْحًا (Jumlah-Fi'liyyah Mahdzūf) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA · JUMLAH FI'LIYYAH MAHDZŪF</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">[يَقْدَحْنَ] قَدْحًا</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "(mereka) memantik api dengan benar-benar memantik"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Fi'il-mahdzūf (<span class="arab-inline">يَقْدَحْنَ</span>) + Maf'ul-mutlaq (<span class="arab-inline">قَدْحًا</span>) → jumlah-fi'liyyah dengan fi'il yang dihilangkan (tersembunyi), hanya maf'ul-mutlaq-nya yang tampak di dalam ayat.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "(Kuda-kuda itu) benar-benar memantik api". Maf'ul-mutlaq <span class="arab-inline">قَدْحًا</span> berperan menegaskan kebenaran dan intensitas aksi memantik tersebut.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Jumlah-fi'liyyah dengan fi'il dihilangkan — paralel persis dengan struktur ayat 1</li>
+            <li>Fa'il dari fi'il-mahdzūf adalah dhamir kembali ke <span class="arab-inline">ٱلْمُورِيَٰتِ</span> (jamak mu'annats: <span class="arab-inline">هُنَّ</span>)</li>
+            <li>Kalimat ini berperan sebagai haaliyyah (keadaan) yang menerangkan bagaimana kuda-kuda itu sedang memantik api</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP — Paralelisme Struktur Antar-Ayat</div>
+      <div class="konsep-isi">
+        <p>Salah satu keindahan balaghah Al-Qur'an dalam rangkaian sumpah ini adalah <strong>paralelisme struktur</strong> antar-ayat. Ayat 1 dan ayat 2 mengikuti pola gramatikal yang nyaris identik:</p>
+        <table class="konsep-tabel">
+          <tr><th>Komponen</th><th>Ayat 1</th><th>Ayat 2</th></tr>
+          <tr><td>Harf pembuka</td><td><span class="arab-istilah">وَ</span> (qasam)</td><td><span class="arab-istilah">فَ</span> ('athaf)</td></tr>
+          <tr><td>Isim fa'il (muqsam-bih)</td><td><span class="arab-istilah">ٱلْعَٰدِيَٰتِ</span></td><td><span class="arab-istilah">ٱلْمُورِيَٰتِ</span></td></tr>
+          <tr><td>Fi'il mahdzūf</td><td><span class="arab-istilah">[يَضْبَحْنَ]</span></td><td><span class="arab-istilah">[يَقْدَحْنَ]</span></td></tr>
+          <tr><td>Maf'ul-mutlaq</td><td><span class="arab-istilah">ضَبْحًا</span></td><td><span class="arab-istilah">قَدْحًا</span></td></tr>
+        </table>
+        <p style="margin-top:8px;">Paralelisme ini menciptakan <strong>irama yang khas</strong> saat ayat-ayat dibaca berurutan. Pembaca/pendengar merasakan ritme yang konsisten — seperti hentakan kuku kuda yang berderap satu demi satu. Pola yang sama akan berulang di ayat 3 (<span class="arab-istilah">فَٱلْمُغِيرَٰتِ صُبْحًا</span>), tapi dengan variasi di ayat 4-5 yang menggunakan fi'il madhy langsung (<span class="arab-istilah">فَأَثَرْنَ</span>, <span class="arab-istilah">فَوَسَطْنَ</span>) — bukan lagi isim fa'il dengan mashdar mahdzūf.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 5 — ANALISIS TINGKAT 3 : KEDUDUKAN -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 3 — Kedudukan dalam Surah</div>
+    <div class="sub-judul">Kedudukan ayat dalam alur surah secara keseluruhan</div>
+  </div>
+
+  <!-- KARTU KEDUDUKAN -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">KEDUDUKAN · JUMLAH AL-QASAM KEDUA (MA'THŪF)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab" style="font-size:36px;">سُورَةُ ٱلْعَادِيَات · ٢</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "ayat 2: sumpah kedua, ma'thūf ke ayat 1"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Posisi</td>
+        <td>
+          Ayat 2 adalah <strong>sumpah kedua</strong> dari rangkaian 5 sumpah berurutan (ayat 1-5). Ayat ini ber'athaf langsung kepada ayat 1 melalui <span class="arab-inline">فَ</span>, sehingga secara gramatikal merupakan <em>kelanjutan</em> dari klausa sumpah ayat 1 — bukan sumpah baru yang berdiri sendiri. Al-muqsam-bih kedua (<span class="arab-inline">ٱلْمُورِيَٰتِ</span>) menggambarkan aksi berikutnya dari kuda perang yang sama: memantik api dari hentakan kukunya.
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan ke Ayat Sebelumnya</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ayat 1 (<span class="arab-inline">وَٱلْعَٰدِيَٰتِ ضَبْحًا</span>) — sumpah pertama dengan wāw-al-qasam, ma'thūf-'alayh ayat ini</li>
+            <li>Ma'thūf-ma'thūf-'alayh: <span class="arab-inline">ٱلْمُورِيَٰتِ</span> mengikuti <span class="arab-inline">ٱلْعَٰدِيَٰتِ</span> dalam i'rab (sama-sama majrur)</li>
+            <li>Pewarisan gramatikal: wāw-al-qasam dan fi'il-qasam-mahdzūf (<span class="arab-inline">أُقْسِمُ</span>) dari ayat 1 secara implisit "berlaku" untuk ayat 2 ini</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan ke Ayat Berikutnya</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ayat 3 (<span class="arab-inline">فَٱلْمُغِيرَٰتِ صُبْحًا</span>) — pola yang sama: <span class="arab-inline">فَ</span> + isim fa'il + maf'ul-mutlaq → "lalu yang menyerbu di waktu subuh"</li>
+            <li>Ayat 4-5 berbeda: tidak lagi pakai isim fa'il, melainkan fi'il madhy langsung (<span class="arab-inline">فَأَثَرْنَ</span>, <span class="arab-inline">فَوَسَطْنَ</span>) — pergeseran dari nominal ke verbal</li>
+            <li>Pergeseran nominal-verbal ini punya hikmah balaghah: ayat 1-3 menggambarkan <em>karakter/sifat</em> kuda (statis), ayat 4-5 menggambarkan <em>aksi puncak</em> (dinamis)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Keseluruhan Ayat</td>
+        <td>
+          "Maka (kuda-kuda perang) yang memercikkan api (dari kuku-kukunya)" — Allah ﷻ melanjutkan rangkaian sumpah dengan gambaran yang lebih spektakuler: kuda perang yang berlari sangat cepat sampai gesekan kuku-kukunya dengan batu menghasilkan percikan api. Gambaran ini menggambarkan kekuatan, kecepatan, dan intensitas aksi yang luar biasa — semakin meneguhkan agung-nya muqsam-bih dan urgensi jawab-al-qasam yang akan datang di ayat 6.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 6 — ANALISIS TINGKAT 4 : DIAGRAM SVG -->
+  <!-- ============================================ -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 4 — Diagram Sintaksis</div>
+    <div class="sub-judul">Diagram struktur bertingkat unsur kalimat yang menyusun ayat</div>
+  </div>
+
+  <!-- DIAGRAM SVG -->
+  <div class="diagram-wrapper">
+    <svg viewBox="0 0 820 760" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:820px;display:block;margin:0 auto;font-family:'Lato',sans-serif;">
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- BARIS KATA (RTL) — 3 KATA: فَ · ٱلْمُورِيَٰتِ · قَدْحًا -->
+      <!-- X-positions: 680 · 410 · 140                            -->
+      <!-- Catatan: warna GRAY = mahdzūf (tersembunyi)             -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- KATA 1: فَ (harf 'athaf) -->
+      <text x="680" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">فَ</text>
+      <text x="680" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">fā'-al-'athaf</text>
+      <text x="680" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 2: ٱلْمُورِيَٰتِ (isim majrur — ma'thūf, muqsam-bih ke-2) -->
+      <text x="410" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْمُورِيَٰتِ</text>
+      <text x="410" y="59" text-anchor="middle" font-size="8.5" fill="#1a472a">isim majrur · ma'thūf</text>
+      <text x="410" y="70" text-anchor="middle" font-size="8" fill="#888">jamak mu'annats salim</text>
+
+      <!-- KATA 3: قَدْحًا (mashdar manshub — maf'ul-mutlaq) -->
+      <text x="140" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#1a472a" font-weight="700" direction="rtl">قَدْحًا</text>
+      <text x="140" y="59" text-anchor="middle" font-size="8.5" fill="#1a472a">mashdar manshub</text>
+      <text x="140" y="70" text-anchor="middle" font-size="8" fill="#888">maf'ul-mutlaq</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1b (KANAN) — JAR-MAJRUR QASAM dengan wāw mahdzūf       -->
+      <!-- [وَ] (gray) + ٱلْمُورِيَٰتِ (hijau)                     -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- Node wāw mahdzūf (gray, italic kurung-siku) -->
+      <text x="555" y="100" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#9ca3af" font-weight="700" direction="rtl" font-style="italic">[وَ]</text>
+      <text x="555" y="115" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">wāw-al-qasam · mahdzūf</text>
+
+      <!-- Garis dari ٱلْمُورِيَٰتِ ke L1b -->
+      <line x1="410" y1="77" x2="410" y2="148" stroke="#1a472a" stroke-width="2.2"/>
+      <!-- Garis dari [وَ] mahdzūf ke L1b (gray dashed) -->
+      <line x1="555" y1="120" x2="555" y2="148" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <!-- Garis horizontal L1b: dari [وَ] ke ٱلْمُورِيَٰتِ -->
+      <line x1="410" y1="148" x2="555" y2="148" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="482" y="145" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">harf-jar (qasam, mahdzūf) · majrur</text>
+      <polygon points="482,148 475,140 489,140" fill="#0e7490"/>
+      <line x1="482" y1="148" x2="482" y2="188" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="482" y="200" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">L1b — Jar-Majrur al-Qasam</text>
+      <text x="482" y="218" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#0e7490" font-weight="700" direction="rtl">[وَ]ٱلْمُورِيَٰتِ</text>
+      <text x="482" y="231" text-anchor="middle" font-size="8" fill="#555">[wa]l-mūriyāti — [demi] kuda-kuda yang memantik api</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1a (KIRI) — JUMLAH FI'LIYYAH MAHDZŪF                   -->
+      <!-- [يَقْدَحْنَ] (gray) + قَدْحًا (hijau)                   -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- Node fi'il mahdzūf (gray, italic kurung-siku) -->
+      <text x="280" y="100" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#9ca3af" font-weight="700" direction="rtl" font-style="italic">[يَقْدَحْنَ]</text>
+      <text x="280" y="115" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">fi'il-mahdzūf · tersembunyi</text>
+
+      <!-- Garis dari قَدْحًا ke L1a -->
+      <line x1="140" y1="77" x2="140" y2="148" stroke="#1a472a" stroke-width="2.2"/>
+      <!-- Garis dari [يَقْدَحْنَ] mahdzūf ke L1a (gray dashed) -->
+      <line x1="280" y1="120" x2="280" y2="148" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <!-- Garis horizontal L1a: dari [يَقْدَحْنَ] ke قَدْحًا -->
+      <line x1="140" y1="148" x2="280" y2="148" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="210" y="145" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">fi'il-mahdzūf · maf'ul-mutlaq</text>
+      <polygon points="210,148 203,140 217,140" fill="#0e7490"/>
+      <line x1="210" y1="148" x2="210" y2="188" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="210" y="200" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">L1a — Jumlah-Fi'liyyah Mahdzūf</text>
+      <text x="210" y="218" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="14" fill="#0e7490" font-weight="700" direction="rtl">[يَقْدَحْنَ] قَدْحًا</text>
+      <text x="210" y="231" text-anchor="middle" font-size="8" fill="#555">[yaqdahna] qadhā — memantik api dengan benar-benar memantik</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L2 — JUMLAH-AL-QASAM AYAT 2 (gabungan L1a + L1b)        -->
+      <!-- (UNGU PUTUS)                                            -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <line x1="482" y1="235" x2="482" y2="298" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="210" y1="235" x2="210" y2="298" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="210" y1="298" x2="482" y2="298" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="346" y="295" text-anchor="middle" font-size="8" fill="#5b21b6" font-style="italic">muqsam-bih · jumlah haaliyyah</text>
+      <polygon points="346,298 339,290 353,290" fill="#5b21b6"/>
+      <line x1="346" y1="298" x2="346" y2="338" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="346" y="350" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">L2 — Jumlah-al-Qasam (ayat 2)</text>
+      <text x="346" y="368" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="13" fill="#5b21b6" font-weight="700" direction="rtl">[وَ]ٱلْمُورِيَٰتِ [يَقْدَحْنَ] قَدْحًا</text>
+      <text x="346" y="381" text-anchor="middle" font-size="8" fill="#555">[wa]l-mūriyāti [yaqdahna] qadhā — klausa sumpah kedua</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L3 — MA'THŪF: فَ + L2 (BIRU GELAP PUTUS)                -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- Garis dari kata فَ (kanan atas) lewat sisi atas → ke L3 -->
+      <line x1="680" y1="77" x2="680" y2="408" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="680" y1="408" x2="346" y2="408" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="513" y="405" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">harf-'athaf · ma'thūf-'alayh di ayat 1</text>
+
+      <!-- Gabungan dari L2 (346) dan فَ (lewat horizontal) -->
+      <line x1="346" y1="385" x2="346" y2="438" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="346" y1="408" x2="346" y2="438" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <polygon points="346,438 339,430 353,430" fill="#1e3a8a"/>
+      <line x1="346" y1="438" x2="346" y2="478" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="346" y="490" text-anchor="middle" font-size="8.5" fill="#1e3a8a" font-style="italic">L3 — Ma'thūf (sumpah ke-2 disambung ke ayat 1)</text>
+      <text x="346" y="510" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="13" fill="#1e3a8a" font-weight="700" direction="rtl">فَٱلْمُورِيَٰتِ قَدْحًا</text>
+      <text x="346" y="525" text-anchor="middle" font-size="8" fill="#555">fal-mūriyāti qadhā — "maka kuda-kuda yang memantik api"</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L4 — CROSS-REF KE AYAT 1 (di bawah, gray)               -->
+      <!-- وَٱلْعَٰدِيَٰتِ ضَبْحًا (100:1)                          -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <line x1="346" y1="525" x2="346" y2="580" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="346" y="575" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">'athaf lintas ayat — disambung kepada:</text>
+      <polygon points="346,580 339,572 353,572" fill="#9ca3af"/>
+
+      <!-- Box cross-ref (gray) -->
+      <rect x="146" y="600" width="400" height="80" rx="8" ry="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="346" y="620" text-anchor="middle" font-size="9" fill="#6b7280" font-style="italic">CROSS-REF — Ayat 1 (100:1)</text>
+      <text x="346" y="645" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#1a472a" font-weight="700" direction="rtl">وَٱلْعَٰدِيَٰتِ ضَبْحًا</text>
+      <text x="346" y="663" text-anchor="middle" font-size="9" fill="#555">wal-'ādiyāti dhabhā — "demi kuda-kuda yang berlari kencang"</text>
+      <text x="346" y="676" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">— sumpah pembuka surah, ma'thūf-'alayh —</text>
+
+      <!-- Note: jawab al-qasam menanti di ayat 6 -->
+      <text x="346" y="720" text-anchor="middle" font-size="9" fill="#888" font-style="italic">→ jawab-al-qasam menanti di ayat 6: إِنَّ ٱلْإِنسَـٰنَ لِرَبِّهِۦ لَكَنُودٌ</text>
+
+    </svg>
+
+    <div class="diagram-legenda">
+      <div class="legenda-label">LEGENDA</div>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>L1a/L1b — Frasa Dasar (teal putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — Jumlah-al-Qasam (ungu putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,3"/></svg>L3 — Ma'thūf Lengkap (biru gelap putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/></svg>L4 — Cross-ref Antar-Ayat (gray)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="3,3"/></svg>Komponen mahdzūf (gray italic dengan kurung siku)</span>
+      <span class="legenda-item">[ ... ] — Komponen yang tersembunyi (mahdzūf)</span>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 7 — TADABUR -->
+  <!-- ============================================ -->
+  <div class="section-header tadabur">
+    <div class="judul">Tadabur</div>
+    <div class="sub-judul">Renungan dari percikan api kuda perang</div>
+  </div>
+
+  <!-- TADABUR ISI -->
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">TADABUR</span>
+      <span class="tadabur-judul">Renungan dari Percikan Api Kuda Perang</span>
+    </div>
+    <div class="tadabur-isi">
+      <p><strong>Allah ﷻ melanjutkan rangkaian sumpah-Nya</strong> — kali ini dengan gambaran yang lebih spektakuler. Setelah ayat 1 menunjukkan kuda yang berlari sampai terengah-engah, ayat 2 ini menampilkan pemandangan yang nyaris ajaib: <strong>percikan api yang memancar dari kuku-kuku kuda</strong> saat berlari. Bayangkan: di tengah malam atau menjelang fajar, di medan tanah berbatu keras, kuku-kuku kuda yang dilapisi besi menggesek bebatuan dengan kecepatan tinggi sehingga menghasilkan percikan-percikan kecil — seperti kembang api yang berbinar dalam gelap.</p>
+
+      <p><strong>Detail leksikal yang sangat presisi</strong>: kata <span class="arab-inline">قَدْحًا</span> bukan sekadar "memantik" dalam arti umum. Akar <span class="arab-inline">ق د ح</span> dalam bahasa Arab klasik secara spesifik bermakna <em>memantik api dari benda yang seharusnya tidak menghasilkan api</em> — seperti pemantik kayu yang digosok keras, atau besi yang dipukulkan ke batu. Bukan api dari obor, bukan api dari pemantik standar — tetapi api yang muncul dari aksi yang luar biasa hebat. Inilah yang Al-Qur'an gambarkan tentang kuda perang itu.</p>
+
+      <blockquote class="arab-kutip">فَٱلْمُورِيَٰتِ قَدْحًا</blockquote>
+
+      <p><strong>Imam Ibn Katsir</strong> rahimahullāh dalam tafsirnya mencatat: "Yaitu kuda yang berlari sangat kencang sampai memantikkan api dari hentakan tapaknya di bebatuan." Imam As-Sa'di rahimahullāh menambahkan dimensi yang lebih dalam: percikan api ini bukan sekadar fenomena fisik, melainkan <em>simbol kekuatan dan kesungguhan</em> kuda dalam menjalankan tugasnya. Tidak setiap kuda bisa menghasilkan percikan api — hanya kuda yang berlari dengan kecepatan luar biasa, di medan yang tepat, dengan beban penuh — yang sanggup melakukannya. Ini gambaran <em>pengorbanan total</em> dari makhluk yang patuh.</p>
+
+      <p><strong>Yang membuat ayat ini lebih menggetarkan</strong>: Allah ﷻ tidak menggunakan harf wāw lagi seperti di ayat 1, melainkan harf <span class="arab-inline">فَ</span> — yang menyiratkan <em>urutan tanpa jeda</em>. Artinya: kuda itu tidak berhenti dulu untuk menarik nafas setelah berlari di ayat 1, lalu memantik api di ayat 2. Tidak — semua aksi itu terjadi <strong>secara bersamaan dan beruntun</strong>, dalam satu rangkaian gerakan yang utuh. Berlari kencang sampai terengah, sambil memantikkan api dari kukunya, sambil menyerbu di subuh, sambil mengangkat debu, sambil menerobos ke tengah pasukan musuh. Lima aksi simultan dalam satu makhluk — semua untuk satu tujuan.</p>
+
+      <p><strong>Pertanyaan yang patut menggema dalam hati kita:</strong> Pernahkah amal ibadah kita memunculkan "percikan" yang menerangi sekitar? Atau ibadah kita masih monoton, datar, tanpa intensitas? Kuda perang itu tidak berlari setengah hati; ia memberikan seluruh tenaganya sampai kuku-kukunya pun bersinar. Marilah kita memohon kepada Allah ﷻ agar dijadikan dari hamba-Nya yang seperti itu — yang ibadahnya mengeluarkan percikan iman yang menyala, yang amal jariyah-nya bersinar di tengah gelapnya zaman ini, yang menggerakkan sekitar untuk mendekat kepada Rabb-nya. Allāhumma āmīn.</p>
+    </div>
+  </div>
+
+  <!-- NAV BAWAH -->
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div>
+
+<footer>
+  <p>grammar-quran.com · Analisis Gramatikal Al-Qur'an · <a href="index.html">Beranda</a></p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>
+  const PAGE_CONFIG = {
+    nomorSurah:   100,
+    nomorAyat:    2,
+    ayatTerakhir: false
+  };
+</script>
+
+<script>
+  (function () {
+    const surah = getSurahByNomor(PAGE_CONFIG.nomorSurah);
+    if (!surah) return;
+
+    const ayatSaat  = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah.jumlahAyat;
+    const isLast    = PAGE_CONFIG.ayatTerakhir;
+
+    // Title: format "Grammar Al-Adiyat 100:1"
+    document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
+
+    const lbl = document.getElementById('label-ayat-box');
+    if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}` + (isLast ? ' · Ayat Terakhir' : '');
+
+    // ── DROPDOWN PILIH SURAH ──
+    // Format: "1. Al-Fatihah — 7 ayat"
+    // Urutan: hanya status="tersedia", sorted by nomor ascending
+    const ddSurah = document.getElementById('dd-surah');
+    SURAH_DATA
+      .filter(s => s.status === 'tersedia')
+      .sort((a, b) => a.nomor - b.nomor)
+      .forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomor + '. ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+    // ── DROPDOWN PILIH AYAT ──
+    function isiDropdownAyat(nomorSurahParam) {
+      const ddAyat = document.getElementById('dd-ayat');
+      ddAyat.innerHTML = '';
+      const opsiAyat = getOpsiDropdownAyat(nomorSurahParam);
+      if (!opsiAyat.length) {
+        ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        ddAyat.disabled = true;
+        return;
+      }
+      ddAyat.disabled = false;
+      opsiAyat.forEach(opsi => {
+        const opt = document.createElement('option');
+        opt.value = opsi.path;
+        opt.textContent = opsi.label;
+        // Default ke ayat 1 saat ganti surah; jika halaman ini → pilih ayatSaat
+        if (nomorSurahParam === surah.nomor) {
+          if (opsi.value === ayatSaat) opt.selected = true;
+        } else {
+          if (opsi.value === 1) opt.selected = true;
+        }
+        ddAyat.appendChild(opt);
+      });
+    }
+
+    // Isi dropdown ayat saat pertama load
+    isiDropdownAyat(surah.nomor);
+
+    // Saat ganti surah → re-isi dropdown ayat (default angka 1)
+    ddSurah.addEventListener('change', function () {
+      const nomorStrPilih = this.value;
+      if (nomorStrPilih) {
+        const sObj = SURAH_DATA.find(s => s.nomorStr === nomorStrPilih);
+        if (sObj) isiDropdownAyat(sObj.nomor);
+      } else {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        dd.disabled = true;
+      }
+    });
+
+    // Tombol Buka — navigasi ke ayat yang dipilih
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) { window.location.href = path; }
+      else { alert('Pilih surah dan ayat terlebih dahulu.'); }
+    };
+
+    // ── HEADER NAV ARROW (prev/next ayat) — POLA 113-01 ──
+    // Catatan: untuk header arrow, TIDAK filter status='tersedia' — link tetap dibuat ke surah tetangga
+    // walaupun belum tersedia (404 page jika belum ada). Sesuai instruksi Iwoth sesi 100-01.
+    function fileAyat(s, a) {
+      return String(s).padStart(3, '0') + '-' + String(a).padStart(2, '0') + '.html';
+    }
+    function cariSurahTetanggaSemua(nomor, arah) {
+      // Cari surah dengan nomor = nomor + arah, TANPA filter status
+      if (typeof SURAH_DATA === 'undefined') return null;
+      return SURAH_DATA.find(s => s.nomor === nomor + arah) || null;
+    }
+
+    // Tentukan target prev/next
+    let prevTarget = null, nextTarget = null;
+    if (ayatSaat > 1) {
+      prevTarget = {
+        href: fileAyat(surah.nomor, ayatSaat - 1),
+        label: '\u2190 Ayat ' + (ayatSaat - 1),
+        edge: false
+      };
+    } else {
+      const prevS = cariSurahTetanggaSemua(surah.nomor, -1);
+      if (prevS) {
+        prevTarget = {
+          href: fileAyat(prevS.nomor, prevS.jumlahAyat),
+          label: '\u2190 ' + prevS.namaLatin + ' ' + prevS.jumlahAyat,
+          edge: true
+        };
+      }
+    }
+    if (ayatSaat < totalAyat) {
+      nextTarget = {
+        href: fileAyat(surah.nomor, ayatSaat + 1),
+        label: 'Ayat ' + (ayatSaat + 1) + ' \u2192',
+        edge: false
+      };
+    } else {
+      const nextS = cariSurahTetanggaSemua(surah.nomor, 1);
+      if (nextS) {
+        nextTarget = {
+          href: fileAyat(nextS.nomor, 1),
+          label: nextS.namaLatin + ' 1 \u2192',
+          edge: true
+        };
+      }
+    }
+
+    // Update header arrows
+    const hdrPrev = document.getElementById('hdr-prev');
+    const hdrNext = document.getElementById('hdr-next');
+    if (hdrPrev) {
+      if (prevTarget) {
+        hdrPrev.href = prevTarget.href;
+        hdrPrev.textContent = prevTarget.label;
+        hdrPrev.title = prevTarget.edge
+          ? 'Surah sebelumnya: ' + prevTarget.label.replace('\u2190 ', '')
+          : 'Ayat sebelumnya';
+        if (prevTarget.edge) hdrPrev.classList.add('edge');
+      } else {
+        hdrPrev.classList.add('disabled');
+        hdrPrev.textContent = '\u2190';
+      }
+    }
+    if (hdrNext) {
+      if (nextTarget) {
+        hdrNext.href = nextTarget.href;
+        hdrNext.textContent = nextTarget.label;
+        hdrNext.title = nextTarget.edge
+          ? 'Surah berikutnya: ' + nextTarget.label.replace(' \u2192', '')
+          : 'Ayat berikutnya';
+        if (nextTarget.edge) hdrNext.classList.add('edge');
+      } else {
+        hdrNext.classList.add('disabled');
+        hdrNext.textContent = '\u2192';
+      }
+    }
+
+    // ── NAV BAWAH (pola 113-01) — 4 elemen: prevTarget + Beranda + info + nextTarget ──
+    // Pakai prevTarget/nextTarget yang sudah dihitung di atas (untuk header arrows)
+    const container = document.getElementById('nav-bawah-container');
+    if (container) {
+      // 1. Tombol prev (jika ada — kalau ayat 1 surah pertama, hilang)
+      if (prevTarget) {
+        const bp = document.createElement('a');
+        bp.className = 'nav-btn' + (prevTarget.edge ? ' edge' : '');
+        bp.href = prevTarget.href;
+        bp.textContent = prevTarget.label;
+        container.appendChild(bp);
+      }
+
+      // 2. Tombol Beranda (selalu ada — hijau solid)
+      const bh = document.createElement('a');
+      bh.className = 'nav-btn beranda';
+      bh.href = 'index.html';
+      bh.textContent = '\u2302 Beranda';
+      container.appendChild(bh);
+
+      // 3. Info tengah
+      const info = document.createElement('span');
+      info.className = 'nav-info';
+      info.textContent = `${surah.namaLatin} · Ayat ${ayatSaat} dari ${totalAyat}`;
+      container.appendChild(info);
+
+      // 4. Tombol next (jika ada — kalau ayat terakhir & tidak ada surah berikutnya, hilang)
+      if (nextTarget) {
+        const bn = document.createElement('a');
+        bn.className = 'nav-btn' + (nextTarget.edge ? ' edge' : '');
+        bn.href = nextTarget.href;
+        bn.textContent = nextTarget.label;
+        container.appendChild(bn);
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>
