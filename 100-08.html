@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Adiyat 100:8</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --hijau-gelap:  #1a472a;
+      --hijau-medium: #2d6a4f;
+      --biru-tua:     #1e3a8a;
+      --ungu:         #5b21b6;
+      --coklat:       #92400e;
+      --merah-fi:     #c2410c;
+      --emas:         #d4af37;
+      --emas-muda:    #f0d060;
+      --bg-utama:     #f7f5f0;
+      --border:       #e0d9c8;
+      --font-arab:    'Scheherazade New', serif;
+      --font-latin:   'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+    .arab { font-family: var(--font-arab); direction: rtl; }
+
+    /* HEADER */
+    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+
+    /* ── Info Surah di header (kiri) ── */
+    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; gap: 0; }
+    .header-info .hi-label { font-size: 0.60rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-surah { font-size: 0.90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
+    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: 0.98rem; color: var(--emas); direction: rtl; vertical-align: baseline; }
+    .header-info .hi-ayat { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 4px; }
+
+    /* ── Dropdown navigasi (tengah) ── */
+    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
+    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s, border-color .2s; max-width: 240px; }
+    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
+    .nav-dropdowns select option { background: var(--hijau-gelap); }
+    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
+    .btn-go:hover { background: var(--emas-muda); }
+
+    /* ── Tombol Beranda (kanan) ── */
+    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s, border-color .2s; flex-shrink: 0; }
+    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
+
+    /* ── Tombol Navigasi Header (prev/next ayat) ── */
+    .nav-btn-hdr { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 34px; padding: 0 10px; background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; font-size: .85rem; font-weight: 700; text-decoration: none; transition: background .2s, border-color .2s; align-self: flex-end; flex-shrink: 0; white-space: nowrap; }
+    .nav-btn-hdr:hover { background: rgba(255,255,255,.22); border-color: var(--emas); }
+    .nav-btn-hdr.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: var(--emas); font-size: .72rem; padding: 0 8px; }
+    .nav-btn-hdr.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-btn-hdr.disabled { opacity: .3; pointer-events: none; }
+
+    /* CONTAINER */
+    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
+
+    /* AYAT BOX */
+    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
+    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .teks-ayat { font-family: var(--font-arab); font-size: 38px; line-height: 2.2; color: #1a1a1a; }
+    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
+
+    /* CATATAN KONTEKS */
+    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
+    .konteks-box .konteks-judul { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--hijau-gelap); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #d4d0c4; }
+    .konteks-box .konteks-isi { color: #1c1c1c; }
+
+    /* SECTION HEADER */
+    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
+    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+    .section-header .sub-judul { font-size: 12px; color: #a8d5b5; margin-top: 2px; }
+    .section-header.biru { background: #1e3a5f; }
+    .section-header.biru .sub-judul { color: #93c5fd; }
+    .section-header.tadabur { background: #5b3a1a; }
+    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
+
+    /* KARTU */
+    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-head { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #f0ebe0; text-align: center; }
+    .kartu-head .kh-left   { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 1; }
+    .kartu-head .kh-center { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 2; }
+    .kartu-head .kh-right  { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 3; }
+    .kartu-head .kh-center .kartu-arab-besar { font-size: 34px; line-height: 1.6; }
+    .kartu-head .kh-right .kartu-arti { font-style: italic; color: #666; font-size: 14px; }
+    .kartu-head.warna-kata   { background: #f0f7f2; }
+    .kartu-head.warna-fiil   { background: #fff7ed; }
+    .kartu-head.warna-harf   { background: #f1f5f9; }
+    .kartu-head.warna-dhamir { background: #e0f2fe; }
+    .kartu-head.warna-frasa1 { background: #eef4fb; }
+    .kartu-head.warna-frasa2 { background: #f5f0fb; }
+    .kartu-head.warna-frasa3 { background: #fdf6ec; }
+
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
+    .badge-kata   { background: var(--hijau-gelap); color: white; }
+    .badge-fi     { background: var(--merah-fi); color: white; }
+    .badge-harf   { background: #475569; color: white; }
+    .badge-dhamir { background: #0284c7; color: white; }
+    .badge-frasa1 { background: var(--biru-tua); color: white; }
+    .badge-frasa2 { background: var(--ungu); color: white; }
+    .badge-frasa3 { background: var(--coklat); color: white; }
+    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
+
+    .kartu-arab-besar { font-size: 52px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.5; }
+    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
+    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
+    .kartu-tabel tr:last-child { border-bottom: none; }
+    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
+    .kartu-tabel td:first-child { color: #777; width: 22%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .kartu-tabel td:last-child  { color: #1a1a1a; width: 78%; }
+
+    /* TAG */
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
+    .tag-n       { background: #dbeafe; color: #1e3a8a; }
+    .tag-fi      { background: #ffedd5; color: #9a3412; }
+    .tag-adj     { background: #d1fae5; color: #065f46; }
+    .tag-jar     { background: #fef3c7; color: #92400e; }
+    .tag-nashab  { background: #fce7f3; color: #9d174d; }
+    .tag-idhafah { background: #fce7f3; color: #831843; }
+    .tag-harf    { background: #f1f5f9; color: #475569; }
+    .tag-marfu   { background: #dcfce7; color: #166534; }
+    .tag-majrur  { background: #fef3c7; color: #92400e; }
+    .tag-mabni   { background: #e0e7ff; color: #3730a3; }
+    .tag-dhamir  { background: #e0f2fe; color: #0c4a6e; }
+
+    .arab-inline  { font-family: var(--font-arab); font-size: 22px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
+    .arab-istilah { font-family: var(--font-arab); font-size: 19px; color: #555; direction: rtl; display: inline-block; }
+
+    /* POIN LIST — bullet bulat hijau besar */
+    .poin-list { list-style: none; padding: 0; margin: 0; }
+    .poin-list li { padding: 4px 0 4px 18px; position: relative; }
+    .poin-list li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 12px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--hijau-medium);
+    }
+
+    /* TASHRIF */
+    .tashrif-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-top: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .tashrif-item { text-align: center; }
+    .tashrif-arab { font-family: var(--font-arab); font-size: 24px; color: #9a3412; direction: rtl; display: block; line-height: 1.8; }
+    .tashrif-label { font-size: 11px; color: #888; margin-top: 2px; }
+    .tashrif-panah { font-size: 16px; color: #d97706; }
+    .tashrif-akar { background: #f0f7f2; border: 1px solid #1a472a; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-akar .tashrif-arab { color: #1a472a; }
+    .tashrif-subyek { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-subyek .tashrif-arab { color: #c2410c; font-weight: 700; }
+    .tashrif-link { font-size: 12px; color: #92400e; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #fed7aa; width: 100%; }
+    .tashrif-link a { color: #c2410c; text-decoration: underline; }
+
+    /* TADABUR */
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
+    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
+    .tadabur-isi { padding: 18px 20px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+    .tadabur-isi p { margin-bottom: 10px; }
+    .tadabur-isi p:last-child { margin-bottom: 0; }
+    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 28px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+
+    /* DIAGRAM */
+    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
+    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
+    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* NAV BAWAH */
+    .nav-bawah { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 32px 0 8px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .nav-btn { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700; color: var(--hijau-gelap); text-decoration: none; transition: background .2s, border-color .2s; }
+    .nav-btn:hover { background: #e8f0e8; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda { background: var(--hijau-gelap); color: white; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda:hover { background: var(--hijau-medium); }
+    .nav-btn.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: #92400e; }
+    .nav-btn.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-info { font-size: 12.5px; color: #888; text-align: center; flex: 1; min-width: 160px; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
+    footer a { color: var(--emas); text-decoration: none; }
+
+    /* ILTIFAT BOX */
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .iltifat-isi .iltifat-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+    .iltifat-isi .iltifat-row:last-of-type { margin-bottom: 0; }
+    .iltifat-nomor { font-size: 10px; font-weight: 700; background: #7e22ce; color: white; border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 3px; white-space: nowrap; }
+    .iltifat-arab-baris { font-family: var(--font-arab); font-size: 20px; direction: rtl; color: #1a1a1a; flex: 1; line-height: 1.8; }
+    .iltifat-keterangan { font-size: 12px; color: #555; flex-shrink: 0; padding-top: 4px; font-style: italic; }
+
+    /* KONSEP BOX */
+    .konsep-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid var(--biru-tua); border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .konsep-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--biru-tua); margin-bottom: 10px; }
+    .konsep-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .konsep-isi p { margin-bottom: 8px; }
+    .konsep-isi p:last-child { margin-bottom: 0; }
+    .konsep-tabel { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+    .konsep-tabel th, .konsep-tabel td { padding: 7px 10px; border: 1px solid #bfdbfe; text-align: left; vertical-align: top; }
+    .konsep-tabel th { background: #dbeafe; color: var(--biru-tua); font-weight: 700; }
+
+    /* MUQARANAH BOX */
+    .muqaranah-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #166534; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .muqaranah-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #166534; margin-bottom: 10px; }
+    .muqaranah-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+
+    @media (max-width: 680px) {
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .container { padding: 20px 14px; }
+      .teks-ayat { font-size: 32px; }
+      .kartu-arab-besar { font-size: 42px; }
+      .kartu-tabel td { padding: 8px 14px; }
+      .kartu-tabel td:first-child { width: 36%; font-size: 11px; }
+      .iltifat-isi .iltifat-row { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
+      <span class="hi-surah">
+        Surah Al-Adiyat
+        <span class="arab-surah">الْعَادِيَات</span>
+      </span>
+      <span class="hi-ayat">Ayat 8 &nbsp;·&nbsp; (100:8)</span>
+    </a>
+    <div class="nav-dropdowns">
+      <a id="hdr-prev" class="nav-btn-hdr" href="#" title="Ayat sebelumnya">←</a>
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+      <a id="hdr-next" class="nav-btn-hdr" href="#" title="Ayat berikutnya">→</a>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- § 1 — AYAT LENGKAP -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Surah Al-Adiyat — Ayat 8</div>
+    <div class="teks-ayat arab">وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌۭ</div>
+    <div class="terjemahan">"Dan sesungguhnya dia (manusia) sangat bakhil karena cintanya kepada harta."</div>
+  </div>
+
+  <!-- § 2 — CATATAN KONTEKS -->
+  <div class="konteks-box">
+    <div class="konteks-judul">Catatan Konteks:</div>
+    <div class="konteks-isi">
+      Ayat 8 adalah <strong>deklarasi KETIGA dan TERAKHIR</strong> dalam rangkaian tiga deklarasi tentang watak manusia (ayat 6, 7, 8) — disambungkan ke ayat 7 oleh wāw 'athaf jumlah ke jumlah, sama seperti ayat 7 disambungkan ke ayat 6. Setelah Allah ﷻ mendeklarasikan watak <span class="arab-inline">كَنُود</span> (sangat ingkar) di ayat 6 dan kesaksian atas keingkaran di ayat 7, ayat 8 ini menambahkan dimensi ketiga yang menutup gambaran tentang manusia: <em>"Dan sesungguhnya dia sangat bakhil karena cintanya kepada harta."</em> Tiga deklarasi paralel ini melengkapi gambaran watak manusia: <strong>kufur nikmat → menyaksikan keingkaran → cinta harta yang berlebihan</strong> — tiga sisi dari satu realitas yang sama. Yang istimewa: pola gramatikal ayat 8 sangat MIRIP dengan ayat 6 (bukan ayat 7) — keduanya memakai struktur jar-majrur dengan IDHĀFAH (<span class="arab-inline">لِرَبِّهِۦ</span> di ayat 6, <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> di ayat 8) sebelum khabar. Ini al-muwāzanah yang sangat indah: ayat 6 dan ayat 8 menjadi "kembar struktural" yang membungkus ayat 7 di tengahnya. Setelah ayat 8 ini, surah akan beralih dari deklarasi sifat manusia ke <strong>peringatan akhirat</strong> di ayat 9-11 — pertanyaan retoris yang menohok: <em>"Maka apakah dia tidak mengetahui apabila dibangkitkan apa yang ada di dalam kubur?"</em>. Ayat 8 ini terdiri dari 6 kata yang dipecah menjadi 8 kartu morfem (karena <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> dipecah jadi 3 dan wāw 'athaf jadi morfem tersendiri): <span class="arab-inline">وَ</span> (wāw 'athaf), <span class="arab-inline">إِنَّ</span> (harf taukīd wa nashb), <span class="arab-inline">هُ</span> (ism inna — dhamir muttashil, marja': al-insān ayat 6), <span class="arab-inline">لِ</span> (lām al-jarr li-t-ta'līl — sebab/alasan), <span class="arab-inline">حُبِّ</span> (mudhaf majrur — masdar), <span class="arab-inline">ٱلْخَيْرِ</span> (mudhaf-ilaihi — bermakna khusus "harta"), <span class="arab-inline">لَ</span> (lām al-muzahlaqah), dan <span class="arab-inline">شَدِيدٌ</span> (khabar inna marfu' wazan <span class="arab-istilah">فَعِيل</span>). Khilaf makna <span class="arab-inline">شَدِيدٌ</span>: "sangat bakhil" (jumhur, Ibn Katsir tarjih) atau "sangat intens cintanya" — keduanya benar menurut Ibn Katsir.
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 3 — ANALISIS TINGKAT 1 : MORFEM -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 1 — Kata</div>
+    <div class="sub-judul">Analisis masing-masing kata secara individual</div>
+  </div>
+
+  <!-- KARTU MORFEM 1: وَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF 'ATHAF · (100:8:1)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">وَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "dan"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf 'Athaf</span> Wāw-al-'Athaf (huruf wāw untuk penyambung)</li>
+            <li>Klasifikasi spesifik: <strong>Wāw 'athaf jumlah ke jumlah</strong> — menyambung jumlah ismiyyah ayat 8 ke jumlah ismiyyah ayat 7 (yang sebelumnya juga ma'thūf ke ayat 6)</li>
+            <li>Berbeda dari fā'-al-'athaf di ayat 2-5 yang menunjukkan urutan dan kontinuitas; wāw di sini hanya penambahan informasi (li-muţlaq al-jam') tanpa makna urutan ketat</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku: "dan" — penyambung yang menambahkan informasi ke pernyataan sebelumnya</li>
+            <li>Makna konteks ayat 8: setelah Allah mendeklarasikan watak <span class="arab-inline">كَنُود</span> (ayat 6) dan kesaksian atas keingkaran (ayat 7), wāw ini menambahkan dimensi KETIGA dan TERAKHIR — bahwa manusia juga sangat bakhil karena cinta hartanya</li>
+            <li>Mufassir Salafi (Ibn Katsir, As-Sa'di) memilih makna ini sebagai wāw 'athaf jumhur — menjadikan ayat 8 sebagai pelengkap deklarasi tentang manusia, bukan jumlah baru yang berdiri sendiri</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Harf tidak punya posisi i'rab</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menyambung jumlah ismiyyah <span class="arab-inline">إِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span> sebagai <strong>ma'thūf</strong> kepada jumlah ismiyyah ayat 7 (<span class="arab-inline">وَإِنَّهُۥ عَلَىٰ ذَٰلِكَ لَشَهِيدٌ</span>)</li>
+            <li>Menutup <strong>rangkaian deklarasi tiga ayat</strong> tentang sifat manusia: ayat 6 (kanud) → ayat 7 (saksi atas kanud) → ayat 8 (cinta harta yang berlebihan/bakhil)</li>
+            <li>Karena 'athaf jumlah ke jumlah, tidak ada pewarisan i'rab — yang diwariskan adalah <em>fungsi tematik</em> (deklarasi sifat manusia)</li>
+            <li>Setelah ayat 8 ini, rangkaian wāw 'athaf akan terputus — ayat 9 akan dimulai dengan pertanyaan retoris (<span class="arab-inline">أَفَلَا يَعْلَمُ</span>) yang membuka transisi ke peringatan akhirat</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf 'athaf yang menyambung jumlah ismiyyah ayat 8 ke jumlah ismiyyah ayat 7 (ma'thūf-'alayh langsung)</li>
+            <li>Bersama wāw 'athaf di awal ayat 7, membentuk pola <span class="arab-istilah">وَإِنَّ ... + وَإِنَّ ...</span> yang menjadi <em>signature</em> deklarasi paralel di Al-Qur'an</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP — Wāw 'Athaf Jumlah Ismiyyah ke Jumlah Ismiyyah</div>
+      <div class="konsep-isi">
+        <p>Wāw 'athaf adalah huruf 'athaf yang paling umum dan paling fleksibel di bahasa Arab. Ia bisa menyambung berbagai jenis unit gramatikal:</p>
+        <table class="konsep-tabel">
+          <tr><th>Jenis 'athaf</th><th>Yang disambungkan</th><th>Contoh di Al-Adiyat</th></tr>
+          <tr>
+            <td>Wāw 'athaf isim ke isim</td>
+            <td>Dua atau lebih isim dalam satu jumlah</td>
+            <td>Tidak ada di Al-Adiyat</td>
+          </tr>
+          <tr>
+            <td>Wāw 'athaf fi'il ke fi'il</td>
+            <td>Dua atau lebih fi'il dalam satu jumlah</td>
+            <td>Tidak ada di Al-Adiyat</td>
+          </tr>
+          <tr>
+            <td><strong>Wāw 'athaf jumlah ke jumlah</strong> ★</td>
+            <td>Dua jumlah utuh yang berdiri sendiri</td>
+            <td><span class="arab-istilah">وَإِنَّهُۥ ...</span> (100:7) menyambung ayat 7 ke 6; <span class="arab-istilah">وَإِنَّهُۥ ...</span> (100:8) menyambung ayat 8 ke 7</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Beda wāw 'athaf vs fā' 'athaf:</strong></p>
+        <table class="konsep-tabel">
+          <tr><th>Aspek</th><th>Wāw (و)</th><th>Fā' (ف)</th></tr>
+          <tr><td>Makna</td><td>Penambahan (li-muţlaq al-jam')</td><td>Urutan + kontinuitas (li-tartīb wa ta'qīb)</td></tr>
+          <tr><td>Implikasi waktu</td><td>Tidak ada — bisa sembarang urutan</td><td>Ya — yang setelahnya terjadi setelah yang sebelumnya</td></tr>
+          <tr><td>Contoh di Al-Adiyat</td><td>Ayat 7-8 (deklarasi paralel)</td><td>Ayat 2-5 (rangkaian aksi berurutan)</td></tr>
+        </table>
+        <p style="margin-top:10px;">Mengapa Allah pilih wāw di ayat 8 (bukan fā')? Karena ayat 8 BUKAN urutan kronologis dari ayat 7 — ia adalah <strong>aspek paralel</strong> dari sifat manusia yang sama. Manusia itu kanud (ayat 6), saksi atas kanud-nya (ayat 7), DAN sangat cinta harta/bakhil (ayat 8) — tiga aspek yang berlangsung BERSAMAAN dalam diri manusia, bukan berurutan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 2: إِنَّ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF TAUKĪD WA NASHB · (100:8:2)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">إِنَّ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "sesungguhnya"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf Taukīd wa Nashb</span> huruf penegas yang sekaligus menashabkan ism setelahnya</li>
+            <li>Termasuk dalam kelompok <strong>al-ahruf al-musyabbahah bil-fi'l</strong> — sama persis dengan <span class="arab-inline">إِنَّ</span> di ayat 6 dan ayat 7</li>
+            <li>Anggota kelompok ini ada 6: <span class="arab-istilah">إِنَّ</span>, <span class="arab-istilah">أَنَّ</span>, <span class="arab-istilah">كَأَنَّ</span>, <span class="arab-istilah">لَكِنَّ</span>, <span class="arab-istilah">لَيْتَ</span>, <span class="arab-istilah">لَعَلَّ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku: "sesungguhnya" / "benar-benar" — penegas yang menghilangkan keraguan</li>
+            <li>Makna kontekstual di ayat 8: penegas inti pernyataan ketiga dari rangkaian deklarasi tentang manusia. Pengulangan <span class="arab-inline">إِنَّ</span> di ayat 6, 7, 8 menciptakan <strong>tiga lapis penekanan utama</strong> — masing-masing dengan tiga lapis penegasan internal sendiri (إِنَّ + لَ + mubālaghah)</li>
+            <li>Total <strong>sembilan lapis penegasan</strong> dalam tiga ayat ini — pola balaghah yang sangat kuat untuk menanamkan pesan inti tentang watak manusia</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Harf tidak punya posisi i'rab; tetapi <strong>menashabkan</strong> ism setelahnya dan <strong>merafa'kan</strong> khabar setelah ism</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menegaskan keseluruhan jumlah ismiyyah yang mengikutinya: <span class="arab-inline">هُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span></li>
+            <li>Menjadikan <span class="arab-inline">هُ</span> sebagai <strong>ism inna</strong> (manshub mahallan) dan <span class="arab-inline">شَدِيدٌ</span> sebagai <strong>khabar inna</strong> (marfu')</li>
+            <li>Bersama lām al-muzahlaqah <span class="arab-inline">لَ</span> dan wazan mubālaghah <span class="arab-inline">شَدِيدٌ</span>, membentuk <strong>tiga lapis penegasan</strong> — IDENTIK dengan ayat 6 dan ayat 7 (paralelisme struktural sempurna)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf taukīd wa nashb yang membuka jumlah ismiyyah ayat 8</li>
+            <li>Bersambung dengan dhamir muttashil <span class="arab-inline">هُ</span> setelahnya menjadi <span class="arab-inline">إِنَّهُ</span> — fenomena <em>ittishāl ad-dhamir bi-inna</em>, sama persis dengan ayat 7</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU MORFEM 3: هُ -->
+  <div class="kartu">
+    <div class="kartu-head warna-dhamir">
+      <div class="kh-left"><span class="badge badge-dhamir">DHAMIR MUTTASHIL · (100:8:3)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">هُ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "(merujuk ke manusia di ayat 6)"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-dhamir">Dhamir Muttashil</span> kata ganti melekat — orang ketiga, tunggal, laki-laki, ghaib</li>
+            <li>Bentuk dasar: <span class="arab-inline">هُ</span> (dengan dhammah) — di sini berbentuk <span class="arab-inline">هُ</span> dengan dhammah karena melekat pada <span class="arab-inline">إِنَّ</span> yang berakhir dengan fathah</li>
+            <li>Tanda <span class="arab-inline">ۥ</span> setelah <span class="arab-inline">هُ</span> = wāw kecil (wāw shaghīrah) yang menandakan pemanjangan suara <em>ū</em> dalam tilawah</li>
+            <li>Fungsi spesifik di ayat ini: <strong>ISM INNA</strong> — sama persis dengan ayat 7. Yaitu langsung menjadi pengganti ism zhāhir setelah <span class="arab-inline">إِنَّ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Dhamir kata ganti orang ketiga tunggal (mufrad mudzakkar ghaib) — "dia (laki-laki)"</li>
+            <li><strong>Marja' (yang dirujuk):</strong> <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 6 — yaitu manusia. Sama dengan ayat 7. Sehingga <span class="arab-inline">إِنَّهُ</span> = "Sesungguhnya dia (manusia itu)"</li>
+            <li>Marja' dhamir di sini SANGAT JELAS dan tidak ambigu — manusia yang sama yang disebutkan di ayat 6 (al-insān), kemudian dijadikan dhamir di ayat 7 dan 8</li>
+            <li>Tiga lapis link inter-ayat: ayat 6 (al-insān zhāhir) → ayat 7 (dhamir merujuk al-insān) → ayat 8 (dhamir merujuk al-insān). Inilah <em>kohesi anaforik</em> yang sangat kuat di Al-Qur'an</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-mabni">Mabni Dhammah</span> bentuk tetap dengan harakat akhir dhammah</li>
+            <li>Berstatus <strong>nashab dalam kedudukannya</strong> sebagai <strong>ism inna</strong> — meskipun harakat-nya dhammah (karena mabni), kedudukan i'rab-nya adalah manshub (oleh inna)</li>
+            <li>Catatan: dhamir muttashil yang menjadi ism inna selalu berstatus manshub mahallan</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-dhamir">Tunggal (mufrad)</span> — sesuai marja'-nya <span class="arab-inline">ٱلْإِنسَـٰنَ</span> (mufrad)</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-dhamir">Laki-laki (mudzakkar)</span> — karena marja'-nya adalah isim mudzakkar</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-dhamir">Ma'rifah</span> — dhamir adalah salah satu jenis ma'rifah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Ism Inna</strong> — dhamir yang menjadi ism inna, langsung melekat ke <span class="arab-inline">إِنَّ</span></li>
+            <li>Menggantikan kebutuhan untuk mengulang kata <span class="arab-inline">ٱلْإِنسَـٰنَ</span> dari ayat 6 — efisiensi linguistik yang khas Al-Qur'an</li>
+            <li>Subjek logis dari pernyataan: yang akan diberi sifat <span class="arab-inline">شَدِيدٌ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Dhamir muttashil yang berstatus manshub mahallan sebagai ism inna</li>
+            <li>Bersama harf <span class="arab-inline">إِنَّ</span> + frasa jar-majrur <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> + lām al-muzahlaqah + khabar <span class="arab-inline">شَدِيدٌ</span> membentuk jumlah ismiyyah yang utuh</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP — Ittishāl Ad-Dhamir bi-Inna (sudah dibahas di ayat 7)</div>
+      <div class="konsep-isi">
+        <p>Konsep <em>ittishāl ad-dhamir bi-inna</em> sudah dibahas lengkap di kartu morfem 3 ayat 7. Singkatnya: dhamir muttashil bisa langsung melekat ke harf inna menjadi pengganti ism zhāhir, dengan status <strong>manshub mahallan</strong> sebagai ism inna.</p>
+        <p>Ringkasan tabel 5 bentuk: <span class="arab-istilah">إِنَّهُ</span>, <span class="arab-istilah">إِنَّهَا</span>, <span class="arab-istilah">إِنَّهُمْ</span>, <span class="arab-istilah">إِنَّكَ</span>, <span class="arab-istilah">إِنِّي</span>.</p>
+        <p><strong>Pengulangan pola di ayat 7 dan 8:</strong> Allah ﷻ memilih dhamir muttashil sebagai ism inna di kedua ayat, bukan ism zhāhir. Hikmahnya: untuk menjaga <strong>kohesi anaforik tiga ayat (6-7-8)</strong> sehingga pembaca otomatis tahu bahwa subjek = al-insān ayat 6. Jika Allah mengulang <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 7 dan 8, maka <em>kerataan retoris</em> tiga ayat akan terganggu. Pemilihan dhamir membuat tiga deklarasi berjalan dengan irama yang sama dan terus-menerus tanpa jeda.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 4: لِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF JAR · (100:8:4)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "karena"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf Jar</span> huruf yang membuat isim setelahnya berstatus majrur</li>
+            <li>Klasifikasi spesifik di ayat ini: <strong>Lām al-Jarr li-t-Ta'līl</strong> (lām untuk sebab/alasan) — lām yang bermakna "karena" / "disebabkan oleh"</li>
+            <li>Berbeda dari lām di ayat 6 (<span class="arab-inline">لِرَبِّهِۦ</span>) yang bermakna "kepada/terhadap" — di ayat 8 lām bermakna "karena/akibat"</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku lām al-jarr: bermacam-macam tergantung konteks (untuk, kepada, milik, karena)</li>
+            <li>Makna konteks ayat 8: "<strong>karena</strong>" — menjelaskan SEBAB dari sifat <span class="arab-inline">شَدِيدٌ</span> (sangat bakhil/intens). Mengapa manusia bakhil? KARENA cintanya kepada harta</li>
+            <li>Makna sebab-akibat ini sangat penting untuk memahami ayat: kebakhilan bukan watak primer, tetapi <em>akibat</em> dari <strong>cinta dunia yang berlebihan</strong>. Kalau cinta hartanya sedang-sedang saja, manusia tidak akan bakhil</li>
+            <li>Pelajaran balaghah: Allah ﷻ menunjukkan <em>akar masalah</em>, bukan hanya gejala — yaitu kebakhilan adalah cabang dari penyakit hati yang lebih dalam: <em>hubb ad-dunyā</em> (cinta dunia)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Kasrah</span> bentuk tetap dengan harakat akhir kasrah</li>
+            <li>Harf jar tidak punya posisi i'rab; tetapi membuat isim setelahnya berstatus <strong>majrur</strong></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Membentuk frasa jar-majrur dengan <span class="arab-inline">حُبِّ</span> setelahnya: <span class="arab-inline">لِحُبِّ</span> ("karena cinta")</li>
+            <li>Frasa jar-majrur ini <strong>muta'alliq</strong> (terikat) ke khabar inna <span class="arab-inline">شَدِيدٌ</span> — menjelaskan SEBAB dari kebakhilan</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf jar yang membuat <span class="arab-inline">حُبِّ</span> setelahnya majrur</li>
+            <li>Frasa <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> (jar-majrur dengan idhāfah) ditempatkan SEBELUM khabar (taqdīm) — paralel dengan <span class="arab-inline">لِرَبِّهِۦ</span> di ayat 6 yang juga didahulukan; punya hikmah balaghah yang sama</li>
+            <li>Struktur identik dengan ayat 6: <span class="arab-istilah">لِ + idhāfah</span> sebelum khabar — itulah sebabnya ayat 6 dan 8 disebut "kembar struktural" yang membungkus ayat 7</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU MORFEM 5: حُبِّ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ISIM MASDAR · (100:8:5)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">حُبِّ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "cinta"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> Jenis: <strong>isim masdar</strong> (isim aksi) — ekspresi nominal dari aksi <em>mencintai</em></li>
+            <li>Akar: ح-ب-ب (hā-bā-bā) — makna inti: "cinta", "kasih sayang", "kecondongan hati"</li>
+            <li>Bentuk wazan: <span class="arab-istilah">فُعْل</span> — wazan masdar untuk fi'il <span class="arab-inline">حَبَّ - يَحُبُّ</span> ("mencintai")</li>
+            <li>Konsekuensi sebagai isim masdar: TIDAK perlu tashrif-box (isim masdar tidak punya jalur derivasi yang relevan untuk konteks ini)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Cinta" / "kecintaan" — keadaan hati yang condong dan terikat kepada sesuatu</li>
+            <li>Detail leksikal: dalam Al-Qur'an, <span class="arab-inline">حُبّ</span> dipakai untuk berbagai jenis cinta — cinta kepada Allah (<em>hubb Allāh</em>), cinta kepada Rasul, cinta kepada keluarga, dan cinta yang TERCELA seperti cinta dunia (<em>hubb ad-dunyā</em>)</li>
+            <li>Makna konteks ayat 8: cinta yang tertuju kepada <span class="arab-inline">ٱلْخَيْر</span> (harta) — termasuk cinta yang tercela ketika berlebihan dan menyebabkan lalai akan kewajiban</li>
+            <li>Sebagai isim masdar, <span class="arab-inline">حُبِّ</span> menyatakan AKSI mencintai (bukan pelaku atau hasil) — sehingga frasa <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> = "karena (aksi) mencintai harta"</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-jarr">Majrur</span> karena berakhiran kasrah — dijarrkan oleh lām al-jarr <span class="arab-inline">لِ</span> sebelumnya</li>
+            <li>Tanda jarr: harakat akhir kasrah pada huruf <span class="arab-inline">بِّ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-n">Tunggal (mufrad)</span></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-n">Laki-laki (mudzakkar)</span></td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Ma'rifah karena idhafah</span> — idhāfah ke <span class="arab-inline">ٱلْخَيْرِ</span> setelahnya membuat kata ini menjadi ma'rifah</li>
+            <li>Itulah sebabnya <span class="arab-inline">حُبِّ</span> di sini TIDAK pakai <span class="arab-inline">ال</span> dan TIDAK pakai tanwin — kedua tanda ma'rifah/nakirah dihapus karena sudah ditambahkan idhāfah</li>
+            <li>Paralel dengan <span class="arab-inline">رَبِّ</span> di ayat 6 yang juga ma'rifah karena idhāfah ke <span class="arab-inline">هِۦ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Mudhaf</strong> — kata pertama dalam tarkib idhāfī (frasa idhafah)</li>
+            <li>Bersama <span class="arab-inline">ٱلْخَيْرِ</span> setelahnya membentuk frasa idhafah <span class="arab-inline">حُبِّ ٱلْخَيْرِ</span> ("cinta harta")</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim majrur sebagai komplemen lām al-jarr</li>
+            <li>Bersama lām al-jarr dan ism mudhaf-ilaihi membentuk frasa jar-majrur <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> yang muta'alliq ke khabar <span class="arab-inline">شَدِيدٌ</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU MORFEM 6: ٱلْخَيْرِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ISIM JAMID · (100:8:6)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">ٱلْخَيْرِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "harta (lit. kebaikan)"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> Jenis: <strong>isim-jamid</strong> — leksem mandiri</li>
+            <li>Akar: خ-ي-ر (khā-yā-rā) — makna inti: "kebaikan", "yang terpilih", "yang lebih baik"</li>
+            <li>Bentuk: <span class="arab-istilah">ٱلْـ + خَيْر</span> — yaitu kata <span class="arab-inline">خَيْر</span> dengan alif-lām al-istighrāqiyyah</li>
+            <li>Konsekuensi sebagai isim-jamid: TIDAK perlu tashrif-box</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna LITERAL: "kebaikan" / "yang baik" / "yang terpilih"</li>
+            <li>Makna KHUSUS di ayat 8: <strong>HARTA / MAL</strong> — ini adalah pemakaian khas Al-Qur'an di mana <span class="arab-inline">ٱلْخَيْر</span> bermakna <span class="arab-inline">ٱلْمَال</span> (harta benda). Pemakaian ini punya nuansa balaghah: harta <em>dianggap kebaikan</em> dari sudut pandang manusia yang mencintainya</li>
+            <li><strong>Tafsir Ibn Katsir</strong>: "<em>yaitu kecintaan kepada harta benda</em>"</li>
+            <li><strong>Tafsir Imam As-Sa'di</strong>: "<em>yakni amat mencintai harta</em>"</li>
+            <li><strong>Tafsir Imam Al-Utsaimin</strong>: "<em>Al-Khair (kebaikan) di sini bermakna harta, sebagaimana Allah Ta'ala berfirman <span class="arab-istilah">إِن تَرَكَ خَيْرًا</span> di Surah Al-Baqarah ayat 180 — maknanya: jika meninggalkan harta yang banyak</em>"</li>
+            <li>Pemakaian <span class="arab-inline">ٱلْخَيْر = الْمَال</span> tidak hanya di ayat ini, ada di ayat-ayat lain Al-Qur'an (Al-Baqarah 2:180, Al-'Adiyat 100:8). Bahkan dalam ayat lain <span class="arab-inline">حُبًّا جَمًّا</span> di Al-Fajr 89:20 menggambarkan hal yang sama: cinta yang berlebihan kepada harta</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-jarr">Majrur</span> karena berakhiran kasrah</li>
+            <li>Berperan sebagai <strong>mudhaf-ilaihi</strong> dari <span class="arab-inline">حُبِّ</span> sebelumnya — yaitu majrur oleh idhāfah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-n">Tunggal (mufrad)</span> Tetapi maknanya kolektif — merujuk ke harta sebagai jenis</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-n">Laki-laki (mudzakkar)</span></td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Ma'rifah karena diawali ال</span> — alif-lām di awal kata membuat ma'rifah</li>
+            <li>Klasifikasi <span class="arab-inline">ٱل</span>: bisa dipahami sebagai <strong>al-istighrāqiyyah</strong> (mencakup semua jenis harta) atau <strong>al-jinsiyyah</strong> (jenis harta secara umum) — keduanya valid dalam konteks</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Mudhaf-ilaihi</strong> — kata kedua dalam tarkib idhāfī. Mengubah <span class="arab-inline">حُبّ</span> dari nakirah ke ma'rifah</li>
+            <li>Menentukan OBYEK dari aksi mencintai: yaitu cinta TERHADAP HARTA (bukan cinta umum)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim majrur sebagai mudhaf-ilaihi dari <span class="arab-inline">حُبِّ</span></li>
+            <li>Bersama lām al-jarr dan mudhaf membentuk frasa jar-majrur <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> yang muta'alliq ke khabar inna</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="iltifat-box">
+      <div class="iltifat-label">✦ POLYSEMY `ٱلْخَيْر` — Kebaikan vs Harta dalam Al-Qur'an</div>
+      <div class="iltifat-isi">
+        <p>Salah satu fenomena leksikal yang menarik di Al-Qur'an: kata <span class="arab-inline">ٱلْخَيْر</span> punya <strong>dua makna utama</strong> tergantung konteks:</p>
+        <table class="konsep-tabel">
+          <tr><th>Makna</th><th>Konteks Pemakaian</th><th>Contoh Ayat</th></tr>
+          <tr>
+            <td><strong>Kebaikan / Yang Baik</strong></td>
+            <td>Konteks moral, akhirat, ibadah</td>
+            <td><span class="arab-istilah">فَأَمَّا مَن ثَقُلَتْ مَوَٰزِينُهُۥ فَهُوَ فِى عِيشَةٍ رَّاضِيَةٍ</span> (Al-Qari'ah 6-7) — <em>khayr</em> sebagai pahala kebaikan</td>
+          </tr>
+          <tr>
+            <td><strong>Harta / Mal</strong> ★</td>
+            <td>Konteks dunia, ekonomi, warisan</td>
+            <td><span class="arab-istilah">إِن تَرَكَ خَيْرًا ٱلْوَصِيَّةُ</span> (Al-Baqarah 2:180) — <em>khayr</em> = harta yang ditinggalkan; <span class="arab-istilah">لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span> (Al-'Adiyat 100:8) — <em>khayr</em> = harta yang dicintai</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Mengapa Allah memilih kata `ٱلْخَيْر` (bukan `ٱلْمَال`) untuk harta di ayat 8?</strong> Para ulama balaghah menjelaskan beberapa hikmah:</p>
+        <ul class="poin-list">
+          <li><strong>Sindiran retoris</strong> — manusia <em>menganggap</em> harta sebagai kebaikan utama, padahal yang sejati adalah amal shaleh dan keridhaan Allah. Pemakaian kata <span class="arab-inline">ٱلْخَيْر</span> menyindir cara pandang yang salah ini</li>
+          <li><strong>Universalitas</strong> — kata <span class="arab-inline">ٱلْخَيْر</span> mencakup segala bentuk kekayaan yang dianggap baik manusia: uang, properti, ternak, perhiasan, dll. Kata <span class="arab-inline">ٱلْمَال</span> lebih sempit cakupan-nya</li>
+          <li><strong>Indikasi penyakit hati</strong> — manusia tidak akan begitu cinta kepada harta jika tidak menganggapnya kebaikan utama. Pemakaian kata "khair" justru membongkar penyakit ini</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Kaidah penafsiran:</strong> ketika <span class="arab-inline">ٱلْخَيْر</span> disebut dalam konteks "ditinggalkan", "dicintai", "dimiliki", "diwariskan", maknanya hampir pasti = HARTA. Ini kaidah leksikal yang harus dipegang oleh penuntut ilmu Al-Qur'an.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 7: لَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF TAUKĪD · (100:8:7)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "[penegas]"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf Taukīd</span> huruf penegas tunggal</li>
+            <li>Klasifikasi spesifik: <strong>Lām al-Muzahlaqah</strong> — sama persis dengan <span class="arab-inline">لَ</span> di ayat 6 dan ayat 7. Yaitu lām yang seharusnya berada di awal kalimat (di depan inna), tetapi DIGESER ke khabar untuk menghindari dua penegas berkumpul di awal</li>
+            <li>Pola identik dengan ayat 6 dan 7: <span class="arab-istilah">إِنَّ ... لَ + khabar</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Tidak punya makna leksikal mandiri — fungsinya purely <strong>penegasan</strong> (taukīd)</li>
+            <li>Dampak makna: memperkuat khabar setelahnya. Tanpa lām: "manusia bakhil"; dengan lām: "manusia <em>BENAR-BENAR</em> bakhil"</li>
+            <li>Bukan lām al-jarr — meskipun bentuknya sama (<span class="arab-inline">لَ</span> vs <span class="arab-inline">لِ</span>), harakatnya berbeda: lām al-muzahlaqah ber-fathah, sedangkan lām al-jarr ber-kasrah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Harf tidak punya posisi i'rab</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Memperkuat khabar inna <span class="arab-inline">شَدِيدٌ</span> — menambah lapis penegasan di atas <span class="arab-inline">إِنَّ</span></li>
+            <li>Membentuk pola gabungan khas: <span class="arab-istilah">إِنَّ + ism inna + ... + لَ + khabar inna</span> — yang menjadi <em>signature</em> ayat-ayat dengan tiga lapis penegasan di Al-Qur'an. Pola ini IDENTIK dengan ayat 6 dan ayat 7</li>
+            <li>Tiga lapis penegasan total ayat 6+7+8 = <strong>sembilan lapis penegasan</strong> dalam tiga ayat berurutan tentang sifat manusia</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf taukīd yang melekat di depan khabar inna</li>
+            <li>Tidak mengubah i'rab khabar — khabar tetap marfu' karena pengaruh inna, lām hanya menambah penegasan</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU MORFEM 8: شَدِيدٌ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ISIM SHIGHAH MUBĀLAGHAH · (100:8:8)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">شَدِيدٌ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "sangat (bakhil/intens)"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> Jenis: <strong>shighah mubālaghah</strong> — bentuk intensifikasi yang menyatakan sifat dengan derajat sangat tinggi</li>
+            <li>Akar: ش-د-د (syīn-dāl-dāl) — makna inti: "menguatkan", "mengeraskan", "mengikat dengan kuat"</li>
+            <li>Wazan: <span class="arab-istilah">فَعِيل</span> — sama dengan <span class="arab-inline">شَهِيد</span> di ayat 7. Pola wazan ini menunjukkan <em>kontinuitas/permanensi sifat</em></li>
+            <li>Catatan menarik: sumber kata <span class="arab-inline">شَدّ</span> berarti "ikatan yang kuat" — menggambarkan bahwa manusia <em>mengikat dirinya kuat-kuat dengan harta</em>, sehingga tidak bisa lepas darinya</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna LITERAL: "yang kuat" / "yang keras" / "yang intens"</li>
+            <li>Makna KONTEKSTUAL di ayat 8 — para mufassir Salafi mengakui DUA pendapat:</li>
+            <li><strong>(A) "sangat bakhil/kikir karena cinta harta"</strong> — yaitu kebakhilan yang muncul dari cinta harta. Pendapat <strong>jumhur dan dipilih Tafsir Jalalain, Tafsir Al-Mukhtashar, Az-Zubdat, Hidayatul Insan</strong>. Imam As-Sa'di juga memilih ini</li>
+            <li><strong>(B) "sangat intens cintanya kepada harta"</strong> — yaitu intensitas cinta hartanya yang dalam. Pendapat alternatif yang juga shahih</li>
+            <li><strong>Imam Ibn Katsir</strong>: "<em>kedua makna sama-sama benarnya</em>" — keduanya saling melengkapi, bukan saling bertentangan. Kebakhilan adalah <em>akibat</em> dari cinta harta yang intens</li>
+            <li><strong>Tafsir As-Sa'di</strong>: "<em>amat mencintai harta, dan kecintaannya itulah yang menyebabkannya tidak menunaikan kewajiban-kewajiban. Ia lebih mengedepankan hawa nafsu daripada keridhaan Rabbnya. Semua itu karena ia membatasi pandangannya pada dunia sementara akhirat ia lalaikan</em>"</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-rafa">Marfu'</span> karena diakhiri dhammah-tanwin (<span class="arab-inline">ـٌ</span>)</li>
+            <li>Berperan sebagai <strong>khabar inna</strong> — yang dirafa'kan oleh harf <span class="arab-inline">إِنَّ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-n">Tunggal (mufrad)</span></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-n">Laki-laki (mudzakkar)</span> — sesuai dengan ism inna <span class="arab-inline">هُ</span> yang merujuk ke al-insān</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td><span class="tag tag-n">Nakirah</span> Ditandai dengan akhiran tanwin. Penggunaan nakirah di sini menyatakan sifat secara umum — paralel dengan <span class="arab-inline">كَنُودٌ</span> (ayat 6) dan <span class="arab-inline">شَهِيدٌ</span> (ayat 7)</td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Khabar Inna (intinya)</strong> — yang dirafa'kan oleh <span class="arab-inline">إِنَّ</span></li>
+            <li>Predikat yang menyatakan sifat tentang ism inna (manusia)</li>
+            <li>Diperkuat oleh lām al-muzahlaqah <span class="arab-inline">لَ</span> di depannya</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Khabar inna — penutup jumlah ismiyyah</li>
+            <li>Bersama frasa jar-majrur <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> yang muta'alliq ke-nya, membentuk pesan inti: "(manusia) sangat bakhil karena cintanya kepada harta"</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP — Wazan فَعِيل (sudah dibahas di ayat 7)</div>
+      <div class="konsep-isi">
+        <p>Wazan <span class="arab-istilah">فَعِيل</span> sebagai shighah mubālaghah sudah dibahas lengkap di kartu morfem 7 ayat 7 (untuk <span class="arab-inline">شَهِيد</span>). Singkatnya: pola ini menunjukkan <em>sifat melekat yang berlanjut</em> (kontinuitas), berbeda dari pola <span class="arab-istilah">فَعُول</span> (intensitas aksi) yang dipakai oleh <span class="arab-inline">كَنُود</span> di ayat 6.</p>
+        <table class="konsep-tabel">
+          <tr><th>Ayat</th><th>Khabar</th><th>Wazan</th><th>Nuansa</th></tr>
+          <tr><td>100:6</td><td><span class="arab-istilah">كَنُودٌ</span></td><td>فَعُول</td><td>Intensitas aksi (sering ingkar)</td></tr>
+          <tr><td>100:7</td><td><span class="arab-istilah">شَهِيدٌ</span></td><td>فَعِيل</td><td>Kontinuitas (selalu menyaksikan)</td></tr>
+          <tr><td>100:8</td><td><span class="arab-istilah">شَدِيدٌ</span></td><td>فَعِيل</td><td>Kontinuitas (selalu kuat/bakhil)</td></tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Untuk <span class="arab-inline">شَدِيدٌ</span> di ayat 8:</strong> wazan <span class="arab-istilah">فَعِيل</span> di sini menunjukkan bahwa kebakhilan ini <em>melekat dan berlanjut</em> — bukan satu kali tindakan kikir, tetapi sifat yang permanen. Manusia SELALU "kuat memegang harta" / "sangat intens cintanya" — sifat yang sudah menjadi tabiat.</p>
+      </div>
+    </div>
+    <div class="iltifat-box">
+      <div class="iltifat-label">✦ KHILAF MUFASSIRIN — Makna `شَدِيدٌ` (Bakhil vs Intens)</div>
+      <div class="iltifat-isi">
+        <p>Para mufassir Salafi mengakui DUA penafsiran untuk <span class="arab-inline">شَدِيدٌ</span> di ayat 8:</p>
+        <div class="iltifat-row">
+          <span class="iltifat-nomor">A</span>
+          <span class="iltifat-arab-baris">"Sangat bakhil/kikir karena cinta harta" ★ JUMHUR / TARJIH</span>
+          <span class="iltifat-keterangan">Imam Jalalain, Al-Mukhtashar, Az-Zubdat, As-Sa'di, Hidayatul Insan</span>
+        </div>
+        <div class="iltifat-row">
+          <span class="iltifat-nomor">B</span>
+          <span class="iltifat-arab-baris">"Sangat intens cintanya kepada harta"</span>
+          <span class="iltifat-keterangan">Pendapat alternatif yang shahih, Tafsir Al-Muyassar</span>
+        </div>
+        <p style="margin-top:10px;"><strong>Argumen pendapat A (bakhil):</strong></p>
+        <ul class="poin-list">
+          <li>Lām al-jarr <span class="arab-inline">لِ</span> di awal frasa bermakna <em>li-t-ta'līl</em> (sebab/alasan) — yaitu kebakhilan disebabkan oleh cinta harta</li>
+          <li>Konteks ayat 9-11 selanjutnya tentang Hari Kiamat — yaitu peringatan untuk yang BAKHIL agar berzuhud terhadap dunia</li>
+          <li>Akar kata <span class="arab-inline">شَدّ</span> bermakna "mengikat kuat" — yaitu manusia mengikat dirinya kuat-kuat dengan harta, sehingga tidak bisa melepaskannya untuk zakat, sedekah, atau infak</li>
+          <li>Imam As-Sa'di secara eksplisit memilih makna ini: "<em>amat mencintai harta, dan kecintaannya itulah yang menyebabkannya tidak menunaikan kewajiban-kewajiban</em>"</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Argumen pendapat B (intens):</strong></p>
+        <ul class="poin-list">
+          <li>Makna literal <span class="arab-inline">شَدِيد</span> = "kuat / intens" — secara umum</li>
+          <li>Konsisten dengan ayat lain yang menggambarkan cinta dunia: <span class="arab-istilah">وَتُحِبُّونَ ٱلْمَالَ حُبًّا جَمًّا</span> (Al-Fajr 89:20) — "kalian mencintai harta dengan kecintaan yang berlebihan"</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Imam Ibn Katsir</strong> mengatakan: "<em>kedua makna sama-sama benarnya</em>". Keduanya saling melengkapi, bukan bertentangan: cinta harta yang INTENS (B) menyebabkan kebakhilan (A). Akar masalahnya satu: <em>hubb ad-dunyā</em> (cinta dunia) yang berlebihan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 4 — ANALISIS TINGKAT 2 : FRASA -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 2 — Frasa</div>
+    <div class="sub-judul">Analisis frasa, klausa, atau kalimat yang membentuk ayat</div>
+  </div>
+
+  <!-- KARTU FRASA 1: إِنَّهُۥ (Subjek Inna) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <div class="kh-left"><span class="badge badge-frasa1">FRASA 1 · SUBJEK INNA</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">إِنَّهُۥ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "sesungguhnya dia"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Harf taukīd wa nashb (<span class="arab-inline">إِنَّ</span>) + Dhamir muttashil sebagai ism inna (<span class="arab-inline">هُ</span>) — IDENTIK dengan Fr1 ayat 7. Gabungan ini membentuk satu unit gramatikal: subjek logis dari jumlah ismiyyah dengan inna.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Sesungguhnya dia" — penegasan yang membuka pernyataan ketiga dalam rangkaian deklarasi tentang manusia. Marja' dhamir <span class="arab-inline">هُ</span> = <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 6 (manusia). Dengan demikian, ayat 8 secara gramatikal terikat erat ke ayat 7 (langsung) dan ke ayat 6 (lewat dhamir) — tiga ayat saling terikat oleh kohesi anaforik yang kuat.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa ini menjadi <strong>SUBJEK INNA</strong> — ekuivalen dengan mubtada' tetapi dalam pola jumlah ismiyyah dengan inna</li>
+            <li>Harf <span class="arab-inline">إِنَّ</span>: tidak punya posisi i'rab, tetapi menashabkan dhamir setelahnya dan merafa'kan khabar yang akan datang</li>
+            <li>Dhamir <span class="arab-inline">هُ</span>: berstatus manshub mahallan sebagai ism inna (meskipun harakat-nya dhammah karena mabni)</li>
+            <li>Frasa ini menanti <strong>predikat (khabar)</strong> — yang akan dijelaskan di Frasa 4 dan 5</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 2: حُبِّ ٱلْخَيْرِ (Idhāfah) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA 2 · IDHĀFAH</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">حُبِّ ٱلْخَيْرِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "cinta harta"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Mudhaf (<span class="arab-inline">حُبِّ</span> — isim masdar majrur) + Mudhaf-ilaihi (<span class="arab-inline">ٱلْخَيْرِ</span> — isim majrur). Gabungan ini membentuk <strong>tarkib idhāfī</strong> — frasa kepemilikan yang mengubah <span class="arab-inline">حُبّ</span> dari nakirah ke ma'rifah.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Cinta harta" — yaitu kecintaan yang spesifik tertuju kepada harta benda (bukan cinta umum). <span class="arab-inline">حُبّ</span> adalah masdar yang menggambarkan AKSI mencintai, dan <span class="arab-inline">ٱلْخَيْر</span> menjelaskan OBYEK aksi itu = harta. Pemilihan kata <span class="arab-inline">ٱلْخَيْر</span> (bukan <span class="arab-inline">ٱلْمَال</span>) punya nuansa balaghah: manusia <em>menganggap</em> harta sebagai kebaikan utama, padahal itu hanya kebaikan dunia yang fana.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Mudhaf</strong> <span class="arab-inline">حُبِّ</span>: majrur karena dijarrkan oleh lām al-jarr di luarnya (akan dibahas di Frasa 3); tanpa <span class="arab-inline">ال</span> dan tanpa tanwin karena sudah ma'rifah dengan idhāfah</li>
+            <li><strong>Mudhaf-ilaihi</strong> <span class="arab-inline">ٱلْخَيْرِ</span>: isim majrur dengan kasrah, ma'rifah karena diawali ال</li>
+            <li>Frasa idhāfah ini adalah <strong>inti semantik</strong> dari frasa jar-majrur yang akan dibungkus di Frasa 3 — di sini terletak makna "objek cinta yang menyebabkan kebakhilan"</li>
+            <li>Paralel sempurna dengan Fr2 ayat 6 (<span class="arab-inline">رَبِّهِۦ</span>) yang juga idhāfah di dalam jar-majrur — itulah yang membuat ayat 6 dan 8 disebut "kembar struktural"</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 3: لِحُبِّ ٱلْخَيْرِ (Jar-Majrur Membungkus Idhāfah) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA 3 · JAR-MAJRUR (MEMBUNGKUS IDHĀFAH)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لِحُبِّ ٱلْخَيْرِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "karena cinta harta"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Harf jar (<span class="arab-inline">لِ</span> — lām al-jarr li-t-ta'līl, untuk sebab) + Idhāfah lengkap dari Frasa 2 (<span class="arab-inline">حُبِّ ٱلْخَيْرِ</span>) — struktur <strong>nested/berlapis</strong>. Frasa idhāfah yang utuh dibungkus oleh harf jar di luarnya, sehingga seluruh tarkib idhāfī menjadi majrur sebagai satu unit.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Karena cinta harta" — lām di sini bermakna SEBAB (li-t-ta'līl), bukan tujuan atau arah. Menjelaskan PENYEBAB dari sifat <span class="arab-inline">شَدِيدٌ</span>: mengapa manusia bakhil/intens? Karena cintanya kepada harta. Pelajaran balaghah penting: Allah ﷻ menunjukkan akar masalah, bukan hanya gejala — yaitu kebakhilan adalah cabang dari penyakit hati yang lebih dalam: <em>hubb ad-dunyā</em>.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa jar-majrur ini <strong>muta'alliq bil-khabar</strong> (terikat ke khabar inna <span class="arab-inline">شَدِيدٌ</span>) — menjelaskan SEBAB dari kebakhilan</li>
+            <li>Ditempatkan SEBELUM khabar (taqdīm) — paralel dengan <span class="arab-inline">لِرَبِّهِۦ</span> di ayat 6 yang juga didahulukan; punya hikmah balaghah yang sama</li>
+            <li>Struktur berlapis: di dalam frasa ini ada idhāfah <span class="arab-inline">حُبِّ ٱلْخَيْرِ</span> (Frasa 2) yang menjadi majrur oleh lām</li>
+            <li>Bersama khabar inna + lām taukīd (Frasa 4) akan membentuk <strong>predikat lengkap</strong> di Frasa 5</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="iltifat-box">
+      <div class="iltifat-label">✦ HIKMAH BALAGHAH — Taqdīm Frasa Jar-Majrur Sebelum Khabar (Pola Identik Ayat 6)</div>
+      <div class="iltifat-isi">
+        <p>Pola taqdīm di ayat 8 IDENTIK dengan ayat 6 — keduanya memakai struktur <span class="arab-istilah">لِ + idhāfah</span> sebelum khabar:</p>
+        <table class="konsep-tabel">
+          <tr><th>Ayat</th><th>Frasa Taqdīm</th><th>Khabar</th></tr>
+          <tr><td>100:6</td><td><span class="arab-istilah">لِرَبِّهِۦ</span></td><td><span class="arab-istilah">لَكَنُودٌ</span></td></tr>
+          <tr><td>100:8</td><td><span class="arab-istilah">لِحُبِّ ٱلْخَيْرِ</span></td><td><span class="arab-istilah">لَشَدِيدٌ</span></td></tr>
+        </table>
+        <p style="margin-top:10px;">Hikmah taqdīm:</p>
+        <ul class="poin-list">
+          <li><strong>Penekanan pada sebab</strong> — yaitu <em>karena cinta harta</em>. Pembaca dipaksa fokus dulu pada PENYEBAB sebelum mendengar AKIBAT (kebakhilan)</li>
+          <li><strong>Konsistensi dengan ayat 6</strong> — kedua ayat ini menjadi "bingkai" yang membungkus ayat 7 di tengah, menciptakan struktur <strong>al-muwāzanah</strong> yang sangat indah</li>
+          <li><strong>Memungkinkan lām al-muzahlaqah berdiri tepat di depan khabar</strong> — yaitu <span class="arab-inline">لَشَدِيدٌ</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU FRASA 4: لَشَدِيدٌ (Khabar Inna + Lām Taukīd) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 4 · KHABAR INNA + LĀM TAUKĪD</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لَشَدِيدٌ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "benar-benar (sangat) bakhil/intens"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Lām al-muzahlaqah (<span class="arab-inline">لَ</span> — harf taukīd) + Khabar inna intinya (<span class="arab-inline">شَدِيدٌ</span> — isim shighah mubālaghah marfu' wazan <span class="arab-istilah">فَعِيل</span>). Pola identik dengan ayat 6 (<span class="arab-inline">لَكَنُودٌ</span>) dan ayat 7 (<span class="arab-inline">لَشَهِيدٌ</span>).
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Benar-benar (sangat) bakhil/intens." Lām menambah satu lapis penegasan di atas <span class="arab-inline">إِنَّ</span>, sementara wazan <span class="arab-istilah">فَعِيل</span> (mubālaghah) di <span class="arab-inline">شَدِيدٌ</span> menunjukkan kontinuitas — sifat yang melekat dan berlanjut. Makna konteks: bisa diartikan "sangat bakhil" (jumhur) atau "sangat intens cintanya" — keduanya benar menurut Ibn Katsir.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Khabar Inna (intinya)</strong> di sini adalah <span class="arab-inline">شَدِيدٌ</span> SAJA — kata tunggal yang marfu' dengan dhammah-tanwin, dirafa'kan oleh inna</li>
+            <li><strong>Lām al-Muzahlaqah</strong> <span class="arab-inline">لَ</span>: harf taukīd yang melekat ke khabar — tidak punya posisi i'rab, hanya menambah penegasan</li>
+            <li>Bersama frasa jar-majrur <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> (Frasa 3) yang muta'alliq, akan membentuk predikat lengkap di Frasa 5</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 5: لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ (Predikat Lengkap) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 5 · PREDIKAT LENGKAP (KHABAR + KOMPLEMEN MUTA'ALLIQ)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "benar-benar bakhil karena cinta harta"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Frasa 3 (<span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> — jar-majrur muta'alliq) + Frasa 4 (<span class="arab-inline">لَشَدِيدٌ</span> — khabar inna + lām taukīd). Inilah <strong>predikat lengkap</strong> — yaitu khabar bersama komplemen muta'alliq-nya yang bersama-sama menyifati ism inna.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Benar-benar bakhil karena cinta harta" — predikat utuh yang menyatakan dimensi ketiga dari watak manusia. Hubungan sebab-akibat sangat jelas: manusia bakhil <em>karena</em> mencintai harta secara berlebihan. Cinta yang berlebihan inilah akar masalah penyakit hati, dan kebakhilan adalah cabang yang muncul darinya.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Predikat lengkap</strong> bagi subjek inna <span class="arab-inline">إِنَّهُۥ</span> di Frasa 1</li>
+            <li>Catatan terminologis: secara teknis, <strong>khabar inna intinya hanya `شَدِيدٌ`</strong> (kata tunggal). Frasa <span class="arab-inline">لِحُبِّ ٱلْخَيْرِ</span> bukan "bagian khabar", melainkan <em>muta'alliq</em> yang melekat ke khabar untuk melengkapi maknanya</li>
+            <li>Tetapi dalam analisis fungsional, gabungan keduanya bertindak sebagai satu unit predikat</li>
+            <li>Bersama subjek inna (Frasa 1) akan membentuk jumlah inna lengkap di Frasa 6</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 6: إِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ (Jumlah Inna Lengkap = Ma'thūf Jumlah) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 6 · JUMLAH INNA LENGKAP · MA'THŪF JUMLAH</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">إِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "Sesungguhnya dia (manusia) sangat bakhil karena cinta harta"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Frasa 1 (<span class="arab-inline">إِنَّهُۥ</span> — subjek inna) + Frasa 5 (<span class="arab-inline">لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span> — predikat lengkap). Inilah <strong>jumlah ismiyyah dengan inna</strong> yang utuh — sebagai unit yang kemudian akan disambung oleh wāw 'athaf di Frasa 7.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Sesungguhnya dia (manusia itu) — karena cintanya kepada harta — benar-benar bakhil." Pernyataan paralel dengan ayat 6 dan 7 yang menambahkan dimensi ketiga: setelah mendeklarasikan watak <span class="arab-inline">كَنُود</span> (ayat 6) dan kesaksian atas keingkaran (ayat 7), Allah ﷻ menutup gambaran tentang manusia dengan sifat <em>cinta harta yang menyebabkan kebakhilan</em>.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Jumlah ismiyyah utuh — punya semua unsur: harf inna, ism inna (dhamir), frasa jar-majrur muta'alliq, lām taukīd, khabar inna</li>
+            <li>Berfungsi sebagai <strong>ma'thūf jumlah</strong> ke jumlah ismiyyah ayat 7 — disambung oleh wāw 'athaf di awal (Frasa 7)</li>
+            <li>Tiga lapis penegasan paralel dengan ayat 6 dan 7: <span class="arab-inline">إِنَّ</span> + <span class="arab-inline">لَ</span> + wazan <span class="arab-istilah">فَعِيل</span> mubālaghah</li>
+            <li>Pola sintaksis: harf inna + dhamir ism inna + jar-majrur muta'alliq + lām + khabar mubālaghah — pola yang IDENTIK dengan ayat 6 dan 7</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP — Paralelisme Final Ayat 6, 7, 8 (Tiga Deklarasi Penutup)</div>
+      <div class="konsep-isi">
+        <p>Ayat 8 ini menutup rangkaian tiga deklarasi paralel tentang watak manusia di Surah Al-Adiyat. Dengan tabel paralelisme final yang LENGKAP, kita dapat melihat keindahan al-muwāzanah penuh:</p>
+        <table class="konsep-tabel">
+          <tr><th>Posisi</th><th>Ayat 6</th><th>Ayat 7</th><th>Ayat 8</th></tr>
+          <tr><td>Konektor awal</td><td>— (tanpa)</td><td><span class="arab-istilah">وَ</span></td><td><span class="arab-istilah">وَ</span></td></tr>
+          <tr><td>Inna</td><td><span class="arab-istilah">إِنَّ</span></td><td><span class="arab-istilah">إِنَّ</span></td><td><span class="arab-istilah">إِنَّ</span></td></tr>
+          <tr><td>Ism inna</td><td><span class="arab-istilah">ٱلْإِنسَـٰنَ</span> (zhāhir)</td><td><span class="arab-istilah">هُ</span> (dhamir)</td><td><span class="arab-istilah">هُ</span> (dhamir)</td></tr>
+          <tr><td>Struktur jar-majrur</td><td><strong>لِ + idhāfah</strong> ★</td><td>عَلَىٰ + isim isyārah</td><td><strong>لِ + idhāfah</strong> ★</td></tr>
+          <tr><td>Frasa jar-majrur taqdīm</td><td><span class="arab-istilah">لِرَبِّهِۦ</span></td><td><span class="arab-istilah">عَلَىٰ ذَٰلِكَ</span></td><td><span class="arab-istilah">لِحُبِّ ٱلْخَيْرِ</span></td></tr>
+          <tr><td>Lām taukīd</td><td><span class="arab-istilah">لَ</span></td><td><span class="arab-istilah">لَ</span></td><td><span class="arab-istilah">لَ</span></td></tr>
+          <tr><td>Khabar mubālaghah</td><td><span class="arab-istilah">كَنُودٌ</span> (فَعُول)</td><td><span class="arab-istilah">شَهِيدٌ</span> (فَعِيل)</td><td><span class="arab-istilah">شَدِيدٌ</span> (فَعِيل)</td></tr>
+          <tr><td>Tema</td><td>Kufur nikmat</td><td>Saksi atas keingkaran</td><td>Cinta harta / bakhil</td></tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Pola "kembar struktural" ayat 6 dan 8:</strong> Yang sangat istimewa, ayat 6 dan ayat 8 punya struktur yang IDENTIK (<span class="arab-istilah">لِ + idhāfah</span>) — keduanya membungkus ayat 7 di tengahnya. Inilah <em>chiasm</em> dalam mini-skala (struktur A-B-A) yang menciptakan keindahan retoris.</p>
+        <p><strong>Hikmah balaghah paralelisme final:</strong></p>
+        <ul class="poin-list">
+          <li><strong>Momentum retoris penuh</strong> — pembaca dibawa dalam ritme yang sama melalui tiga ayat berurutan, dengan pesan tertanam dalam hati dengan dampak maksimal</li>
+          <li><strong>Penekanan pada perbedaan leksikal</strong> — justru karena strukturnya sama, perbedaan kata kunci (<span class="arab-inline">كَنُودٌ → شَهِيدٌ → شَدِيدٌ</span>) menjadi sangat menonjol secara semantik</li>
+          <li><strong>Tiga sisi watak manusia</strong> — kufur nikmat (sumber masalah), kesadaran akan kufur (yang seharusnya membuat sadar), dan cinta harta yang berlebihan (akibat dari ketidaksadaran). Tiga aspek yang saling melengkapi dalam satu realitas</li>
+          <li><strong>Pemilihan wazan mubālaghah</strong> — semua khabar memakai pola yang menunjukkan SIFAT PERMANEN (bukan perbuatan sesaat). Tabiat manusia bukan kebetulan</li>
+          <li><strong>Pola berlanjut ke ayat 11</strong> — Allah memakai pola yang sama: <span class="arab-istilah">إِنَّ رَبَّهُم بِهِمْ يَوْمَئِذٍ لَّخَبِيرٌ</span> — untuk Asma' Allah ﷻ. Empat lapis pernyataan dengan pola yang sama membentuk arsitektur retoris yang kokoh</li>
+        </ul>
+        <p style="margin-top:8px;">Setelah ayat 8 ini, Surah Al-Adiyat akan beralih ke peringatan akhirat di ayat 9-11. Tiga deklarasi tentang manusia (6-7-8) telah selesai, dan kini Allah ﷻ menggugah kesadaran manusia tentang Hari Kebangkitan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU FRASA 7: وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ (Kamilah · Ma'thūf ke Ayat 7) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 7 · KAMILAH · MA'THŪF KE AYAT 7</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "Dan sesungguhnya dia sangat bakhil karena cintanya kepada harta"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Wāw 'athaf (<span class="arab-inline">وَ</span>) + Frasa 6 (jumlah inna lengkap). Wāw ditambahkan di awal untuk menyambungkan jumlah ismiyyah ayat 8 ke jumlah ismiyyah ayat 7 (<span class="arab-inline">وَإِنَّهُۥ عَلَىٰ ذَٰلِكَ لَشَهِيدٌ</span>).
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Dan sesungguhnya dia sangat bakhil karena cintanya kepada harta." Wāw 'athaf di sini bermakna penambahan paralel — bukan urutan kronologis. Tiga aspek dari satu realitas: manusia kanud (ayat 6) DAN saksi atas kanud-nya (ayat 7) DAN cinta harta yang menyebabkan bakhil (ayat 8).
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa lengkap (kamilah) ayat 8 — utuh dengan harf 'athaf yang menyambungkannya ke ayat 7</li>
+            <li>Berfungsi sebagai <strong>ma'thūf jumlah ismiyyah</strong> kepada ayat 7 (ma'thūf-'alayh langsung)</li>
+            <li>Menutup rangkaian tiga deklarasi paralel ayat 6-7-8 — selanjutnya surah akan beralih ke peringatan akhirat di ayat 9</li>
+            <li>Karena 'athaf jumlah ismiyyah ke jumlah ismiyyah, tidak ada pewarisan i'rab — yang diwariskan adalah <em>fungsi tematik</em> (deklarasi sifat manusia)</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 5 — ANALISIS TINGKAT 3 : KEDUDUKAN -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 3 — Kedudukan dalam Surah</div>
+    <div class="sub-judul">Kedudukan ayat dalam alur surah secara keseluruhan</div>
+  </div>
+
+  <!-- KARTU KEDUDUKAN -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">KEDUDUKAN · DEKLARASI KETIGA · PENUTUP RANGKAIAN</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab" style="font-size:36px;">سُورَةُ ٱلْعَادِيَات · ٨</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "ayat 8: cinta harta yang menyebabkan kebakhilan"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Posisi</td>
+        <td>
+          Ayat 8 adalah <strong>deklarasi ketiga dan TERAKHIR</strong> dalam rangkaian tiga deklarasi tentang watak manusia (ayat 6, 7, 8). Disambungkan ke ayat 7 oleh wāw 'athaf, ayat ini menutup gambaran tentang manusia dengan dimensi cinta dunia yang berlebihan. Strukturnya paralel sempurna dengan ayat 6 dan 7 (<em>al-muwāzanah</em>) — pola identik: <span class="arab-istilah">إِنَّ + dhamir/ism + jar-majrur taqdīm + لَ + khabar mubālaghah</span>. Yang istimewa: ayat 8 punya struktur <span class="arab-istilah">لِ + idhāfah</span> (sebelum khabar) yang IDENTIK dengan ayat 6 — keduanya menjadi "kembar struktural" yang membungkus ayat 7 di tengah, menciptakan struktur chiasm yang sangat indah (A-B-A pattern).
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan ke Ayat Sebelumnya</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ayat 1-5 — rangkaian sumpah dengan kuda perang (5 ayat)</li>
+            <li>Ayat 6 (<span class="arab-inline">إِنَّ ٱلْإِنسَـٰنَ لِرَبِّهِۦ لَكَنُودٌ</span>) — JAWAB AL-QASAM, deklarasi pertama: manusia kanud (sangat ingkar)</li>
+            <li>Ayat 7 (<span class="arab-inline">وَإِنَّهُۥ عَلَىٰ ذَٰلِكَ لَشَهِيدٌ</span>) — deklarasi kedua: manusia menjadi saksi atas keingkarannya</li>
+            <li>Ayat 8 (di sini) — ma'thūf jumlah ke ayat 7 melalui wāw 'athaf. Deklarasi ketiga dan terakhir: cinta harta yang berlebihan / kebakhilan</li>
+            <li>Hubungan gramatikal: wāw 'athaf menyambung jumlah ismiyyah ayat 8 ke jumlah ismiyyah ayat 7. Selain itu, dhamir <span class="arab-inline">هُ</span> di <span class="arab-inline">إِنَّهُۥ</span> merujuk balik ke <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 6 — link ganda yang sangat kuat (sama seperti ayat 7)</li>
+            <li>Hubungan tematik: ayat 8 menambahkan dimensi yang melengkapi gambaran manusia. Setelah keingkaran (6) dan kesaksian atas keingkaran (7), Allah menyebutkan AKAR penyakit hati — yaitu cinta dunia yang menyebabkan lalai akan kewajiban</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan ke Ayat Berikutnya</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ayat 9 (<span class="arab-inline">أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span>) — pertanyaan retoris: "<em>Maka apakah dia tidak mengetahui apabila dibangkitkan apa yang ada di dalam kubur?</em>" Transisi tajam dari deklarasi ke peringatan</li>
+            <li>Ayat 10 — <span class="arab-inline">وَحُصِّلَ مَا فِى ٱلصُّدُورِ</span> ("dan ditampakkan apa yang tersimpan di dalam dada")</li>
+            <li>Ayat 11 — <span class="arab-inline">إِنَّ رَبَّهُم بِهِمْ يَوْمَئِذٍ لَّخَبِيرٌ</span> ("Sesungguhnya Tuhan mereka pada hari itu Maha Mengetahui keadaan mereka") — penutup surah dengan pola IDENTIK <span class="arab-istilah">إِنَّ + ism + لَ + khabar mubālaghah</span></li>
+            <li>Empat lapis pernyataan dengan pola yang sama (ayat 6, 7, 8, 11) membentuk arsitektur retoris yang sangat kokoh untuk Surah Al-Adiyat — <strong>chiasm tingkat tinggi</strong>: ayat 6, 7, 8 untuk MANUSIA dan ayat 11 untuk ALLAH</li>
+            <li>Imam As-Sa'di menjelaskan: setelah deklarasi tentang manusia (6-7-8), Allah ﷻ "<em>mendorongnya agar takut kepada hari akhirat</em>" dengan peringatan ayat 9-11</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Keseluruhan Ayat</td>
+        <td>
+          "Dan sesungguhnya dia (manusia) sangat bakhil karena cintanya kepada harta." Allah ﷻ menutup rangkaian tiga deklarasi tentang manusia dengan menyebutkan AKAR penyakit hati: <em>hubb ad-dunyā</em> (cinta dunia) yang berlebihan. Imam Ibn Katsir mengakui dua pendapat tentang makna <span class="arab-inline">شَدِيدٌ</span> (bakhil atau intens), dan keduanya saling melengkapi — cinta yang INTENS menyebabkan KEBAKHILAN. Imam As-Sa'di menjelaskan dengan dalam: <em>"amat mencintai harta, dan kecintaannya itulah yang menyebabkannya tidak menunaikan kewajiban-kewajiban. Ia lebih mengedepankan hawa nafsu daripada keridhaan Rabbnya. Semua itu karena ia membatasi pandangannya pada dunia sementara akhirat ia lalaikan."</em> Inilah jembatan ke ayat 9 — peringatan akhirat yang membuka mata manusia bahwa di balik harta yang dicintai, ada Hari Kebangkitan yang akan membongkar semua yang tersembunyi.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 6 — ANALISIS TINGKAT 4 : DIAGRAM SVG -->
+  <!-- ============================================ -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 4 — Diagram Sintaksis</div>
+    <div class="sub-judul">Diagram struktur bertingkat unsur kalimat yang menyusun ayat</div>
+  </div>
+
+  <!-- DIAGRAM SVG -->
+  <div class="diagram-wrapper">
+    <svg viewBox="0 0 820 960" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:820px;display:block;margin:0 auto;font-family:'Lato',sans-serif;">
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- BARIS KATA (RTL) — 8 MORFEM: وَ · إِنَّ · هُ · لِ · حُبِّ · ٱلْخَيْرِ · لَ · شَدِيدٌ -->
+      <!-- X-positions: 770 · 680 · 600 · 510 · 430 · 320 · 200 · 100  -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- KATA 1: وَ (wāw 'athaf) -->
+      <text x="770" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">وَ</text>
+      <text x="770" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">wāw 'athaf</text>
+      <text x="770" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 2: إِنَّ (harf taukīd wa nashb) -->
+      <text x="680" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">إِنَّ</text>
+      <text x="680" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf taukīd wa nashb</text>
+      <text x="680" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 3: هُ (dhamir muttashil — ism inna) -->
+      <text x="600" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0c4a6e" font-weight="700" direction="rtl">هُ</text>
+      <text x="600" y="59" text-anchor="middle" font-size="8.5" fill="#0c4a6e">dhamir muttashil</text>
+      <text x="600" y="70" text-anchor="middle" font-size="8" fill="#888">ism inna · marja': al-insān (ayat 6)</text>
+
+      <!-- KATA 4: لِ (harf jar) -->
+      <text x="510" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">لِ</text>
+      <text x="510" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf jar · li-t-ta'līl</text>
+      <text x="510" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 5: حُبِّ (mudhaf majrur — isim masdar) -->
+      <text x="430" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#1a472a" font-weight="700" direction="rtl">حُبِّ</text>
+      <text x="430" y="59" text-anchor="middle" font-size="8.5" fill="#1a472a">isim masdar · majrur · mudhaf</text>
+      <text x="430" y="70" text-anchor="middle" font-size="8" fill="#888">ma'rifah karena idhafah</text>
+
+      <!-- KATA 6: ٱلْخَيْرِ (mudhaf-ilaihi majrur) -->
+      <text x="320" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْخَيْرِ</text>
+      <text x="320" y="59" text-anchor="middle" font-size="8.5" fill="#1a472a">isim majrur · mudhaf-ilaihi</text>
+      <text x="320" y="70" text-anchor="middle" font-size="8" fill="#888">ma'rifah karena ال · makna: harta</text>
+
+      <!-- KATA 7: لَ (lām al-muzahlaqah) -->
+      <text x="200" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">لَ</text>
+      <text x="200" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf taukīd · muzahlaqah</text>
+      <text x="200" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 8: شَدِيدٌ (khabar inna marfu' — shighah mubālaghah فَعِيل) -->
+      <text x="100" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#c2410c" font-weight="700" direction="rtl">شَدِيدٌ</text>
+      <text x="100" y="59" text-anchor="middle" font-size="8.5" fill="#c2410c">isim marfu'</text>
+      <text x="100" y="70" text-anchor="middle" font-size="8" fill="#888">khabar inna · mubālaghah فَعِيل</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1a (KANAN) — SUBJEK INNA: إِنَّ + هُ                  -->
+      <!-- (HIJAU SOLID — unit subjek)                            -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="680" y1="77" x2="680" y2="115" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="600" y1="77" x2="600" y2="115" stroke="#0c4a6e" stroke-width="1.8"/>
+      <line x1="600" y1="115" x2="680" y2="115" stroke="#1a472a" stroke-width="1.8"/>
+      <text x="640" y="112" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">harf inna + dhamir ism inna</text>
+      <polygon points="640,115 633,107 647,107" fill="#1a472a"/>
+      <line x1="640" y1="115" x2="640" y2="155" stroke="#1a472a" stroke-width="1.8"/>
+      <text x="640" y="167" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">L1a — Subjek Inna</text>
+      <text x="640" y="185" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#1a472a" font-weight="700" direction="rtl">إِنَّهُۥ</text>
+      <text x="640" y="198" text-anchor="middle" font-size="8" fill="#555">innahū — sesungguhnya dia</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1b (TENGAH-DALAM) — IDHĀFAH: حُبِّ + ٱلْخَيْرِ        -->
+      <!-- (HIJAU SOLID — frasa idhafah)                          -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="430" y1="77" x2="430" y2="115" stroke="#1a472a" stroke-width="1.8"/>
+      <line x1="320" y1="77" x2="320" y2="115" stroke="#1a472a" stroke-width="1.8"/>
+      <line x1="320" y1="115" x2="430" y2="115" stroke="#1a472a" stroke-width="1.8"/>
+      <text x="375" y="112" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">mudhaf + mudhaf-ilaihi</text>
+      <polygon points="375,115 368,107 382,107" fill="#1a472a"/>
+      <line x1="375" y1="115" x2="375" y2="155" stroke="#1a472a" stroke-width="1.8"/>
+      <text x="375" y="167" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">L1b — Idhāfah</text>
+      <text x="375" y="185" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#1a472a" font-weight="700" direction="rtl">حُبِّ ٱلْخَيْرِ</text>
+      <text x="375" y="198" text-anchor="middle" font-size="8" fill="#555">hubbi-l-khayr — cinta harta</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1c (KIRI) — KHABAR INNA + LĀM TAUKĪD: لَ + شَدِيدٌ    -->
+      <!-- (ORANGE — khabar diperkuat lām al-muzahlaqah)          -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="200" y1="77" x2="200" y2="115" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="100" y1="77" x2="100" y2="115" stroke="#c2410c" stroke-width="2.2"/>
+      <line x1="100" y1="115" x2="200" y2="115" stroke="#c2410c" stroke-width="1.8"/>
+      <text x="150" y="112" text-anchor="middle" font-size="8" fill="#c2410c" font-style="italic">lām taukīd + khabar</text>
+      <polygon points="150,115 143,107 157,107" fill="#c2410c"/>
+      <line x1="150" y1="115" x2="150" y2="155" stroke="#c2410c" stroke-width="1.8"/>
+      <text x="150" y="167" text-anchor="middle" font-size="8.5" fill="#c2410c" font-style="italic">L1c — Khabar Inna + Lām</text>
+      <text x="150" y="185" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#c2410c" font-weight="700" direction="rtl">لَشَدِيدٌ</text>
+      <text x="150" y="198" text-anchor="middle" font-size="8" fill="#555">la-syadīd — benar-benar bakhil/intens</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L2 — JAR-MAJRUR: لِ + L1b (membungkus idhafah)         -->
+      <!-- (TEAL PUTUS)                                            -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="510" y1="77" x2="510" y2="245" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="375" y1="205" x2="375" y2="245" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="375" y1="245" x2="510" y2="245" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="442" y="242" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">harf jar membungkus idhāfah</text>
+      <polygon points="442,245 435,237 449,237" fill="#0e7490"/>
+      <line x1="442" y1="245" x2="442" y2="285" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="442" y="297" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">L2 — Jar-Majrur</text>
+      <text x="442" y="315" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#0e7490" font-weight="700" direction="rtl">لِحُبِّ ٱلْخَيْرِ</text>
+      <text x="442" y="328" text-anchor="middle" font-size="8" fill="#555">li-hubbi-l-khayr — karena cinta harta · muta'alliq bil-khabar</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L3 — PREDIKAT LENGKAP: L2 + L1c                         -->
+      <!-- (UNGU PUTUS — khabar + komplemen muta'alliq)            -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="150" y1="205" x2="150" y2="385" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="442" y1="335" x2="442" y2="385" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="150" y1="385" x2="442" y2="385" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="296" y="382" text-anchor="middle" font-size="8" fill="#5b21b6" font-style="italic">jar-majrur muta'alliq + khabar inna</text>
+      <polygon points="296,385 289,377 303,377" fill="#5b21b6"/>
+      <line x1="296" y1="385" x2="296" y2="425" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="296" y="437" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">L3 — Predikat Lengkap (Khabar + Komplemen)</text>
+      <text x="296" y="457" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="14" fill="#5b21b6" font-weight="700" direction="rtl">لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</text>
+      <text x="296" y="470" text-anchor="middle" font-size="8" fill="#555">li-hubbi-l-khayri la-syadīd — benar-benar bakhil karena cinta harta</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L4 — JUMLAH INNA LENGKAP: L1a + L3                     -->
+      <!-- (BIRU GELAP PUTUS — jumlah ismiyyah dengan inna)        -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="640" y1="205" x2="640" y2="525" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="296" y1="475" x2="296" y2="525" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="296" y1="525" x2="640" y2="525" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="468" y="522" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">subjek inna + predikat lengkap</text>
+      <polygon points="468,525 461,517 475,517" fill="#1e3a8a"/>
+      <line x1="468" y1="525" x2="468" y2="565" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="468" y="577" text-anchor="middle" font-size="8.5" fill="#1e3a8a" font-style="italic">L4 — Jumlah Inna Lengkap (Ma'thūf Jumlah)</text>
+      <text x="468" y="597" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="13" fill="#1e3a8a" font-weight="700" direction="rtl">إِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</text>
+      <text x="468" y="612" text-anchor="middle" font-size="8" fill="#555">innahū li-hubbi-l-khayri la-syadīd — sesungguhnya dia bakhil karena cinta harta</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L5 — KAMILAH: وَ + L4                                   -->
+      <!-- (BIRU TUA SOLID — kamilah dengan wāw 'athaf)            -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="770" y1="77" x2="770" y2="660" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="468" y1="617" x2="468" y2="660" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="468" y1="660" x2="770" y2="660" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="619" y="657" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">wāw 'athaf · ma'thūf-'alayh: jumlah ismiyyah ayat 7</text>
+      <polygon points="619,660 612,652 626,652" fill="#1e3a8a"/>
+      <line x1="619" y1="660" x2="619" y2="700" stroke="#1e3a8a" stroke-width="2.2"/>
+      <text x="619" y="712" text-anchor="middle" font-size="8.5" fill="#1e3a8a" font-style="italic">L5 — Kamilah · Ma'thūf ke Ayat 7</text>
+      <text x="619" y="732" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="13" fill="#1e3a8a" font-weight="700" direction="rtl">وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</text>
+      <text x="619" y="747" text-anchor="middle" font-size="8" fill="#555">wa-innahū li-hubbi-l-khayri la-syadīd — "Dan sesungguhnya dia bakhil karena cinta harta"</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L6 — CROSS-REF: Ayat 7 (ma'thūf-'alayh langsung)        -->
+      <!-- (gray dashed)                                           -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <line x1="619" y1="750" x2="619" y2="795" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="619" y="787" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">'athaf jumlah ismiyyah — disambung kepada:</text>
+      <polygon points="619,795 612,787 626,787" fill="#9ca3af"/>
+
+      <rect x="419" y="808" width="400" height="80" rx="8" ry="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="619" y="828" text-anchor="middle" font-size="9" fill="#6b7280" font-style="italic">L6 — CROSS-REF · Ayat 7 (100:7) — ma'thūf-'alayh langsung</text>
+      <text x="619" y="853" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#1a472a" font-weight="700" direction="rtl">وَإِنَّهُۥ عَلَىٰ ذَٰلِكَ لَشَهِيدٌ</text>
+      <text x="619" y="871" text-anchor="middle" font-size="9" fill="#555">wa-innahū 'alā dzālika la-syahīd — "Dan sesungguhnya dia sendiri menjadi saksi atas hal itu"</text>
+      <text x="619" y="883" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">— deklarasi kedua tentang manusia —</text>
+
+      <!-- Note tematik -->
+      <text x="468" y="935" text-anchor="middle" font-size="9" fill="#888" font-style="italic">→ ayat 9: أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ (transisi ke peringatan akhirat)</text>
+
+    </svg>
+
+    <div class="diagram-legenda">
+      <div class="legenda-label">LEGENDA</div>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2"/></svg>L1a · L1b — Subjek Inna · Idhāfah (hijau solid)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#c2410c" stroke-width="2"/></svg>L1c — Khabar Inna + Lām Taukīd (orange)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>L2 — Jar-Majrur Muta'alliq (teal putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L3 — Predikat Lengkap (ungu putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,3"/></svg>L4 — Jumlah Inna Lengkap (biru putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2.2"/></svg>L5 — Kamilah Ayat 8 (biru solid)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/></svg>L6 — Cross-ref Ayat 7 (gray)</span>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 7 — TADABUR -->
+  <!-- ============================================ -->
+  <div class="section-header tadabur">
+    <div class="judul">Tadabur</div>
+    <div class="sub-judul">Renungan dari cinta harta dan transisi ke peringatan akhirat</div>
+  </div>
+
+  <!-- TADABUR ISI -->
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">TADABUR</span>
+      <span class="tadabur-judul">Renungan: Cinta Harta yang Membutakan</span>
+    </div>
+    <div class="tadabur-isi">
+      <p><strong>Akar penyakit hati yang paling halus.</strong> Setelah Allah ﷻ mendeklarasikan watak <span class="arab-inline">كَنُود</span> di ayat 6 (sangat ingkar) dan kesaksian atas keingkaran di ayat 7, ayat 8 ini menutup gambaran tentang manusia dengan menyebutkan AKAR penyakit hati: <em>cinta yang berlebihan kepada harta</em>. Inilah penyakit yang menghasilkan dua sifat sebelumnya — manusia kufur nikmat KARENA hatinya tertuju ke harta, bukan ke Pemberi nikmat. Manusia tidak peduli atas keingkarannya KARENA dia sibuk mengumpulkan harta. Cinta dunia adalah <em>induk dari segala dosa</em>, sebagaimana sabda Nabi ﷺ: <em>"Cinta dunia adalah pangkal segala kesalahan"</em>.</p>
+
+      <blockquote class="arab-kutip">وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</blockquote>
+
+      <p><strong>Mengapa Allah menyebut harta dengan kata `ٱلْخَيْر` (kebaikan)?</strong> Pemilihan kata ini sangat menarik. Allah ﷻ tidak pakai kata <span class="arab-inline">ٱلْمَال</span> (harta), tetapi <span class="arab-inline">ٱلْخَيْر</span> (yang baik). Imam Ibn Katsir dan As-Sa'di menjelaskan: dari sudut pandang manusia yang lalai, harta dianggap "kebaikan utama" — sumber kebahagiaan, kekuatan, kehormatan. Padahal kebaikan yang sejati adalah amal shaleh, ilmu yang bermanfaat, dan keridhaan Allah. Pemakaian kata <span class="arab-inline">ٱلْخَيْر</span> di ayat ini adalah <em>sindiran retoris</em> yang menohok: manusia salah menempatkan apa yang dianggap "baik".</p>
+
+      <p><strong>Tafsir Imam As-Sa'di yang mendalam.</strong> Beliau rahimahullāh menjelaskan: <em>"amat mencintai harta, dan kecintaannya itulah yang menyebabkannya tidak menunaikan kewajiban-kewajiban. Ia lebih mengedepankan hawa nafsu daripada keridhaan Rabbnya. Semua itu karena ia membatasi pandangannya pada dunia sementara akhirat ia lalaikan."</em> Inilah diagnosa yang sangat tepat: kebakhilan bukan watak primer, tetapi <em>akibat</em> dari pandangan yang sempit — hati yang hanya melihat dunia dan lupa akan akhirat.</p>
+
+      <p><strong>Tiga deklarasi paralel ayat 6-7-8: arsitektur surah yang sempurna.</strong> Kini kita dapat melihat keindahan al-muwāzanah penuh dari Surah Al-Adiyat:</p>
+
+      <ul class="poin-list" style="margin-left:20px;">
+        <li><strong>Ayat 6</strong> (<span class="arab-inline">لَكَنُودٌ</span>) — manusia kufur nikmat → sumber masalah</li>
+        <li><strong>Ayat 7</strong> (<span class="arab-inline">لَشَهِيدٌ</span>) — manusia menyaksikan keingkarannya → menutup pintu pembelaan</li>
+        <li><strong>Ayat 8</strong> (<span class="arab-inline">لَشَدِيدٌ</span>) — manusia bakhil karena cinta harta → akar penyakit</li>
+      </ul>
+
+      <p>Ayat 6 dan 8 menjadi "kembar struktural" (<span class="arab-istilah">لِ + idhāfah</span>) yang membungkus ayat 7 di tengah — pola chiasm A-B-A yang sangat indah. Tiga sisi watak manusia ini bukan tiga aspek terpisah, tetapi <strong>satu realitas dengan tiga manifestasi</strong>: hati yang cinta dunia → kufur nikmat → mengingkari secara terang-terangan tetapi mengakui secara samar.</p>
+
+      <p><strong>Transisi ke ayat 9 — peringatan akhirat.</strong> Setelah ayat 8 ini, Allah ﷻ mengubah ritme surah dari deklarasi ke pertanyaan retoris yang menohok: <span class="arab-inline">أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span> ("Maka apakah dia tidak mengetahui apabila dibangkitkan apa yang ada di dalam kubur?"). Imam Ibn Katsir menjelaskan: setelah deklarasi watak manusia, Allah <em>"menganjurkan kepada manusia untuk berzuhud terhadap duniawi dan menganjurkan mereka untuk menyukai pahala akhirat"</em>. Inilah jembatan dari diagnosa penyakit ke obat penyembuh: peringatan tentang Hari Kiamat yang akan membongkar semua yang tersembunyi di dalam kubur dan dada.</p>
+
+      <p><strong>Refleksi penutup.</strong> Marilah kita memeriksa diri: <em>seberapa kuat ikatan hatiku dengan harta?</em> Apakah aku merasa berat saat mengeluarkan zakat? Apakah aku menunda-nunda sedekah karena "belum waktunya"? Apakah aku gelisah ketika harta berkurang, tetapi tenang-tenang saja ketika ibadah berkurang? Itu semua adalah gejala <span class="arab-inline">شَدِيد</span> yang Allah peringatkan di ayat ini. Marilah kita memohon: <em>Yā Allāh, jadikan hati kami terikat kepada-Mu lebih kuat daripada keterikatan kepada harta. Yā Allāh, lepaskan hati kami dari cinta dunia yang berlebihan, dan jadikan kami termasuk hamba yang menafkahkan hartanya di jalan-Mu dengan ringan dan tulus. Allāhumma j'al ad-dunyā fī aydīnā wa lā fī qulūbinā — yā Allāh, jadikan dunia di tangan kami, bukan di hati kami. Allāhumma āmīn.</em></p>
+    </div>
+  </div>
+
+  <!-- NAV BAWAH -->
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div>
+
+<footer>
+  <p>grammar-quran.com · Analisis Gramatikal Al-Qur'an · <a href="index.html">Beranda</a></p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>
+  const PAGE_CONFIG = {
+    nomorSurah:   100,
+    nomorAyat:    8,
+    ayatTerakhir: false
+  };
+</script>
+
+<script>
+  (function () {
+    const surah = getSurahByNomor(PAGE_CONFIG.nomorSurah);
+    if (!surah) return;
+
+    const ayatSaat  = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah.jumlahAyat;
+    const isLast    = PAGE_CONFIG.ayatTerakhir;
+
+    // Title: format "Grammar Al-Adiyat 100:1"
+    document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
+
+    const lbl = document.getElementById('label-ayat-box');
+    if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}` + (isLast ? ' · Ayat Terakhir' : '');
+
+    // ── DROPDOWN PILIH SURAH ──
+    // Format: "1. Al-Fatihah — 7 ayat"
+    // Urutan: hanya status="tersedia", sorted by nomor ascending
+    const ddSurah = document.getElementById('dd-surah');
+    SURAH_DATA
+      .filter(s => s.status === 'tersedia')
+      .sort((a, b) => a.nomor - b.nomor)
+      .forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomor + '. ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+    // ── DROPDOWN PILIH AYAT ──
+    function isiDropdownAyat(nomorSurahParam) {
+      const ddAyat = document.getElementById('dd-ayat');
+      ddAyat.innerHTML = '';
+      const opsiAyat = getOpsiDropdownAyat(nomorSurahParam);
+      if (!opsiAyat.length) {
+        ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        ddAyat.disabled = true;
+        return;
+      }
+      ddAyat.disabled = false;
+      opsiAyat.forEach(opsi => {
+        const opt = document.createElement('option');
+        opt.value = opsi.path;
+        opt.textContent = opsi.label;
+        // Default ke ayat 1 saat ganti surah; jika halaman ini → pilih ayatSaat
+        if (nomorSurahParam === surah.nomor) {
+          if (opsi.value === ayatSaat) opt.selected = true;
+        } else {
+          if (opsi.value === 1) opt.selected = true;
+        }
+        ddAyat.appendChild(opt);
+      });
+    }
+
+    // Isi dropdown ayat saat pertama load
+    isiDropdownAyat(surah.nomor);
+
+    // Saat ganti surah → re-isi dropdown ayat (default angka 1)
+    ddSurah.addEventListener('change', function () {
+      const nomorStrPilih = this.value;
+      if (nomorStrPilih) {
+        const sObj = SURAH_DATA.find(s => s.nomorStr === nomorStrPilih);
+        if (sObj) isiDropdownAyat(sObj.nomor);
+      } else {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        dd.disabled = true;
+      }
+    });
+
+    // Tombol Buka — navigasi ke ayat yang dipilih
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) { window.location.href = path; }
+      else { alert('Pilih surah dan ayat terlebih dahulu.'); }
+    };
+
+    // ── HEADER NAV ARROW (prev/next ayat) — POLA 113-01 ──
+    // Catatan: untuk header arrow, TIDAK filter status='tersedia' — link tetap dibuat ke surah tetangga
+    // walaupun belum tersedia (404 page jika belum ada). Sesuai instruksi Iwoth sesi 100-01.
+    function fileAyat(s, a) {
+      return String(s).padStart(3, '0') + '-' + String(a).padStart(2, '0') + '.html';
+    }
+    function cariSurahTetanggaSemua(nomor, arah) {
+      // Cari surah dengan nomor = nomor + arah, TANPA filter status
+      if (typeof SURAH_DATA === 'undefined') return null;
+      return SURAH_DATA.find(s => s.nomor === nomor + arah) || null;
+    }
+
+    // Tentukan target prev/next
+    let prevTarget = null, nextTarget = null;
+    if (ayatSaat > 1) {
+      prevTarget = {
+        href: fileAyat(surah.nomor, ayatSaat - 1),
+        label: '\u2190 Ayat ' + (ayatSaat - 1),
+        edge: false
+      };
+    } else {
+      const prevS = cariSurahTetanggaSemua(surah.nomor, -1);
+      if (prevS) {
+        prevTarget = {
+          href: fileAyat(prevS.nomor, prevS.jumlahAyat),
+          label: '\u2190 ' + prevS.namaLatin + ' ' + prevS.jumlahAyat,
+          edge: true
+        };
+      }
+    }
+    if (ayatSaat < totalAyat) {
+      nextTarget = {
+        href: fileAyat(surah.nomor, ayatSaat + 1),
+        label: 'Ayat ' + (ayatSaat + 1) + ' \u2192',
+        edge: false
+      };
+    } else {
+      const nextS = cariSurahTetanggaSemua(surah.nomor, 1);
+      if (nextS) {
+        nextTarget = {
+          href: fileAyat(nextS.nomor, 1),
+          label: nextS.namaLatin + ' 1 \u2192',
+          edge: true
+        };
+      }
+    }
+
+    // Update header arrows
+    const hdrPrev = document.getElementById('hdr-prev');
+    const hdrNext = document.getElementById('hdr-next');
+    if (hdrPrev) {
+      if (prevTarget) {
+        hdrPrev.href = prevTarget.href;
+        hdrPrev.textContent = prevTarget.label;
+        hdrPrev.title = prevTarget.edge
+          ? 'Surah sebelumnya: ' + prevTarget.label.replace('\u2190 ', '')
+          : 'Ayat sebelumnya';
+        if (prevTarget.edge) hdrPrev.classList.add('edge');
+      } else {
+        hdrPrev.classList.add('disabled');
+        hdrPrev.textContent = '\u2190';
+      }
+    }
+    if (hdrNext) {
+      if (nextTarget) {
+        hdrNext.href = nextTarget.href;
+        hdrNext.textContent = nextTarget.label;
+        hdrNext.title = nextTarget.edge
+          ? 'Surah berikutnya: ' + nextTarget.label.replace(' \u2192', '')
+          : 'Ayat berikutnya';
+        if (nextTarget.edge) hdrNext.classList.add('edge');
+      } else {
+        hdrNext.classList.add('disabled');
+        hdrNext.textContent = '\u2192';
+      }
+    }
+
+    // ── NAV BAWAH (pola 113-01) — 4 elemen: prevTarget + Beranda + info + nextTarget ──
+    // Pakai prevTarget/nextTarget yang sudah dihitung di atas (untuk header arrows)
+    const container = document.getElementById('nav-bawah-container');
+    if (container) {
+      // 1. Tombol prev (jika ada — kalau ayat 1 surah pertama, hilang)
+      if (prevTarget) {
+        const bp = document.createElement('a');
+        bp.className = 'nav-btn' + (prevTarget.edge ? ' edge' : '');
+        bp.href = prevTarget.href;
+        bp.textContent = prevTarget.label;
+        container.appendChild(bp);
+      }
+
+      // 2. Tombol Beranda (selalu ada — hijau solid)
+      const bh = document.createElement('a');
+      bh.className = 'nav-btn beranda';
+      bh.href = 'index.html';
+      bh.textContent = '\u2302 Beranda';
+      container.appendChild(bh);
+
+      // 3. Info tengah
+      const info = document.createElement('span');
+      info.className = 'nav-info';
+      info.textContent = `${surah.namaLatin} · Ayat ${ayatSaat} dari ${totalAyat}`;
+      container.appendChild(info);
+
+      // 4. Tombol next (jika ada — kalau ayat terakhir & tidak ada surah berikutnya, hilang)
+      if (nextTarget) {
+        const bn = document.createElement('a');
+        bn.className = 'nav-btn' + (nextTarget.edge ? ' edge' : '');
+        bn.href = nextTarget.href;
+        bn.textContent = nextTarget.label;
+        container.appendChild(bn);
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>

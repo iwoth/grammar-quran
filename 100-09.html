@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grammar Al-Adiyat 100:9</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --hijau-gelap:  #1a472a;
+      --hijau-medium: #2d6a4f;
+      --biru-tua:     #1e3a8a;
+      --ungu:         #5b21b6;
+      --coklat:       #92400e;
+      --merah-fi:     #c2410c;
+      --emas:         #d4af37;
+      --emas-muda:    #f0d060;
+      --bg-utama:     #f7f5f0;
+      --border:       #e0d9c8;
+      --font-arab:    'Scheherazade New', serif;
+      --font-latin:   'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+    .arab { font-family: var(--font-arab); direction: rtl; }
+
+    /* HEADER */
+    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+
+    /* ── Info Surah di header (kiri) ── */
+    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; gap: 0; }
+    .header-info .hi-label { font-size: 0.60rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-surah { font-size: 0.90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
+    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: 0.98rem; color: var(--emas); direction: rtl; vertical-align: baseline; }
+    .header-info .hi-ayat { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 4px; }
+
+    /* ── Dropdown navigasi (tengah) ── */
+    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
+    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s, border-color .2s; max-width: 240px; }
+    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
+    .nav-dropdowns select option { background: var(--hijau-gelap); }
+    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
+    .btn-go:hover { background: var(--emas-muda); }
+
+    /* ── Tombol Beranda (kanan) ── */
+    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s, border-color .2s; flex-shrink: 0; }
+    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
+
+    /* ── Tombol Navigasi Header (prev/next ayat) ── */
+    .nav-btn-hdr { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 34px; padding: 0 10px; background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; font-size: .85rem; font-weight: 700; text-decoration: none; transition: background .2s, border-color .2s; align-self: flex-end; flex-shrink: 0; white-space: nowrap; }
+    .nav-btn-hdr:hover { background: rgba(255,255,255,.22); border-color: var(--emas); }
+    .nav-btn-hdr.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: var(--emas); font-size: .72rem; padding: 0 8px; }
+    .nav-btn-hdr.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-btn-hdr.disabled { opacity: .3; pointer-events: none; }
+
+    /* CONTAINER */
+    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
+
+    /* AYAT BOX */
+    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
+    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .teks-ayat { font-family: var(--font-arab); font-size: 38px; line-height: 2.2; color: #1a1a1a; }
+    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
+
+    /* CATATAN KONTEKS */
+    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
+    .konteks-box .konteks-judul { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--hijau-gelap); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #d4d0c4; }
+    .konteks-box .konteks-isi { color: #1c1c1c; }
+
+    /* SECTION HEADER */
+    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
+    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+    .section-header .sub-judul { font-size: 12px; color: #a8d5b5; margin-top: 2px; }
+    .section-header.biru { background: #1e3a5f; }
+    .section-header.biru .sub-judul { color: #93c5fd; }
+    .section-header.tadabur { background: #5b3a1a; }
+    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
+
+    /* KARTU */
+    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-head { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #f0ebe0; text-align: center; }
+    .kartu-head .kh-left   { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 1; }
+    .kartu-head .kh-center { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 2; }
+    .kartu-head .kh-right  { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 3; }
+    .kartu-head .kh-center .kartu-arab-besar { font-size: 34px; line-height: 1.6; }
+    .kartu-head .kh-right .kartu-arti { font-style: italic; color: #666; font-size: 14px; }
+    .kartu-head.warna-kata   { background: #f0f7f2; }
+    .kartu-head.warna-fiil   { background: #fff7ed; }
+    .kartu-head.warna-harf   { background: #f1f5f9; }
+    .kartu-head.warna-dhamir { background: #e0f2fe; }
+    .kartu-head.warna-frasa1 { background: #eef4fb; }
+    .kartu-head.warna-frasa2 { background: #f5f0fb; }
+    .kartu-head.warna-frasa3 { background: #fdf6ec; }
+
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
+    .badge-kata   { background: var(--hijau-gelap); color: white; }
+    .badge-fi     { background: var(--merah-fi); color: white; }
+    .badge-harf   { background: #475569; color: white; }
+    .badge-dhamir { background: #0284c7; color: white; }
+    .badge-frasa1 { background: var(--biru-tua); color: white; }
+    .badge-frasa2 { background: var(--ungu); color: white; }
+    .badge-frasa3 { background: var(--coklat); color: white; }
+    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
+
+    .kartu-arab-besar { font-size: 52px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.5; }
+    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
+    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
+    .kartu-tabel tr:last-child { border-bottom: none; }
+    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
+    .kartu-tabel td:first-child { color: #777; width: 22%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .kartu-tabel td:last-child  { color: #1a1a1a; width: 78%; }
+
+    /* TAG */
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
+    .tag-n       { background: #dbeafe; color: #1e3a8a; }
+    .tag-fi      { background: #ffedd5; color: #9a3412; }
+    .tag-adj     { background: #d1fae5; color: #065f46; }
+    .tag-jar     { background: #fef3c7; color: #92400e; }
+    .tag-nashab  { background: #fce7f3; color: #9d174d; }
+    .tag-idhafah { background: #fce7f3; color: #831843; }
+    .tag-harf    { background: #f1f5f9; color: #475569; }
+    .tag-marfu   { background: #dcfce7; color: #166534; }
+    .tag-majrur  { background: #fef3c7; color: #92400e; }
+    .tag-mabni   { background: #e0e7ff; color: #3730a3; }
+    .tag-dhamir  { background: #e0f2fe; color: #0c4a6e; }
+
+    .arab-inline  { font-family: var(--font-arab); font-size: 22px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
+    .arab-istilah { font-family: var(--font-arab); font-size: 19px; color: #555; direction: rtl; display: inline-block; }
+
+    /* POIN LIST — bullet bulat hijau besar */
+    .poin-list { list-style: none; padding: 0; margin: 0; }
+    .poin-list li { padding: 4px 0 4px 18px; position: relative; }
+    .poin-list li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 12px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--hijau-medium);
+    }
+
+    /* TASHRIF */
+    .tashrif-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-top: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .tashrif-item { text-align: center; }
+    .tashrif-arab { font-family: var(--font-arab); font-size: 24px; color: #9a3412; direction: rtl; display: block; line-height: 1.8; }
+    .tashrif-label { font-size: 11px; color: #888; margin-top: 2px; }
+    .tashrif-panah { font-size: 16px; color: #d97706; }
+    .tashrif-akar { background: #f0f7f2; border: 1px solid #1a472a; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-akar .tashrif-arab { color: #1a472a; }
+    .tashrif-subyek { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-subyek .tashrif-arab { color: #c2410c; font-weight: 700; }
+    .tashrif-link { font-size: 12px; color: #92400e; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #fed7aa; width: 100%; }
+    .tashrif-link a { color: #c2410c; text-decoration: underline; }
+
+    /* TADABUR */
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
+    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
+    .tadabur-isi { padding: 18px 20px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+    .tadabur-isi p { margin-bottom: 10px; }
+    .tadabur-isi p:last-child { margin-bottom: 0; }
+    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 28px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+
+    /* DIAGRAM */
+    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
+    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
+    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* NAV BAWAH */
+    .nav-bawah { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 32px 0 8px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .nav-btn { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700; color: var(--hijau-gelap); text-decoration: none; transition: background .2s, border-color .2s; }
+    .nav-btn:hover { background: #e8f0e8; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda { background: var(--hijau-gelap); color: white; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda:hover { background: var(--hijau-medium); }
+    .nav-btn.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: #92400e; }
+    .nav-btn.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-info { font-size: 12.5px; color: #888; text-align: center; flex: 1; min-width: 160px; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
+    footer a { color: var(--emas); text-decoration: none; }
+
+    /* ILTIFAT BOX */
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .iltifat-isi .iltifat-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+    .iltifat-isi .iltifat-row:last-of-type { margin-bottom: 0; }
+    .iltifat-nomor { font-size: 10px; font-weight: 700; background: #7e22ce; color: white; border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 3px; white-space: nowrap; }
+    .iltifat-arab-baris { font-family: var(--font-arab); font-size: 20px; direction: rtl; color: #1a1a1a; flex: 1; line-height: 1.8; }
+    .iltifat-keterangan { font-size: 12px; color: #555; flex-shrink: 0; padding-top: 4px; font-style: italic; }
+
+    /* KONSEP BOX */
+    .konsep-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid var(--biru-tua); border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .konsep-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--biru-tua); margin-bottom: 10px; }
+    .konsep-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .konsep-isi p { margin-bottom: 8px; }
+    .konsep-isi p:last-child { margin-bottom: 0; }
+    .konsep-tabel { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+    .konsep-tabel th, .konsep-tabel td { padding: 7px 10px; border: 1px solid #bfdbfe; text-align: left; vertical-align: top; }
+    .konsep-tabel th { background: #dbeafe; color: var(--biru-tua); font-weight: 700; }
+
+    /* MUQARANAH BOX */
+    .muqaranah-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #166534; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .muqaranah-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #166534; margin-bottom: 10px; }
+    .muqaranah-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+
+    @media (max-width: 680px) {
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .container { padding: 20px 14px; }
+      .teks-ayat { font-size: 32px; }
+      .kartu-arab-besar { font-size: 42px; }
+      .kartu-tabel td { padding: 8px 14px; }
+      .kartu-tabel td:first-child { width: 36%; font-size: 11px; }
+      .iltifat-isi .iltifat-row { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="header-info">
+      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
+      <span class="hi-surah">
+        Surah Al-Adiyat
+        <span class="arab-surah">الْعَادِيَات</span>
+      </span>
+      <span class="hi-ayat">Ayat 9 &nbsp;·&nbsp; (100:9)</span>
+    </a>
+    <div class="nav-dropdowns">
+      <a id="hdr-prev" class="nav-btn-hdr" href="#" title="Ayat sebelumnya">←</a>
+      <div class="dropdown-wrapper">
+        <label for="dd-surah">Pilih Surah</label>
+        <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
+      </div>
+      <div class="dropdown-wrapper">
+        <label for="dd-ayat">Pilih Ayat</label>
+        <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
+      </div>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+      <a id="hdr-next" class="nav-btn-hdr" href="#" title="Ayat berikutnya">→</a>
+    </div>
+    <a href="index.html" class="nav-home">⌂ Beranda</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- § 1 — AYAT LENGKAP -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Surah Al-Adiyat — Ayat 9</div>
+    <div class="teks-ayat arab">أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</div>
+    <div class="terjemahan">"Maka apakah dia tidak mengetahui apabila dibangkitkan (jasad-jasad) yang ada di dalam kubur?"</div>
+  </div>
+
+  <!-- § 2 — CATATAN KONTEKS -->
+  <div class="konteks-box">
+    <div class="konteks-judul">Catatan Konteks:</div>
+    <div class="konteks-isi">
+      Ayat 9 adalah <strong>PIVOT POINT KEDUA</strong> dari Surah Al-Adiyat — transisi tajam dari rangkaian deklarasi tentang manusia (ayat 6-7-8) ke <strong>peringatan akhirat</strong>. Setelah Allah ﷻ mendiagnosa watak manusia (kufur nikmat, saksi atas keingkaran, cinta harta yang berlebihan), kini Dia membuka mata manusia dengan pertanyaan retoris yang menohok: <em>"Maka apakah dia tidak mengetahui apabila dibangkitkan (jasad-jasad) yang ada di dalam kubur?"</em> Inilah <strong>jembatan dari diagnosa ke obat</strong> — dari penyakit hati menuju peringatan tentang Hari Kebangkitan. Catatan teknis: di mushaf, ayat 9 diawali dengan simbol <strong>۞</strong> (rub'-hizb) — penanda 1/4 hizb dalam pembagian mushaf. Simbol ini BUKAN bagian dari ayat — hanya marker pembagian mushaf untuk memudahkan tilawah, jadi tidak dimasukkan dalam analisis. Yang istimewa di ayat 9 ini adalah <strong>kepadatan struktur gramatikal</strong>: 9 morfem yang memuat sekitar 10 konsep gramatikal baru dalam satu ayat. Pergeseran besar yang terjadi: (1) dari jumlah ismiyyah (ayat 6-8) ke <strong>jumlah fi'liyyah</strong> dengan pertanyaan retoris, (2) dari deklarasi statis ke peringatan dinamis, (3) dari fokus <em>watak</em> manusia ke fokus <em>nasib</em> manusia di akhirat. Ayat 9 ini terdiri dari 8 kata yang dipecah menjadi 9 kartu morfem: <span class="arab-inline">أَ</span> (hamzah istifhām — kata tanya), <span class="arab-inline">فَ</span> (fā' al-'athaf as-sababiyyah — penyambung sebab-akibat), <span class="arab-inline">لَا</span> (harf nafy — negasi), <span class="arab-inline">يَعْلَمُ</span> (fi'il mudhari' marfu' — fa'il dhamir mustatir <span class="arab-inline">هُوَ</span> = manusia), <span class="arab-inline">إِذَا</span> (zharf zaman + syarat implisit — futuristic conditional), <span class="arab-inline">بُعْثِرَ</span> (fi'il madhy MAJHŪL rubā'ī mujarrad — "dibongkar/dibangkitkan"), <span class="arab-inline">مَا</span> (isim maushul — "apa yang"), <span class="arab-inline">فِى</span> (harf jar — "di dalam"), dan <span class="arab-inline">ٱلْقُبُورِ</span> (isim majrur — "kubur-kubur"). Konstruksi <span class="arab-inline">أَفَلَا</span> adalah <strong>istifhām taqrīrī</strong> — pertanyaan retoris yang sebenarnya bermakna PENEGASAN: bukan benar-benar bertanya, tetapi mengingatkan bahwa manusia sebenarnya TAHU akan kebenaran ini, tetapi seolah lupa karena tertipu dunia.
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 3 — ANALISIS TINGKAT 1 : MORFEM -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 1 — Kata</div>
+    <div class="sub-judul">Analisis masing-masing kata secara individual</div>
+  </div>
+
+  <!-- KARTU MORFEM 1: أَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF ISTIFHĀM · (100:9:1)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">أَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "apakah?"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf Istifhām</span> Hamzah-al-Istifhām (huruf hamzah untuk pertanyaan)</li>
+            <li>Klasifikasi spesifik: <strong>Hamzah Istifhām Taqrīrī</strong> — hamzah pertanyaan yang BERMAKNA PENEGASAN, bukan benar-benar bertanya</li>
+            <li>Hamzah istifhām adalah salah satu dari beberapa kata tanya bahasa Arab. Yang lain: <span class="arab-istilah">هَلْ</span>, <span class="arab-istilah">مَا</span>, <span class="arab-istilah">مَنْ</span>, <span class="arab-istilah">أَيْنَ</span>, <span class="arab-istilah">كَيْفَ</span>, <span class="arab-istilah">مَتَى</span>, dst</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku: "apakah?" / "tidakkah?" — kata tanya yang membuka kalimat menjadi pertanyaan</li>
+            <li>Makna konteks ayat 9: pertanyaan retoris yang sebenarnya BERMAKNA PENEGASAN — bukan benar-benar bertanya kepada manusia, tetapi mengingatkan bahwa manusia SEHARUSNYA TAHU. Allah ﷻ tidak butuh tahu jawaban, Dia ingin manusia merenungkan</li>
+            <li>Tafsir Imam As-Sa'di: "<em>apakah manusia yang terpedaya itu tidak mengetahui</em>" — istifhām di sini adalah celaan dan teguran lembut, mengaktivasi nurani manusia agar sadar akan akhirat</li>
+            <li>Pelajaran balaghah: pertanyaan retoris jauh lebih kuat daripada pernyataan langsung. Jika Allah berkata "manusia tahu akan dibangkitkan", itu pernyataan biasa. Tetapi <span class="arab-inline">أَفَلَا يَعْلَمُ</span> = "apakah dia tidak tahu?!" — menohok hati pembaca dan memaksanya merenung</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Harf tidak punya posisi i'rab</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mengubah jumlah pernyataan menjadi <strong>jumlah istifhāmiyyah</strong> (pertanyaan)</li>
+            <li>Bersama <span class="arab-inline">فَ</span> dan <span class="arab-inline">لَا</span> setelahnya, membentuk preamble <span class="arab-inline">أَفَلَا</span> yang menjadi <em>signature retoris</em> di Al-Qur'an</li>
+            <li>Mengaktivasi mode "renungan" pada pembaca/pendengar — memaksa untuk berpikir tentang jawaban (yang sebenarnya sudah jelas)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf istifhām yang membuka jumlah istifhāmiyyah</li>
+            <li>Selalu berada di awal jumlah — tidak boleh dipindah ke posisi lain</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP BARU — Istifhām Taqrīrī (Pertanyaan Retoris untuk Penegasan)</div>
+      <div class="konsep-isi">
+        <p><strong>Istifhām taqrīrī</strong> adalah salah satu jenis pertanyaan dalam bahasa Arab yang TIDAK bermaksud bertanya — tetapi untuk MENEGASKAN sesuatu yang sudah diketahui pendengarnya. Ini adalah teknik retorika yang sangat sering muncul di Al-Qur'an.</p>
+        <p><strong>Tiga jenis istifhām utama:</strong></p>
+        <table class="konsep-tabel">
+          <tr><th>Jenis</th><th>Tujuan</th><th>Contoh di Al-Qur'an</th></tr>
+          <tr>
+            <td><strong>Istifhām Haqīqī</strong></td>
+            <td>Benar-benar bertanya untuk tahu jawaban</td>
+            <td>Pertanyaan dari manusia ke manusia (jarang dari Allah ﷻ)</td>
+          </tr>
+          <tr>
+            <td><strong>Istifhām Inkārī</strong></td>
+            <td>Pertanyaan untuk mengingkari/menolak</td>
+            <td><span class="arab-istilah">أَإِلَـٰهٌ مَّعَ ٱللَّهِ</span> (An-Naml 60-64) — "apakah ada tuhan selain Allah?" → menolak</td>
+          </tr>
+          <tr>
+            <td><strong>Istifhām Taqrīrī</strong> ★</td>
+            <td>Pertanyaan untuk MENEGASKAN sesuatu yang dikenal</td>
+            <td><span class="arab-istilah">أَفَلَا يَعْلَمُ</span> (Al-'Adiyat 9) — "apakah dia tidak tahu?!" → bermakna: tentu dia tahu!</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Ciri istifhām taqrīrī:</strong></p>
+        <ul class="poin-list">
+          <li>Sering diikuti oleh harf nafy <span class="arab-inline">لَا</span> atau <span class="arab-inline">لَيْسَ</span> — sehingga maknanya: "apakah dia tidak [X]?" → "tentu dia [X]!"</li>
+          <li>Dampak retoris: menohok pendengar, memaksa pengakuan, mengaktivasi nurani</li>
+          <li>Sering dipakai Allah ﷻ untuk mengingatkan manusia akan kebenaran yang sudah jelas</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Contoh-contoh `أَفَلَا` di Al-Qur'an:</strong></p>
+        <ul class="poin-list">
+          <li><span class="arab-istilah">أَفَلَا تَعْقِلُونَ</span> = "tidakkah kalian berpikir?!" (banyak ayat)</li>
+          <li><span class="arab-istilah">أَفَلَا يَتَدَبَّرُونَ ٱلْقُرْءَانَ</span> = "tidakkah mereka merenungkan Al-Qur'an?!" (An-Nisā' 4:82)</li>
+          <li><span class="arab-istilah">أَفَلَا يَنظُرُونَ إِلَى ٱلْإِبِلِ كَيْفَ خُلِقَتْ</span> = "tidakkah mereka memperhatikan unta bagaimana ia diciptakan?!" (Al-Ghāsyiyah 88:17)</li>
+        </ul>
+        <p style="margin-top:8px;">Semua ini adalah <em>istifhām taqrīrī</em> — Allah ﷻ tidak benar-benar bertanya, tetapi mengingatkan bahwa kebenaran ini SUDAH JELAS dan manusia SEHARUSNYA TAHU.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 2: فَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF 'ATHAF · (100:9:2)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">فَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "maka"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf 'Athaf</span> Fā'-al-'Athaf (huruf fā' untuk penyambung)</li>
+            <li>Klasifikasi spesifik: <strong>Fā' as-Sababiyyah / at-Tafrī'</strong> — fā' yang menunjukkan SEBAB-AKIBAT atau konsekuensi logis</li>
+            <li>Beda dari fā' al-'athaf di ayat 2-5 yang menunjukkan urutan dan kontinuitas (li-tartīb wa ta'qīb); di ayat 9 ini fā' bermakna "maka [sebagai konsekuensi]"</li>
+            <li>Beda juga dari wāw 'athaf di ayat 7-8 yang murni penambahan paralel (li-muţlaq al-jam')</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku: "maka" — penyambung yang menunjukkan konsekuensi/akibat</li>
+            <li>Makna konteks ayat 9: setelah deklarasi watak manusia di ayat 6-7-8 (kufur nikmat, saksi atas keingkaran, cinta harta), <strong>SEBAGAI KONSEKUENSI</strong> Allah ﷻ menanyakan: "maka apakah dia tidak tahu...?" Logika sebab-akibat: <em>karena manusia begitu tertipu dunia, MAKA pantas ditanya apakah dia tidak ingat akhirat</em></li>
+            <li>Mufassir Salafi (Ibn Katsir, As-Sa'di) menjelaskan ayat 9 sebagai <em>"anjuran agar takut akan hari yang diancamkan"</em> — yaitu konsekuensi peringatan setelah deklarasi diagnostik</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Harf tidak punya posisi i'rab</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menyambung jumlah istifhāmiyyah ayat 9 ke jumlah ismiyyah ayat 8 sebagai <strong>konsekuensi logis</strong></li>
+            <li>Bersama hamzah istifhām <span class="arab-inline">أَ</span> di depannya dan harf nafy <span class="arab-inline">لَا</span> setelahnya, membentuk preamble <span class="arab-inline">أَفَلَا</span> — pola signature pertanyaan retoris di Al-Qur'an</li>
+            <li>Catatan: meskipun fā' biasanya berada di awal (sebelum hamzah istifhām secara natural), di sini hamzah istifhām DIDAHULUKAN — yaitu pola <span class="arab-inline">أَ + فَ + لَا</span>, bukan <span class="arab-inline">فَ + أَ + لَا</span>. Aturan baku: hamzah istifhām SELALU di awal jumlah, mendahului fā' atau wāw 'athaf</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf 'athaf as-sababiyyah yang menyambung ayat 9 ke rangkaian ayat 6-7-8 sebagai konsekuensi logis</li>
+            <li>Setelah fā' ini, rangkaian wāw 'athaf di ayat 7-8 terputus — fā' menandai pergeseran tematik dari deklarasi ke peringatan</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP BARU — Fā' as-Sababiyyah / at-Tafrī' (Fā' Sebab-Akibat)</div>
+      <div class="konsep-isi">
+        <p><strong>Fā' al-'athaf</strong> di bahasa Arab punya beberapa nuansa makna tergantung konteks. Kita sudah lihat fā' di ayat 2-5 Al-Adiyat (urutan kontinuitas). Di ayat 9 ini, fā' punya makna lain: <strong>sebab-akibat / konsekuensi logis</strong>.</p>
+        <table class="konsep-tabel">
+          <tr><th>Jenis Fā'</th><th>Makna</th><th>Contoh di Al-Adiyat</th></tr>
+          <tr>
+            <td>Fā' li-t-Tartīb wa-t-Ta'qīb</td>
+            <td>Urutan + kontinuitas (segera setelah)</td>
+            <td><span class="arab-istilah">فَٱلْمُورِيَٰتِ</span> (100:2), <span class="arab-istilah">فَأَثَرْنَ</span> (100:4), <span class="arab-istilah">فَوَسَطْنَ</span> (100:5)</td>
+          </tr>
+          <tr>
+            <td><strong>Fā' as-Sababiyyah</strong> ★</td>
+            <td>Sebab-akibat / konsekuensi logis</td>
+            <td><span class="arab-istilah">أَفَلَا يَعْلَمُ</span> (100:9) — "MAKA [sebagai konsekuensi watak manusia di ayat 6-8] apakah dia tidak tahu...?"</td>
+          </tr>
+          <tr>
+            <td>Fā' at-Tafrī'</td>
+            <td>Cabang/penjabaran dari yang sebelumnya</td>
+            <td>Sering berhimpitan dengan as-sababiyyah</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Bandingkan tiga jenis 'athaf di Surah Al-Adiyat:</strong></p>
+        <table class="konsep-tabel">
+          <tr><th>Aspek</th><th>Fā' li-Tartīb (ayat 2-5)</th><th>Wāw 'Athaf (ayat 7-8)</th><th><strong>Fā' as-Sababiyyah (ayat 9) ★</strong></th></tr>
+          <tr><td>Makna</td><td>Urutan kronologis</td><td>Penambahan paralel</td><td><strong>Sebab-akibat</strong></td></tr>
+          <tr><td>Implikasi waktu</td><td>Berurutan cepat</td><td>Bersamaan</td><td><strong>Sesudah, sebagai konsekuensi</strong></td></tr>
+          <tr><td>Konteks pemakaian</td><td>Aksi dramatis</td><td>Deklarasi paralel</td><td><strong>Peringatan setelah diagnosa</strong></td></tr>
+        </table>
+        <p style="margin-top:10px;">Pemilihan fā' di ayat 9 sangat signifikan: Allah ﷻ tidak mengulang wāw (yang berarti "DAN, sebagai aspek lain"), tetapi memakai fā' (yang berarti "MAKA, sebagai konsekuensi"). Ini menandai bahwa ayat 9-10-11 BUKAN deklarasi keempat-kelima-keenam tentang manusia, tetapi <strong>BABAK BARU</strong> — peringatan yang dipicu oleh tiga deklarasi sebelumnya.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 3: لَا -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF NAFY · (100:9:3)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لَا</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "tidak"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf Nafy</span> huruf negasi — menegasikan fi'il atau jumlah setelahnya</li>
+            <li>Klasifikasi spesifik: <strong>Lā an-Nāfiyah</strong> (lām negasi) — yaitu lām yang HANYA menegasikan, tanpa mengubah i'rab fi'il setelahnya</li>
+            <li><strong>BUKAN Lā an-Nāhiyah</strong> (lām larangan) yang akan menjazmkan fi'il mudhari' setelahnya. Ini perbedaan KRITIS yang sering keliru</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku: "tidak" — menegasikan fi'il setelahnya</li>
+            <li>Makna konteks ayat 9: <span class="arab-inline">لَا يَعْلَمُ</span> = "dia tidak mengetahui". Tetapi karena didahului oleh hamzah istifhām <span class="arab-inline">أَ</span>, maknanya berubah menjadi <strong>istifhām taqrīrī</strong>: "apakah dia tidak mengetahui?" → bermakna "tentu dia tahu, tetapi seolah lupa"</li>
+            <li>Pelajaran balaghah: kombinasi hamzah istifhām + harf nafy adalah salah satu pola paling kuat untuk istifhām taqrīrī. Pola <span class="arab-inline">أَ + لَا</span> atau <span class="arab-inline">أَ + لَيْسَ</span> selalu bermakna penegasan, bukan negasi sebenarnya</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Sukun</span> bentuk tetap dengan harakat akhir sukun</li>
+            <li>Harf tidak punya posisi i'rab</li>
+            <li><strong>Penting:</strong> tidak mengubah i'rab fi'il <span class="arab-inline">يَعْلَمُ</span> setelahnya — fi'il tetap MARFU' dengan dhammah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menegasikan fi'il <span class="arab-inline">يَعْلَمُ</span> setelahnya — jika tanpa hamzah istifhām, jumlah ini akan bermakna "dia tidak mengetahui"</li>
+            <li>Bersama hamzah istifhām dan fā', membentuk preamble <span class="arab-inline">أَفَلَا</span> yang membawa makna pertanyaan retoris penegasan</li>
+            <li>Catatan: posisi <span class="arab-inline">لَا</span> di sini adalah SEBELUM fi'il mudhari' (<span class="arab-inline">يَعْلَمُ</span>) — itulah yang membedakannya dari <span class="arab-inline">لَا</span> nāhiyah yang juga sebelum mudhari' tetapi MENJAZMKAN. Bedanya hanya bisa dilihat dari konteks dan i'rab fi'il setelahnya</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf nafy yang menegasikan fi'il mudhari' marfu' setelahnya</li>
+            <li>Tanpa <span class="arab-inline">لَا</span>, jumlah <span class="arab-inline">أَفَ يَعْلَمُ</span> akan bermakna "apakah dia mengetahui?" (istifhām biasa). Dengan <span class="arab-inline">لَا</span>, menjadi <span class="arab-inline">أَفَلَا يَعْلَمُ</span> = "apakah dia tidak mengetahui?" (istifhām taqrīrī)</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="iltifat-box">
+      <div class="iltifat-label">✦ KHILAF GRAMATIKAL — `لَا` an-Nāfiyah vs an-Nāhiyah (Beda Fungsi, Beda Dampak)</div>
+      <div class="iltifat-isi">
+        <p>Salah satu kekeliruan klasik dalam belajar bahasa Arab: tidak membedakan <span class="arab-inline">لَا</span> an-nāfiyah (negasi) dan <span class="arab-inline">لَا</span> an-nāhiyah (larangan). Keduanya BENTUKNYA SAMA tetapi FUNGSINYA BERBEDA.</p>
+        <table class="konsep-tabel">
+          <tr><th>Aspek</th><th>لَا an-Nāfiyah ★</th><th>لَا an-Nāhiyah</th></tr>
+          <tr><td>Makna</td><td>Negasi: "tidak"</td><td>Larangan: "jangan"</td></tr>
+          <tr><td>Konteks</td><td>Pernyataan/pertanyaan</td><td>Perintah negatif (kepada mukhāthab)</td></tr>
+          <tr><td>Dhamir fa'il</td><td>Bisa siapa saja (gha'ib, mukhāthab, mutakallim)</td><td>HANYA mukhāthab (kamu, kalian)</td></tr>
+          <tr><td>Dampak i'rab fi'il</td><td><strong>TIDAK menjazmkan</strong> — fi'il tetap MARFU'</td><td><strong>MENJAZMKAN</strong> — fi'il mudhari' menjadi MAJZŪM</td></tr>
+          <tr><td>Tanda akhir mudhari'</td><td>Dhammah (ـُ)</td><td>Sukun (ـْ) atau hapus huruf</td></tr>
+          <tr><td>Contoh Al-Qur'an</td><td><span class="arab-istilah">لَا يَعْلَمُ</span> (Al-'Adiyat 9) — "tidak mengetahui"</td><td><span class="arab-istilah">لَا تَقْرَبُوا ٱلزِّنَىٰٓ</span> (Al-Isrā' 17:32) — "jangan dekati zina"</td></tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Cara membedakan:</strong></p>
+        <ul class="poin-list">
+          <li><strong>Lihat fa'il fi'il setelahnya</strong> — kalau ghaib (هو، هي، هم) atau mutakallim (أنا، نحن) → pasti <span class="arab-inline">لَا</span> nāfiyah</li>
+          <li><strong>Lihat harakat akhir fi'il</strong> — kalau dhammah (ـُ) → nāfiyah; kalau sukun atau hapus (ـْ، ـوا → ـو) → nāhiyah</li>
+          <li><strong>Lihat konteks</strong> — apakah ini larangan atau pernyataan</li>
+        </ul>
+        <p style="margin-top:8px;">Di ayat 9 Al-Adiyat ini: fa'il fi'il <span class="arab-inline">يَعْلَمُ</span> adalah dhamir mustatir <span class="arab-inline">هُوَ</span> (gha'ib, merujuk ke al-insān ayat 6) — sehingga PASTI <span class="arab-inline">لَا</span> an-nāfiyah, bukan an-nāhiyah. Dan harakat akhirnya dhammah (مُ) — konfirmasi tambahan bahwa fi'il MARFU'.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 4: يَعْلَمُ -->
+  <div class="kartu">
+    <div class="kartu-head warna-fi">
+      <div class="kh-left"><span class="badge badge-fi">FI'IL MUDHARI' MA'LŪM · (100:9:4)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">يَعْلَمُ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "(dia, هُوَ) mengetahui"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-f">Fi'il</span> Jenis: <strong>fi'il mudhari' ma'lūm</strong> (active voice, present/future tense)</li>
+            <li>Akar: ع-ل-م ('ayn-lām-mīm) — makna inti: "mengetahui", "berilmu", "menyadari"</li>
+            <li>Wazan: <span class="arab-istilah">يَفْعَلُ</span> — pola wazan tsulātsī mujarrad dengan pola madhy فَعِلَ - mudhari' يَفْعَلُ (mengikuti pola wazan فَعِلَ - يَفْعَلُ)</li>
+            <li>Konsekuensi sebagai fi'il mushţaq: ada jalur derivasi → ada tashrif-box dan link Reverso</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna (Leksikal)</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Mengetahui" / "menyadari" / "berilmu" — keadaan kognitif tentang sesuatu</li>
+            <li>Detail leksikal: <span class="arab-inline">عَلِمَ - يَعْلَمُ</span> bermakna ilmu yang DALAM dan PASTI, beda dari <span class="arab-inline">شَعَرَ - يَشْعُرُ</span> (perasaan dangkal) atau <span class="arab-inline">ظَنَّ - يَظُنُّ</span> (dugaan)</li>
+            <li>Akar yang sama menghasilkan: <span class="arab-inline">عَالِم</span> (yang berilmu), <span class="arab-inline">مَعْلُوم</span> (yang diketahui), <span class="arab-inline">عِلْم</span> (ilmu), <span class="arab-inline">عَلَّامَة</span> (sangat berilmu)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>(Dia, هُوَ) mengetahui — orang ketiga, tunggal, laki-laki, ghaib</li>
+            <li>Dalam konteks ayat ini: dhamir mustatir <span class="arab-inline">هُوَ</span> merujuk ke <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 6 — sambungan kohesi anaforik dengan ayat 6-7-8</li>
+            <li>Dengan <span class="arab-inline">لَا</span> nāfiyah di depannya: "(dia) tidak mengetahui" — jadi makna pernyataan negasi</li>
+            <li>Dengan <span class="arab-inline">أَفَلَا</span> di depannya (istifhām taqrīrī): "apakah (dia) tidak mengetahui?" → bermakna PENEGASAN: "tentu dia tahu, tetapi seolah lupa"</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fa'il</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Fa'il Dhamir Huwa</strong> (هُوَ) — dhamir mustatir wujūban (tersembunyi wajib)</li>
+            <li>Marja': <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 6 — sambungan kohesi anaforik dengan rangkaian ayat 6-7-8</li>
+            <li>Kohesi anaforik penuh ayat 6→7→8→9: ayat 6 (al-insān zhāhir) → ayat 7 (هُ dhamir muttashil) → ayat 8 (هُ dhamir muttashil) → ayat 9 (dhamir mustatir هُوَ di يَعْلَمُ). Empat lapis link dhamir!</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar + Tashrif</td>
+        <td>
+          <div class="tashrif-box">
+            <div class="tashrif-item tashrif-akar">
+              <span class="tashrif-arab">ع ل م</span>
+              <span class="tashrif-label">akar</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">عَلِمَ</span>
+              <span class="tashrif-label">madhy (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">يَعْلَمُ</span>
+              <span class="tashrif-label">mudhari' (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item tashrif-subyek">
+              <span class="tashrif-arab">يَعْلَمُ (dia: ٱلْإِنسَـٰنَ)</span>
+              <span class="tashrif-label">subyek ayat</span>
+            </div>
+            <div class="tashrif-link">
+              Pembentukan kata sesuai tashrif dapat dilihat pada Konjugasi Reverso pada link berikut: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%B9%D9%84%D9%85.html" target="_blank" rel="noopener">عَلِمَ</a>
+            </div>
+          </div>
+          <div style="margin-top:8px;font-size:13px;">
+            <p>Wazan: <span class="arab-inline">فَعِلَ - يَفْعَلُ</span> — pola wazan dengan harakat 'ayn al-fi'il kasrah di madhy dan fathah di mudhari'.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-rafa">Marfu'</span> karena diakhiri dhammah</li>
+            <li>Tanda rafa': harakat dhammah pada huruf <span class="arab-inline">مُ</span></li>
+            <li><strong>Penting:</strong> meskipun didahului <span class="arab-inline">لَا</span>, fi'il tetap MARFU' karena <span class="arab-inline">لَا</span> di sini adalah nāfiyah (tidak menjazmkan)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Fi'il mudhari' marfu' yang menjadi inti predikat dari jumlah istifhāmiyyah</li>
+            <li>Bersama dhamir mustatir fa'il-nya, membentuk jumlah fi'liyyah <span class="arab-inline">يَعْلَمُ (هُوَ)</span></li>
+            <li>Diikuti oleh frasa zharf zaman <span class="arab-inline">إِذَا بُعْثِرَ ...</span> sebagai <strong>maf'ūl bih</strong> dari <span class="arab-inline">يَعْلَمُ</span> — yaitu OBYEK dari aksi mengetahui (yaitu apa yang akan terjadi di kubur)</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU MORFEM 5: إِذَا -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ZHARF ZAMAN · (100:9:5)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">إِذَا</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "apabila / ketika"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> Jenis: <strong>zharf zaman</strong> (keterangan waktu) yang juga mengandung makna <strong>syarat implisit</strong></li>
+            <li>Klasifikasi spesifik: <strong>zharf zaman li-mā yastaqbal</strong> — keterangan waktu untuk masa depan, dengan nuansa kondisional ("apabila/ketika")</li>
+            <li>Bentuk: <span class="arab-istilah">إِذَا</span> — bentuk tetap (mabni), tidak bisa di-tashrif</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Apabila" / "ketika" / "saat" — keterangan waktu untuk peristiwa yang AKAN terjadi (atau yang dianggap pasti terjadi)</li>
+            <li>Makna konteks ayat 9: <span class="arab-inline">إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span> = "apabila dibangkitkan (jasad-jasad) yang ada di dalam kubur" — yaitu Hari Kiamat</li>
+            <li><strong>Kekhasan balaghah:</strong> <span class="arab-inline">إِذَا</span> di Al-Qur'an sering diikuti oleh <strong>fi'il madhy</strong> (bentuk lampau), padahal maknanya MASA DEPAN. Pemakaian fi'il madhy untuk peristiwa masa depan adalah <em>mubālaghah balaghiyyah</em> — menggambarkan KEPASTIAN, seolah-olah peristiwa itu sudah pasti terjadi</li>
+            <li>Bandingkan dengan <span class="arab-inline">إِنْ</span> (jika) yang dipakai untuk kondisi yang BELUM PASTI. Allah tidak pakai <span class="arab-inline">إِنْ بُعْثِرَ</span>, tetapi <span class="arab-inline">إِذَا بُعْثِرَ</span> — karena Hari Kebangkitan adalah kepastian, bukan kemungkinan</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-mabni">Mabni Sukun</span> bentuk tetap dengan harakat akhir sukun</li>
+            <li>Berstatus <strong>nashab dalam kedudukannya</strong> — sebagai zharf zaman manshub (mahallan, karena mabni)</li>
+            <li>Catatan: zharf zaman selalu manshub mahallan; kedudukan i'rab-nya hanya terlihat dari konteks</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Zharf zaman</strong> yang muta'alliq ke fi'il <span class="arab-inline">يَعْلَمُ</span> sebelumnya — menjelaskan WAKTU dari pengetahuan/kesadaran yang dipertanyakan</li>
+            <li>Dalam tarkib ini, <span class="arab-inline">إِذَا</span> juga ber-<strong>idhāfah ke jumlah fi'liyyah</strong> setelahnya (<span class="arab-inline">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span>) — yaitu jumlah fi'liyyah berstatus jarr mahallan sebagai mudhaf-ilaihi</li>
+            <li>Idhāfah <span class="arab-inline">إِذَا</span> ke jumlah fi'liyyah adalah pola standar — kapan saja <span class="arab-inline">إِذَا</span> diikuti fi'il, fi'il itu otomatis mudhaf-ilaihi</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Zharf zaman manshub mahallan, muta'alliq ke <span class="arab-inline">يَعْلَمُ</span></li>
+            <li>Mudhaf yang ber-idhāfah ke jumlah fi'liyyah <span class="arab-inline">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span> setelahnya</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="iltifat-box">
+      <div class="iltifat-label">✦ HIKMAH BALAGHAH — Fi'il Madhy untuk Masa Depan (Mubālaghah Kepastian)</div>
+      <div class="iltifat-isi">
+        <p>Salah satu ciri khas Al-Qur'an: pemakaian <strong>fi'il madhy (bentuk lampau)</strong> untuk peristiwa MASA DEPAN. Di ayat 9 ini, <span class="arab-inline">بُعْثِرَ</span> adalah madhy ("dibangkitkan" — lampau), tetapi maknanya jelas masa depan (Hari Kiamat).</p>
+        <p><strong>Mengapa Allah memilih bentuk madhy?</strong></p>
+        <ul class="poin-list">
+          <li><strong>Mubālaghah kepastian</strong> — peristiwa masa depan digambarkan SEOLAH-OLAH SUDAH TERJADI. Ini adalah teknik retorika untuk menunjukkan bahwa peristiwa itu PASTI akan terjadi, sangat dekat, tidak ada keraguan</li>
+          <li><strong>Mengaktivasi imaginasi</strong> — pembaca dipaksa membayangkan kebangkitan SEOLAH SUDAH TERJADI di hadapannya, bukan sekadar konsep abstrak masa depan</li>
+          <li><strong>Konteks <span class="arab-inline">إِذَا</span></strong> — kapan saja zharf <span class="arab-inline">إِذَا</span> dipakai, fi'il setelahnya umumnya madhy meskipun maknanya masa depan. Ini aturan baku bahasa Arab</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Contoh-contoh pola ini di Al-Qur'an:</strong></p>
+        <ul class="poin-list">
+          <li><span class="arab-istilah">إِذَا ٱلسَّمَآءُ ٱنفَطَرَتْ</span> (Al-Infithār 82:1) — "apabila langit terbelah"</li>
+          <li><span class="arab-istilah">إِذَا ٱلشَّمْسُ كُوِّرَتْ</span> (At-Takwīr 81:1) — "apabila matahari digulung"</li>
+          <li><span class="arab-istilah">إِذَا زُلْزِلَتِ ٱلْأَرْضُ زِلْزَالَهَا</span> (Az-Zalzalah 99:1) — "apabila bumi diguncangkan dengan guncangannya yang dahsyat"</li>
+          <li><span class="arab-istilah">إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span> (Al-'Adiyat 100:9) — "apabila dibangkitkan apa yang ada di dalam kubur"</li>
+        </ul>
+        <p style="margin-top:8px;">Semua peristiwa Hari Kiamat ini digambarkan dengan fi'il madhy + zharf <span class="arab-inline">إِذَا</span> — pola seragam yang menggambarkan bahwa Hari Kiamat adalah kepastian, bukan kemungkinan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 6: بُعْثِرَ -->
+  <div class="kartu">
+    <div class="kartu-head warna-fi">
+      <div class="kh-left"><span class="badge badge-fi">FI'IL MADHY MAJHŪL · (100:9:6)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">بُعْثِرَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "dibongkar / dibangkitkan"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-f">Fi'il</span> Jenis: <strong>fi'il madhy MAJHŪL</strong> (passive voice, past tense)</li>
+            <li>Akar: ب-ع-ث-ر (bā-'ayn-tsā-rā) — <strong>4 huruf akar</strong> = fi'il <strong>rubā'ī mujarrad</strong></li>
+            <li>Bentuk ma'lūm (active): <span class="arab-inline">بَعْثَرَ - يُبَعْثِرُ</span> ("membongkar, menyebarkan")</li>
+            <li>Bentuk majhūl (passive) di ayat: <span class="arab-inline">بُعْثِرَ</span> ("dibongkar, dibangkitkan")</li>
+            <li>Wazan rubā'ī mujarrad: <span class="arab-istilah">فَعْلَلَ - يُفَعْلِلُ</span> (pola untuk fi'il 4 huruf)</li>
+            <li>Konsekuensi sebagai fi'il mushţaq: ada jalur derivasi → ada tashrif-box dan link Reverso</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna (Leksikal)</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Dibongkar" / "dibangkitkan" / "ditebarkan" / "dikeluarkan dengan paksa"</li>
+            <li>Imam At-Thabari: <span class="arab-inline">بَعْثَرَ</span> = <span class="arab-inline">أَثَارَ + أَخْرَجَ + بَحَثَ</span> (mengeluarkan + membongkar + mencari) — tiga makna gabungan</li>
+            <li>Detail leksikal akar <span class="arab-inline">ب-ع-ث-ر</span>: bermakna membolak-balik, membongkar dengan paksa, mengeluarkan dengan keras. Imam Abu 'Ubaidah: <span class="arab-inline">بَعْثَرْتُ ٱلْمَتَاعَ</span> = "saya membongkar perabotan, menjadikan yang di bawah menjadi di atas"</li>
+            <li>Qira'ah lain (Ibn Mas'ud): <span class="arab-inline">بُحْثِرَ</span> dengan huruf <span class="arab-inline">ح</span> menggantikan <span class="arab-inline">ع</span> — maknanya sama</li>
+            <li>Tafsir Ibn Katsir: "<em>dikeluarkan orang-orang yang telah mati dari dalam kuburnya</em>"</li>
+            <li>Tafsir Imam As-Sa'di: "<em>Allah akan mengeluarkan manusia dari kubur untuk dikumpulkan dan dibangkitkan</em>"</li>
+            <li>Tafsir Imam Al-Utsaimin: "<em>ditebarkan dan dikeluarkan</em>"</li>
+            <li>Imam Sayyid Quthb dan Buya Hamka juga sependapat</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Dibangkitkan / dibongkar" — bentuk pasif (majhūl), tanpa pelaku yang disebut</li>
+            <li>Pelaku TIDAK DISEBUTKAN secara eksplisit, meskipun jelas dari konteks adalah Allah ﷻ</li>
+            <li>Hikmah pemakaian majhūl: fokus pada PERISTIWA dan AKIBAT, bukan pada pelaku. Pembaca dipaksa membayangkan apa yang terjadi pada kubur dan jasad, bukan siapa yang melakukan</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fa'il / Nā'ib al-Fā'il</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Nā'ib al-Fā'il (pengganti pelaku)</strong>: isim maushul <span class="arab-inline">مَا</span> setelahnya — yaitu "apa yang ada di dalam kubur" (= jasad-jasad orang mati)</li>
+            <li>Pelaku sebenarnya (fa'il haqīqī) yang dihilangkan = Allah ﷻ</li>
+            <li>Dalam fi'il majhūl: nā'ib al-fā'il selalu MARFU' (menggantikan posisi fa'il yang dihapus)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar + Tashrif</td>
+        <td>
+          <div class="tashrif-box">
+            <div class="tashrif-item tashrif-akar">
+              <span class="tashrif-arab">ب ع ث ر</span>
+              <span class="tashrif-label">akar (rubā'ī)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">بَعْثَرَ</span>
+              <span class="tashrif-label">madhy ma'lūm (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item">
+              <span class="tashrif-arab">يُبَعْثِرُ</span>
+              <span class="tashrif-label">mudhari' ma'lūm (هُوَ)</span>
+            </div>
+            <span class="tashrif-panah">→</span>
+            <div class="tashrif-item tashrif-subyek">
+              <span class="tashrif-arab">بُعْثِرَ (madhy majhūl — nā'ib al-fā'il = مَا)</span>
+              <span class="tashrif-label">subyek ayat</span>
+            </div>
+            <div class="tashrif-link">
+              Pembentukan kata sesuai tashrif dapat dilihat pada Konjugasi Reverso pada link berikut: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%A8%D8%B9%D8%AB%D8%B1.html" target="_blank" rel="noopener">بَعْثَرَ</a>
+            </div>
+          </div>
+          <div style="margin-top:8px;font-size:13px;">
+            <p>Wazan: <span class="arab-inline">فَعْلَلَ - يُفَعْلِلُ</span> (rubā'ī mujarrad). Bentuk majhūl: <span class="arab-inline">فُعْلِلَ - يُفَعْلَلُ</span>.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-mabni">Mabni Fathah</span> bentuk tetap dengan harakat akhir fathah</li>
+            <li>Fi'il madhy selalu mabni (tidak mu'rab)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Fi'il madhy majhūl yang menjadi inti jumlah fi'liyyah <span class="arab-inline">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span></li>
+            <li>Jumlah fi'liyyah ini berstatus <strong>jarr mahallan</strong> sebagai mudhaf-ilaihi dari zharf <span class="arab-inline">إِذَا</span> sebelumnya</li>
+            <li>Bersama maushul + silah setelahnya, membentuk klausa lengkap yang ber-idhāfah ke <span class="arab-inline">إِذَا</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP BARU — Fi'il Mabni li-l-Majhūl (Passive Voice)</div>
+      <div class="konsep-isi">
+        <p><strong>Fi'il mabni li-l-majhūl</strong> (atau singkatnya <em>fi'il majhūl</em>) adalah bentuk pasif (passive voice) dari fi'il bahasa Arab — di mana FA'IL (pelaku) tidak disebutkan, dan posisinya digantikan oleh <strong>nā'ib al-fā'il</strong> (pengganti pelaku, biasanya = obyek yang menjadi subjek pasif).</p>
+        <p><strong>Cara membentuk fi'il majhūl dari ma'lūm:</strong></p>
+        <table class="konsep-tabel">
+          <tr><th>Jenis Fi'il</th><th>Madhy Ma'lūm</th><th>Madhy Majhūl</th><th>Mudhari' Ma'lūm</th><th>Mudhari' Majhūl</th></tr>
+          <tr>
+            <td>Tsulātsī (3 huruf)</td>
+            <td><span class="arab-istilah">فَعَلَ</span></td>
+            <td><span class="arab-istilah">فُعِلَ</span></td>
+            <td><span class="arab-istilah">يَفْعَلُ</span></td>
+            <td><span class="arab-istilah">يُفْعَلُ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rubā'ī (4 huruf) ★</strong></td>
+            <td><span class="arab-istilah">فَعْلَلَ</span></td>
+            <td><span class="arab-istilah">فُعْلِلَ</span></td>
+            <td><span class="arab-istilah">يُفَعْلِلُ</span></td>
+            <td><span class="arab-istilah">يُفَعْلَلُ</span></td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Pola perubahan harakat:</strong></p>
+        <ul class="poin-list">
+          <li><strong>Madhy Majhūl</strong>: huruf pertama → <em>dhammah</em>, huruf sebelum akhir → <em>kasrah</em>. Contoh: <span class="arab-inline">بَعْثَرَ → بُعْثِرَ</span> (huruf <span class="arab-inline">بَ</span> jadi <span class="arab-inline">بُ</span>, dan <span class="arab-inline">ثَ</span> jadi <span class="arab-inline">ثِ</span>)</li>
+          <li><strong>Mudhari' Majhūl</strong>: huruf pertama → <em>dhammah</em>, huruf sebelum akhir → <em>fathah</em>. Contoh: <span class="arab-inline">يُبَعْثِرُ → يُبَعْثَرُ</span></li>
+          <li><strong>Konsekuensi gramatikal</strong>: fa'il dihapus, obyek (yang dahulu manshub) berubah menjadi <strong>nā'ib al-fā'il</strong> (marfu')</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Mengapa Allah memilih bentuk majhūl di ayat 9?</strong></p>
+        <ul class="poin-list">
+          <li><strong>Fokus pada peristiwa, bukan pelaku</strong> — pembaca dipaksa membayangkan APA yang terjadi (jasad-jasad dibongkar dari kubur), bukan SIAPA yang melakukan (sudah jelas Allah)</li>
+          <li><strong>Mempercepat ritme kalimat</strong> — tanpa harus menyebut pelaku, kalimat menjadi lebih padat dan kuat</li>
+          <li><strong>Dramatis</strong> — peristiwa kebangkitan digambarkan seolah terjadi sendiri, tanpa intervensi yang ditampilkan, menciptakan efek mistis dan dahsyat</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Kekhasan `بُعْثِرَ` sebagai Rubā'ī Mujarrad:</strong> <span class="arab-inline">بَعْثَرَ</span> bukan tsulātsī mujarrad (3 huruf akar) seperti fi'il-fi'il umum, tetapi <strong>rubā'ī mujarrad</strong> (4 huruf akar). Wazan rubā'ī mujarrad ini hanya satu: <span class="arab-istilah">فَعْلَلَ - يُفَعْلِلُ</span>. Contoh lain: <span class="arab-inline">دَحْرَجَ - يُدَحْرِجُ</span> (menggulingkan), <span class="arab-inline">زَلْزَلَ - يُزَلْزِلُ</span> (mengguncang). Konjugasi rubā'ī sangat mirip dengan tsulātsī, tetapi punya 4 huruf akar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 7: مَا -->
+  <div class="kartu">
+    <div class="kartu-head warna-dhamir">
+      <div class="kh-left"><span class="badge badge-dhamir">ISIM MAUSHUL · (100:9:7)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">مَا</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "apa yang"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-dhamir">Isim Maushul</span> kata sambung relative — ekuivalen dengan "yang" / "apa yang" dalam bahasa Indonesia</li>
+            <li>Klasifikasi spesifik: <strong>Isim Maushul `مَا`</strong> — yang dipakai untuk yang TIDAK BERAKAL (jasad-jasad orang mati di sini, atau benda-benda)</li>
+            <li>Berbeda dari <span class="arab-inline">مَنْ</span> yang dipakai untuk yang BERAKAL (manusia hidup, malaikat, jin)</li>
+            <li>Bedakan juga dari <span class="arab-inline">مَا</span> jenis lain: nāfiyah (negasi) dan istifhāmiyyah (kata tanya). Di sini ADALAH maushuliyyah karena diikuti silah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Apa yang" / "yang" / "sesuatu yang" — merujuk kepada referensi yang dijelaskan oleh silah setelahnya</li>
+            <li>Makna konteks ayat 9: <span class="arab-inline">مَا فِى ٱلْقُبُورِ</span> = "apa yang ada di dalam kubur" → yaitu jasad-jasad orang mati. Imam Ibn Katsir, As-Sa'di, Al-Mukhtashar, Az-Zubdat semua sepakat: yang dimaksud adalah jasad-jasad mayit</li>
+            <li>Mengapa Allah pakai <span class="arab-inline">مَا</span> (yang tidak berakal), bukan <span class="arab-inline">مَنْ</span> (yang berakal)? Karena yang dimaksud adalah JASAD-JASAD orang mati — yaitu sebagai BENDA fisik di kubur, bukan sebagai pribadi yang hidup. Setelah kematian, jasad menjadi "benda", baru di Hari Kebangkitan kembali menjadi "manusia hidup"</li>
+            <li>Pilihan kata <span class="arab-inline">مَا</span> juga bisa menunjukkan <strong>'umūm</strong> (umum) — mencakup semua jasad, semua sisa-sisa, semua yang tertimbun di kubur</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-mabni">Mabni Sukun</span> bentuk tetap dengan harakat akhir sukun</li>
+            <li>Berstatus <strong>marfu' dalam kedudukannya</strong> — sebagai <strong>nā'ib al-fā'il</strong> dari fi'il majhūl <span class="arab-inline">بُعْثِرَ</span> sebelumnya</li>
+            <li>Catatan: isim maushul selalu mabni — kedudukan i'rab-nya hanya terlihat dari konteks (mahallan)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-dhamir">Tidak berubah bentuk</span> — <span class="arab-inline">مَا</span> tidak punya bentuk dual atau jamak (beda dengan isim maushul lain seperti <span class="arab-inline">ٱلَّذِي</span> yang punya bentuk dual <span class="arab-inline">ٱللَّذَانِ</span> dan jamak <span class="arab-inline">ٱلَّذِينَ</span>)</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-dhamir">Netral</span> — <span class="arab-inline">مَا</span> bisa untuk mudzakkar atau mu'annats; tergantung referensinya. Di sini referensinya = jasad-jasad (mufrad mudzakkar secara umum)</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-dhamir">Ma'rifah</span> — isim maushul adalah salah satu jenis ma'rifah</li>
+            <li>Bersama silah-nya, menjadi unit ma'rifah yang spesifik merujuk pada jasad-jasad di kubur</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Nā'ib al-Fā'il</strong> dari fi'il majhūl <span class="arab-inline">بُعْثِرَ</span> — yaitu pengganti pelaku yang dihilangkan, sekaligus subjek pasif "apa yang dibangkitkan"</li>
+            <li>Membutuhkan <strong>silah</strong> (klausa pelengkap) yang menjelaskan referensi-nya — silah-nya = <span class="arab-inline">فِى ٱلْقُبُورِ</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim maushul yang berstatus marfu' mahallan sebagai nā'ib al-fā'il</li>
+            <li>Bersama silah-nya (<span class="arab-inline">فِى ٱلْقُبُورِ</span>) membentuk klausa lengkap yang menjadi subjek pasif dari <span class="arab-inline">بُعْثِرَ</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="konsep-box">
+      <div class="konsep-label">★ KONSEP BARU — Isim Maushul `مَا` dan Silah-nya</div>
+      <div class="konsep-isi">
+        <p><strong>Isim maushul</strong> adalah kata sambung relatif yang merujuk kepada sesuatu yang dijelaskan oleh klausa setelahnya (silah). Ekuivalen dengan "yang" / "apa yang" dalam bahasa Indonesia.</p>
+        <p><strong>Sistem isim maushul dalam bahasa Arab:</strong></p>
+        <table class="konsep-tabel">
+          <tr><th>Untuk</th><th>Tunggal Mudzakkar</th><th>Tunggal Mu'annats</th><th>Dual</th><th>Jamak Mudzakkar</th><th>Jamak Mu'annats</th></tr>
+          <tr>
+            <td><strong>Berakal</strong> (manusia, malaikat)</td>
+            <td><span class="arab-istilah">ٱلَّذِي</span></td>
+            <td><span class="arab-istilah">ٱلَّتِي</span></td>
+            <td><span class="arab-istilah">ٱللَّذَانِ / ٱللَّتَانِ</span></td>
+            <td><span class="arab-istilah">ٱلَّذِينَ</span></td>
+            <td><span class="arab-istilah">ٱللَّاتِي / ٱللَّوَاتِي</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tidak berakal</strong> ★ (benda, jasad)</td>
+            <td colspan="5"><span class="arab-istilah">مَا</span> — bentuk tunggal yang dipakai untuk segala jenis jumlah dan gender (tidak berubah)</td>
+          </tr>
+          <tr>
+            <td>Universal</td>
+            <td colspan="5"><span class="arab-istilah">مَنْ</span> (untuk yang berakal saja)</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;"><strong>Konsep `Silah al-Maushul` (klausa pelengkap):</strong></p>
+        <ul class="poin-list">
+          <li>Setiap isim maushul WAJIB diikuti oleh <strong>silah</strong> — yaitu klausa yang menjelaskan referensi maushul</li>
+          <li>Silah bisa berupa: jumlah fi'liyyah, jumlah ismiyyah, atau frasa jar-majrur</li>
+          <li>Silah TIDAK punya posisi i'rab (lā mahalla lahā min al-i'rāb) — karena ia hanya pelengkap maushul</li>
+          <li>Hubungan antara maushul dan silah-nya: silah harus mengandung <em>'ā'id</em> (rujukan balik) ke maushul — bisa eksplisit (dhamir) atau implisit</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Di ayat 9 Al-Adiyat:</strong></p>
+        <ul class="poin-list">
+          <li>Maushul: <span class="arab-inline">مَا</span> (apa yang)</li>
+          <li>Silah: <span class="arab-inline">فِى ٱلْقُبُورِ</span> (frasa jar-majrur)</li>
+          <li>Silah ini secara teknis muta'alliq ke <strong>khabar mahdzūf</strong> (predikat yang dihilangkan) — taqdīrnya: <span class="arab-istilah">مَا [هُوَ كَائِنٌ] فِى ٱلْقُبُورِ</span> ("apa [yang berada/ada] di dalam kubur"). Penghapusan khabar adalah pola baku ketika silah berupa jar-majrur</li>
+          <li>'Ā'id (rujukan balik): tersembunyi di khabar yang dihapus</li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Contoh maushul `مَا` lain di Al-Qur'an:</strong></p>
+        <ul class="poin-list">
+          <li><span class="arab-istilah">مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ</span> (banyak ayat) — "apa yang ada di langit dan apa yang ada di bumi"</li>
+          <li><span class="arab-istilah">وَحُصِّلَ مَا فِى ٱلصُّدُورِ</span> (Al-'Adiyat 100:10 — ayat berikutnya!) — "dan ditampakkan apa yang ada di dalam dada"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTU MORFEM 8: فِى -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf">
+      <div class="kh-left"><span class="badge badge-harf">HARF JAR · (100:9:8)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">فِى</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "di dalam"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Harf Jar</span> huruf yang membuat isim setelahnya berstatus majrur</li>
+            <li>Klasifikasi spesifik: <strong>Fī li-zh-Zharfiyyah al-Makāniyyah</strong> — fī untuk keterangan tempat ("di dalam")</li>
+            <li>Salah satu harf jar yang paling sering muncul di Al-Qur'an, dengan banyak nuansa makna tergantung konteks (di dalam, dalam, mengenai, tentang)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>Makna baku: "di dalam" — keterangan tempat untuk yang berada DI DALAM sesuatu</li>
+            <li>Makna konteks ayat 9: jasad-jasad mayit yang terkubur DI DALAM kubur. Frasa <span class="arab-inline">فِى ٱلْقُبُورِ</span> = "di dalam kubur-kubur"</li>
+            <li>Catatan leksikal: <span class="arab-inline">فِى</span> menunjukkan tempat secara DALAM (immersion), beda dari <span class="arab-inline">عَلَى</span> (di atas) atau <span class="arab-inline">عِنْدَ</span> (di sisi)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-harf">Mabni Sukun</span> bentuk tetap dengan harakat akhir sukun (terlihat dari ya' sukun di akhir)</li>
+            <li>Harf jar tidak punya posisi i'rab; tetapi membuat isim setelahnya berstatus <strong>majrur</strong></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li>Membentuk frasa jar-majrur dengan <span class="arab-inline">ٱلْقُبُورِ</span> setelahnya: <span class="arab-inline">فِى ٱلْقُبُورِ</span> ("di dalam kubur")</li>
+            <li>Frasa jar-majrur ini bertindak sebagai <strong>silah al-maushul</strong> dari <span class="arab-inline">مَا</span> sebelumnya — muta'alliq ke khabar mahdzūf (predikat yang dihilangkan)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf jar yang membuat <span class="arab-inline">ٱلْقُبُورِ</span> setelahnya majrur</li>
+            <li>Bersama mudhaf-ilaihi (lewat khabar mahdzūf) menjadi silah al-maushul yang menjelaskan <span class="arab-inline">مَا</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU MORFEM 9: ٱلْقُبُورِ -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata">
+      <div class="kh-left"><span class="badge badge-kata">ISIM JAMID · (100:9:9)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "kubur-kubur"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Isim</span> Jenis: <strong>isim-jamid</strong> — leksem mandiri, bentuk JAMAK</li>
+            <li>Akar: ق-ب-ر (qāf-bā-rā) — makna inti: "kubur", "tempat penguburan"</li>
+            <li>Bentuk tunggal: <span class="arab-inline">قَبْر</span>; bentuk jamak: <span class="arab-inline">قُبُور</span> (jamak taksīr/jamak tidak beraturan)</li>
+            <li>Bentuk di ayat: <span class="arab-istilah">ٱلْـ + قُبُور</span> — kata <span class="arab-inline">قُبُور</span> dengan alif-lām al-'ahdiyyah/al-jinsiyyah (mencakup semua kubur)</li>
+            <li>Konsekuensi sebagai isim-jamid: TIDAK perlu tashrif-box</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna</td>
+        <td>
+          <ul class="poin-list">
+            <li>"Kubur-kubur" / "tempat-tempat penguburan" — bentuk jamak dari <span class="arab-inline">قَبْر</span></li>
+            <li>Makna konteks ayat 9: kubur-kubur tempat jasad orang mati ditimbun, yang akan dibongkar/dibangkitkan pada Hari Kiamat</li>
+            <li>Cakupan jamak + ال (al-jinsiyyah/al-istighrāqiyyah) = SEMUA kubur, di seluruh dunia, dari semua zaman, dari semua manusia yang pernah hidup</li>
+            <li>Pemilihan kata <span class="arab-inline">ٱلْقُبُور</span> (bukan <span class="arab-inline">ٱلْأَرْض</span> atau <span class="arab-inline">ٱلتُّرَاب</span>) menunjukkan fokus pada TEMPAT PENGUBURAN — yang penuh dengan kemanusiaan yang sudah mati, tertimbun, dilupakan dunia tetapi tidak dilupakan oleh Allah</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-jarr">Majrur</span> karena berakhiran kasrah</li>
+            <li>Berperan sebagai <strong>isim majrur</strong> oleh harf jar <span class="arab-inline">فِى</span> sebelumnya</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td><span class="tag tag-n">Jamak (jam' taksīr)</span> Bentuk jamak tidak beraturan dari <span class="arab-inline">قَبْر</span>. Jamak taksīr = jamak yang berubah pola dari bentuk tunggalnya</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><span class="tag tag-n">Laki-laki (mudzakkar)</span></td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>
+          <ul class="poin-list">
+            <li><span class="tag tag-n">Ma'rifah karena diawali ال</span> — alif-lām di awal kata membuat ma'rifah</li>
+            <li>Klasifikasi <span class="arab-inline">ٱل</span>: <strong>al-istighrāqiyyah</strong> (mencakup semua kubur) atau <strong>al-jinsiyyah</strong> (jenis kubur secara umum) — keduanya valid</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Fungsi</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Isim Majrur</strong> — dijarrkan oleh <span class="arab-inline">فِى</span></li>
+            <li>Pelengkap dari <span class="arab-inline">فِى</span> untuk membentuk frasa jar-majrur silah al-maushul</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Kedudukan Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim majrur sebagai pelengkap harf jar <span class="arab-inline">فِى</span></li>
+            <li>Bersama harf jar membentuk frasa jar-majrur <span class="arab-inline">فِى ٱلْقُبُورِ</span> yang menjadi silah al-maushul untuk <span class="arab-inline">مَا</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 4 — ANALISIS TINGKAT 2 : FRASA -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 2 — Frasa</div>
+    <div class="sub-judul">Analisis frasa, klausa, atau kalimat yang membentuk ayat</div>
+  </div>
+
+  <!-- KARTU FRASA 1: أَفَلَا (Preamble Istifhām Taqrīrī) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1">
+      <div class="kh-left"><span class="badge badge-frasa1">FRASA 1 · PREAMBLE ISTIFHĀM TAQRĪRĪ</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">أَفَلَا</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "maka apakah tidak..."</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Tiga harf yang bekerja BERSAMA membentuk satu unit retoris: Hamzah Istifhām (<span class="arab-inline">أَ</span>) + Fā' al-'Athaf as-Sababiyyah (<span class="arab-inline">فَ</span>) + Lā an-Nāfiyah (<span class="arab-inline">لَا</span>). Meskipun secara teknis ketiganya morfem terpisah dengan fungsi berbeda, secara semantik mereka membentuk preamble pertanyaan retoris yang menohok.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Maka apakah tidak..." — preamble pertanyaan retoris yang sebenarnya BERMAKNA PENEGASAN. Bukan benar-benar bertanya, tetapi mengingatkan bahwa kebenaran setelahnya SUDAH JELAS dan SEHARUSNYA DIKETAHUI manusia. Pola <span class="arab-inline">أَفَلَا</span> adalah <em>signature</em> retoris di Al-Qur'an — banyak ayat yang memakainya untuk membangkitkan kesadaran manusia akan kebenaran yang dilupakan.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Frasa preamble</strong> yang membuka seluruh jumlah istifhāmiyyah ayat 9</li>
+            <li>Hamzah istifhām <span class="arab-inline">أَ</span>: mengubah jumlah menjadi pertanyaan</li>
+            <li>Fā' as-sababiyyah <span class="arab-inline">فَ</span>: menyambung ke ayat 8 sebagai konsekuensi logis</li>
+            <li>Lā an-nāfiyah <span class="arab-inline">لَا</span>: menegasikan fi'il yang akan datang (<span class="arab-inline">يَعْلَمُ</span>)</li>
+            <li>Bersama-sama membentuk <strong>istifhām taqrīrī</strong>: pertanyaan retoris untuk penegasan</li>
+            <li>Tidak punya posisi i'rab sendiri (semua harf), tetapi menentukan modus seluruh kalimat menjadi pertanyaan retoris</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 2: فِى ٱلْقُبُورِ (Silah al-Maushul · Jar-Majrur) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA 2 · SILAH AL-MAUSHUL · JAR-MAJRUR</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">فِى ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "di dalam kubur-kubur"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Harf jar (<span class="arab-inline">فِى</span> — fī li-zh-zharfiyyah al-makāniyyah) + Isim majrur (<span class="arab-inline">ٱلْقُبُورِ</span> — jamak taksīr ma'rifah karena ال). Bersama membentuk frasa jar-majrur sederhana.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Di dalam kubur-kubur" — keterangan tempat yang menjelaskan WHERE jasad-jasad mayit berada. Pemilihan kata <span class="arab-inline">ٱلْقُبُور</span> (jamak dengan ال) mencakup SEMUA kubur, di seluruh dunia, dari semua zaman. Tidak ada kubur yang luput dari peristiwa kebangkitan ini — sebuah cakupan kosmis.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa jar-majrur ini berfungsi sebagai <strong>silah al-maushul</strong> dari isim maushul <span class="arab-inline">مَا</span> setelahnya (di Frasa 3)</li>
+            <li>Secara teknis, frasa ini <strong>muta'alliq ke khabar mahdzūf</strong> (predikat yang dihilangkan) — taqdīr-nya: <span class="arab-istilah">[هُوَ كَائِنٌ] فِى ٱلْقُبُورِ</span> ("yang berada di dalam kubur"). Penghapusan khabar adalah pola baku ketika silah berupa jar-majrur</li>
+            <li>Dalam tarkib internal: <span class="arab-inline">فِى</span> tidak punya posisi i'rab; <span class="arab-inline">ٱلْقُبُورِ</span> berstatus majrur dengan kasrah</li>
+            <li>Tidak punya posisi i'rab secara keseluruhan — silah al-maushul selalu lā mahalla lahā min al-i'rāb</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 3: مَا فِى ٱلْقُبُورِ (Maushul + Silah) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA 3 · MAUSHUL + SILAH (NĀ'IB AL-FĀ'IL)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">مَا فِى ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "apa yang ada di dalam kubur"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Isim maushul (<span class="arab-inline">مَا</span>) + Silah al-maushul (Frasa 2 = <span class="arab-inline">فِى ٱلْقُبُورِ</span>). Inilah <strong>klausa relative lengkap</strong> — yaitu maushul beserta silah-nya yang menjelaskan referensinya.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Apa yang ada di dalam kubur" — yaitu jasad-jasad orang yang sudah mati. Imam Ibn Katsir, As-Sa'di, Al-Mukhtashar, Az-Zubdat semua sepakat: yang dimaksud adalah JASAD-JASAD MAYIT. Pemilihan kata <span class="arab-inline">مَا</span> (untuk yang tidak berakal) bukan <span class="arab-inline">مَنْ</span> (untuk yang berakal) menunjukkan bahwa setelah kematian, jasad menjadi "benda" — baru di Hari Kebangkitan kembali menjadi "manusia hidup".
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Klausa relative lengkap yang berfungsi sebagai <strong>nā'ib al-fā'il</strong> dari fi'il majhūl <span class="arab-inline">بُعْثِرَ</span> (di Frasa 4)</li>
+            <li>Maushul <span class="arab-inline">مَا</span>: berstatus marfu' mahallan sebagai nā'ib al-fā'il</li>
+            <li>Silah <span class="arab-inline">فِى ٱلْقُبُورِ</span>: tidak punya posisi i'rab (lā mahalla lahā)</li>
+            <li>Sebagai unit, klausa ini bertindak sebagai SUBJEK PASIF — yang dibangkitkan</li>
+            <li>Catatan terminologis: dalam fi'il majhūl, posisi yang dahulu untuk fa'il (pelaku) digantikan oleh nā'ib al-fā'il yang biasanya = obyek dari fi'il ma'lūm</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 4: بُعْثِرَ مَا فِى ٱلْقُبُورِ (Jumlah Fi'liyyah Majhūlah) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 4 · JUMLAH FI'LIYYAH MAJHŪLAH</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "dibangkitkan apa yang ada di dalam kubur"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Fi'il madhy majhūl (<span class="arab-inline">بُعْثِرَ</span> — rubā'ī mujarrad pasif) + Nā'ib al-Fā'il dari Frasa 3 (<span class="arab-inline">مَا فِى ٱلْقُبُورِ</span>). Inilah <strong>jumlah fi'liyyah majhūlah</strong> — jumlah berbentuk pasif lengkap.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Dibangkitkan / dibongkar apa yang ada di dalam kubur" — yaitu peristiwa Hari Kiamat ketika jasad-jasad orang mati dikeluarkan dari kubur untuk hisab dan pembalasan. Pemakaian fi'il madhy untuk peristiwa masa depan (mubālaghah balaghiyyah kepastian) + bentuk majhūl (fokus pada peristiwa, bukan pelaku) = struktur sangat dramatis yang menggambarkan kebangkitan sebagai realitas pasti.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Jumlah fi'liyyah lengkap yang berfungsi sebagai <strong>mudhaf-ilaihi</strong> dari zharf <span class="arab-inline">إِذَا</span> setelahnya (di Frasa 5)</li>
+            <li>Sebagai mudhaf-ilaihi: jumlah ini berstatus <strong>jarr mahallan</strong></li>
+            <li>Catatan terminologis: kapan saja zharf <span class="arab-inline">إِذَا</span> diikuti oleh fi'il, fi'il itu (beserta seluruh klausa) otomatis menjadi mudhaf-ilaihi</li>
+            <li>Bersama <span class="arab-inline">إِذَا</span> akan membentuk frasa zharf zaman lengkap di Frasa 5</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 5: إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ (Zharf Zaman Lengkap) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 5 · ZHARF ZAMAN LENGKAP</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "apabila dibangkitkan apa yang ada di dalam kubur"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Zharf zaman (<span class="arab-inline">إِذَا</span>) + Mudhaf-ilaihi berupa jumlah fi'liyyah dari Frasa 4 (<span class="arab-inline">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span>). Inilah <strong>zharf zaman lengkap</strong> — yaitu keterangan waktu dengan klausa pelengkapnya yang menjelaskan KAPAN.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Apabila dibangkitkan apa yang ada di dalam kubur" — yaitu menjelaskan KAPAN manusia akan tahu (atau harusnya tahu) tentang konsekuensi watak kanud-nya. Yaitu pada Hari Kiamat. Pemakaian <span class="arab-inline">إِذَا</span> (bukan <span class="arab-inline">إِنْ</span>) menunjukkan kepastian — peristiwa ini PASTI akan terjadi, bukan sekedar kemungkinan.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa zharf zaman yang muta'alliq ke fi'il <span class="arab-inline">يَعْلَمُ</span> di Frasa 6</li>
+            <li><span class="arab-inline">إِذَا</span>: zharf zaman manshub mahallan, mudhaf</li>
+            <li>Jumlah <span class="arab-inline">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span>: mudhaf-ilaihi, jarr mahallan</li>
+            <li>Sebagai unit, frasa ini menjadi maf'ūl bih dari <span class="arab-inline">يَعْلَمُ</span> — yaitu OBYEK pengetahuan yang dipertanyakan ("apakah dia tidak mengetahui PERISTIWA INI?")</li>
+            <li>Atau bisa juga dipahami sebagai zharf yang muta'alliq dengan fi'il muqaddar (<em>yajzī</em> atau <em>yu'rad 'alaihi</em>) — yaitu "(tidakkah dia mengetahui PADA WAKTU dibangkitkan)..." Kedua i'rab sama-sama valid</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 6: يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ (Jumlah Fi'liyyah Utama) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 6 · JUMLAH FI'LIYYAH UTAMA + ZHARF</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "dia mengetahui apabila dibangkitkan apa yang ada di dalam kubur"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Fi'il mudhari' marfu' (<span class="arab-inline">يَعْلَمُ</span> — fa'il dhamir mustatir <span class="arab-inline">هُوَ</span> = al-insān) + Frasa zharf zaman dari Frasa 5 (<span class="arab-inline">إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span>). Inilah <strong>jumlah fi'liyyah utama</strong> dari ayat 9 — predikat yang akan dinegasikan dan dijadikan pertanyaan retoris.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Dia mengetahui apabila dibangkitkan apa yang ada di dalam kubur" — yaitu pengetahuan tentang Hari Kebangkitan dan apa yang akan terjadi. Tanpa preamble <span class="arab-inline">أَفَلَا</span>, jumlah ini akan bermakna pernyataan "dia mengetahui...". Setelah ditambahi preamble, maknanya berubah menjadi pertanyaan retoris penegasan: "tentu dia tahu, mengapa seolah lupa?"
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Jumlah fi'liyyah yang menjadi <strong>inti predikat</strong> dari pertanyaan retoris</li>
+            <li>Fi'il <span class="arab-inline">يَعْلَمُ</span>: marfu' dengan dhammah; fa'il = dhamir mustatir <span class="arab-inline">هُوَ</span> (al-insān ayat 6)</li>
+            <li>Frasa zharf zaman: muta'alliq ke <span class="arab-inline">يَعْلَمُ</span> sebagai keterangan waktu dari pengetahuan yang dipertanyakan</li>
+            <li>Sebagai unit, jumlah fi'liyyah ini akan dinegasikan oleh <span class="arab-inline">لَا</span> (di Frasa 1) dan dijadikan pertanyaan oleh <span class="arab-inline">أَ</span></li>
+            <li>Bersama Frasa 1 (preamble <span class="arab-inline">أَفَلَا</span>) akan membentuk kamilah ayat 9 di Frasa 7</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- KARTU FRASA 7: أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ (Kamilah · Istifhām Taqrīrī Lengkap) -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 7 · KAMILAH · ISTIFHĀM TAQRĪRĪ LENGKAP</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "Maka apakah dia tidak mengetahui apabila dibangkitkan jasad-jasad yang ada di dalam kubur?"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Struktur</td>
+        <td>
+          Frasa 1 (preamble <span class="arab-inline">أَفَلَا</span> = istifhām + 'athaf + nafy) + Frasa 6 (jumlah fi'liyyah utama + zharf). Inilah <strong>jumlah istifhāmiyyah lengkap</strong> — pertanyaan retoris penegasan ayat 9.
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Frasa</td>
+        <td>
+          "Maka apakah dia (manusia itu) tidak mengetahui apabila dibangkitkan (jasad-jasad) yang ada di dalam kubur?" — pertanyaan retoris yang sebenarnya bermakna PENEGASAN. Allah ﷻ tidak benar-benar bertanya — Dia mengingatkan bahwa manusia SEHARUSNYA TAHU akan kebenaran ini, tetapi seolah lupa karena tertipu cinta dunia. Setelah deklarasi watak kanud (ayat 6), saksi atas keingkaran (ayat 7), dan cinta harta (ayat 8), Allah menohok dengan: "Maka mengapa engkau tidak ingat?"
+        </td>
+      </tr>
+      <tr>
+        <td>Peran / Kedudukan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Frasa lengkap (kamilah) ayat 9 — utuh dengan preamble pertanyaan retoris dan jumlah fi'liyyah-nya</li>
+            <li>Berfungsi sebagai <strong>jumlah istifhāmiyyah</strong> (jumlah pertanyaan) — secara struktur seperti pernyataan negasi yang dibungkus istifhām</li>
+            <li>Menjadi PIVOT POINT KEDUA dari Surah Al-Adiyat — transisi dari deklarasi (ayat 6-8) ke peringatan akhirat (ayat 9-11)</li>
+            <li>Disambungkan ke ayat 8 (deklarasi terakhir tentang manusia) oleh fā' as-sababiyyah — sebagai konsekuensi logis</li>
+            <li>Karena 'athaf jumlah ke jumlah, tidak ada pewarisan i'rab — yang diwariskan adalah <em>fungsi tematik</em> (transisi dari diagnosa ke peringatan)</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="iltifat-box">
+      <div class="iltifat-label">✦ HIKMAH BALAGHAH — Kepadatan Struktur Ayat 9 (10 Konsep dalam 1 Ayat!)</div>
+      <div class="iltifat-isi">
+        <p>Ayat 9 ini adalah salah satu ayat dengan <strong>kepadatan gramatikal tertinggi</strong> di Surah Al-Adiyat. Dalam 8 kata (9 morfem) terkandung sekitar 10 konsep gramatikal:</p>
+        <ol style="margin-left:20px;">
+          <li><strong>Hamzah Istifhām</strong> (<span class="arab-inline">أَ</span>) — kata tanya</li>
+          <li><strong>Istifhām Taqrīrī</strong> — pertanyaan retoris untuk penegasan</li>
+          <li><strong>Fā' as-Sababiyyah</strong> (<span class="arab-inline">فَ</span>) — fā' sebab-akibat (beda dari fā' di ayat 2-5)</li>
+          <li><strong>Lā an-Nāfiyah</strong> (<span class="arab-inline">لَا</span>) — negasi (bukan an-nāhiyah)</li>
+          <li><strong>Fi'il Mudhari' Marfu'</strong> (<span class="arab-inline">يَعْلَمُ</span>) — dengan dhamir mustatir</li>
+          <li><strong>Zharf Zaman + Syarat Implisit</strong> (<span class="arab-inline">إِذَا</span>) — futuristic conditional</li>
+          <li><strong>Fi'il Madhy untuk Masa Depan</strong> — mubālaghah kepastian</li>
+          <li><strong>Fi'il Mabni li-l-Majhūl</strong> (<span class="arab-inline">بُعْثِرَ</span>) — passive voice</li>
+          <li><strong>Fi'il Rubā'ī Mujarrad</strong> (<span class="arab-inline">بَعْثَرَ</span>) — 4 huruf akar</li>
+          <li><strong>Isim Maushul `مَا` + Silah</strong> (<span class="arab-inline">مَا فِى ٱلْقُبُورِ</span>) — kata sambung relatif dengan klausa pelengkap</li>
+        </ol>
+        <p style="margin-top:10px;">Ini menunjukkan kekayaan balaghah Al-Qur'an: dalam ayat yang pendek dan padat, terkandung lapisan-lapisan struktur gramatikal yang sangat dalam. Setiap kata punya peran spesifik, dan tidak ada kata yang sia-sia.</p>
+        <p><strong>Pivot Point Kedua Surah Al-Adiyat:</strong> ayat 9 ini menandai transisi besar dari deklarasi (ayat 6-7-8) ke peringatan akhirat (ayat 9-11). Sebagaimana ayat 6 adalah pivot point pertama (jawab al-qasam dari sumpah), ayat 9 adalah pivot point kedua (transisi tematik). Surah Al-Adiyat punya arsitektur tiga babak: (1) sumpah ayat 1-5, (2) deklarasi ayat 6-8, (3) peringatan ayat 9-11.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 5 — ANALISIS TINGKAT 3 : KEDUDUKAN -->
+  <!-- ============================================ -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 3 — Kedudukan dalam Surah</div>
+    <div class="sub-judul">Kedudukan ayat dalam alur surah secara keseluruhan</div>
+  </div>
+
+  <!-- KARTU KEDUDUKAN -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3">
+      <div class="kh-left"><span class="badge badge-frasa3">KEDUDUKAN · PIVOT POINT KEDUA · TRANSISI KE PERINGATAN AKHIRAT</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab" style="font-size:36px;">سُورَةُ ٱلْعَادِيَات · ٩</span></div>
+      <div class="kh-right"><span class="kartu-arti">— "ayat 9: pertanyaan retoris yang menohok"</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Posisi</td>
+        <td>
+          Ayat 9 adalah <strong>PIVOT POINT KEDUA</strong> dari Surah Al-Adiyat — transisi tajam dari rangkaian deklarasi tentang manusia (ayat 6-7-8) ke peringatan akhirat (ayat 9-11). Surah Al-Adiyat punya arsitektur <strong>tiga babak</strong>: (1) sumpah dengan kuda perang ayat 1-5, (2) jawab al-qasam dan deklarasi tentang manusia ayat 6-8, (3) peringatan akhirat ayat 9-11. Ayat 9 menandai transisi babak ke-2 ke babak ke-3. Yang istimewa: pergeseran besar terjadi di sini — dari jumlah ismiyyah (deklarasi statis) ke <strong>jumlah istifhāmiyyah dengan fi'liyyah</strong> (pertanyaan dinamis), dari fokus <em>watak</em> manusia ke fokus <em>nasib</em> manusia di akhirat. Ayat ini juga menunjukkan kepadatan gramatikal tertinggi dalam surah — 9 morfem yang memuat sekitar 10 konsep gramatikal baru.
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan ke Ayat Sebelumnya</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ayat 1-5 — rangkaian sumpah dengan kuda perang (5 ayat)</li>
+            <li>Ayat 6 (<span class="arab-inline">إِنَّ ٱلْإِنسَـٰنَ لِرَبِّهِۦ لَكَنُودٌ</span>) — JAWAB AL-QASAM, deklarasi pertama: kufur nikmat</li>
+            <li>Ayat 7 (<span class="arab-inline">وَإِنَّهُۥ عَلَىٰ ذَٰلِكَ لَشَهِيدٌ</span>) — deklarasi kedua: saksi atas keingkaran</li>
+            <li>Ayat 8 (<span class="arab-inline">وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</span>) — deklarasi ketiga: cinta harta yang berlebihan / bakhil</li>
+            <li>Ayat 9 (di sini) — disambungkan ke ayat 8 oleh <strong>fā' as-sababiyyah</strong> (BUKAN wāw 'athaf seperti ayat 7-8) — yaitu sebagai KONSEKUENSI LOGIS dari watak manusia yang sudah didiagnosa</li>
+            <li>Hubungan gramatikal: fā' menyambung jumlah istifhāmiyyah ayat 9 ke jumlah ismiyyah ayat 8 sebagai sebab-akibat. Selain itu, dhamir mustatir <span class="arab-inline">هُوَ</span> di <span class="arab-inline">يَعْلَمُ</span> merujuk balik ke <span class="arab-inline">ٱلْإِنسَـٰنَ</span> di ayat 6 — <strong>kohesi anaforik 4 lapis</strong> ayat 6-7-8-9</li>
+            <li>Hubungan tematik: setelah Allah ﷻ mendiagnosa watak manusia (kufur, saksi, bakhil), kini Dia membuka mata manusia dengan pertanyaan retoris yang menohok: "tidakkah engkau ingat akhirat?"</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan ke Ayat Berikutnya</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ayat 10 (<span class="arab-inline">وَحُصِّلَ مَا فِى ٱلصُّدُورِ</span>) — disambung dengan wāw 'athaf, melengkapi peristiwa Hari Kiamat: "dan ditampakkan apa yang ada di dalam dada". Sangat paralel dengan ayat 9 (juga memakai fi'il madhy majhūl + maushul <span class="arab-inline">مَا</span> + jar-majrur)</li>
+            <li>Ayat 11 (<span class="arab-inline">إِنَّ رَبَّهُم بِهِمْ يَوْمَئِذٍ لَّخَبِيرٌ</span>) — penutup surah dengan pola <span class="arab-istilah">إِنَّ + ism + لَ + khabar mubālaghah</span> — pola yang IDENTIK dengan ayat 6, 7, 8 tetapi sekarang untuk ALLAH (Khabīr) bukan manusia</li>
+            <li>Pola arsitektur surah: <strong>chiasm tingkat tinggi</strong> — ayat 6-7-8 untuk MANUSIA dengan pola <span class="arab-istilah">إِنَّ ... لَ + khabar</span>, ayat 11 untuk ALLAH dengan pola yang sama. Ayat 9-10 menjadi "jembatan" peringatan di tengah</li>
+            <li>Imam As-Sa'di menjelaskan ayat 9-10 sebagai <em>"anjuran bagi manusia agar takut akan hari yang diancamkan tersebut"</em></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Keseluruhan Ayat</td>
+        <td>
+          "Maka apakah dia (manusia itu) tidak mengetahui apabila dibangkitkan (jasad-jasad) yang ada di dalam kubur?" Allah ﷻ membuka babak ketiga surah dengan pertanyaan retoris yang menohok. Setelah mendeklarasikan watak manusia (kufur nikmat, saksi atas keingkaran, cinta harta), kini Dia mengingatkan: "tidakkah engkau ingat?!" Pertanyaan ini bukan untuk mendapatkan jawaban — Allah Maha Mengetahui — tetapi untuk MENGAKTIVASI nurani manusia. Imam Ibn Katsir, As-Sa'di, Al-Mukhtashar, Al-Utsaimin semua sepakat: ayat ini adalah <em>peringatan dan teguran lembut</em> agar manusia berzuhud terhadap dunia dan mempersiapkan diri untuk akhirat. Pemilihan struktur gramatikal sangat dramatis: istifhām taqrīrī + fā' sebab-akibat + fi'il majhūl + zharf <span class="arab-inline">إِذَا</span> + fi'il madhy untuk masa depan + isim maushul. Setiap unsur menambah kekuatan retoris — menghasilkan ayat yang menohok hati dan memaksa pembaca merenung. Inilah jembatan dari diagnosa penyakit ke obat penyembuh: <em>peringatan tentang Hari Kebangkitan</em>.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- § 6 — ANALISIS TINGKAT 4 : DIAGRAM SVG -->
+  <!-- ============================================ -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 4 — Diagram Sintaksis</div>
+    <div class="sub-judul">Diagram struktur bertingkat unsur kalimat yang menyusun ayat</div>
+  </div>
+
+  <!-- DIAGRAM SVG -->
+  <div class="diagram-wrapper">
+    <svg viewBox="0 0 880 1080" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%;max-width:880px;display:block;margin:0 auto;font-family:'Lato',sans-serif;">
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- BARIS KATA (RTL) — 9 MORFEM:                            -->
+      <!-- أَ · فَ · لَا · يَعْلَمُ · إِذَا · بُعْثِرَ · مَا · فِى · ٱلْقُبُورِ -->
+      <!-- X-positions: 830 · 770 · 710 · 620 · 510 · 410 · 300 · 220 · 110 -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <!-- KATA 1: أَ (hamzah istifhām) -->
+      <text x="830" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">أَ</text>
+      <text x="830" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf istifhām</text>
+      <text x="830" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 2: فَ (fā' as-sababiyyah) -->
+      <text x="770" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">فَ</text>
+      <text x="770" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf 'athaf · as-sababiyyah</text>
+      <text x="770" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 3: لَا (lā an-nāfiyah) -->
+      <text x="710" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">لَا</text>
+      <text x="710" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf nafy · nāfiyah</text>
+      <text x="710" y="70" text-anchor="middle" font-size="8" fill="#888">tidak menjazmkan</text>
+
+      <!-- KATA 4: يَعْلَمُ (fi'il mudhari' marfu' ma'lūm) -->
+      <text x="620" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#7c2d12" font-weight="700" direction="rtl">يَعْلَمُ</text>
+      <text x="620" y="59" text-anchor="middle" font-size="8.5" fill="#7c2d12">fi'il mudhari' marfu'</text>
+      <text x="620" y="70" text-anchor="middle" font-size="8" fill="#888">fa'il dhamir mustatir هُوَ</text>
+
+      <!-- KATA 5: إِذَا (zharf zaman) -->
+      <text x="510" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#5b21b6" font-weight="700" direction="rtl">إِذَا</text>
+      <text x="510" y="59" text-anchor="middle" font-size="8.5" fill="#5b21b6">zharf zaman · mabni</text>
+      <text x="510" y="70" text-anchor="middle" font-size="8" fill="#888">manshub mahallan · mudhaf</text>
+
+      <!-- KATA 6: بُعْثِرَ (fi'il madhy majhūl rubā'ī) -->
+      <text x="410" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#7c2d12" font-weight="700" direction="rtl">بُعْثِرَ</text>
+      <text x="410" y="59" text-anchor="middle" font-size="8.5" fill="#7c2d12">fi'il madhy majhūl · rubā'ī</text>
+      <text x="410" y="70" text-anchor="middle" font-size="8" fill="#888">mabni fathah</text>
+
+      <!-- KATA 7: مَا (isim maushul) -->
+      <text x="300" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0c4a6e" font-weight="700" direction="rtl">مَا</text>
+      <text x="300" y="59" text-anchor="middle" font-size="8.5" fill="#0c4a6e">isim maushul · mabni</text>
+      <text x="300" y="70" text-anchor="middle" font-size="8" fill="#888">marfu' mahallan · nā'ib al-fā'il</text>
+
+      <!-- KATA 8: فِى (harf jar) -->
+      <text x="220" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#0e7490" font-weight="700" direction="rtl">فِى</text>
+      <text x="220" y="59" text-anchor="middle" font-size="8.5" fill="#0e7490">harf jar · zharfiyyah</text>
+      <text x="220" y="70" text-anchor="middle" font-size="8" fill="#888">la mahalla lahu</text>
+
+      <!-- KATA 9: ٱلْقُبُورِ (isim majrur jamak taksīr) -->
+      <text x="110" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْقُبُورِ</text>
+      <text x="110" y="59" text-anchor="middle" font-size="8.5" fill="#1a472a">isim majrur · jamak taksīr</text>
+      <text x="110" y="70" text-anchor="middle" font-size="8" fill="#888">ma'rifah karena ال</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1a (KANAN) — PREAMBLE ISTIFHĀM TAQRĪRĪ: أَ + فَ + لَا  -->
+      <!-- (TEAL — preamble pertanyaan retoris)                    -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="830" y1="77" x2="830" y2="115" stroke="#0e7490" stroke-width="1.8"/>
+      <line x1="770" y1="77" x2="770" y2="115" stroke="#0e7490" stroke-width="1.8"/>
+      <line x1="710" y1="77" x2="710" y2="115" stroke="#0e7490" stroke-width="1.8"/>
+      <line x1="710" y1="115" x2="830" y2="115" stroke="#0e7490" stroke-width="1.8"/>
+      <text x="770" y="112" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">istifhām + 'athaf + nafy</text>
+      <polygon points="770,115 763,107 777,107" fill="#0e7490"/>
+      <line x1="770" y1="115" x2="770" y2="155" stroke="#0e7490" stroke-width="1.8"/>
+      <text x="770" y="167" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic">L1a — Preamble Istifhām Taqrīrī</text>
+      <text x="770" y="185" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#0e7490" font-weight="700" direction="rtl">أَفَلَا</text>
+      <text x="770" y="198" text-anchor="middle" font-size="8" fill="#555">a-fa-lā — maka apakah tidak...</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L1b (KIRI) — SILAH AL-MAUSHUL · JAR-MAJRUR: فِى + ٱلْقُبُورِ -->
+      <!-- (HIJAU SOLID)                                          -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="220" y1="77" x2="220" y2="115" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="110" y1="77" x2="110" y2="115" stroke="#1a472a" stroke-width="1.8"/>
+      <line x1="110" y1="115" x2="220" y2="115" stroke="#1a472a" stroke-width="1.8"/>
+      <text x="165" y="112" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">harf jar + isim majrur</text>
+      <polygon points="165,115 158,107 172,107" fill="#1a472a"/>
+      <line x1="165" y1="115" x2="165" y2="155" stroke="#1a472a" stroke-width="1.8"/>
+      <text x="165" y="167" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic">L1b — Silah · Jar-Majrur</text>
+      <text x="165" y="185" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="15" fill="#1a472a" font-weight="700" direction="rtl">فِى ٱلْقُبُورِ</text>
+      <text x="165" y="198" text-anchor="middle" font-size="8" fill="#555">fi-l-qubūr · muta'alliq ke khabar mahdzūf</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L2 — MAUSHUL + SILAH: مَا + L1b                         -->
+      <!-- (BIRU GELAP — klausa relative lengkap)                  -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="300" y1="77" x2="300" y2="245" stroke="#0c4a6e" stroke-width="1.8"/>
+      <line x1="165" y1="205" x2="165" y2="245" stroke="#0c4a6e" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="165" y1="245" x2="300" y2="245" stroke="#0c4a6e" stroke-width="1.8"/>
+      <text x="232" y="242" text-anchor="middle" font-size="8" fill="#0c4a6e" font-style="italic">isim maushul + silah</text>
+      <polygon points="232,245 225,237 239,237" fill="#0c4a6e"/>
+      <line x1="232" y1="245" x2="232" y2="285" stroke="#0c4a6e" stroke-width="1.8"/>
+      <text x="232" y="297" text-anchor="middle" font-size="8.5" fill="#0c4a6e" font-style="italic">L2 — Maushul + Silah (Nā'ib al-Fā'il)</text>
+      <text x="232" y="315" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="14" fill="#0c4a6e" font-weight="700" direction="rtl">مَا فِى ٱلْقُبُورِ</text>
+      <text x="232" y="328" text-anchor="middle" font-size="8" fill="#555">mā fi-l-qubūr — apa yang ada di dalam kubur (jasad-jasad)</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L3 — JUMLAH FI'LIYYAH MAJHŪLAH: بُعْثِرَ + L2           -->
+      <!-- (COKLAT — fi'il madhy majhūl + nā'ib al-fā'il)          -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="410" y1="77" x2="410" y2="385" stroke="#7c2d12" stroke-width="1.8"/>
+      <line x1="232" y1="335" x2="232" y2="385" stroke="#7c2d12" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="232" y1="385" x2="410" y2="385" stroke="#7c2d12" stroke-width="1.8"/>
+      <text x="321" y="382" text-anchor="middle" font-size="8" fill="#7c2d12" font-style="italic">fi'il majhūl + nā'ib al-fā'il</text>
+      <polygon points="321,385 314,377 328,377" fill="#7c2d12"/>
+      <line x1="321" y1="385" x2="321" y2="425" stroke="#7c2d12" stroke-width="1.8"/>
+      <text x="321" y="437" text-anchor="middle" font-size="8.5" fill="#7c2d12" font-style="italic">L3 — Jumlah Fi'liyyah Majhūlah</text>
+      <text x="321" y="457" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="14" fill="#7c2d12" font-weight="700" direction="rtl">بُعْثِرَ مَا فِى ٱلْقُبُورِ</text>
+      <text x="321" y="470" text-anchor="middle" font-size="8" fill="#555">bu'tsira mā fi-l-qubūr — dibangkitkan apa yang ada di dalam kubur</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L4 — ZHARF ZAMAN LENGKAP: إِذَا + L3                    -->
+      <!-- (UNGU — zharf + mudhaf-ilaihi jumlah fi'liyyah)         -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="510" y1="77" x2="510" y2="525" stroke="#5b21b6" stroke-width="1.8"/>
+      <line x1="321" y1="475" x2="321" y2="525" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="321" y1="525" x2="510" y2="525" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="416" y="522" text-anchor="middle" font-size="8" fill="#5b21b6" font-style="italic">zharf + mudhaf-ilaihi jumlah fi'liyyah</text>
+      <polygon points="416,525 409,517 423,517" fill="#5b21b6"/>
+      <line x1="416" y1="525" x2="416" y2="565" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="416" y="577" text-anchor="middle" font-size="8.5" fill="#5b21b6" font-style="italic">L4 — Zharf Zaman Lengkap</text>
+      <text x="416" y="597" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="13" fill="#5b21b6" font-weight="700" direction="rtl">إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</text>
+      <text x="416" y="612" text-anchor="middle" font-size="8" fill="#555">idzā bu'tsira mā fi-l-qubūr — apabila dibangkitkan apa yang ada di dalam kubur</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L5 — JUMLAH FI'LIYYAH UTAMA + ZHARF: يَعْلَمُ + L4      -->
+      <!-- (COKLAT — fi'il mudhari' utama + zharf zaman)           -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="620" y1="77" x2="620" y2="665" stroke="#7c2d12" stroke-width="1.8"/>
+      <line x1="416" y1="617" x2="416" y2="665" stroke="#7c2d12" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="416" y1="665" x2="620" y2="665" stroke="#7c2d12" stroke-width="1.8"/>
+      <text x="518" y="662" text-anchor="middle" font-size="8" fill="#7c2d12" font-style="italic">fi'il mudhari' marfu' + zharf zaman</text>
+      <polygon points="518,665 511,657 525,657" fill="#7c2d12"/>
+      <line x1="518" y1="665" x2="518" y2="705" stroke="#7c2d12" stroke-width="1.8"/>
+      <text x="518" y="717" text-anchor="middle" font-size="8.5" fill="#7c2d12" font-style="italic">L5 — Jumlah Fi'liyyah Utama + Zharf</text>
+      <text x="518" y="737" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="12" fill="#7c2d12" font-weight="700" direction="rtl">يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</text>
+      <text x="518" y="752" text-anchor="middle" font-size="8" fill="#555">ya'lamu idzā bu'tsira mā fi-l-qubūr — dia mengetahui apabila dibangkitkan...</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L6 — KAMILAH (ISTIFHĀM TAQRĪRĪ LENGKAP): L1a + L5       -->
+      <!-- (BIRU TUA SOLID — pertanyaan retoris penegasan)         -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <line x1="770" y1="205" x2="770" y2="805" stroke="#1e3a8a" stroke-width="2.2"/>
+      <line x1="518" y1="757" x2="518" y2="805" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="518" y1="805" x2="770" y2="805" stroke="#1e3a8a" stroke-width="2.2"/>
+      <text x="644" y="802" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">preamble istifhām + jumlah fi'liyyah utama</text>
+      <polygon points="644,805 637,797 651,797" fill="#1e3a8a"/>
+      <line x1="644" y1="805" x2="644" y2="845" stroke="#1e3a8a" stroke-width="2.2"/>
+      <text x="644" y="857" text-anchor="middle" font-size="8.5" fill="#1e3a8a" font-style="italic">L6 — Kamilah · Istifhām Taqrīrī Lengkap</text>
+      <text x="644" y="877" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="12" fill="#1e3a8a" font-weight="700" direction="rtl">أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</text>
+      <text x="644" y="892" text-anchor="middle" font-size="8" fill="#555">a-fa-lā ya'lamu... — "Maka apakah dia tidak mengetahui apabila dibangkitkan...?"</text>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- L7 — CROSS-REF: Ayat 8 (ma'thūf-'alayh fā' as-sababiyyah) -->
+      <!-- (gray dashed)                                           -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <line x1="644" y1="895" x2="644" y2="940" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="644" y="932" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">fā' as-sababiyyah · disambung kepada (sebagai konsekuensi):</text>
+      <polygon points="644,940 637,932 651,932" fill="#9ca3af"/>
+
+      <rect x="424" y="953" width="440" height="80" rx="8" ry="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="644" y="973" text-anchor="middle" font-size="9" fill="#6b7280" font-style="italic">L7 — CROSS-REF · Ayat 8 (100:8) — ma'thūf-'alayh langsung</text>
+      <text x="644" y="998" text-anchor="middle" font-family="'Scheherazade New',serif"
+            font-size="18" fill="#1a472a" font-weight="700" direction="rtl">وَإِنَّهُۥ لِحُبِّ ٱلْخَيْرِ لَشَدِيدٌ</text>
+      <text x="644" y="1016" text-anchor="middle" font-size="9" fill="#555">wa-innahū li-hubbi-l-khayri la-syadīd — "Dan sesungguhnya dia bakhil karena cinta harta"</text>
+      <text x="644" y="1028" text-anchor="middle" font-size="8" fill="#9ca3af" font-style="italic">— deklarasi ketiga (penutup rangkaian) tentang manusia —</text>
+
+      <!-- Note tematik -->
+      <text x="440" y="1065" text-anchor="middle" font-size="9" fill="#888" font-style="italic">→ ayat 10: وَحُصِّلَ مَا فِى ٱلصُّدُورِ (paralel — ditampakkan apa yang ada di dalam dada)</text>
+
+    </svg>
+
+    <div class="diagram-legenda">
+      <div class="legenda-label">LEGENDA</div>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2"/></svg>L1a — Preamble Istifhām Taqrīrī (teal solid)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2"/></svg>L1b — Silah Jar-Majrur (hijau solid)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0c4a6e" stroke-width="2"/></svg>L2 — Maushul + Silah (biru gelap)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#7c2d12" stroke-width="2"/></svg>L3 · L5 — Jumlah Fi'liyyah (coklat)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L4 — Zharf Zaman Lengkap (ungu putus)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2.2"/></svg>L6 — Kamilah Ayat 9 (biru solid)</span>
+      <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/></svg>L7 — Cross-ref Ayat 8 (gray)</span>
+    </div>
+  </div>
+  <!-- ============================================ -->
+  <!-- § 7 — TADABUR -->
+  <!-- ============================================ -->
+  <div class="section-header tadabur">
+    <div class="judul">Tadabur</div>
+    <div class="sub-judul">Renungan dari pertanyaan retoris yang menohok dan peringatan akhirat</div>
+  </div>
+
+  <!-- TADABUR ISI -->
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">TADABUR</span>
+      <span class="tadabur-judul">Renungan: Pertanyaan yang Menohok Hati — "Tidakkah Engkau Ingat?"</span>
+    </div>
+    <div class="tadabur-isi">
+      <p><strong>Allah ﷻ menohok hati manusia.</strong> Setelah Allah ﷻ mendiagnosa watak manusia dengan tiga deklarasi yang menusuk (kufur nikmat, saksi atas keingkaran, cinta harta yang berlebihan), kini Dia tidak mengulang lagi dengan deklarasi keempat. Sebagai gantinya, Allah mengubah ritme surah dengan <em>pertanyaan retoris yang menohok</em>: <span class="arab-inline">أَفَلَا يَعْلَمُ</span> ("Maka apakah dia tidak mengetahui?!"). Pertanyaan ini bukan untuk mendapatkan jawaban — Allah Maha Mengetahui jawabannya — tetapi untuk MENGAKTIVASI nurani yang tertidur. Inilah keindahan istifhām taqrīrī: ia tidak menuduh manusia tidak tahu, tetapi mengingatkan bahwa dia <em>SEHARUSNYA</em> tahu, bahwa kebenaran itu sudah jelas, hanya terkubur di balik cinta dunia yang membutakan.</p>
+
+      <blockquote class="arab-kutip">أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِى ٱلْقُبُورِ</blockquote>
+
+      <p><strong>Makna `بُعْثِرَ` yang dahsyat.</strong> Imam At-Thabari memberi penjelasan yang sangat indah tentang kata <span class="arab-inline">بُعْثِرَ</span>: <em>"diaduk-aduk, dikeluarkan dari kubur, dan dibongkar isinya"</em> — gabungan tiga makna: <span class="arab-inline">أَثَارَ</span> (mengaduk), <span class="arab-inline">أَخْرَجَ</span> (mengeluarkan), <span class="arab-inline">بَحَثَ</span> (membongkar dengan paksa). Imam Abu 'Ubaidah memberi gambaran yang lebih konkret: <em>"<span class="arab-inline">بَعْثَرْتُ ٱلْمَتَاعَ</span> = saya membongkar perabotan, menjadikan yang di bawah menjadi di atas"</em> — yaitu seperti seseorang yang membongkar peti barang dengan paksa, menumpahkan isinya, sehingga semua yang tersembunyi terlihat. Inilah gambaran Hari Kiamat: kubur-kubur dibongkar, jasad-jasad dikeluarkan, dan tidak ada satupun yang luput. Imam As-Sa'di menambahkan: <em>"Allah ﷻ akan mengeluarkan manusia dari kubur untuk dikumpulkan dan dibangkitkan."</em></p>
+
+      <p><strong>Pivot point kedua surah — transisi yang menggetarkan.</strong> Surah Al-Adiyat punya arsitektur tiga babak yang sangat indah: (1) sumpah dengan kuda perang (ayat 1-5), (2) deklarasi watak manusia (ayat 6-8), (3) peringatan akhirat (ayat 9-11). Ayat 9 ini adalah <em>pivot point kedua</em> — jembatan yang menggetarkan dari diagnosa ke obat. Yang istimewa: Allah memilih <strong>fā' as-sababiyyah</strong> (bukan wāw 'athaf seperti ayat 7-8) untuk menyambung ayat 9. Ini menandai pergeseran besar — bukan deklarasi keempat tentang manusia, tetapi <strong>KONSEKUENSI LOGIS</strong>: "<em>karena watak manusia begitu, MAKA pantas ditanya: tidakkah engkau ingat?</em>". Makna ayat 9 menjadi: setelah engkau lalai dalam tiga hal (kufur, mengingkari, bakhil), MAKA tidakkah engkau ingat bahwa di balik kubur ada Hari Kebangkitan?</p>
+
+      <p><strong>Kepadatan retoris yang luar biasa — 10 konsep dalam 1 ayat.</strong> Ayat 9 ini adalah salah satu ayat dengan <em>kepadatan gramatikal tertinggi</em> di Surah Al-Adiyat. Dalam 8 kata (9 morfem) terkandung sekitar 10 konsep gramatikal: hamzah istifhām, istifhām taqrīrī, fā' as-sababiyyah, lā an-nāfiyah, fi'il mudhari' marfu', zharf zaman <span class="arab-inline">إِذَا</span> + syarat implisit, fi'il madhy untuk masa depan (mubālaghah kepastian), fi'il mabni li-l-majhūl (passive voice), fi'il rubā'ī mujarrad, dan isim maushul + silah. Setiap unsur menambah kekuatan retoris. Pemakaian <span class="arab-inline">إِذَا</span> (bukan <span class="arab-inline">إِنْ</span>) menggambarkan KEPASTIAN — Hari Kiamat bukan kemungkinan, tetapi keniscayaan. Pemakaian fi'il madhy <span class="arab-inline">بُعْثِرَ</span> untuk peristiwa masa depan adalah <em>mubālaghah balaghiyyah</em> — peristiwa itu seolah-olah SUDAH TERJADI, sehingga manusia dipaksa membayangkannya secara hidup. Pemakaian bentuk majhūl (passive) memfokuskan pada PERISTIWA, bukan pelaku — pembaca dipaksa membayangkan kubur yang dibongkar, jasad yang keluar, bukan sekadar fakta abstrak.</p>
+
+      <p><strong>Paralel dengan ayat 10 — pola yang menggetarkan.</strong> Ayat 9 dan 10 sangat paralel secara struktural: keduanya memakai fi'il madhy majhūl + isim maushul <span class="arab-inline">مَا</span> + frasa jar-majrur. Ayat 9: <span class="arab-inline">بُعْثِرَ مَا فِى ٱلْقُبُورِ</span> ("dibongkar apa yang ada di dalam kubur" = jasad-jasad). Ayat 10: <span class="arab-inline">حُصِّلَ مَا فِى ٱلصُّدُورِ</span> ("ditampakkan apa yang ada di dalam dada" = niat dan rahasia hati). Pola al-muwāzanah ini menggambarkan dua peristiwa Hari Kiamat yang saling melengkapi: kubur dibongkar (yang FISIK keluar), dada dibongkar (yang BATIN keluar). Tidak ada satupun yang tersembunyi — yang lahir dan yang batin, semua dibuka, semua dihisab. Ibn Katsir menukil dari Ibnu Abbas: <em>"yang dimaksud adalah apabila dilahirkan dan ditampakkan apa yang selama itu mereka sembunyikan dalam diri dan hati mereka"</em>.</p>
+
+      <p><strong>Pemakaian `مَا` (bukan `مَنْ`) — pelajaran tentang kefanaan.</strong> Allah memilih <span class="arab-inline">مَا</span> (untuk yang tidak berakal), bukan <span class="arab-inline">مَنْ</span> (untuk yang berakal), padahal yang dibangkitkan adalah MANUSIA. Mengapa? Karena setelah kematian, jasad menjadi BENDA — tidak lagi punya akal, tidak lagi punya pilihan, tidak lagi punya kekuasaan. Manusia yang di dunia begitu sombong, mengumpulkan harta, membangun kerajaan, menindas yang lemah — di kubur menjadi <em>"sesuatu"</em> yang tertimbun, tunduk pada kekuasaan Allah. Pemilihan <span class="arab-inline">مَا</span> adalah pelajaran tentang <em>kefanaan dan kerendahan manusia</em> — sehebat apapun di dunia, di kubur dia hanya "sesuatu di dalam tanah" yang menunggu perintah Allah untuk bangkit.</p>
+
+      <p><strong>Refleksi penutup — pertanyaan yang harus kita jawab.</strong> Pertanyaan retoris ayat 9 ini sebenarnya bukan untuk "manusia kanud" yang abstrak. Pertanyaan ini ditujukan kepada <em>setiap kita</em>. Apakah aku benar-benar INGAT bahwa kuburku akan dibongkar? Apakah aku INGAT bahwa apa yang ada di dadaku akan ditampakkan? Apakah aku INGAT bahwa di balik harta yang kucintai, ada Hari Kiamat yang akan membuka semua yang tersembunyi? Imam Al-Utsaimin menjelaskan dengan tajam: <span class="arab-inline">أَفَلَا يَعْلَمُ</span> di sini bermakna <em>"tidakkah dia MEYAKINI"</em>. Yaitu — kita semua "tahu" akan akhirat dalam pengetahuan kepala, tetapi pertanyaannya: apakah kita MEYAKINI dengan keyakinan yang menggerakkan amal? Marilah kita memohon: <em>Yā Allāh, jangan jadikan kami termasuk orang-orang yang lalai. Yā Allāh, jadikan ingatan kami akan akhirat lebih kuat daripada cinta kami pada dunia. Yā Allāh, ketika kubur kami dibongkar nanti, jadikan kami termasuk hamba-Mu yang Engkau ridhai. Yā Allāh, ketika dada kami dibongkar nanti, jadikan apa yang Engkau temukan di dalamnya adalah cinta kepada-Mu, bukan cinta kepada dunia. Allāhumma āmīn yā Mujīb.</em></p>
+    </div>
+  </div>
+
+  <!-- NAV BAWAH -->
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
+</div>
+
+<footer>
+  <p>grammar-quran.com · Analisis Gramatikal Al-Qur'an · <a href="index.html">Beranda</a></p>
+</footer>
+
+<script src="surah-data.js"></script>
+<script>
+  const PAGE_CONFIG = {
+    nomorSurah:   100,
+    nomorAyat:    9,
+    ayatTerakhir: false
+  };
+</script>
+
+<script>
+  (function () {
+    const surah = getSurahByNomor(PAGE_CONFIG.nomorSurah);
+    if (!surah) return;
+
+    const ayatSaat  = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah.jumlahAyat;
+    const isLast    = PAGE_CONFIG.ayatTerakhir;
+
+    // Title: format "Grammar Al-Adiyat 100:1"
+    document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
+
+    const lbl = document.getElementById('label-ayat-box');
+    if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}` + (isLast ? ' · Ayat Terakhir' : '');
+
+    // ── DROPDOWN PILIH SURAH ──
+    // Format: "1. Al-Fatihah — 7 ayat"
+    // Urutan: hanya status="tersedia", sorted by nomor ascending
+    const ddSurah = document.getElementById('dd-surah');
+    SURAH_DATA
+      .filter(s => s.status === 'tersedia')
+      .sort((a, b) => a.nomor - b.nomor)
+      .forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomor + '. ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+    // ── DROPDOWN PILIH AYAT ──
+    function isiDropdownAyat(nomorSurahParam) {
+      const ddAyat = document.getElementById('dd-ayat');
+      ddAyat.innerHTML = '';
+      const opsiAyat = getOpsiDropdownAyat(nomorSurahParam);
+      if (!opsiAyat.length) {
+        ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        ddAyat.disabled = true;
+        return;
+      }
+      ddAyat.disabled = false;
+      opsiAyat.forEach(opsi => {
+        const opt = document.createElement('option');
+        opt.value = opsi.path;
+        opt.textContent = opsi.label;
+        // Default ke ayat 1 saat ganti surah; jika halaman ini → pilih ayatSaat
+        if (nomorSurahParam === surah.nomor) {
+          if (opsi.value === ayatSaat) opt.selected = true;
+        } else {
+          if (opsi.value === 1) opt.selected = true;
+        }
+        ddAyat.appendChild(opt);
+      });
+    }
+
+    // Isi dropdown ayat saat pertama load
+    isiDropdownAyat(surah.nomor);
+
+    // Saat ganti surah → re-isi dropdown ayat (default angka 1)
+    ddSurah.addEventListener('change', function () {
+      const nomorStrPilih = this.value;
+      if (nomorStrPilih) {
+        const sObj = SURAH_DATA.find(s => s.nomorStr === nomorStrPilih);
+        if (sObj) isiDropdownAyat(sObj.nomor);
+      } else {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        dd.disabled = true;
+      }
+    });
+
+    // Tombol Buka — navigasi ke ayat yang dipilih
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) { window.location.href = path; }
+      else { alert('Pilih surah dan ayat terlebih dahulu.'); }
+    };
+
+    // ── HEADER NAV ARROW (prev/next ayat) — POLA 113-01 ──
+    // Catatan: untuk header arrow, TIDAK filter status='tersedia' — link tetap dibuat ke surah tetangga
+    // walaupun belum tersedia (404 page jika belum ada). Sesuai instruksi Iwoth sesi 100-01.
+    function fileAyat(s, a) {
+      return String(s).padStart(3, '0') + '-' + String(a).padStart(2, '0') + '.html';
+    }
+    function cariSurahTetanggaSemua(nomor, arah) {
+      // Cari surah dengan nomor = nomor + arah, TANPA filter status
+      if (typeof SURAH_DATA === 'undefined') return null;
+      return SURAH_DATA.find(s => s.nomor === nomor + arah) || null;
+    }
+
+    // Tentukan target prev/next
+    let prevTarget = null, nextTarget = null;
+    if (ayatSaat > 1) {
+      prevTarget = {
+        href: fileAyat(surah.nomor, ayatSaat - 1),
+        label: '\u2190 Ayat ' + (ayatSaat - 1),
+        edge: false
+      };
+    } else {
+      const prevS = cariSurahTetanggaSemua(surah.nomor, -1);
+      if (prevS) {
+        prevTarget = {
+          href: fileAyat(prevS.nomor, prevS.jumlahAyat),
+          label: '\u2190 ' + prevS.namaLatin + ' ' + prevS.jumlahAyat,
+          edge: true
+        };
+      }
+    }
+    if (ayatSaat < totalAyat) {
+      nextTarget = {
+        href: fileAyat(surah.nomor, ayatSaat + 1),
+        label: 'Ayat ' + (ayatSaat + 1) + ' \u2192',
+        edge: false
+      };
+    } else {
+      const nextS = cariSurahTetanggaSemua(surah.nomor, 1);
+      if (nextS) {
+        nextTarget = {
+          href: fileAyat(nextS.nomor, 1),
+          label: nextS.namaLatin + ' 1 \u2192',
+          edge: true
+        };
+      }
+    }
+
+    // Update header arrows
+    const hdrPrev = document.getElementById('hdr-prev');
+    const hdrNext = document.getElementById('hdr-next');
+    if (hdrPrev) {
+      if (prevTarget) {
+        hdrPrev.href = prevTarget.href;
+        hdrPrev.textContent = prevTarget.label;
+        hdrPrev.title = prevTarget.edge
+          ? 'Surah sebelumnya: ' + prevTarget.label.replace('\u2190 ', '')
+          : 'Ayat sebelumnya';
+        if (prevTarget.edge) hdrPrev.classList.add('edge');
+      } else {
+        hdrPrev.classList.add('disabled');
+        hdrPrev.textContent = '\u2190';
+      }
+    }
+    if (hdrNext) {
+      if (nextTarget) {
+        hdrNext.href = nextTarget.href;
+        hdrNext.textContent = nextTarget.label;
+        hdrNext.title = nextTarget.edge
+          ? 'Surah berikutnya: ' + nextTarget.label.replace(' \u2192', '')
+          : 'Ayat berikutnya';
+        if (nextTarget.edge) hdrNext.classList.add('edge');
+      } else {
+        hdrNext.classList.add('disabled');
+        hdrNext.textContent = '\u2192';
+      }
+    }
+
+    // ── NAV BAWAH (pola 113-01) — 4 elemen: prevTarget + Beranda + info + nextTarget ──
+    // Pakai prevTarget/nextTarget yang sudah dihitung di atas (untuk header arrows)
+    const container = document.getElementById('nav-bawah-container');
+    if (container) {
+      // 1. Tombol prev (jika ada — kalau ayat 1 surah pertama, hilang)
+      if (prevTarget) {
+        const bp = document.createElement('a');
+        bp.className = 'nav-btn' + (prevTarget.edge ? ' edge' : '');
+        bp.href = prevTarget.href;
+        bp.textContent = prevTarget.label;
+        container.appendChild(bp);
+      }
+
+      // 2. Tombol Beranda (selalu ada — hijau solid)
+      const bh = document.createElement('a');
+      bh.className = 'nav-btn beranda';
+      bh.href = 'index.html';
+      bh.textContent = '\u2302 Beranda';
+      container.appendChild(bh);
+
+      // 3. Info tengah
+      const info = document.createElement('span');
+      info.className = 'nav-info';
+      info.textContent = `${surah.namaLatin} · Ayat ${ayatSaat} dari ${totalAyat}`;
+      container.appendChild(info);
+
+      // 4. Tombol next (jika ada — kalau ayat terakhir & tidak ada surah berikutnya, hilang)
+      if (nextTarget) {
+        const bn = document.createElement('a');
+        bn.className = 'nav-btn' + (nextTarget.edge ? ' edge' : '');
+        bn.href = nextTarget.href;
+        bn.textContent = nextTarget.label;
+        container.appendChild(bn);
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>
