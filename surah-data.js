@@ -298,8 +298,8 @@ const SURAH_DATA = [
     arti: "Kegoncangan",
     jumlahAyat: 8,
     jenis: "Madaniyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-99 · 8 ayat · adegan Hari Kiamat tiga tahap: bumi berguncang &amp; bersaksi (1–5) + manusia berangkat untuk dilihatkan amalnya (6) + pasangan al-jāmi'ah hisab amal sekecil zarrah, kebaikan &amp; keburukan (7–8) · konsep nahwu utama: idhāfah ma'nawiyyah, jumlah istifhāmiyyah, lām ta'līl + an mudhmarah, fi'il majhul + naib fa'il, hāl + zharf zaman, uslūb syarath jāzim (7 macam adāt + 3 tanda jazm), tamyīz mufrad/dzāt, fā' al-fashīhah/isti'nāfiyyah/tafshīliyyah, 'aţf jumlah (perangkaian antar-jumlah lengkap) · konsep balaghi: jinās isytiqāqī, simetri retoris ayat 7-8, mu'jizah balaghi"
   },
   {
     nomor: 100,
