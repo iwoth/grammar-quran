@@ -2047,7 +2047,7 @@
     SURAH_DATA.forEach(surah => {
       const opt = document.createElement('option');
       opt.value = surah.nomor;
-      opt.textContent = `${surah.nomor}. ${surah.nama} — ${surah.namaArab}`;
+      opt.textContent = `${surah.nomor}. ${surah.namaLatin} — ${surah.jumlahAyat} ayat`;
       if (surah.nomor === PAGE_CONFIG.nomorSurah) opt.selected = true;
       ddSurah.appendChild(opt);
     });
@@ -2118,6 +2118,7 @@
       const prevAyatStr = String(ayatSekarang - 1).padStart(2, '0');
       hdrPrev.href = `${surahStr}-${prevAyatStr}.html`;
       hdrPrev.title = `Ayat ${ayatSekarang - 1}`;
+      hdrPrev.textContent = `← ${ayatSekarang - 1}`;
     } else {
       // Cari surah sebelumnya
       const surahSebelum = SURAH_DATA.find(s => s.nomor === PAGE_CONFIG.nomorSurah - 1);
@@ -2125,7 +2126,7 @@
         const prevSurahStr = String(surahSebelum.nomor).padStart(3, '0');
         const prevAyatStr = String(surahSebelum.jumlahAyat).padStart(2, '0');
         hdrPrev.href = `${prevSurahStr}-${prevAyatStr}.html`;
-        hdrPrev.title = `Surah ${surahSebelum.nama} ayat ${surahSebelum.jumlahAyat}`;
+        hdrPrev.title = `Surah ${surahSebelum.namaLatin} ayat ${surahSebelum.jumlahAyat}`;
         hdrPrev.classList.add('edge');
         hdrPrev.textContent = '←⇤';
       } else {
@@ -2138,13 +2139,14 @@
       const nextAyatStr = String(ayatSekarang + 1).padStart(2, '0');
       hdrNext.href = `${surahStr}-${nextAyatStr}.html`;
       hdrNext.title = `Ayat ${ayatSekarang + 1}`;
+      hdrNext.textContent = `${ayatSekarang + 1} →`;
     } else {
       // Cari surah berikutnya
       const surahBerikut = SURAH_DATA.find(s => s.nomor === PAGE_CONFIG.nomorSurah + 1);
       if (surahBerikut) {
         const nextSurahStr = String(surahBerikut.nomor).padStart(3, '0');
         hdrNext.href = `${nextSurahStr}-01.html`;
-        hdrNext.title = `Surah ${surahBerikut.nama} ayat 1`;
+        hdrNext.title = `Surah ${surahBerikut.namaLatin} ayat 1`;
         hdrNext.classList.add('edge');
         hdrNext.textContent = '⇥→';
       } else {
@@ -2176,14 +2178,14 @@
       if (surahSebelum) {
         const prevSurahStr = String(surahSebelum.nomor).padStart(3, '0');
         const prevAyatStr = String(surahSebelum.jumlahAyat).padStart(2, '0');
-        html += `<a class="nav-btn edge" href="${prevSurahStr}-${prevAyatStr}.html">← Surah ${surahSebelum.nama} ayat ${surahSebelum.jumlahAyat}</a>`;
+        html += `<a class="nav-btn edge" href="${prevSurahStr}-${prevAyatStr}.html">← Surah ${surahSebelum.namaLatin} ayat ${surahSebelum.jumlahAyat}</a>`;
       } else {
         html += `<span class="nav-btn" style="opacity:.3;pointer-events:none;">← Awal</span>`;
       }
     }
 
     // INFO TENGAH
-    html += `<div class="nav-info">Surah ${surahSekarang.nama} — Ayat ${ayatSekarang} dari ${surahSekarang.jumlahAyat}</div>`;
+    html += `<div class="nav-info">Surah ${surahSekarang.namaLatin} — Ayat ${ayatSekarang} dari ${surahSekarang.jumlahAyat}</div>`;
 
     // TOMBOL BERANDA
     html += `<a class="nav-btn beranda" href="index.html">⌂ Beranda</a>`;
@@ -2196,7 +2198,7 @@
       const surahBerikut = SURAH_DATA.find(s => s.nomor === PAGE_CONFIG.nomorSurah + 1);
       if (surahBerikut) {
         const nextSurahStr = String(surahBerikut.nomor).padStart(3, '0');
-        html += `<a class="nav-btn edge" href="${nextSurahStr}-01.html">Surah ${surahBerikut.nama} ayat 1 →</a>`;
+        html += `<a class="nav-btn edge" href="${nextSurahStr}-01.html">Surah ${surahBerikut.namaLatin} ayat 1 →</a>`;
       } else {
         html += `<span class="nav-btn" style="opacity:.3;pointer-events:none;">Akhir →</span>`;
       }

@@ -2172,12 +2172,10 @@
   </div>
 
   <!-- ============================================ -->
-  <!-- NAVIGASI BAWAH (KHATMIL — prev + beranda + next ke 100-01) -->
+  <!-- NAVIGASI BAWAH (POLA 099-01 — dynamic) -->
   <!-- ============================================ -->
-  <div class="nav-bawah">
-    <a id="nav-prev" class="nav-btn" href="099-07.html">← Ayat Sebelumnya (7)</a>
-    <span class="nav-info">Ayat 8 (Khatmil) Surah Az-Zalzalah</span>
-    <a id="nav-next" class="nav-btn edge" href="100-01.html">Surah Berikutnya (Al-'Adiyat) →</a>
+  <div class="nav-bawah" id="nav-bawah-container">
+    <!-- Akan di-populate dari JS -->
   </div>
 
 </div>
@@ -2191,6 +2189,7 @@
   </div>
 </footer>
 
+<script src="surah-data.js"></script>
 <script>
   const PAGE_CONFIG = {
     nomorSurah: 99,
@@ -2198,89 +2197,44 @@
     ayatTerakhir: true
   };
 
-  // Data surah (akan di-load dari surah-data.js di production)
-  // Untuk sementara, hardcode minimum yang dibutuhkan
-  const SURAH_DATA = (typeof SURAH_LIST !== 'undefined') ? SURAH_LIST : [
-    {nomor: 78,  namaLatin: 'An-Naba',     namaArab: 'النَّبَأ',      jumlahAyat: 40, available: false},
-    {nomor: 79,  namaLatin: "An-Nazi'at",  namaArab: 'النَّازِعَات',  jumlahAyat: 46, available: false},
-    {nomor: 80,  namaLatin: "'Abasa",      namaArab: 'عَبَسَ',         jumlahAyat: 42, available: false},
-    {nomor: 81,  namaLatin: 'At-Takwir',   namaArab: 'التَّكْوِير',   jumlahAyat: 29, available: false},
-    {nomor: 82,  namaLatin: 'Al-Infithar', namaArab: 'الْاِنْفِطَار',  jumlahAyat: 19, available: false},
-    {nomor: 83,  namaLatin: 'Al-Muthaffifin', namaArab: 'الْمُطَفِّفِين', jumlahAyat: 36, available: false},
-    {nomor: 84,  namaLatin: 'Al-Insyiqaq', namaArab: 'الْاِنْشِقَاق',  jumlahAyat: 25, available: false},
-    {nomor: 85,  namaLatin: 'Al-Buruj',    namaArab: 'الْبُرُوج',     jumlahAyat: 22, available: false},
-    {nomor: 86,  namaLatin: 'Ath-Thariq',  namaArab: 'الطَّارِق',     jumlahAyat: 17, available: false},
-    {nomor: 87,  namaLatin: "Al-A'la",     namaArab: 'الْأَعْلَى',     jumlahAyat: 19, available: false},
-    {nomor: 88,  namaLatin: 'Al-Ghasyiyah', namaArab: 'الْغَاشِيَة',    jumlahAyat: 26, available: false},
-    {nomor: 89,  namaLatin: 'Al-Fajr',     namaArab: 'الْفَجْر',      jumlahAyat: 30, available: false},
-    {nomor: 90,  namaLatin: 'Al-Balad',    namaArab: 'الْبَلَد',       jumlahAyat: 20, available: false},
-    {nomor: 91,  namaLatin: 'Asy-Syams',   namaArab: 'الشَّمْس',       jumlahAyat: 15, available: false},
-    {nomor: 92,  namaLatin: 'Al-Lail',     namaArab: 'اللَّيْل',       jumlahAyat: 21, available: false},
-    {nomor: 93,  namaLatin: 'Adh-Dhuha',   namaArab: 'الضُّحَى',       jumlahAyat: 11, available: false},
-    {nomor: 94,  namaLatin: 'Asy-Syarh',   namaArab: 'الشَّرْح',       jumlahAyat: 8,  available: false},
-    {nomor: 95,  namaLatin: 'At-Tin',      namaArab: 'التِّين',        jumlahAyat: 8,  available: false},
-    {nomor: 96,  namaLatin: "Al-'Alaq",    namaArab: 'الْعَلَق',       jumlahAyat: 19, available: false},
-    {nomor: 97,  namaLatin: 'Al-Qadr',     namaArab: 'الْقَدْر',       jumlahAyat: 5,  available: false},
-    {nomor: 98,  namaLatin: 'Al-Bayyinah', namaArab: 'الْبَيِّنَة',    jumlahAyat: 8,  available: false},
-    {nomor: 99,  namaLatin: 'Az-Zalzalah', namaArab: 'الزَّلْزَلَة',   jumlahAyat: 8,  available: true},
-    {nomor: 100, namaLatin: "Al-'Adiyat",  namaArab: 'الْعَادِيَات',   jumlahAyat: 11, available: true},
-    {nomor: 101, namaLatin: "Al-Qari'ah",  namaArab: 'الْقَارِعَة',    jumlahAyat: 11, available: true},
-    {nomor: 102, namaLatin: 'At-Takatsur', namaArab: 'التَّكَاثُر',   jumlahAyat: 8,  available: true},
-    {nomor: 103, namaLatin: "Al-'Ashr",    namaArab: 'الْعَصْر',       jumlahAyat: 3,  available: true},
-    {nomor: 104, namaLatin: 'Al-Humazah',  namaArab: 'الْهُمَزَة',     jumlahAyat: 9,  available: true},
-    {nomor: 105, namaLatin: 'Al-Fil',      namaArab: 'الْفِيل',        jumlahAyat: 5,  available: true},
-    {nomor: 106, namaLatin: 'Quraisy',     namaArab: 'قُرَيْش',        jumlahAyat: 4,  available: true},
-    {nomor: 107, namaLatin: "Al-Ma'un",    namaArab: 'الْمَاعُون',     jumlahAyat: 7,  available: true},
-    {nomor: 108, namaLatin: 'Al-Kautsar',  namaArab: 'الْكَوْثَر',     jumlahAyat: 3,  available: true},
-    {nomor: 109, namaLatin: 'Al-Kafirun',  namaArab: 'الْكَافِرُون',   jumlahAyat: 6,  available: true},
-    {nomor: 110, namaLatin: 'An-Nashr',    namaArab: 'النَّصْر',       jumlahAyat: 3,  available: true},
-    {nomor: 111, namaLatin: 'Al-Lahab',    namaArab: 'الْمَسَد',       jumlahAyat: 5,  available: true},
-    {nomor: 112, namaLatin: 'Al-Ikhlas',   namaArab: 'الْإِخْلَاص',    jumlahAyat: 4,  available: true},
-    {nomor: 113, namaLatin: 'Al-Falaq',    namaArab: 'الْفَلَق',       jumlahAyat: 5,  available: true},
-    {nomor: 114, namaLatin: 'An-Nas',      namaArab: 'النَّاس',        jumlahAyat: 6,  available: true}
-  ];
-
-  function getOpsiDropdownAyat(jumlahAyat) {
-    let opsi = '<option value="">— Pilih Ayat —</option>';
-    for (let i = 1; i <= jumlahAyat; i++) {
-      opsi += '<option value="' + i + '">Ayat ' + i + '</option>';
-    }
-    return opsi;
+  // Fallback SURAH_DATA jika surah-data.js eksternal tidak ter-load (untuk offline test)
+  // Di production, surah-data.js external akan menimpa fallback ini
+  if (typeof SURAH_DATA === 'undefined') {
+    window.SURAH_DATA = [
+      { nomor: 99,  namaLatin: 'Az-Zalzalah', namaArab: 'الزلزلة',     jumlahAyat: 8 },
+      { nomor: 100, namaLatin: "Al-'Adiyat",  namaArab: 'العاديات',    jumlahAyat: 11 }
+    ];
   }
 
-  function setupDropdowns() {
+  // ============================================
+  // DROPDOWN SURAH & AYAT
+  // ============================================
+  function isiDropdownSurah() {
     const ddSurah = document.getElementById('dd-surah');
-    const ddAyat  = document.getElementById('dd-ayat');
-
-    // Populate surah dropdown
-    let opsiSurah = '<option value="">— Pilih Surah —</option>';
+    if (!ddSurah || typeof SURAH_DATA === 'undefined') return;
     SURAH_DATA.forEach(s => {
-      const disabled = s.available ? '' : ' disabled';
-      const tanda = s.available ? '' : ' (segera)';
-      opsiSurah += '<option value="' + s.nomor + '"' + disabled + '>' + s.nomor + '. ' + s.namaLatin + tanda + '</option>';
+      const opt = document.createElement('option');
+      opt.value = s.nomor;
+      opt.textContent = `${s.nomor}. ${s.namaLatin} \u2014 ${s.jumlahAyat} ayat`;
+      if (s.nomor === PAGE_CONFIG.nomorSurah) opt.selected = true;
+      ddSurah.appendChild(opt);
     });
-    ddSurah.innerHTML = opsiSurah;
-    ddSurah.value = PAGE_CONFIG.nomorSurah;
+    isiDropdownAyat(PAGE_CONFIG.nomorSurah);
+  }
 
-    // When surah changes, populate ayat
-    ddSurah.addEventListener('change', function() {
-      const nomorTerpilih = parseInt(this.value);
-      const surahTerpilih = SURAH_DATA.find(s => s.nomor === nomorTerpilih);
-      if (surahTerpilih && surahTerpilih.available) {
-        ddAyat.innerHTML = getOpsiDropdownAyat(surahTerpilih.jumlahAyat);
-        ddAyat.disabled = false;
-      } else {
-        ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
-        ddAyat.disabled = true;
-      }
-    });
-
-    // Initialize ayat dropdown for current surah
-    const surahSekarang = SURAH_DATA.find(s => s.nomor === PAGE_CONFIG.nomorSurah);
-    if (surahSekarang) {
-      ddAyat.innerHTML = getOpsiDropdownAyat(surahSekarang.jumlahAyat);
-      ddAyat.disabled = false;
-      ddAyat.value = PAGE_CONFIG.nomorAyat;
+  function isiDropdownAyat(nomorSurah) {
+    const ddAyat = document.getElementById('dd-ayat');
+    if (!ddAyat || typeof SURAH_DATA === 'undefined') return;
+    ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
+    const surah = SURAH_DATA.find(s => s.nomor === parseInt(nomorSurah));
+    if (!surah) { ddAyat.disabled = true; return; }
+    ddAyat.disabled = false;
+    for (let i = 1; i <= surah.jumlahAyat; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = 'Ayat ' + i;
+      if (parseInt(nomorSurah) === PAGE_CONFIG.nomorSurah && i === PAGE_CONFIG.nomorAyat) opt.selected = true;
+      ddAyat.appendChild(opt);
     }
   }
 
@@ -2298,36 +2252,134 @@
     window.location.href = sStr + '-' + aStr + '.html';
   }
 
-  function setupHeaderArrows() {
+  // ============================================
+  // NAVIGASI HEADER & FOOTER (POLA 099-01)
+  // ============================================
+  (function setupNavigasi() {
+    const surah = SURAH_DATA.find(s => s.nomor === PAGE_CONFIG.nomorSurah);
+    if (!surah) return;
+    const ayatSaat = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah.jumlahAyat;
+
+    function fileAyat(s, a) {
+      return String(s).padStart(3, '0') + '-' + String(a).padStart(2, '0') + '.html';
+    }
+    function cariSurahTetanggaSemua(nomor, arah) {
+      if (typeof SURAH_DATA === 'undefined') return null;
+      return SURAH_DATA.find(s => s.nomor === nomor + arah) || null;
+    }
+
+    let prevTarget = null, nextTarget = null;
+
+    // PREV — sama persis dengan 099-01..04
+    if (ayatSaat > 1) {
+      prevTarget = {
+        href: fileAyat(surah.nomor, ayatSaat - 1),
+        label: '\u2190 Ayat ' + (ayatSaat - 1),
+        edge: false
+      };
+    } else {
+      const prevS = cariSurahTetanggaSemua(surah.nomor, -1);
+      if (prevS) {
+        prevTarget = {
+          href: fileAyat(prevS.nomor, prevS.jumlahAyat),
+          label: '\u2190 ' + prevS.namaLatin + ' ' + prevS.jumlahAyat,
+          edge: true
+        };
+      }
+    }
+
+    // NEXT — sama persis dengan 099-01..04
+    if (ayatSaat < totalAyat) {
+      nextTarget = {
+        href: fileAyat(surah.nomor, ayatSaat + 1),
+        label: 'Ayat ' + (ayatSaat + 1) + ' \u2192',
+        edge: false
+      };
+    } else {
+      const nextS = cariSurahTetanggaSemua(surah.nomor, 1);
+      if (nextS) {
+        nextTarget = {
+          href: fileAyat(nextS.nomor, 1),
+          label: nextS.namaLatin + ' 1 \u2192',
+          edge: true
+        };
+      }
+    }
+
+    // ── HEADER ARROWS ──
     const hdrPrev = document.getElementById('hdr-prev');
     const hdrNext = document.getElementById('hdr-next');
-    const sStr = String(PAGE_CONFIG.nomorSurah).padStart(3, '0');
-
-    // PREV — selalu ada (ayat 7)
-    if (PAGE_CONFIG.nomorAyat > 1) {
-      const prevStr = String(PAGE_CONFIG.nomorAyat - 1).padStart(2, '0');
-      hdrPrev.href = sStr + '-' + prevStr + '.html';
-    } else {
-      hdrPrev.classList.add('disabled');
+    if (hdrPrev) {
+      if (prevTarget) {
+        hdrPrev.href = prevTarget.href;
+        hdrPrev.textContent = prevTarget.label;
+        hdrPrev.title = prevTarget.edge
+          ? 'Surah sebelumnya: ' + prevTarget.label.replace('\u2190 ', '')
+          : 'Ayat sebelumnya';
+        if (prevTarget.edge) hdrPrev.classList.add('edge');
+      } else {
+        hdrPrev.classList.add('disabled');
+        hdrPrev.textContent = '\u2190';
+      }
+    }
+    if (hdrNext) {
+      if (nextTarget) {
+        hdrNext.href = nextTarget.href;
+        hdrNext.textContent = nextTarget.label;
+        hdrNext.title = nextTarget.edge
+          ? 'Surah berikutnya: ' + nextTarget.label.replace(' \u2192', '')
+          : 'Ayat berikutnya';
+        if (nextTarget.edge) hdrNext.classList.add('edge');
+      } else {
+        hdrNext.classList.add('disabled');
+        hdrNext.textContent = '\u2192';
+      }
     }
 
-    // NEXT — ayat khatmil → surah berikutnya (100-01)
-    if (PAGE_CONFIG.ayatTerakhir) {
-      // KHATMIL: arahkan ke surah berikutnya ayat 1
-      const nextSurah = String(PAGE_CONFIG.nomorSurah + 1).padStart(3, '0');
-      hdrNext.href = nextSurah + '-01.html';
-      hdrNext.title = 'Surah berikutnya (Al-\'Adiyat)';
-      hdrNext.classList.add('edge');
-      hdrNext.textContent = 'Surah →';
-    } else {
-      const nextStr = String(PAGE_CONFIG.nomorAyat + 1).padStart(2, '0');
-      hdrNext.href = sStr + '-' + nextStr + '.html';
-    }
-  }
+    // ── NAV BAWAH (pola 099-01) ──
+    const container = document.getElementById('nav-bawah-container');
+    if (container) {
+      if (prevTarget) {
+        const bp = document.createElement('a');
+        bp.className = 'nav-btn' + (prevTarget.edge ? ' edge' : '');
+        bp.href = prevTarget.href;
+        bp.textContent = prevTarget.label;
+        container.appendChild(bp);
+      }
 
+      const bh = document.createElement('a');
+      bh.className = 'nav-btn beranda';
+      bh.href = 'index.html';
+      bh.textContent = '\u2302 Beranda';
+      container.appendChild(bh);
+
+      const info = document.createElement('span');
+      info.className = 'nav-info';
+      info.textContent = `${surah.namaLatin} \u00b7 Ayat ${ayatSaat} dari ${totalAyat}`;
+      container.appendChild(info);
+
+      if (nextTarget) {
+        const bn = document.createElement('a');
+        bn.className = 'nav-btn' + (nextTarget.edge ? ' edge' : '');
+        bn.href = nextTarget.href;
+        bn.textContent = nextTarget.label;
+        container.appendChild(bn);
+      }
+    }
+  })();
+
+  // ============================================
+  // INISIALISASI DROPDOWN
+  // ============================================
   document.addEventListener('DOMContentLoaded', function() {
-    setupDropdowns();
-    setupHeaderArrows();
+    isiDropdownSurah();
+    const ddSurah = document.getElementById('dd-surah');
+    if (ddSurah) {
+      ddSurah.addEventListener('change', function() {
+        isiDropdownAyat(this.value);
+      });
+    }
   });
 </script>
 

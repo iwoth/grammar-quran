@@ -2021,7 +2021,7 @@
     SURAH_DATA.forEach(s => {
       const opt = document.createElement('option');
       opt.value = s.nomor;
-      opt.textContent = s.nomor + '. ' + s.nama_latin + ' (' + s.nama_arab + ')';
+      opt.textContent = s.nomor + '. ' + s.namaLatin + ' — ' + s.jumlahAyat + ' ayat';
       if (s.nomor === PAGE_CONFIG.nomorSurah) opt.selected = true;
       ddSurah.appendChild(opt);
     });
@@ -2035,7 +2035,7 @@
     const surah = SURAH_DATA.find(s => s.nomor === parseInt(nomorSurah));
     if (!surah) { ddAyat.disabled = true; return; }
     ddAyat.disabled = false;
-    for (let i = 1; i <= surah.jumlah_ayat; i++) {
+    for (let i = 1; i <= surah.jumlahAyat; i++) {
       const opt = document.createElement('option');
       opt.value = i;
       opt.textContent = 'Ayat ' + i;
@@ -2074,16 +2074,20 @@
       const prevAyat = String(PAGE_CONFIG.nomorAyat - 1).padStart(2, '0');
       const prevSurah = String(PAGE_CONFIG.nomorSurah).padStart(3, '0');
       prevBtn.href = prevSurah + '-' + prevAyat + '.html';
+      prevBtn.title = 'Ayat ' + (PAGE_CONFIG.nomorAyat - 1);
+      prevBtn.textContent = '← ' + (PAGE_CONFIG.nomorAyat - 1);
     } else {
       prevBtn.classList.add('disabled');
       prevBtn.href = '#';
     }
 
     // NEXT
-    if (PAGE_CONFIG.nomorAyat < surah.jumlah_ayat) {
+    if (PAGE_CONFIG.nomorAyat < surah.jumlahAyat) {
       const nextAyat = String(PAGE_CONFIG.nomorAyat + 1).padStart(2, '0');
       const nextSurah = String(PAGE_CONFIG.nomorSurah).padStart(3, '0');
       nextBtn.href = nextSurah + '-' + nextAyat + '.html';
+      nextBtn.title = 'Ayat ' + (PAGE_CONFIG.nomorAyat + 1);
+      nextBtn.textContent = (PAGE_CONFIG.nomorAyat + 1) + ' →';
     } else {
       nextBtn.classList.add('disabled');
       nextBtn.href = '#';
@@ -2112,13 +2116,13 @@
     }
 
     // INFO
-    html += '<div class="nav-info">Surah ' + surah.nama_latin + ' · Ayat ' + PAGE_CONFIG.nomorAyat + ' dari ' + surah.jumlah_ayat + '</div>';
+    html += '<div class="nav-info">Surah ' + surah.namaLatin + ' · Ayat ' + PAGE_CONFIG.nomorAyat + ' dari ' + surah.jumlahAyat + '</div>';
 
     // BERANDA
     html += '<a href="index.html" class="nav-btn beranda">⌂ Beranda</a>';
 
     // NEXT
-    if (PAGE_CONFIG.nomorAyat < surah.jumlah_ayat) {
+    if (PAGE_CONFIG.nomorAyat < surah.jumlahAyat) {
       const nextAyat = String(PAGE_CONFIG.nomorAyat + 1).padStart(2, '0');
       const nextSurah = String(PAGE_CONFIG.nomorSurah).padStart(3, '0');
       html += '<a href="' + nextSurah + '-' + nextAyat + '.html" class="nav-btn">Ayat ' + (PAGE_CONFIG.nomorAyat + 1) + ' →</a>';

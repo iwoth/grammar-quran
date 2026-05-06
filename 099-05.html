@@ -1827,7 +1827,7 @@
     SURAH_DATA.forEach(s => {
       const opt = document.createElement('option');
       opt.value = s.nomor;
-      opt.textContent = `${s.nomor}. ${s.nama} (${s.namaArab}) — ${s.jumlahAyat} ayat`;
+      opt.textContent = `${s.nomor}. ${s.namaLatin} — ${s.jumlahAyat} ayat`;
       if (s.nomor === PAGE_CONFIG.nomorSurah) opt.selected = true;
       ddSurah.appendChild(opt);
     });
@@ -1887,13 +1887,14 @@
       const prevAyat = PAGE_CONFIG.nomorAyat - 1;
       prevBtn.href = `${String(PAGE_CONFIG.nomorSurah).padStart(3,'0')}-${String(prevAyat).padStart(2,'0')}.html`;
       prevBtn.title = `Ayat sebelumnya (${PAGE_CONFIG.nomorSurah}:${prevAyat})`;
+      prevBtn.textContent = `← ${prevAyat}`;
     } else {
       // Awal surah → ke surah sebelumnya jika ada
       const idxIni = SURAH_DATA.findIndex(s => s.nomor === PAGE_CONFIG.nomorSurah);
       if (idxIni > 0) {
         const surahSebelum = SURAH_DATA[idxIni - 1];
         prevBtn.href = `${String(surahSebelum.nomor).padStart(3,'0')}-${String(surahSebelum.jumlahAyat).padStart(2,'0')}.html`;
-        prevBtn.title = `Surah sebelumnya — ${surahSebelum.nama} ayat ${surahSebelum.jumlahAyat}`;
+        prevBtn.title = `Surah sebelumnya — ${surahSebelum.namaLatin} ayat ${surahSebelum.jumlahAyat}`;
         prevBtn.classList.add('edge');
       } else {
         prevBtn.classList.add('disabled');
@@ -1905,13 +1906,14 @@
       const nextAyat = PAGE_CONFIG.nomorAyat + 1;
       nextBtn.href = `${String(PAGE_CONFIG.nomorSurah).padStart(3,'0')}-${String(nextAyat).padStart(2,'0')}.html`;
       nextBtn.title = `Ayat berikutnya (${PAGE_CONFIG.nomorSurah}:${nextAyat})`;
+      nextBtn.textContent = `${nextAyat} →`;
     } else {
       // Akhir surah → ke surah berikutnya jika ada
       const idxIni = SURAH_DATA.findIndex(s => s.nomor === PAGE_CONFIG.nomorSurah);
       if (idxIni < SURAH_DATA.length - 1) {
         const surahBerikut = SURAH_DATA[idxIni + 1];
         nextBtn.href = `${String(surahBerikut.nomor).padStart(3,'0')}-01.html`;
-        nextBtn.title = `Surah berikutnya — ${surahBerikut.nama} ayat 1`;
+        nextBtn.title = `Surah berikutnya — ${surahBerikut.namaLatin} ayat 1`;
         nextBtn.classList.add('edge');
       } else {
         nextBtn.classList.add('disabled');
@@ -1940,14 +1942,14 @@
       if (idxIni > 0) {
         const surahSebelum = SURAH_DATA[idxIni - 1];
         const fileTarget = `${String(surahSebelum.nomor).padStart(3,'0')}-${String(surahSebelum.jumlahAyat).padStart(2,'0')}.html`;
-        html += `<a class="nav-btn edge" href="${fileTarget}">← ${surahSebelum.nama} ${surahSebelum.jumlahAyat}</a>`;
+        html += `<a class="nav-btn edge" href="${fileTarget}">← ${surahSebelum.namaLatin} ${surahSebelum.jumlahAyat}</a>`;
       } else {
         html += `<span class="nav-btn" style="opacity:.3;pointer-events:none;">← Awal Mushaf</span>`;
       }
     }
 
     // INFO TENGAH
-    html += `<div class="nav-info">${surahIni.nama} &middot; Ayat ${PAGE_CONFIG.nomorAyat} dari ${jumlahAyat}</div>`;
+    html += `<div class="nav-info">${surahIni.namaLatin} &middot; Ayat ${PAGE_CONFIG.nomorAyat} dari ${jumlahAyat}</div>`;
 
     // NEXT (kanan)
     if (PAGE_CONFIG.nomorAyat < jumlahAyat) {
@@ -1959,7 +1961,7 @@
       if (idxIni < SURAH_DATA.length - 1) {
         const surahBerikut = SURAH_DATA[idxIni + 1];
         const fileTarget = `${String(surahBerikut.nomor).padStart(3,'0')}-01.html`;
-        html += `<a class="nav-btn edge" href="${fileTarget}">${surahBerikut.nama} 1 →</a>`;
+        html += `<a class="nav-btn edge" href="${fileTarget}">${surahBerikut.namaLatin} 1 →</a>`;
       } else {
         html += `<span class="nav-btn" style="opacity:.3;pointer-events:none;">Akhir Mushaf →</span>`;
       }
