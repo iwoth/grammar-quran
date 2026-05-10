@@ -287,8 +287,8 @@ const SURAH_DATA = [
     arti: "Bukti Nyata",
     jumlahAyat: 8,
     jenis: "Madaniyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-98 · 8 ayat · tiga babak retoris: pengenalan Bayyinah (1–3) + diagnosis &amp; resep Din al-Qayyimah (4–5) + pembagian akhir nasib (6–8) · pasangan al-muqābalah lengkap antara syarrul-bariyyah (kafir) ↔ khayrul-bariyyah (mu'min) · konsep nahwu utama: kāna nāqishah + ḥattā ghāyah, idhāfah lafzhiyyah vs ma'nawiyyah, na'at jumlah vs na'at mufrad, fi'il madhy mabni li-mafhūl, istisnā' dengan illā, mufa'al muthlaq sebagai tawkīd, ḥāl jam' mudzakkar sālim (tanda nashb yā'), isim tafḍīl dalam idhāfah, isim isyārah ba'īd untuk khulāṣah, jumlah-fi'liyah sebagai na'at, zharf zamān sebagai tawkīd khulūd · konsep balaghi: pasangan ridha resiprokal mutaqābilah, kunci universal taqwa (khasy-yah)"
   },
   {
     nomor: 99,
@@ -310,7 +310,7 @@ const SURAH_DATA = [
     jumlahAyat: 11,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-100 · 11 ayat · sumpah Allah ﷻ dengan kuda perang yang berlari kencang · saat ini ayat 1-3 telah dianalisis (rangkaian sumpah pembuka — pola isim fa'il + isim manshub) · konsep baru: rantai 'athaf tiga lapis lintas ayat, 4 jenis huruf fā' (Fā' 'Āthifah, Isti'nāfiyyah, al-Fashīhah, Rābithah), pergeseran nominal-verbal (set-up ayat 4-5), zhorf zaman vs maf'ul-mutlaq, paralelisme struktur antar-ayat"
+    keterangan: "Surah ke-100 · 11 ayat · sumpah Allah ﷻ dengan kuda perang yang berlari kencang · tiga babak: rangkaian sumpah (1–5) + jawab al-qasam tentang sifat manusia kanud (6–8) + pertanyaan retoris &amp; klimaks Khabīr (9–11) · konsep nahwu utama: rantai 'athaf tiga lapis lintas ayat, 4 jenis huruf fā' (Fā' 'Āthifah, Isti'nāfiyyah, al-Fashīhah, Rābithah), pergeseran nominal-verbal, zhorf zaman vs maf'ul-mutlaq, paralelisme struktur antar-ayat, tanwīn al-'iwadh, taqdīm ganda jar-majrur + zharf · konsep balaghi: chiasm tingkat tinggi (manusia lemah ↔ Allah sempurna), iltifat dari mufrad ke jamak"
   },
   {
     nomor: 101,
