@@ -265,7 +265,7 @@ const SURAH_DATA = [
     arti: "Segumpal Darah",
     jumlahAyat: 19,
     jenis: "Makkiyah",
-    status: "rencana",
+    status: "tersedia",
     keterangan: "Ayat pertama yang diturunkan"
   },
   {
@@ -277,7 +277,7 @@ const SURAH_DATA = [
     jumlahAyat: 5,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-97 · 5 ayat · arsitektur naratif rapi (pengumuman → pertanyaan retoris → triad jawaban) · ayat 1 pengumuman penurunan Al-Qur'an pada Lailatul-Qadr · ayat 2 pertanyaan retoris li-t-tafkhīm · triad keutamaan (3-4-5): kuantitatif (khayrun min alfi syahr) + kualitatif (tanazzul al-malā'ikah wa-r-rūḥ) + atmosferik (salāmun hiya ḥattā maṭla' al-fajr) · ayat 5 pola inversi khabar muqaddam + mubtada muakhkhar dengan ghāyah inklusif · konsep nahwu utama: ḥarf taukīd inna + dhamir muttaṣil ta'zhīm, fi'il madhy + dhamir maf'ul bih, jar-majrur keterangan waktu, mā istifhāmiyyah dengan fungsi tafkhīm, isim tafḍīl, tamyīz nakirah perbandingan, fi'il mudhari' mazid Bab V wazan tafa''ala dengan takhfīf ḥadzf at-tā', 'athaf mufrad 'alā mufrad (al-malā'ikah wa-r-rūḥ), mutta'alliq berlapis tiga (fīhā · bi-idzni rabbihim · min kulli amr), idhāfah dhamir muttaṣil berlapis (idzni rabbihim), ḥarf jar ghāyah ḥattā (inklusif), khabar muqaddam + mubtada muakhkhar, isim makān musytaq wazan maf'al · konsep balaghi: takhṣīṣ bi-l-idhmār li-t-ta'zhīm (Ar-Rūḥ disebut khusus padahal bagian dari malaikat), iqtiṣād bi-t-takhfīf (tanazzal bukan tatanazzal), taqdīm al-khabar li-l-ihtimām (salāmun didahulukan), nakirah li-t-ta'zhīm wa-l-'umūm (salāmun nakirah menampung 3 tafsir sahih)"
+    keterangan: ""
   },
   {
     nomor: 98,
