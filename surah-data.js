@@ -254,7 +254,7 @@ const SURAH_DATA = [
     arti: "Buah Tin",
     jumlahAyat: 8,
     jenis: "Makkiyah",
-    status: "rencana",
+    status: "tersedia",
     keterangan: ""
   },
   {
