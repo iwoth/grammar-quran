@@ -243,8 +243,8 @@ const SURAH_DATA = [
     arti: "Kelapangan",
     jumlahAyat: 8,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-94, tasliyah untuk Nabi ﷺ — janji kemudahan dan perintah amal+niat"
   },
   {
     nomor: 95,
