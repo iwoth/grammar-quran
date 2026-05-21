@@ -232,8 +232,8 @@ const SURAH_DATA = [
     arti: "Waktu Dhuha",
     jumlahAyat: 11,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-93, tasliyah untuk Nabi ﷺ — sumpah dan penghiburan, tiga nikmat masa lampau, dan tiga perintah syukur"
   },
   {
     nomor: 94,
