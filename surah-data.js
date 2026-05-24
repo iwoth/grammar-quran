@@ -221,8 +221,8 @@ const SURAH_DATA = [
     arti: "Malam",
     jumlahAyat: 21,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-92, sumpah pembuka demi malam dan siang — dua jalan hidup manusia, peringatan neraka bagi al-asyqa, dan keikhlasan al-atqa yang berbuah keridhaan"
   },
   {
     nomor: 93,
