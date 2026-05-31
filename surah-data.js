@@ -210,8 +210,8 @@ const SURAH_DATA = [
     arti: "Matahari",
     jumlahAyat: 15,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Surah ke-91, tazkiyatun nafs — tujuh sumpah keagungan, prinsip jiwa antara takwa dan fujur, kisah Tsamud sebagai pembuktian, dan penegasan tauhid rububiyyah"
   },
   {
     nomor: 92,
