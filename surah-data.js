@@ -199,7 +199,7 @@ const SURAH_DATA = [
     arti: "Negeri",
     jumlahAyat: 20,
     jenis: "Makkiyah",
-    status: "rencana",
+    status: "tersedia",
     keterangan: ""
   },
   {
