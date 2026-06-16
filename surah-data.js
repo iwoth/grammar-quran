@@ -188,8 +188,8 @@ const SURAH_DATA = [
     arti: "Fajar",
     jumlahAyat: 30,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Sumpah atas fajar & malam, nasib kaum pendurhaka ('Ad, Tsamud, Fir'aun), watak manusia, adegan Kiamat, dan kabar gembira bagi an-nafs al-muthma'innah."
   },
   {
     nomor: 90,
