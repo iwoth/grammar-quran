@@ -177,8 +177,8 @@ const SURAH_DATA = [
     arti: "Hari Pembalasan",
     jumlahAyat: 26,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Hari Kiamat yang meliputi: dua golongan manusia (sengsara & berbahagia), seruan bertafakkur atas ciptaan Allah (unta, langit, gunung, bumi), perintah berdakwah, serta penegasan ma'ad dan hisab di tangan Allah."
   },
   {
     nomor: 89,
