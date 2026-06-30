@@ -166,8 +166,8 @@ const SURAH_DATA = [
     arti: "Yang Maha Tinggi",
     jumlahAyat: 19,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Tasbih menyucikan nama Rabb Yang Maha Tinggi, rangkaian sifat fi'liyyah-Nya, penjagaan wahyu, tazkiyah, & keutamaan akhirat atas dunia."
   },
   {
     nomor: 88,
