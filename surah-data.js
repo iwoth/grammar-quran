@@ -155,8 +155,8 @@ const SURAH_DATA = [
     arti: "Bintang Malam",
     jumlahAyat: 17,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Sumpah demi langit & bintang penembus malam, tiap jiwa ada penjaganya, dalil penciptaan manusia atas kuasa kebangkitan, keagungan Al-Qur'an sebagai firman pemisah, & makar kaum kafir yang dibalas."
   },
   {
     nomor: 87,
