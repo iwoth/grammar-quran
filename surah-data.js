@@ -144,8 +144,8 @@ const SURAH_DATA = [
     arti: "Gugusan Bintang",
     jumlahAyat: 22,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Sumpah demi langit bergugus bintang & hari yang dijanjikan, kisah Ashabul Ukhdud yang membakar kaum mukmin semata karena iman, balasan azab pembakaran bagi penindas & surga bagi mukmin, untaian sifat Allah yang keras siksa-Nya sekaligus Maha Pengampun & Maha Pengasih, hingga penutup: Al-Qur'an yang mulia, terjaga di Lauh Mahfuzh."
   },
   {
     nomor: 86,
