@@ -133,8 +133,8 @@ const SURAH_DATA = [
     arti: "Terbelah",
     jumlahAyat: 25,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Langit terbelah dan bumi diratakan pada Hari Kiamat, keduanya tunduk kepada Rabb-nya tanpa membantah; manusia berjalan menuju Rabb-nya dengan susah payah lalu dibagi dua golongan menurut cara ia menerima kitab amalnya \u2014 dari kanan dengan hisab yang mudah, atau dari belakang punggung dengan seruan kebinasaan; sumpah demi mega senja, malam, dan bulan purnama bahwa manusia pasti menempuh tingkat demi tingkat; ditutup celaan bagi yang tidak beriman, tidak sujud, dan mendustakan, serta janji pahala tanpa putus bagi yang beriman dan beramal saleh."
   },
   {
     nomor: 85,
