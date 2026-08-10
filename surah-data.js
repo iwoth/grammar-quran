@@ -122,7 +122,7 @@ const SURAH_DATA = [
     arti: "Orang yang Curang",
     jumlahAyat: 36,
     jenis: "Makkiyah",
-    status: "rencana",
+    status: "tersedia",
     keterangan: ""
   },
   {
