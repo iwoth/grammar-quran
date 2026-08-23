@@ -111,8 +111,8 @@ const SURAH_DATA = [
     arti: "Terbelah",
     jumlahAyat: 19,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Segala perbuatan dihadapkan kepada pemiliknya pada Hari Pembalasan. Dibuka dengan runtuhnya tatanan alam, ditutup dengan nama Pemilik tatanan itu."
   },
   {
     nomor: 83,
