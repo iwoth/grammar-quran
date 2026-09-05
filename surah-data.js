@@ -100,8 +100,8 @@ const SURAH_DATA = [
     arti: "Penggulungan",
     jumlahAyat: 29,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Kepastian Hari Kiamat dan kebenaran sumber Al-Qur'an. Dibuka dengan runtuhnya seluruh tatanan alam, ditutup dengan nama Pemelihara alam itu sendiri."
   },
   {
     nomor: 82,
