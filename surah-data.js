@@ -89,8 +89,8 @@ const SURAH_DATA = [
     arti: "Ia Bermuka Masam",
     jumlahAyat: 42,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Siapa yang layak didahulukan dalam dakwah, hakikat manusia, dan hari ketika setiap orang sendirian bersama amalnya. Dibuka dengan satu wajah yang bermuka masam, ditutup dengan wajah-wajah pada hari kiamat."
   },
   {
     nomor: 81,
