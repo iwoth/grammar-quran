@@ -78,8 +78,8 @@ const SURAH_DATA = [
     arti: "Malaikat yang Mencabut",
     jumlahAyat: 46,
     jenis: "Makkiyah",
-    status: "rencana",
-    keterangan: ""
+    status: "tersedia",
+    keterangan: "Sumpah demi para malaikat pencabut nyawa, guncangan hari kiamat, kisah Musa dan Fir'aun, hujjah penciptaan langit dan bumi, serta dua golongan pada hari malapetaka terbesar. Dibuka dengan pencabutan nyawa, ditutup dengan dunia yang terasa hanya sepetang atau sedhuha."
   },
   {
     nomor: 80,
