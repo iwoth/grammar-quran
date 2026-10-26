@@ -60,6 +60,17 @@ const SURAH_DATA = [
   // ── JUZ AMMA (78–112) — STATUS RENCANA ────────────────────
 
   {
+    nomor: 77,
+    nomorStr: "077",
+    namaLatin: "Al-Mursalat",
+    namaArab: "المرسلات",
+    arti: "Malaikat-Malaikat yang Diutus",
+    jumlahAyat: 50,
+    jenis: "Makkiyah",
+    status: "rencana",
+    keterangan: "Surah ke-77, sebelum Juz Amma"
+  },
+  {
     nomor: 78,
     nomorStr: "078",
     namaLatin: "An-Naba'",
