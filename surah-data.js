@@ -52,7 +52,7 @@ const SURAH_DATA = [
     namaArab: "الناس",
     arti: "Manusia",
     jumlahAyat: 6,
-    jenis: "Makkiyah",
+    jenis: "Madaniyah",
     status: "tersedia",
     keterangan: "Surah terakhir Al-Qur'an, salah satu Al-Mu'awwidzatain"
   },
