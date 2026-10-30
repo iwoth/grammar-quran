@@ -959,11 +959,13 @@
     }
     function cariSurahTetanggaSemua(nomor, arah) {
       if (typeof SURAH_DATA === 'undefined') return null;
-      // V18-3I — urutan pembangunan situs 001 → 114 → 113 → … ; satu-satunya
-      // sambungan yang berbeda dari nomor mushaf ialah 001 ↔ 114.
-      let tujuan = nomor + arah;
-      if (nomor === 1 && arah === 1) tujuan = 114;
-      if (nomor === 114 && arah === -1) tujuan = 1;
+      // V18-4A — navigasi antarsurah (ACC Iwoth 30 Okt 2026):
+      //   tombol kiri ayat 1          → ayat terakhir surah nomor−1
+      //   tombol kanan ayat terakhir  → ayat 1 surah nomor−1 (urutan bangun 114 → 113 → …)
+      // Pengecualian: 001-01 kiri tidak ada · 001-07 kanan → 114-01 · 114-06 kanan → 001-01.
+      let tujuan = nomor - 1;
+      if (nomor === 1) tujuan = (arah === 1) ? 114 : 0;
+      if (nomor === 114 && arah === 1) tujuan = 1;
       return SURAH_DATA.find(s => s.nomor === tujuan) || null;
     }
 
