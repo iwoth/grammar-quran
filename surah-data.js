@@ -41,7 +41,7 @@ const SURAH_DATA = [
     namaArab: "الفلق",
     arti: "Waktu Subuh",
     jumlahAyat: 5,
-    jenis: "Makkiyah",
+    jenis: "Madaniyah",
     status: "tersedia",
     keterangan: "Surah ke-113, salah satu Al-Mu'awwidzatain"
   },
