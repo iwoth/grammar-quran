@@ -376,7 +376,7 @@ const SURAH_DATA = [
     jumlahAyat: 4,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-106, satu-satunya surah yang dibuka dengan jar-majrur (ta'lil) yang bersandar pada perintah di ayat 3"
+    keterangan: "Surah ke-106 — nikmat perjalanan dagang yang aman, dan perintah menyembah Rabb Ka'bah"
   },
   {
     nomor: 107,
