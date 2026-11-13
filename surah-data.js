@@ -343,7 +343,7 @@ const SURAH_DATA = [
     jumlahAyat: 3,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-103 · 3 ayat · qasam + tesis universal + istidrāk empat sifat penyelamat · konsep: istithna' muttasil, bab VI tafa'ala, Isim Jamak Perempuan tanda nasb kasrah"
+    keterangan: "Surah ke-103 · 3 ayat · sumpah dengan masa (1) + jawabnya: manusia dalam kerugian (2) + pengecualian empat sifat (3) · konsep: wawu qasam, lam muzahlaqah, istitsna' tam mutsbat, jamak mu'annats salim, wazan tafa'ala"
   },
   {
     nomor: 104,
