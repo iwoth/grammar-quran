@@ -332,7 +332,7 @@ const SURAH_DATA = [
     jumlahAyat: 8,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-102 · 8 ayat · tiga babak retoris: diagnosa (1–2) + peringatan berlapis (3–5) + konfirmasi bertingkat (6–8) · lingkaran ٱلتَّكَاثُرُ (berlomba nikmat) ↔ ٱلنَّعِيمِ (ditanya tentang nikmat) — konsep: لَوْ syart imtina', maf'ul mutlaq naw', lam + nun taukid tsaqilah, tiga tingkat keyakinan, fi'il majhul mudhari', zharf zaman murakkab يَوْمَئِذٍ"
+    keterangan: "Surah ke-102 · 8 ayat · celaan atas bermegah-megahan sampai masuk kubur (1–2) + tiga hardikan kalla (3–5) + tiga jawab sumpah: melihat Jahim, melihatnya dengan mata yakin, ditanya tentang kenikmatan (6–8) · konsep: maf'ul bih didahulukan atas fa'il, hatta, sawfa, tsumma, law dan jawab yang dibuang, nun taukid pada al-af'al al-khamsah, maf'ul muthlaq, yauma'idzin dan tanwin 'iwadh"
   },
   {
     nomor: 103,
