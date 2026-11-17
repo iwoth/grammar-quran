@@ -321,7 +321,7 @@ const SURAH_DATA = [
     jumlahAyat: 11,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-101 · 11 ayat · tiga babak: penamaan &amp; pengagungan (1–3) + gambaran huru-hara kiamat (4–5) + pembagian nasib &amp; Hawiyah (6–11) · konsep: kaana wa akhawatuha, fa' al-fashihah vs fa' rabithah, isim-syarat + majzum mahallan, isim-alat, athaf nasq, isnad majazi, isti'arah tashrihiyyah (أُم = tempat kembali), wawu isti'nafiyyah + isti'naf bayani (Jurjani), ha' as-sakt, mubtada' mahdzuf, istifham li-ta'zhim · 2 kaidah nahwu-balaghi baru: athaf nasq &amp; isti'naf bayani"
+    keterangan: "Surah ke-101 · 11 ayat · nama dan pengagungan hari kiamat (1–3) + gambaran manusia dan gunung-gunung pada hari itu (4–5) + timbangan amal: kehidupan yang memuaskan atau Hawiyah, api yang sangat panas (6–11) · konsep: rabith pengulangan lafazh mubtada', wa ma adraka, zharaf yang di-idhafah-kan kepada kalimat, kana dengan khabar jar-majrur, amma syarthiyyah tafshiliyyah, isim maushul man sebagai mubtada', fa' rabithah, ha' saktah, mubtada' yang dibuang"
   },
   {
     nomor: 102,

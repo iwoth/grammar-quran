@@ -34,144 +34,472 @@
 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grammar Al-Qari'ah 101:5</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --hijau-gelap:#1a472a; --hijau-medium:#2d6a4f; --hijau-muda:#40916c;
-      --biru-tua:#1e3a8a; --ungu:#5b21b6; --coklat:#92400e;
-      --merah-fi:#c2410c; --emas:#d4af37; --emas-muda:#f0d060;
-      --bg-utama:#f7f5f0; --border:#e0d9c8;
-      --font-arab:'Scheherazade New',serif; --font-latin:'Lato',sans-serif;
+      --hijau-gelap:  #1a472a;
+      --hijau-medium: #2d6a4f;
+      --biru-tua:     #1e3a8a;
+      --ungu:         #5b21b6;
+      --ungu-pekat:   #3b0764;
+      --coklat:       #92400e;
+      --merah-fi:     #c2410c;
+      --emas:         #d4af37;
+      --emas-muda:    #f0d060;
+      --bg-utama:     #f7f5f0;
+      --border:       #e0d9c8;
+      --font-arab:    'Scheherazade New', serif;
+      --font-latin:   'Lato', sans-serif;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:var(--font-latin);background:var(--bg-utama);color:#1c1c1c;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;}
-    .arab{font-family:var(--font-arab);direction:rtl;}
-    header{background:var(--hijau-gelap);color:white;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25);}
-    .header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
-    .header-info{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;justify-content:center;}
-    .header-info .hi-label{font-size:.60rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas);margin-bottom:3px;}
-    .header-info .hi-surah{font-size:.90rem;font-weight:700;color:white;display:flex;align-items:baseline;gap:10px;}
-    .header-info .hi-surah .arab-surah{font-family:var(--font-arab);font-size:.88rem;color:var(--emas);direction:rtl;}
-    .header-info .hi-ayat{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:3px;}
-    .nav-dropdowns{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-    .dropdown-wrapper{display:flex;flex-direction:column;gap:3px;}
-    .nav-dropdowns label{font-size:.72rem;color:rgba(255,255,255,.65);white-space:nowrap;}
-    .nav-dropdowns select{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 10px;font-family:var(--font-latin);font-size:.82rem;cursor:pointer;outline:none;transition:background .2s;max-width:240px;}
-    .nav-dropdowns select:hover,.nav-dropdowns select:focus{background:rgba(255,255,255,.2);border-color:var(--emas);}
-    .nav-dropdowns select option{background:var(--hijau-gelap);}
-    .btn-go{background:var(--emas);color:var(--hijau-gelap);border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-latin);font-weight:700;font-size:.82rem;cursor:pointer;transition:background .2s;align-self:flex-end;}
-    .btn-go:hover{background:var(--emas-muda);}
-    .nav-home{color:#1a472a;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;background:#c8d0c8;border:1px solid #b0bab0;border-radius:8px;padding:6px 12px;transition:background .2s;flex-shrink:0;}
-    .nav-home:hover{background:#e8f0e8;border-color:var(--emas);}
-    .container{max-width:780px;width:100%;margin:0 auto;padding:32px 24px;flex:1;}
-    .ayat-box{background:white;border:1px solid var(--border);border-radius:12px;padding:28px 32px;text-align:center;margin-bottom:32px;}
-    .label-kecil{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:14px;}
-    .teks-ayat{font-family:var(--font-arab);font-size:36px;line-height:2.2;color:#1a1a1a;}
-    .transliterasi{margin-top:10px;font-size:14px;color:var(--hijau-medium);font-style:italic;}
-    .terjemahan{margin-top:10px;padding-top:14px;border-top:1px solid #f0ebe0;font-size:14px;color:#666;font-style:italic;}
-    .konteks-box{background:white;border:1px solid var(--border);border-left:5px solid var(--hijau-gelap);border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13.5px;line-height:1.8;}
-    .section-header{margin:40px 0 20px;padding:10px 18px;background:var(--hijau-gelap);border-radius:6px;}
-    .section-header .judul{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;}
-    .section-header .sub-judul{font-size:12px;color:#a8d5b5;margin-top:2px;}
-    .section-header.biru{background:#1e3a5f;} .section-header.biru .sub-judul{color:#93c5fd;}
-    .section-header.tadabur{background:#5b3a1a;} .section-header.tadabur .sub-judul{color:var(--emas);opacity:.8;}
-    .kartu{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;}
-    .kartu-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid #f0ebe0;}
-    .kartu-head.warna-kata{background:#f0f7f2;} .kartu-head.warna-harf{background:#ecfeff;}
-    .kartu-head.warna-fi{background:#fff7ed;} .kartu-head.warna-frasa1{background:#eef4fb;}
-    .kartu-head.warna-frasa2{background:#f5f0fb;}
-    .kartu-head.warna-frasa3{background:#ecfdf5;}
-    .kartu-head.warna-frasa4{background:#fefce8;}
-    .kartu-head.warna-frasa5{background:#fef2f2;}
-    .badge{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.5px;}
-    .badge-kata{background:var(--hijau-gelap);color:white;} .badge-harf{background:#0e7490;color:white;}
-    .badge-fi{background:var(--merah-fi);color:white;} .badge-frasa1{background:var(--biru-tua);color:white;}
-    .badge-frasa2{background:var(--ungu);color:white;}
-    .badge-frasa3{background:#047857;color:white;}
-    .badge-frasa4{background:#a16207;color:white;}
-    .badge-frasa5{background:#991b1b;color:white;}
-    .kartu-arab-besar{font-size:40px;font-family:var(--font-arab);color:#1a1a1a;line-height:1.6;}
-    .kartu-arti{font-size:13px;color:#555;font-style:italic;}
-    .kartu-tabel{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed;}
-    .kartu-tabel tr{border-bottom:1px solid #f5f0e8;} .kartu-tabel tr:last-child{border-bottom:none;}
-    .kartu-tabel td{padding:9px 20px;vertical-align:top;word-wrap:break-word;}
-    .kartu-tabel td:first-child{color:#777;width:22%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
-    .kartu-tabel td:last-child{color:#1a1a1a;width:78%;}
-    .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:.3px;margin-right:4px;margin-bottom:2px;}
-    .tag-n{background:#dbeafe;color:#1e3a8a;} .tag-harf{background:#cffafe;color:#155e75;}
-    .tag-fi{background:#ffedd5;color:#9a3412;} .tag-marfu{background:#dcfce7;color:#166534;}
-    .tag-manshub{background:#fce7f3;color:#9d174d;} .tag-majrur{background:#fef3c7;color:#92400e;}
-    .tag-nakirah{background:#fee2e2;color:#991b1b;} .tag-marifah{background:#dbeafe;color:#1e3a8a;}
-    .tag-mabni{background:#f3e8ff;color:#6b21a8;}
-    .arab-inline{font-family:var(--font-arab);font-size:20px;color:var(--hijau-gelap);direction:rtl;display:inline-block;}
-    .arab-kutip{display:block;font-family:var(--font-arab);font-size:30px;text-align:center;direction:rtl;color:var(--hijau-gelap);margin:14px 0 10px;line-height:2;}
-    .poin-list{list-style:none;padding:0;margin:0;}
-    .poin-list li{padding:3px 0 3px 16px;position:relative;}
-    .poin-list li::before{content:'•';position:absolute;left:4px;color:#1a472a;font-weight:700;}
-    /* Tashrif */
-    .tashrif-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
-    .tashrif-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:10px;}
-    .tashrif-grid{display:grid;grid-template-columns:1fr 28px 1fr;grid-template-rows:auto auto;gap:10px 0;margin:12px 0 8px;align-items:center;}
-    .tashrif-grid .tashrif-panah{justify-content:center;font-size:18px;color:#c2410c;font-weight:700;display:flex;align-items:center;}
-    .tashrif-kotak{border:1px solid #fed7aa;border-radius:6px;padding:8px 12px;text-align:center;}
-    .tashrif-kotak.akar{background:#f0f7f2;border-color:#1a472a;}
-    .tashrif-kotak.subyek{background:#fff3e0;border:2px solid #c2410c;}
-    .tashrif-kotak-label{font-size:9px;color:#888;font-style:italic;margin-bottom:4px;}
-    .tashrif-kotak-arab{font-family:var(--font-arab);font-size:22px;direction:rtl;display:block;line-height:1.6;}
-    .tashrif-kotak.akar .tashrif-kotak-arab{color:#1a472a;font-size:22px;}
-    .tashrif-kotak.subyek .tashrif-kotak-arab{color:#c2410c;font-weight:700;}
-    .tashrif-isi{font-size:12.5px;color:#374151;line-height:1.8;margin-top:8px;}
-    .link-eksternal-wrapper{margin-top:10px;padding-top:8px;border-top:1px dashed #d1c7b0;font-size:12px;color:#374151;line-height:1.7;}
-    .link-eksternal{display:inline-block;margin-top:4px;padding:4px 10px;background:#fff7ed;border:1px solid #fbbf24;border-radius:4px;color:#92400e;text-decoration:none;font-size:11.5px;font-weight:600;word-break:break-all;}
-    /* Konsep / iltifat boxes */
-    .iltifat-box{background:#fdf4ff;border:1px solid #e9d5ff;border-left:5px solid #7e22ce;border-radius:10px;padding:14px 18px;margin-top:8px;}
-    .iltifat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7e22ce;margin-bottom:8px;}
-    .iltifat-isi{font-size:13px;color:#374151;line-height:1.8;}
-    .konsep-box{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #c2410c;border-radius:10px;padding:14px 18px;margin-top:8px;}
-    .konsep-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#c2410c;margin-bottom:8px;}
-    .konsep-isi{font-size:13px;color:#374151;line-height:1.9;}
-    .konsep-tabel{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
-    .konsep-tabel th{background:#fff3e0;padding:6px 10px;text-align:left;font-weight:700;color:#92400e;border:1px solid #fed7aa;}
-    .konsep-tabel td{padding:6px 10px;border:1px solid #fde8c8;}
-    /* kartu-head-harf3 */
-    .kartu-head-harf3{display:flex;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid #f0ebe0;background:#ecfeff;}
-    .kartu-head-harf3 .kh3-badge{flex-shrink:0;}
-    .kartu-head-harf3 .kh3-arab{font-family:var(--font-arab);font-size:40px;color:#1a1a1a;line-height:1.6;direction:rtl;flex:0 0 auto;}
-    .kartu-head-harf3 .kh3-arti{font-size:13px;color:#555;font-style:italic;flex:1;}
-    /* Tadabur */
-    .tadabur-box{background:white;border:1px solid var(--border);border-left:5px solid var(--emas);border-radius:10px;margin-bottom:20px;overflow:hidden;}
-    .tadabur-head{background:#fdf6ec;padding:12px 20px;border-bottom:1px solid #f0e8d0;display:flex;align-items:center;gap:10px;}
-    .tadabur-judul{font-size:13px;font-weight:700;color:#78350f;}
-    .tadabur-isi{padding:18px 20px;font-size:14.5px;line-height:1.9;color:#2d2d2d;}
-    .tadabur-isi p{margin-bottom:10px;} .tadabur-isi p:last-child{margin-bottom:0;}
-    /* Diagram */
-    .diagram-wrapper{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;margin-bottom:20px;overflow-x:auto;}
-    .diagram-legenda{margin-top:12px;background:#f8f6f1;border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:11px;color:#444;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;}
-    .legenda-label{font-weight:700;color:#888;letter-spacing:.5px;width:100%;margin-bottom:4px;}
-    .legenda-item{display:inline-flex;align-items:center;gap:5px;}
-    /* Nav / footer */
-    footer{background:var(--hijau-gelap);color:rgba(255,255,255,.6);text-align:center;padding:16px 24px;font-size:12px;}
-    footer a{color:var(--emas);text-decoration:none;}
-    .nav-bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 0 8px;flex-wrap:wrap;}
-    .nav-btn{background:white;border:1px solid var(--border);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;color:var(--hijau-gelap);text-decoration:none;transition:background .2s;}
-    .nav-btn:hover{background:#e8f0e8;border-color:var(--hijau-gelap);}
-    .nav-btn.beranda{background:var(--hijau-gelap);color:white;border-color:var(--hijau-gelap);}
-    .nav-btn.beranda:hover{background:var(--hijau-medium);}
-    .nav-info{font-size:12px;color:#888;text-align:center;flex:1;}
-  </style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-latin); background: var(--bg-utama); color: #1c1c1c; font-size: 15px; line-height: 1.7; min-height: 100vh; display: flex; flex-direction: column; }
+    .arab { font-family: var(--font-arab); direction: rtl; }
+
+    header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; padding: 6px 0; }   /* V18.2 — tinggi menyesuaikan judul yang diperbesar */
+
+    .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; gap: 0; }
+    .header-info .hi-label { font-size: 0.90rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-surah { font-size: 0.90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
+    .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: 0.98rem; color: var(--emas); direction: rtl; vertical-align: baseline; }
+    .header-info .hi-ayat { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 4px; max-width: 300px; line-height: 1.35; }   /* V18.2 M2 — boleh turun baris, tidak menabrak navigasi */
+
+    .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
+    .nav-dropdowns label { font-size: .72rem; color: rgba(255,255,255,.65); white-space: nowrap; }
+    .nav-dropdowns select { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 6px 10px; font-family: var(--font-latin); font-size: .82rem; cursor: pointer; outline: none; transition: background .2s, border-color .2s; max-width: 240px; }
+    .nav-dropdowns select:hover, .nav-dropdowns select:focus { background: rgba(255,255,255,.2); border-color: var(--emas); }
+    .nav-dropdowns select option { background: var(--hijau-gelap); }
+    .btn-go { background: var(--emas); color: var(--hijau-gelap); border: none; border-radius: 8px; padding: 8px 18px; font-family: var(--font-latin); font-weight: 700; font-size: .82rem; cursor: pointer; transition: background .2s; align-self: flex-end; }
+    .btn-go:hover { background: var(--emas-muda); }
+
+    .nav-home { color: #1a472a; font-size: .78rem; font-weight: 700; text-decoration: none; white-space: nowrap; background: #c8d0c8; border: 1px solid #b0bab0; border-radius: 8px; padding: 6px 12px; transition: background .2s, border-color .2s; flex-shrink: 0; }
+    .nav-home:hover { background: #e8f0e8; border-color: var(--emas); }
+
+    .nav-btn-hdr { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 34px; padding: 0 10px; background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; font-size: .85rem; font-weight: 700; text-decoration: none; transition: background .2s, border-color .2s; align-self: flex-end; flex-shrink: 0; white-space: nowrap; }
+    .nav-btn-hdr:hover { background: rgba(255,255,255,.22); border-color: var(--emas); }
+    .nav-btn-hdr.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: var(--emas); font-size: .72rem; padding: 0 8px; }
+    .nav-btn-hdr.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-btn-hdr.disabled { opacity: .3; pointer-events: none; }
+
+    .container { max-width: 780px; width: 100%; margin: 0 auto; padding: 32px 24px; flex: 1; }
+
+    .ayat-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; text-align: center; margin-bottom: 32px; }
+    .label-kecil { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #999; margin-bottom: 14px; }
+    .teks-ayat { font-family: var(--font-arab); font-size: 36px; line-height: 2.2; color: #1a1a1a; }
+    .terjemahan { margin-top: 10px; padding-top: 14px; border-top: 1px solid #f0ebe0; font-size: 14px; color: #666; font-style: italic; }
+
+    .konteks-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--hijau-gelap); border-radius: 10px; padding: 14px 18px; margin-bottom: 28px; font-size: 13.5px; line-height: 1.8; }
+    .konteks-box .konteks-judul { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--hijau-gelap); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #d4d0c4; }
+    .konteks-box .konteks-isi { color: #1c1c1c; }
+
+    .section-header { margin: 40px 0 20px; padding: 10px 18px; background: var(--hijau-gelap); border-radius: 6px; }
+    .section-header .judul { font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+    .section-header .sub-judul { font-size: 14px; color: #a8d5b5; margin-top: 4px; }
+    .section-header.biru { background: #1e3a5f; }
+    .section-header.biru .sub-judul { color: #93c5fd; }
+    .section-header.tadabur { background: #5b3a1a; }
+    .section-header.tadabur .sub-judul { color: var(--emas); opacity: .8; }
+    .section-header.khatimah { background: var(--ungu-pekat); }
+    .section-header.khatimah .sub-judul { color: #d8b4fe; }
+
+    /* Sub-section header untuk diagram per kalimat */
+    .sub-section-header { margin: 24px 0 12px; padding: 8px 14px; background: #f0f7f2; border-left: 4px solid var(--hijau-gelap); border-radius: 4px; text-align: center; }   /* V18.2 M4 — rata tengah */
+    .sub-section-header .sub-judul-kalimat { font-size: 13px; font-weight: 700; color: var(--hijau-gelap); }
+    .sub-section-header .sub-arab-kalimat { font-family: var(--font-arab); font-size: 22px; color: var(--hijau-gelap); direction: rtl; margin-top: 4px; }
+    .sub-section-header .sub-terjemah-kalimat { font-size: 11px; color: #666; font-style: italic; margin-top: 2px; }
+
+    .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-prosa { padding: 14px 20px; line-height: 1.9; }  /* V16.6: §8 prose-card (Catatan Struktur/Konsep/Tafsir); selaras .konteks-box 14px 18px & sel tabel 20px — cegah teks/bullet menempel border */
+    .kartu-head { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #f0ebe0; text-align: center; }
+    .kartu-head .kh-left   { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 1; }
+    .kartu-head .kh-center { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 2; }
+    .kartu-head .kh-right  { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 3; }
+    .kartu-head .kh-center .kartu-arab-besar { font-size: 40px; line-height: 1.6; }
+    .kartu-head .kh-right .kartu-arti { font-style: italic; color: #666; font-size: 14px; }
+    .kartu-head.warna-kata   { background: #f0f7f2; }
+    .kartu-head.warna-fiil   { background: #fff7ed; }
+    .kartu-head.warna-harf   { background: #f1f5f9; }
+    .kartu-head.warna-dhamir { background: #e0f2fe; }
+    .kartu-head.warna-zharf  { background: #fef9e7; }
+    .kartu-head.warna-frasa1 { background: #eef4fb; }
+    .kartu-head.warna-frasa2 { background: #f5f0fb; }
+    .kartu-head.warna-frasa3 { background: #fdf6ec; }
+    .kartu-head.warna-frasa4 { background: #eaf1ea; }   /* V17-7 — frasa keempat (kamilah) */
+    .kartu-head.warna-frasa5 { background: #e6f0ef; }   /* V18-0 — frasa kelima */
+    .kartu-head.warna-frasa6 { background: #fdf2f8; }   /* V18-0 — frasa keenam */
+
+    .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
+    .badge-kata   { background: var(--hijau-gelap); color: white; }
+    .badge-fi     { background: var(--merah-fi); color: white; }
+    .badge-harf   { background: #475569; color: white; }
+    .badge-dhamir { background: #0284c7; color: white; }
+    .badge-zharf  { background: #ca8a04; color: white; }
+    .badge-frasa1 { background: var(--biru-tua); color: white; }
+    .badge-frasa2 { background: var(--ungu); color: white; }
+    .badge-frasa3 { background: var(--coklat); color: white; }
+    .badge-frasa4 { background: var(--hijau-gelap); color: white; }   /* V17-7 */
+    .badge-frasa5 { background: #115e59; color: white; }   /* V18-0 */
+    .badge-frasa6 { background: #be185d; color: white; }   /* V18-0 */
+    .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
+    .badge-khatimah { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--ungu-pekat); color: white; }
+
+    .kartu-arab-besar { font-size: 40px; font-family: var(--font-arab); color: #1a1a1a; line-height: 1.5; }
+    .kartu-arti { font-size: 13px; color: #555; font-style: italic; }
+    .kartu-tabel { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+    .kartu-tabel tr { border-bottom: 1px solid #f5f0e8; }
+    .kartu-tabel tr:last-child { border-bottom: none; }
+    .kartu-tabel td { padding: 9px 20px; vertical-align: top; word-wrap: break-word; }
+    .kartu-tabel td:first-child { color: #777; width: 22%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .kartu-tabel td:last-child  { color: #1a1a1a; width: 78%; }
+
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 4px; letter-spacing: .3px; margin-right: 4px; margin-bottom: 2px; }
+    .tag-n       { background: #dbeafe; color: #1e3a8a; }
+    .tag-fi      { background: #ffedd5; color: #9a3412; }
+    .tag-adj     { background: #d1fae5; color: #065f46; }
+    .tag-jar     { background: #fef3c7; color: #92400e; }
+    .tag-nashab  { background: #fce7f3; color: #9d174d; }
+    .tag-idhafah { background: #fce7f3; color: #831843; }
+    .tag-harf    { background: #f1f5f9; color: #475569; }
+    .tag-marfu   { background: #dcfce7; color: #166534; }
+    .tag-majrur  { background: #fef3c7; color: #92400e; }
+    .tag-mabni   { background: #e0e7ff; color: #3730a3; }
+    .tag-dhamir  { background: #e0f2fe; color: #0c4a6e; }
+
+    .arab-inline  { font-family: var(--font-arab); font-size: 24px; color: var(--hijau-gelap); direction: rtl; display: inline-block; }
+    .arab-istilah { font-family: var(--font-arab); font-size: 19px; color: #555; direction: rtl; display: inline-block; }
+
+    .poin-list { list-style: none; padding: 0; margin: 0; }
+    .poin-list li { padding: 4px 0 4px 18px; position: relative; }
+    .poin-list li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 12px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--hijau-gelap);
+    }
+
+    .tashrif-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-top: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .tashrif-item { text-align: center; }
+    .tashrif-arab { font-family: var(--font-arab); font-size: 24px; color: #9a3412; direction: rtl; display: block; line-height: 1.8; }
+    .tashrif-label { font-size: 11px; color: #888; margin-top: 2px; }
+    .tashrif-panah { font-size: 16px; color: #d97706; }
+    .tashrif-akar { background: #f0f7f2; border: 1px solid #1a472a; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-akar .tashrif-arab { color: #1a472a; }
+    .tashrif-subyek { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-subyek .tashrif-arab { color: #c2410c; font-weight: 700; }
+    .tashrif-link { font-size: 12px; color: #92400e; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #fed7aa; width: 100%; }
+    .tashrif-link a { color: #c2410c; text-decoration: underline; }
+
+    /* ═══ V15.4 — POLA 59: Tashrif-Box Dua Sub-Pola ═══════════════════════
+       Lampiran 1 (Sub-Pola A) — untuk fi'il + masdar
+       Layout: 3 kotak inline baris atas + 1 kotak orange FULL-WIDTH baris
+       bawah + prose .tashrif-keterangan
+       Source verbatim: 097-04.html, 097-05.html
+       ════════════════════════════════════════════════════════════════════ */
+    .tashrif-baris { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 12px; }
+    .kotak-akar { background: #f0f7f2; border: 1.5px solid #1a472a; border-radius: 6px; padding: 8px 14px; min-width: 90px; text-align: center; }
+    .kotak-akar .kotak-arab { font-family: var(--font-arab); font-size: 22px; color: #1a472a; direction: rtl; font-weight: 700; line-height: 1.4; }
+    .kotak-akar .kotak-info { font-size: 10px; color: #1a472a; margin-top: 4px; }
+    .kotak-tashrif { text-align: center; padding: 4px 8px; min-width: 80px; }
+    .kotak-tashrif .kotak-arab { font-family: var(--font-arab); font-size: 22px; color: #9a3412; direction: rtl; line-height: 1.4; }
+    .kotak-tashrif .kotak-info { font-size: 10px; color: #888; margin-top: 4px; }
+    .kotak-subyek-baris { display: flex; justify-content: center; margin: 8px 0; }
+    .kotak-subyek-full { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 10px 18px; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; max-width: 100%; }
+    .kotak-arab-inline { font-family: var(--font-arab); font-size: 22px; color: #c2410c; font-weight: 700; direction: rtl; line-height: 1.4; }
+    .kotak-label { font-size: 12px; color: #c2410c; }
+    .tashrif-keterangan { font-size: 12.5px; color: #78350f; padding-top: 10px; border-top: 1px dashed #fed7aa; line-height: 1.7; }
+    .tashrif-keterangan a { color: #c2410c; text-decoration: underline; font-weight: 600; }
+    .tashrif-keterangan .arab-istilah { color: #9a3412; font-weight: 600; }
+
+    /* Lampiran 2 (Sub-Pola B) — untuk isim musytaq (non-masdar)
+       Layout: 4 kotak inline SEMUA di satu baris (akar → madhy → mudhari'
+       → kotak orange INLINE) + 1-baris .tashrif-keterangan-singkat */
+    .kotak-subyek-inline { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 14px; min-width: 90px; text-align: center; }
+    .kotak-subyek-inline .kotak-arab { font-family: var(--font-arab); font-size: 22px; color: #c2410c; direction: rtl; font-weight: 700; line-height: 1.4; }
+    .kotak-subyek-inline .kotak-info { font-size: 10px; color: #c2410c; margin-top: 4px; }
+    .tashrif-keterangan-singkat { font-size: 12.5px; color: #78350f; padding-top: 10px; margin-top: 4px; border-top: 1px dashed #fed7aa; line-height: 1.7; text-align: center; }
+    .tashrif-keterangan-singkat a { color: #c2410c; text-decoration: underline; font-weight: 600; }
+    /* V17.0 — pointer (poin-list) di dalam kotak tashrif: tema oranye */
+    .tashrif-keterangan .poin-list, .tashrif-keterangan-singkat .poin-list { text-align: left; }
+    .tashrif-keterangan .poin-list li, .tashrif-keterangan-singkat .poin-list li { font-size: 12.5px; color: #78350f; line-height: 1.6; }
+    .tashrif-keterangan .poin-list li::before, .tashrif-keterangan-singkat .poin-list li::before { background: #c2410c; top: 11px; }
+    .tashrif-keterangan .poin-list a, .tashrif-keterangan-singkat .poin-list a { color: #c2410c; text-decoration: underline; font-weight: 600; }
+    .tashrif-keterangan .poin-list .arab-istilah, .tashrif-keterangan-singkat .poin-list .arab-istilah { color: #9a3412; font-weight: 600; }
+    /* ═══ END V15.4 — POLA 59 ════════════════════════════════════════════ */
+
+    /* ═══ V15.5 — TADABUR-BOX BAKU (Prinsip ㉜) ════════════════════════════ */
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
+    .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
+    .tadabur-isi { padding: 18px 22px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }   /* ← V15.5: padding 22px */
+    .tadabur-isi p { margin-bottom: 10px; }
+    .tadabur-isi p:last-child { margin-bottom: 0; }
+    .arab-kutip { display: block; font-family: var(--font-arab); font-size: 30px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+    /* ═══ END V15.5 — Prinsip ㉜ ══════════════════════════════════════════ */
+
+    /* ═══ V17.3 — WARNA TINGKAT SVG 5 & 6 (STANDAR-DIAGRAM-SVG) ════════════ */
+    /* Y terkunci: L1=108 · L2=218 · L3=328 · L4=436 · L5=546 · L6=656       */
+    /* Dipakai sebagai nilai stroke pada <line>/<polyline> di dalam SVG.     */
+    :root {
+      --svg-tingkat-5: #115e59;  /* teal tua — hanya muncul bila 6 tingkat  */
+      --svg-tingkat-6: #1e3a8a;  /* biru tua — tingkat kāmilah (dengan rect)*/
+      --svg-taqdir:    #9ca3af;  /* abu-abu — unsur dibuang / lintas ayat   */
+    }
+    /* ═══ END V17.3 — warna tingkat SVG ════════════════════════════════════ */
+
+    /* ═══ V15.5 — POLA 62: BOX HUBUNGAN DENGAN AYAT (HTML, BUKAN SVG) ═══════ */
+    .hubungan-ayat-box {
+      width: 90%;
+      max-width: 720px;
+      margin: 16px auto;
+      padding: 18px 22px;
+      background: #fff7ed;
+      border-left: 5px solid #c2410c;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .hubungan-ayat-judul {
+      font-size: 13px;
+      font-weight: 700;
+      color: #9a3412;
+      text-align: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #fb923c;
+    }
+    .hubungan-ayat-isi {
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    /* ═══ V17.3 — POLA 79: BOX HUBUNGAN ANTAR-SEGMEN (HTML, BUKAN SVG) ═════ */
+    /* Dipakai bila SATU ayat panjang dipecah menjadi beberapa segmen SVG.   */
+    /* BEDAKAN dari .hubungan-ayat-box (oranye) yang untuk LINTAS FILE.      */
+    .hubungan-segmen-box {
+      width: 90%;
+      max-width: 720px;
+      margin: 16px auto;
+      padding: 18px 22px;
+      background: #eff6ff;
+      border-left: 5px solid #1e3a8a;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .hubungan-segmen-judul {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e3a8a;
+      text-align: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #60a5fa;
+    }
+    .hubungan-segmen-isi {
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    /* ═══ END V17.3 — POLA 79 ══════════════════════════════════════════════ */
+
+    .hubungan-ayat-arab {
+      font-family: 'Scheherazade New', serif;
+      font-size: 22px;
+      text-align: center;
+      color: #7c2d12;
+      margin: 8px 0;
+      direction: rtl;
+    }
+    .hubungan-ayat-takdir {
+      background: #fef3c7;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin-top: 12px;
+    }
+    .hubungan-ayat-takdir-label {
+      font-weight: 600;
+      font-size: 12px;
+      color: #92400e;
+      margin-bottom: 4px;
+    }
+    .hubungan-ayat-takdir-arab {
+      font-family: 'Scheherazade New', serif;
+      font-size: 18px;
+      text-align: center;
+      color: #7c2d12;
+      margin: 4px 0;
+      direction: rtl;
+    }
+    .hubungan-ayat-takdir-arti {
+      text-align: center;
+      font-style: italic;
+      color: #6b7280;
+      font-size: 12px;
+    }
+    /* ═══ END V15.5 — POLA 62 ════════════════════════════════════════════ */
+
+    /* KHATIMAH SURAH BOX */
+    .khatimah-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--ungu-pekat); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .khatimah-head { background: #faf5ff; padding: 12px 20px; border-bottom: 1px solid #e9d5ff; display: flex; align-items: center; gap: 10px; }
+    .khatimah-judul { font-size: 13px; font-weight: 700; color: var(--ungu-pekat); }
+    .khatimah-isi { padding: 18px 20px; font-size: 14px; line-height: 1.85; color: #2d2d2d; }
+    .khatimah-isi p { margin-bottom: 10px; }
+    .khatimah-isi p:last-child { margin-bottom: 0; }
+    .khatimah-tabel { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; }
+    .khatimah-tabel th, .khatimah-tabel td { padding: 7px 10px; border: 1px solid #e9d5ff; text-align: left; vertical-align: top; }
+    .khatimah-tabel th { background: #faf5ff; color: var(--ungu-pekat); font-weight: 700; }
+
+    .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
+    .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+    .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
+    .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
+
+    .nav-bawah { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 32px 0 8px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .nav-btn { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700; color: var(--hijau-gelap); text-decoration: none; transition: background .2s, border-color .2s; }
+    .nav-btn:hover { background: #e8f0e8; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda { background: var(--hijau-gelap); color: white; border-color: var(--hijau-gelap); }
+    .nav-btn.beranda:hover { background: var(--hijau-medium); }
+    .nav-btn.edge { background: rgba(212,175,55,.18); border-color: rgba(212,175,55,.5); color: #92400e; }
+    .nav-btn.edge:hover { background: rgba(212,175,55,.28); }
+    .nav-info { font-size: 12.5px; color: #888; text-align: center; flex: 1; min-width: 160px; }
+
+    footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
+    footer a { color: var(--emas); text-decoration: none; }
+
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .iltifat-isi p { margin-bottom: 8px; }
+    .iltifat-isi p:last-child { margin-bottom: 0; }
+
+    .konsep-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid var(--biru-tua); border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .konsep-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--biru-tua); margin-bottom: 10px; }
+    .konsep-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .konsep-isi p { margin-bottom: 8px; }
+    .konsep-isi p:last-child { margin-bottom: 0; }
+    .konsep-tabel { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+    .konsep-tabel th, .konsep-tabel td { padding: 7px 10px; border: 1px solid #bfdbfe; text-align: left; vertical-align: top; }
+    .konsep-tabel th { background: #dbeafe; color: var(--biru-tua); font-weight: 700; }
+
+    /* V18-0G butir 1 — kotak penjelasan TANDA NASH (tajwid/penulisan, bukan nahwu) */
+    .tanda-nash-box { background: #f4f6f8; border: 1px solid #d7dde3; border-left: 5px solid #64748b; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .tanda-nash-judul { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #475569; margin-bottom: 10px; }
+    .tanda-nash-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .tanda-nash-isi p { margin-bottom: 8px; }
+    .tanda-nash-isi p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 680px) {
+      .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .container { padding: 20px 14px; }
+      .teks-ayat { font-size: 28px; }
+      .kartu-arab-besar { font-size: 36px; }
+      .kartu-tabel td { padding: 8px 14px; }
+      .kartu-tabel td:first-child { width: 36%; font-size: 11px; }
+      .sub-section-header .sub-arab-kalimat { font-size: 18px; }
+    }
+    /* ══ V18.0 — tambahan kerangka (dari TEMPLATE-AYAT V18.0) ══ */
+    .nowrap-waqaf { white-space: nowrap; }
+    .kotak-arab, .kotak-arab-inline, .kartu-arab-besar { padding-bottom: .45em; }
+    /* ══ 079 — KARTU FI'IL & ISIM MUSYTAQ BARU (MASUKAN-079 M6–M12) ══
+       Baris "Pola dan Makna Wazan" + grid tashrif istilahi 10 sel.
+       Tautan baris wazan menuju 000-01-wazan.html#<anchor>. */
+    .tautan-wazan { color: #c2410c; font-weight: 700; text-decoration: underline; }
+    .ti-judul { font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: #9a3412; }
+    .tashrif-istilahi { display: grid; grid-template-columns: repeat(5, 1fr); direction: rtl; border: 1px solid #fed7aa; border-radius: 6px; overflow: hidden; background: white; margin-bottom: 12px; }
+    .ti-sel { direction: ltr; text-align: center; padding: 6px 4px 8px; border-left: 1px solid #fde7c9; border-bottom: 1px solid #fde7c9; }
+    .ti-label { font-size: 10.5px; color: #888; font-weight: 700; letter-spacing: .2px; }
+    .ti-arab { font-family: var(--font-arab); font-size: 22px; color: #9a3412; direction: rtl; line-height: 1.6; display: block; }
+    .ti-sel.dipakai { background: #fff3e0; box-shadow: inset 0 0 0 2px #c2410c; }
+    .ti-sel.dipakai .ti-arab { color: #c2410c; font-weight: 700; }
+    .ti-sel.kosong .ti-arab { color: #c4b5a5; font-family: var(--font-latin); font-size: 18px; }
+    .ti-tambahan-judul { font-size: 10.5px; color: #9a3412; font-weight: 700; letter-spacing: .3px; margin: 0 0 6px; text-align: right; }
+    .ti-tambahan { display: grid; grid-template-columns: repeat(5, 1fr); direction: rtl; margin: -4px 0 12px; }
+    .ti-tambahan .ti-sel { border: 1px solid #fed7aa; border-radius: 6px; background: white; }
+    @media (max-width: 680px) {
+      .tashrif-istilahi, .ti-tambahan { grid-template-columns: repeat(2, 1fr); }
+    }
+    /* ══ 079 — ANCHOR KOTAK & KARTU (MASUKAN-079 M17) ══
+       id permanen pada kepala kartu (k-S-A-N kata, f-S-A-N frasa) dan kotak bernama (konsep-…, iltifat-…, tanda-…).
+       scroll-margin agar sasaran tidak tertutup header sticky; :target memberi bingkai penanda. */
+    .kartu-head[id], .konsep-box[id], .iltifat-box[id], .tanda-nash-box[id] { scroll-margin-top: 90px; }
+    .konsep-box:target, .iltifat-box:target, .tanda-nash-box:target, .kartu-head:target { outline: 3px solid #c2410c; outline-offset: 3px; }
+    @media (max-width: 680px) {
+      /* V18-1H · V18-2O — header tidak sticky di ponsel */
+      header { position: static; }
+      .kartu-head[id], .konsep-box[id], .iltifat-box[id], .tanda-nash-box[id] { scroll-margin-top: 12px; }
+    }
+    /* ══ CALON V18.3 — pilot retrofit 001 Al-Fatihah (27 Oktober 2026) ══
+       ① M9 I-1b: lafazh taqdir di kepala kartu frasa — unsur SAUDARA .kartu-arab-besar
+          (bukan di dalamnya; BONUS 13), berkurung siku, kelabu = simpul taqdir SVG, ±75%.
+       ② M10 ③: blok video (hanya 001 dan 108–114), ikon play dengan CSS, tanpa elemen grafik vektor. */
+    .kartu-head .kh-center { flex-wrap: wrap; gap: 2px 12px; }
+    .kartu-head .kh-center:has(.taqdir-kepala) { direction: rtl; }   /* urutan DOM = urutan baca: taqdir muqaddam ditulis sebelum nash, mu'akhkhar sesudahnya */
+    .taqdir-kepala { font-family: var(--font-arab); font-size: 30px; color: #9ca3af; direction: rtl; line-height: 1.6; padding-bottom: .45em; }
+    .section-header.video { background: #7f1d1d; }
+    .section-header.video .sub-judul { color: #fecaca; }
+    .video-section { margin: 8px 0 12px; }
+    .video-link { display: block; max-width: 680px; margin: 0 auto; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.15); text-decoration: none; border: 1px solid var(--border); transition: transform .2s, box-shadow .2s; }
+    .video-link:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.22); }
+    .video-thumb { position: relative; background: #000; line-height: 0; }
+    .video-thumb img { width: 100%; display: block; opacity: .92; }
+    .video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 72px; height: 72px; background: rgba(220,38,38,.92); border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,.4); }
+    .video-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%,-50%); border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent white; }
+    .video-domain { position: absolute; bottom: 10px; right: 12px; background: rgba(0,0,0,.75); color: white; font-size: 11px; line-height: 1.4; padding: 3px 8px; border-radius: 4px; }
+    .video-bar { background: #7f1d1d; padding: 14px 18px; display: flex; align-items: center; gap: 14px; }
+    .video-icon { flex-shrink: 0; width: 40px; height: 40px; background: #dc2626; border-radius: 8px; position: relative; }
+    .video-icon::after { content: ''; position: absolute; top: 50%; left: 55%; transform: translate(-50%,-50%); border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent white; }
+    .video-info { flex: 1; min-width: 0; }
+    .video-title { font-size: 13.5px; font-weight: 700; color: white; line-height: 1.5; }
+    .video-btn { flex-shrink: 0; background: var(--emas); color: #1a1a1a; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 6px; white-space: nowrap; }
+    @media (max-width: 680px) { .taqdir-kepala { font-size: 27px; } }
+      /* ——— POLA 83 · CSS KHATIMAH SURAH 4-KOMPONEN (ayat khatmil) ——— */
+    .khatimah-box-gelap { background: linear-gradient(135deg,#1a2332,#0f172a); color: #e2e8f0; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; }
+    .khatimah-baris { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 11px 14px; margin-bottom: 9px; }
+    .khatimah-baris.akhir { background: #fef3c7; border: 2px solid #d97706; color: #3f2d0a; }
+    .khatimah-nomor { flex: 0 0 auto; min-width: 32px; text-align: center; background: #334155; color: #fff; font-size: 11px; font-weight: 700; border-radius: 6px; padding: 4px 7px; }
+    .khatimah-baris.akhir .khatimah-nomor { background: #92400e; color: #fff; }
+    .khatimah-teks { flex: 1 1 auto; }
+    .khatimah-arab { font-family: 'Scheherazade New', serif; font-size: 19px; direction: rtl; text-align: right; line-height: 1.9; color: #f1f5f9; }
+    .khatimah-baris.akhir .khatimah-arab { color: #451a03; }
+    .khatimah-arab, .khatimah-fungsi { display: block; }   /* V18 — Arab dan fungsi bertumpuk, tidak sebaris */
+    .khatimah-fungsi { font-size: 12.5px; line-height: 1.7; color: #cbd5e1; margin-top: 3px; }
+    .khatimah-baris.akhir .khatimah-fungsi { color: #78350f; }
+    .khatimah-catatan { font-size: 13px; line-height: 1.8; color: #cbd5e1; margin-top: 14px; }
+    .konsep-kum-tabel { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; }
+    .konsep-kum-tabel th, .konsep-kum-tabel td { padding: 8px 11px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+    .konsep-kum-tabel th { background: var(--ungu-pekat); color: #fff; font-weight: 700; }
+    .kum-judul-nahwu { font-size: 13.5px; font-weight: 700; color: #1a472a; margin: 18px 0 8px; padding-left: 10px; border-left: 4px solid #1a472a; }
+    .kum-judul-balaghah { font-size: 13.5px; font-weight: 700; color: #5b21b6; margin: 18px 0 8px; padding-left: 10px; border-left: 4px solid #5b21b6; }
+    .doa-box { background: #fef3c7; border-left: 5px solid #92400e; border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 18px 0; }
+    .doa-arab { font-family: 'Scheherazade New', serif; font-size: 22px; color: #78350f; line-height: 2; direction: rtl; text-align: right; }
+    .doa-terjemah { font-size: 13.5px; font-style: italic; color: #78350f; margin-top: 10px; line-height: 1.8; }
+    .syukur-box { background: #ecfdf5; border-left: 5px solid #166534; border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 18px 0; font-size: 13.5px; line-height: 1.85; color: #14532d; }
+    .syukur-box p { margin-bottom: 10px; }
+    .syukur-tanda { display: block; text-align: right; margin-top: 14px; font-size: 12px; font-weight: 700; color: #166534; }
+</style>
 </head>
+
 <body>
 
+<!-- ╔══ COPY LITERAL — HEADER STICKY ══╗ -->
 <header>
   <div class="header-inner">
     <a href="index.html" class="header-info">
-      <div class="hi-label">Grammar Al-Qur'an</div>
-      <div class="hi-surah">Al-Qari'ah · 101 <span class="arab-surah">ٱلْقَارِعَةُ</span></div>
-      <div class="hi-ayat" id="hi-ayat-text">Ayat 5 · (101:5)</div>
+      <span class="hi-label">Analisis Gramatikal Al-Qur'an</span>
+      <span class="hi-surah">
+        Surah Al-Qari'ah
+        <span class="arab-surah">القارعة</span>
+      </span>
+      <span class="hi-ayat">Ayat 5 &nbsp;·&nbsp; (101:5) — Dan Gunung-gunung seperti Bulu Domba yang Dihambur</span>
     </a>
     <div class="nav-dropdowns">
+      <a id="hdr-prev" class="nav-btn-hdr" href="101-04.html" title="Ayat sebelumnya">← Ayat 4</a>
       <div class="dropdown-wrapper">
         <label for="dd-surah">Pilih Surah</label>
         <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
@@ -180,730 +508,947 @@
         <label for="dd-ayat">Pilih Ayat</label>
         <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
       </div>
-      <button class="btn-go" onclick="navigasiKeAyat()">Buka →</button>
+      <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
+      <a id="hdr-next" class="nav-btn-hdr" href="101-06.html" title="Ayat berikutnya">Ayat 6 →</a>
     </div>
     <a href="index.html" class="nav-home">⌂ Beranda</a>
   </div>
 </header>
+<!-- ╚══ END COPY LITERAL — HEADER STICKY ══╝ -->
 
 <div class="container">
 
-<!-- §1 AYAT BOX -->
-<div class="ayat-box">
-  <div class="label-kecil" id="label-ayat-box">Ayat Lengkap · Al-Qari'ah : 5</div>
-  <div class="teks-ayat arab">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
-  <div class="terjemahan">"Dan gunung-gunung menjadi seperti bulu yang dihambur-hamburkan."</div>
-</div>
-
-<!-- §2 KONTEKS -->
-<div class="konteks-box">
-  <strong>Konteks Ayat 5:</strong> Ayat 5 adalah <strong>perumpamaan kedua</strong> dalam babak gambaran peristiwa — melanjutkan dan melengkapi perumpamaan pertama di <a href="101-04.html">ayat 4</a>. Jika ayat 4 melukiskan manusia seperti laron yang bertebaran, ayat 5 melukiskan gunung-gunung seperti bulu yang dicabik:
-  <ul class="poin-list" style="margin-top:8px;">
-    <li><strong>وَ</strong> — kata sambung (harf-athaf) yang menghubungkan ayat ini dengan <a href="101-04.html">ayat 4</a>. Athaf antara dua kalimat lengkap — keduanya berpasangan sebagai dua perumpamaan.</li>
-    <li><strong>تَكُونُ ٱلْجِبَالُ كَ...</strong> — struktur paralel dengan <a href="101-04.html">ayat 4</a>: fi'il-naqish (تَكُونُ) + ism-kaana (ٱلْجِبَالُ) + khabar-kaana (jar-majrur). Pola yang sama dengan subyek berbeda.</li>
-    <li><strong>كَٱلْعِهْنِ ٱلْمَنفُوشِ</strong> — perumpamaan gunung dengan <em>bulu yang dicabik</em>. Gunung yang kita kira paling kokoh, stabil, dan tetap — pada hari itu menjadi seperti serpihan bulu yang ringan.</li>
-    <li>Dua perumpamaan simetris (ayat 4 + ayat 5) — <em>yang kecil</em> (manusia) dan <em>yang besar</em> (gunung) sama-sama runtuh tak berdaya. Ini kekayaan balaghah Al-Qur'an: kontras yang mengukuhkan makna.</li>
-  </ul>
-</div>
-
-<!-- §3 ANALISIS TINGKAT 1 -->
-<div class="section-header">
-  <div class="judul">Analisis Tingkat 1 : Analisis Kata</div>
-  <div class="sub-judul">Pembahasan kata per kata secara individual</div>
-</div>
-
-<!-- K1: وَ -->
-<div class="kartu">
-  <div class="kartu-head-harf3">
-    <span class="badge badge-harf kh3-badge">HARF · Wawu Penghubung · (101:5:1)</span>
-    <div class="kh3-arab arab">وَ</div>
-    <div class="kh3-arti">dan (kata sambung setara)</div>
+  <!-- § 1 — AYAT LENGKAP -->
+  <div class="ayat-box">
+    <div class="label-kecil" id="label-ayat-box">Surah Al-Qari'ah — Ayat 5</div>
+    <div class="teks-ayat arab">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
+    <div class="terjemahan">dan gunung-gunung akan seperti bulu domba yang dihambur.</div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Jenis Kata</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-harf">Harf</span> wawu penghubung (harf-athaf)</li>
-        <li>berfungsi menghubungkan kalimat ayat 5 dengan kalimat <a href="101-04.html">ayat 4</a></li>
-        <li>sama persis dengan <span class="arab-inline">وَ</span> di <a href="101-03.html">ayat 3</a> — analisis lengkap ada di sana</li>
-      </ul>
-    </td></tr>
-    <tr><td>Arti</td><td>
-      <ul class="poin-list">
-        <li>dan</li>
-      </ul>
-    </td></tr>
-    <tr><td>Fungsi</td><td>
-      <ul class="poin-list">
-        <li>Menghubungkan unsur yang disambung (ma'thuf): kalimat ayat 5 <span class="arab-inline" style="font-size:16px;">تَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</span></li>
-        <li>Kepada unsur tujuan (ma'thuf-ilaih): kalimat <a href="101-04.html">ayat 4</a> <span class="arab-inline" style="font-size:16px;">يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ ٱلْمَبْثُوثِ</span></li>
-      </ul>
-    </td></tr>
-    <tr><td>Kedudukan Gramatikal</td><td>
-      <ul class="poin-list">
-        <li>Berperan sebagai kata sambung setara (harf-athaf) yang menyambungkan dua kalimat, dimana kedua unsur tersebut memiliki kedudukan yang setara</li>
-        <li>Mengukuhkan hubungan paralel antara dua perumpamaan: laron (ayat 4) dan bulu (ayat 5)</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
 
-<!-- K2: تَكُونُ -->
-<div class="kartu">
-  <div class="kartu-head-harf3" style="background:#fff7ed;">
-    <span class="badge badge-fi kh3-badge">FI'IL · Mudhari' · Naqish · (101:5:2)</span>
-    <div class="kh3-arab arab">تَكُونُ</div>
-    <div class="kh3-arti">(dia, perempuan) menjadi</div>
+  <!-- § 2 — CATATAN KONTEKS -->
+  <div class="konteks-box">
+    <div class="konteks-judul">Catatan Konteks:</div>
+    <div class="konteks-isi">
+      <p>Ibnu Katsir: gunung-gunung menjadi seperti bulu domba yang dihambur, yang mulai tercerai-berai; kata <em>al-'ihn</em> ditafsirkan sebagai bulu domba (wol) oleh Mujahid, 'Ikrimah, Sa'id bin Jubair, Al-Hasan, Qatadah, dan lainnya.</p>
+      <p>As-Sa'di: gunung yang keras dan kokoh menjadi seperti bulu domba yang dihambur, yang sangat lemah sehingga angin sedikit pun menerbangkannya; sesudah itu ia menjadi debu yang beterbangan.</p>
+    </div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Jenis Kata</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-fi">Fi'il Mudhari'</span> Kata kerja bentuk sekarang/akan datang</li>
-        <li>dari akar <span class="arab-inline" style="font-size:16px;">ك - و - ن</span> — ada, menjadi</li>
-        <li><strong>Fi'il-naqish</strong> — salah satu dari kelompok kaana wa akhawatuha (kaana dan saudara-saudaranya)</li>
-        <li>bentuk mudhari' mu'annats (perempuan) karena subyeknya <span class="arab-inline">ٱلْجِبَالُ</span> adalah jamak taksir yang secara gramatikal diperlakukan mu'annats</li>
-        <li>konsep lengkap fi'il-naqish (kaana wa akhawatuha) sudah dibahas di <a href="101-04.html">ayat 4</a></li>
-      </ul>
-    </td></tr>
-    <tr><td>Arti</td><td>
-      <ul class="poin-list">
-        <li>(dia) menjadi</li>
-        <li>(dia) adalah — makna kopula (penghubung subyek-predikat)</li>
-        <li>bentuk <em>mudhari'</em> menunjukkan kejadian yang terjadi <em>saat itu</em> atau <em>akan terjadi</em></li>
-      </ul>
-    </td></tr>
-    <tr><td>Fa'il (Pelaku)</td><td>Dalam fi'il-naqish, fa'il tidak berdiri sendiri. Peran "subyek" diambil alih oleh <em>ism-kaana</em> — dalam ayat ini: <span class="arab-inline">ٱلْجِبَالُ</span>.</td></tr>
-    <tr><td>Akar &amp; Tashrif</td><td>
-      <div class="tashrif-box">
-        <div class="tashrif-label">TASHRIF — Dari Akar ke Fi'il dalam Ayat</div>
-        <div class="tashrif-grid">
-          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab">ك-و-ن</span></div>
-          <div class="tashrif-panah">→</div>
-          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Madhi هي</div><span class="tashrif-kotak-arab arab">كَانَتْ</span></div>
-          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Mudhari' هي</div><span class="tashrif-kotak-arab arab">تَكُونُ</span></div>
-          <div class="tashrif-panah">→</div>
-          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">dalam ayat (fi'il-naqish)</div><span class="tashrif-kotak-arab arab">تَكُونُ</span></div>
-        </div>
-        <div class="tashrif-isi">
-          <em>Catatan:</em> Bentuk <span class="arab-inline" style="font-size:16px;">تَكُونُ</span> (dengan ta di awal) dipakai karena subyek ism-kaana adalah <span class="arab-inline" style="font-size:16px;">ٱلْجِبَالُ</span> — jamak taksir yang diperlakukan sebagai mu'annats secara gramatikal. Bandingkan dengan <span class="arab-inline" style="font-size:16px;">يَكُونُ</span> di <a href="101-04.html">ayat 4</a> yang subyeknya mudzakkar (<span class="arab-inline">ٱلنَّاسُ</span>).
-        </div>
-        <div class="link-eksternal-wrapper">
-          Detail bentuk kata kerja (konjugasi) untuk kata kerja <span class="arab-inline" style="font-size:15px;">كَانَ</span> dapat dilihat pada link berikut:
-          <br>
-          <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D9%83%D8%A7%D9%86.html"
-             target="_blank" rel="noopener noreferrer" class="link-eksternal">
-            Reverso Conjugator ↗
-          </a>
-        </div>
+
+  <!-- § 3 — ANALISIS TINGKAT 1 — KATA -->
+  <div class="section-header">
+    <div class="judul">Analisis Tingkat 1 — Kata</div>
+    <div class="sub-judul">Analisis kaidah nahwu pada setiap kata secara individual</div>
+  </div>
+
+  <div class="sub-section-header">
+    <div class="sub-judul-kalimat">Gambaran Gunung pada Hari Itu — Enam Morfem dan Satu Taqdir</div>
+    <div class="sub-arab-kalimat arab">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
+    <div class="sub-terjemah-kalimat">dan gunung-gunung akan seperti bulu domba yang dihambur</div>
+  </div>
+
+  <!-- KARTU 1 — morfem 1 -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf" id="k-101-5-1">
+      <div class="kh-left"><span class="badge badge-harf">HARF 'ATHAF · (101:5:1)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">وَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">dan</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf 'athaf — wawu yang menggabungkan kalimat sesudahnya dengan kalimat sebelumnya dalam hukum i'rab (Ad-Da'as dkk.: "ma'thufah 'ala ma qablaha").</li>
+            <li>Jamid — huruf tidak dapat ditashrifkan.</li>
+            <li>Di nash ia ditulis bersambung dengan kata sesudahnya dalam satu kata grafis, tetapi ia morfem tersendiri.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mabni (bentuknya tetap) atas fathah; tidak memiliki kedudukan i'rab.</li>
+            <li>Beramal secara 'athaf: yang sesudahnya mengikuti hukum yang sebelumnya.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Peran Kata Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Meng-'athaf-kan kalimat <span class="arab-istilah">تَكُونُ الْجِبَالُ كَالْعِهْنِ الْمَنفُوشِ</span> kepada kalimat <span class="arab-istilah">يَكُونُ النَّاسُ كَالْفَرَاشِ الْمَبْثُوثِ</span> di ayat 4 — keduanya mudhaf ilaih bagi zharaf <span class="arab-istilah">يَوْمَ</span>.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Jenis-jenis wawu telah dibahas pada Surah Al-Fatihah (1), ayat 5 — <a href="https://grammar-quran.com/001-05.html#konsep-jenis-wawu" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-05.html#konsep-jenis-wawu</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Wawu 'athaf telah dibahas pada Surah Al-Fatihah (1), ayat 5 — <a href="https://grammar-quran.com/001-05.html#konsep-wawu-athaf" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-05.html#konsep-wawu-athaf</a>
+    </div>
+  </div>
+  <!-- KARTU 2 — morfem 2 -->
+  <div class="kartu">
+    <div class="kartu-head warna-fiil" id="k-101-5-2" data-akhir="asli">
+      <div class="kh-left"><span class="badge badge-fi">FI'IL MUDHARI' · NAQISH · (101:5:2)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">تَكُونُ</span></div>
+      <div class="kh-right"><span class="kartu-arti">ia akan menjadi</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li>Fi'il mudhari' (kata kerja bentuk sekarang/akan datang).</li>
+            <li>Fi'il naqish: fi'il yang masuk kepada mubtada' dan khabar untuk memberikan penanda waktu masa lalu atau masa datang.</li>
+            <li>Kata yang sama dengan <span class="arab-istilah">يَكُونُ</span> di ayat 4.</li>
+            <li>Tsulatsi mujarrad, musytaq — karena itu memiliki tashrif.</li>
+            <li>Ajwaf wawi: huruf tengah akarnya wawu, yaitu <span class="arab-istilah">ك - و - ن</span>.</li>
+            <li>Huruf mudhari'-nya ta': isimnya jamak taksir, <span class="arab-istilah">الْجِبَالُ</span>, yang diperlakukan sebagai perempuan.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Pola dan Makna Wazan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Berwazan <span class="arab-istilah">فَعَلَ – يَفْعُلُ</span> — <strong>mujarrad bab nashara</strong>: <span class="arab-istilah">كَانَ – يَكُونُ</span>, asalnya <span class="arab-istilah">كَوَنَ – يَكْوُنُ</span>.</li>
+            <li>Tabel seluruh wazan beserta ciri maknanya: <a class="tautan-wazan" href="000-01-wazan.html#mujarrad-nashara" target="_blank" rel="noopener">Tabel Wazan Fi'il — mujarrad bab nashara</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar Kata &amp; Tashrif</td>
+        <td>
+          <div class="tashrif-box" style="flex-direction:column;align-items:stretch;gap:0;">
+            <div class="tashrif-baris">
+              <div class="kotak-akar">
+                <div class="kotak-arab arab">ك - و - ن</div>
+                <div class="kotak-info">Akar Kata</div>
+              </div>
+              <span class="ti-judul">Tashrif istilahi (perubahan bentuk menurut jenis kata) — dibaca dari kanan</span>
+            </div>
+            <div class="tashrif-istilahi">
+              <div class="ti-sel"><div class="ti-label">Madhi</div><span class="ti-arab">كَانَ</span></div>
+              <div class="ti-sel dipakai"><div class="ti-label">Mudhari'</div><span class="ti-arab">يَكُونُ</span></div>
+              <div class="ti-sel"><div class="ti-label">Masdar*</div><span class="ti-arab">كَوْنًا</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Fa'il</div><span class="ti-arab">كَائِنٌ</span></div>
+              <div class="ti-sel kosong"><div class="ti-label">Isim Maf'ul</div><span class="ti-arab">—</span></div>
+              <div class="ti-sel"><div class="ti-label">Amr</div><span class="ti-arab">كُنْ</span></div>
+              <div class="ti-sel"><div class="ti-label">Nahy</div><span class="ti-arab">لَا تَكُنْ</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Zaman</div><span class="ti-arab">مَكَانٌ</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Makan</div><span class="ti-arab">مَكَانٌ</span></div>
+              <div class="ti-sel kosong"><div class="ti-label">Isim Alat</div><span class="ti-arab">—</span></div>
+            </div>
+            <div class="kotak-subyek-baris">
+              <div class="kotak-subyek-full">
+                <span class="kotak-arab-inline arab">تَكُونُ</span>
+                <span class="kotak-label">— bentuk yang dipakai dalam ayat (mudhari', isimnya jamak taksir, marfu')</span>
+              </div>
+            </div>
+            <div class="tashrif-keterangan">
+              <ul class="poin-list">
+            <li>* Masdar <span class="arab-istilah">كَوْنٌ</span> tercatat di kamus (<a href="https://arabiclexicon.hawramani.com/%d9%83%d9%88%d9%86/" target="_blank" rel="noopener">kamus — كون</a>).</li>
+            <li>Sebagai fi'il naqish ia memasuki mubtada' dan khabar, bukan obyek; karena itu isim maf'ul dan isim alat kosong. Isim zaman dan isim makan ditampilkan sesuai rumus.</li>
+            <li>Grid memuat bentuk orang ketiga laki-laki; di ayat ini huruf mudhari'-nya ta', karena isimnya jamak taksir yang diperlakukan sebagai perempuan.</li>
+            <li>Tashrif lughawi (perubahan bentuk menurut pelaku) lengkap: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-كان.html" target="_blank" rel="noopener">Reverso Conjugator — كان</a></li>
+          </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Gramatikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Dia, <span class="arab-istilah">هِيَ</span> — yaitu <span class="arab-istilah">الْجِبَالُ</span>, isim kana sesudahnya — akan menjadi.</li>
+            <li>Takunu (mudhari') memberi tambahan makna <strong>akan datang</strong>, sama dengan ayat 4: keadaan gunung-gunung itu pasti terjadi pada hari kiamat — karena itu diterjemahkan "akan menjadi".</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Leksikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menjadi, berada dalam suatu keadaan.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Isim dan Khabar Kana</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim: <span class="arab-istilah">الْجِبَالُ</span> (kartu 3), marfu'.</li>
+            <li>Khabar: jar-majrur <span class="arab-istilah">كَالْعِهْنِ الْمَنفُوشِ</span> yang bergantung pada khabar yang dibuang, ditaqdirkan <span class="arab-istilah">كَائِنَةً</span> (Frasa 3).</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mu'rab (berubah akhirnya): <strong>marfu'</strong>, tandanya dhammah yang tampak.</li>
+            <li>Kalimatnya di-'athaf-kan kepada kalimat ayat 4 (Ad-Da'as dkk.: "ma'thufah 'ala ma qablaha"), maka ikut berkedudukan jarr sebagai mudhaf ilaih.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Peran Kata Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menjadi inti kalimat yang menggambarkan keadaan gunung-gunung pada hari itu.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Kana dan saudara-saudaranya — fi'il naqish telah dibahas pada Surah Al-Ikhlas (112), ayat 4 — <a href="https://grammar-quran.com/112-04.html#konsep-kana-naqish" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/112-04.html#konsep-kana-naqish</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Yakunu: naqishah atau tammah telah dibahas pada Surah Al-Qari'ah (101), ayat 4 — <a href="https://grammar-quran.com/101-04.html#khilaf-yakunu-naqishah-tammah" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/101-04.html#khilaf-yakunu-naqishah-tammah</a>
+    </div>
+  </div>
+  <!-- KARTU 3 — morfem 3 -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata" id="k-101-5-3">
+      <div class="kh-left"><span class="badge badge-kata">ISIM · ISIM KANA · MARFU' · (101:5:3)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">الْجِبَالُ</span></div>
+      <div class="kh-right"><span class="kartu-arti">gunung-gunung</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim jamid — gunung; tidak ditashrifkan.</li>
+            <li>Jamak taksir dari <span class="arab-istilah">جَبَلٌ</span>.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Leksikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Gunung-gunung. As-Sa'di: yang keras dan kokoh.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mu'rab: <strong>marfu'</strong> sebagai <strong>isim takunu</strong>; tandanya dhammah yang tampak.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td>Jamak taksir; bentuk tunggalnya <span class="arab-istilah">جَبَلٌ</span>.</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>Jamak taksir bagi yang tidak berakal diperlakukan sebagai perempuan — karena itu fi'ilnya diawali ta'.</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>Ma'rifah (tertentu) karena diawali ال.</td>
+      </tr>
+      <tr>
+        <td>Peran Kata Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menjadi <strong>isim kana</strong>: yang diserupakan dengan bulu domba.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- KARTU 4 — morfem 4 -->
+  <div class="kartu">
+    <div class="kartu-head warna-harf" id="k-101-5-4">
+      <div class="kh-left"><span class="badge badge-harf">HARF JAR · TASYBIH · (101:5:4)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">كَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">seperti</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li>Harf jar — kaf yang menunjukkan penyerupaan (tasybih).</li>
+            <li>Jamid — huruf tidak dapat ditashrifkan.</li>
+            <li>Di nash ia bersambung dengan kata sesudahnya dalam satu kata grafis <span class="arab-istilah">كَٱلْعِهْنِ</span>, tetapi ia morfem tersendiri.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mabni (bentuknya tetap) atas fathah; tidak memiliki kedudukan i'rab.</li>
+            <li>Beramal menjarrkan isim sesudahnya.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Peran Kata Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menyerupakan gunung-gunung dengan bulu domba yang dihambur. Ad-Darwisy: gunung itu hancur, menjadi seperti bulu domba, lalu menjadi debu.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Kaf tasybih — harf jar untuk penyerupaan telah dibahas pada Surah Al-Fil (105), ayat 5 — <a href="https://grammar-quran.com/105-05.html#konsep-kaf-tasybih" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/105-05.html#konsep-kaf-tasybih</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Kaf tasybih sebagai khabar yakunu telah dibahas pada Surah Al-Qari'ah (101), ayat 4 — <a href="https://grammar-quran.com/101-04.html#f-101-4-2" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/101-04.html#f-101-4-2</a>
+    </div>
+  </div>
+  <!-- KARTU 5 — morfem 5 -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata" id="k-101-5-5">
+      <div class="kh-left"><span class="badge badge-kata">ISIM · MAJRUR · MAN'UT · (101:5:5)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">الْعِهْنِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">bulu domba</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim jamid — bulu domba (wol); tidak ditashrifkan.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Leksikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Bulu domba. Ibnu Katsir menukil tafsir ini dari Mujahid, 'Ikrimah, Sa'id bin Jubair, Al-Hasan, Qatadah, dan lainnya.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mu'rab: <strong>majrur</strong> oleh kaf; tandanya kasrah yang tampak.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td>Isim jins — bermakna jamak (kumpulan); bentuk tunggalnya <span class="arab-istilah">عِهْنَةٌ</span>.</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>Laki-laki (mudzakkar) menurut lafazh — sifatnya pun mudzakkar.</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>Ma'rifah (tertentu) karena diawali ال.</td>
+      </tr>
+      <tr>
+        <td>Peran Kata Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menjadi <strong>majrur</strong> dan <strong>man'ut</strong>: yang diserupakan kepadanya, disifati oleh kata sesudahnya.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- KARTU 6 — morfem 6 -->
+  <div class="kartu">
+    <div class="kartu-head warna-kata" id="k-101-5-6">
+      <div class="kh-left"><span class="badge badge-kata">ISIM MAF'UL · NA'T · (101:5:6)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">الْمَنفُوشِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">yang dihambur</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr>
+        <td>Jenis Kata</td>
+        <td>
+          <ul class="poin-list">
+            <li>Isim maf'ul (kata benda yang dikenai perbuatan) dari fi'il <span class="arab-istilah">نَفَشَ</span> — menghambur, mengurai bulu atau kapas.</li>
+            <li>Musytaq — karena itu memiliki tashrif.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Pola dan Makna Wazan</td>
+        <td>
+          <ul class="poin-list">
+            <li>Fi'il asalnya berwazan <span class="arab-istilah">فَعَلَ – يَفْعُلُ</span> — <strong>mujarrad bab nashara</strong>: <span class="arab-istilah">نَفَشَ – يَنْفُشُ</span>; isim maf'ul berwazan <span class="arab-istilah">مَفْعُولٌ</span>.</li>
+            <li>Tabel seluruh wazan beserta ciri maknanya: <a class="tautan-wazan" href="000-01-wazan.html#mujarrad-nashara" target="_blank" rel="noopener">Tabel Wazan Fi'il — mujarrad bab nashara</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar Kata &amp; Tashrif</td>
+        <td>
+          <div class="tashrif-box" style="flex-direction:column;align-items:stretch;gap:0;">
+            <div class="tashrif-baris">
+              <div class="kotak-akar">
+                <div class="kotak-arab arab">ن - ف - ش</div>
+                <div class="kotak-info">Akar Kata</div>
+              </div>
+              <span class="ti-judul">Tashrif istilahi (perubahan bentuk menurut jenis kata) — dibaca dari kanan</span>
+            </div>
+            <div class="tashrif-istilahi">
+              <div class="ti-sel"><div class="ti-label">Madhi</div><span class="ti-arab">نَفَشَ</span></div>
+              <div class="ti-sel"><div class="ti-label">Mudhari'</div><span class="ti-arab">يَنْفُشُ</span></div>
+              <div class="ti-sel"><div class="ti-label">Masdar</div><span class="ti-arab">نَفْشًا</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Fa'il</div><span class="ti-arab">نَافِشٌ</span></div>
+              <div class="ti-sel dipakai"><div class="ti-label">Isim Maf'ul</div><span class="ti-arab">مَنْفُوشٌ</span></div>
+              <div class="ti-sel"><div class="ti-label">Amr</div><span class="ti-arab">اُنْفُشْ</span></div>
+              <div class="ti-sel"><div class="ti-label">Nahy</div><span class="ti-arab">لَا تَنْفُشْ</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Zaman</div><span class="ti-arab">مَنْفَشٌ</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Makan</div><span class="ti-arab">مَنْفَشٌ</span></div>
+              <div class="ti-sel kosong"><div class="ti-label">Isim Alat</div><span class="ti-arab">—</span></div>
+            </div>
+            <div class="kotak-subyek-baris">
+              <div class="kotak-subyek-full">
+                <span class="kotak-arab-inline arab">الْمَنفُوشِ</span>
+                <span class="kotak-label">— bentuk yang dipakai dalam ayat (isim maf'ul, tunggal, ber-al, majrur)</span>
+              </div>
+            </div>
+            <div class="tashrif-keterangan">
+              <ul class="poin-list">
+            <li>Masdar sama'i <span class="arab-istilah">نَفْشٌ</span> (<a href="https://arabiclexicon.hawramani.com/%d9%86%d9%81%d8%b4/" target="_blank" rel="noopener">kamus — نفش</a>); isim zaman dan makan sesuai rumus. Isim alat tidak tercatat di kamus, karena itu kosong.</li>
+            <li>Amr bab nashara diawali hamzah washal berdhammah, mengikuti dhammah 'ain mudhari'-nya.</li>
+            <li>Tashrif lughawi (perubahan bentuk menurut pelaku) lengkap: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-نفش.html" target="_blank" rel="noopener">Reverso Conjugator — نفش</a></li>
+          </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Leksikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Yang dihambur dan diurai. Ibnu Katsir: yang mulai tercerai-berai dan berserakan. As-Sa'di: sangat lemah, diterbangkan angin sedikit pun.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mu'rab (berubah akhirnya).</li>
+            <li><strong>Majrur</strong> sebagai <strong>na't</strong> bagi <span class="arab-istilah">الْعِهْنِ</span>; tandanya kasrah yang tampak.</li>
+            <li>Isim maf'ul mengandung dhamir na'ib fa'il yang kembali kepada man'ut-nya.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah</td>
+        <td>Tunggal (mufrad) menurut lafazh man'ut-nya; jamaknya <span class="arab-istilah">مَنْفُوشَاتٌ</span>.</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>Laki-laki (mudzakkar), mengikuti man'ut-nya.</td>
+      </tr>
+      <tr>
+        <td>Identitas</td>
+        <td>Ma'rifah (tertentu) karena diawali ال, mengikuti man'ut-nya.</td>
+      </tr>
+      <tr>
+        <td>Peran Kata Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Menyifati bulu domba: yang sudah dihambur, ringan, dan mudah diterbangkan.</li>
+            <li>Mengikuti man'ut-nya dalam empat hal: majrur, tunggal menurut lafazh, laki-laki, dan ma'rifah.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Isim maf'ul dan na'ib fa'il telah dibahas pada Surah Al-Fatihah (1), ayat 7 — <a href="https://grammar-quran.com/001-07.html#konsep-isim-maful-naib-fail" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-07.html#konsep-isim-maful-naib-fail</a>
+    </div>
+  </div>
+
+  <!-- § 4 — ANALISIS TINGKAT 2 — FRASA -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 2 — Frasa</div>
+    <div class="sub-judul">Analisis frasa dan klausa pembentuk ayat secara keseluruhan</div>
+  </div>
+
+  <div class="sub-section-header">
+    <div class="sub-judul-kalimat">Lima Frasa Pembentuk Ayat</div>
+    <div class="sub-terjemah-kalimat">Disusun dari tingkat terdalam diagram menuju kalimat utuh</div>
+  </div>
+
+  <!-- FRASA 1 -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa1" id="f-101-5-1">
+      <div class="kh-left"><span class="badge badge-frasa1">FRASA 1 · MAN'UT DAN NA'T — MAJRUR</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">الْعِهْنِ الْمَنفُوشِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">bulu domba yang dihambur</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>Man'ut <span class="arab-istilah">الْعِهْنِ</span> dan na't <span class="arab-istilah">الْمَنفُوشِ</span>.</td></tr>
+      <tr><td>Makna Frasa</td><td>Bulu domba yang dihambur.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Seluruhnya menjadi <strong>majrur</strong> bagi kaf.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- FRASA 2 -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa2" id="f-101-5-2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA 2 · JAR-MAJRUR</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">كَالْعِهْنِ الْمَنفُوشِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">seperti bulu domba yang dihambur</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>Harf jar <span class="arab-istilah">كَ</span> dan majrurnya, Frasa 1.</td></tr>
+      <tr><td>Makna Frasa</td><td>Seperti bulu domba yang dihambur.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li><strong>Kaidah jar-majrur:</strong> jar-majrur tidak berdiri sendiri; ia selalu bergantung (muta'allaq) pada fi'il atau yang semakna fi'il, atau pada khabar, na't, atau hal. Bila yang digantungi tidak tampak, berarti ada kata yang dibuang.</li>
+            <li><strong>Di ayat ini:</strong> yang digantungi tidak tampak — ia bergantung pada <strong>khabar takunu yang dibuang</strong>, ditaqdirkan <span class="arab-istilah">كَائِنَةً</span> (Frasa 3).</li>
+            <li><strong>Catatan:</strong> An-Nahhas: kaf di sini sama dengan kaf di ayat 4 — berkedudukan nashab sebagai khabar.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Jar-majrur muta'allaq dan unsur lain yang menerangkan fi'il telah dibahas pada Surah Al-Fatihah (1), ayat 1 — <a href="https://grammar-quran.com/001-01.html#konsep-penjelas-fiil" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-01.html#konsep-penjelas-fiil</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Khabar, na't, atau hal berupa jar-majrur: kata yang dibuang telah dibahas pada Surah Al-Fatihah (1), ayat 2 — <a href="https://grammar-quran.com/001-02.html#khilaf-khabar-syibh-jumlah" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-02.html#khilaf-khabar-syibh-jumlah</a>
+    </div>
+  </div>
+  <!-- FRASA 3 -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa3" id="f-101-5-3">
+      <div class="kh-left"><span class="badge badge-frasa3">FRASA 3 · KHABAR TAKUNU</span></div>
+      <div class="kh-center"><span class="taqdir-kepala arab">[كَائِنَةً]</span><span class="kartu-arab-besar arab">كَالْعِهْنِ الْمَنفُوشِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">[berada] seperti bulu domba yang dihambur</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>Khabar yang dibuang, ditaqdirkan <span class="arab-istilah">كَائِنَةً</span>, dan jar-majrur yang bergantung padanya, Frasa 2.</td></tr>
+      <tr><td>Taqdir</td><td>Yang dibuang: khabar takunu, berupa isim fa'il dari <span class="arab-istilah">كَانَ</span> — manshub, perempuan, mengikuti isim kana <span class="arab-istilah">الْجِبَالُ</span>.</td></tr>
+      <tr><td>Makna Frasa</td><td>Berada dalam keadaan seperti bulu domba yang dihambur.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Berkedudukan <strong>nashab</strong> sebagai <strong>khabar</strong> bagi <span class="arab-istilah">تَكُونُ</span>.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- FRASA 4 -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa4" id="f-101-5-4">
+      <div class="kh-left"><span class="badge badge-frasa4">FRASA 4 · JUMLAH FI'LIYYAH — MA'THUF</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">تَكُونُ الْجِبَالُ كَالْعِهْنِ الْمَنفُوشِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">gunung-gunung akan menjadi seperti bulu domba yang dihambur</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>Fi'il naqish <span class="arab-istilah">تَكُونُ</span>, isimnya <span class="arab-istilah">الْجِبَالُ</span>, dan khabarnya, Frasa 3 — bergabung serentak.</td></tr>
+      <tr><td>Makna Frasa</td><td>Gunung-gunung akan menjadi seperti bulu domba yang dihambur — takunu memberi makna akan datang.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Kalimat ini menjadi <strong>ma'thuf</strong> bagi wawu (Frasa 5).</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- FRASA 5 -->
+  <div class="kartu">
+    <div class="kartu-head warna-frasa5" id="f-101-5-5">
+      <div class="kh-left"><span class="badge badge-frasa5">FRASA 5 · 'ATHAF — MA'THUF 'ALA AYAT 4</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</span></div>
+      <div class="kh-right"><span class="kartu-arti">dan gunung-gunung akan seperti bulu domba yang dihambur</span></div>
+    </div>
+    <table class="kartu-tabel">
+      <tr><td>Struktur</td><td>Harf 'athaf <span class="arab-istilah">وَ</span> dan ma'thufnya, Frasa 4 — ma'thuf 'alaih-nya kalimat <span class="arab-istilah">يَكُونُ النَّاسُ كَالْفَرَاشِ الْمَبْثُوثِ</span> di ayat 4.</td></tr>
+      <tr><td>Makna Frasa</td><td>Dan gunung-gunung akan menjadi seperti bulu domba yang dihambur.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Di-'athaf-kan kepada ayat 4 (Ad-Da'as dkk.: "ma'thufah 'ala ma qablaha"), maka ikut berkedudukan <strong>jarr</strong> sebagai mudhaf ilaih bagi <span class="arab-istilah">يَوْمَ</span> — ditandai rujukan i'rab mundur.</li>
+            <li>Bagian dari idhafah zharaf, bukan kalimat yang berdiri sendiri; karena itu puncak tanpa kotak kalimat kamilah.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- § 5 — DIAGRAM SINTAKSIS SVG -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 3 — Diagram Sintaksis</div>
+    <div class="sub-judul">Diagram struktur bertingkat unsur kalimat yang menyusun ayat</div>
+  </div>
+
+  <div class="sub-section-header">
+    <div class="sub-judul-kalimat">Diagram Gambaran Gunung pada Hari Itu</div>
+    <div class="sub-arab-kalimat arab">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
+    <div class="sub-terjemah-kalimat">Enam morfem dan satu taqdir, lima tingkat; na't, jar-majrur, khabar yang dibuang, kana, lalu wawu 'athaf — dengan rujukan i'rab mundur ke ayat 4</div>
+  </div>
+
+  <div class="diagram-wrapper">
+    <svg viewBox="0 0 820 810" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;max-width:820px;width:100%;height:auto;font-family:'Lato',sans-serif;">
+      <text x="770" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#0e7490" font-weight="700" direction="rtl">وَ</text>
+      <text x="770" y="63" text-anchor="middle" font-size="13" fill="#0e7490" font-weight="700">Harf 'Athaf</text>
+      <text x="770" y="81" text-anchor="middle" font-size="12" fill="#888">la mahall</text>
+      <text x="688" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#c2410c" font-weight="700" direction="rtl">تَكُونُ</text>
+      <text x="688" y="63" text-anchor="middle" font-size="13" fill="#c2410c" font-weight="700">Fi'il Naqish</text>
+      <text x="688" y="81" text-anchor="middle" font-size="12" fill="#888">mudhari', marfu'</text>
+      <text x="590" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#1a472a" font-weight="700" direction="rtl">الْجِبَالُ</text>
+      <text x="590" y="63" text-anchor="middle" font-size="13" fill="#1a472a" font-weight="700">Isim Kana</text>
+      <text x="590" y="81" text-anchor="middle" font-size="12" fill="#888">marfu'</text>
+      <text x="465" y="42" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="20" fill="#9ca3af" font-style="italic" direction="rtl">[كَائِنَةً]</text>
+      <text x="465" y="63" text-anchor="middle" font-size="13" fill="#9ca3af" font-weight="700">Taqdir Khabar</text>
+      <text x="465" y="81" text-anchor="middle" font-size="12" fill="#888">dibuang</text>
+      <text x="365" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#0e7490" font-weight="700" direction="rtl">كَ</text>
+      <text x="365" y="63" text-anchor="middle" font-size="13" fill="#0e7490" font-weight="700">Harf Jar</text>
+      <text x="365" y="81" text-anchor="middle" font-size="12" fill="#888">kaf tasybih</text>
+      <text x="260" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#1a472a" font-weight="700" direction="rtl">الْعِهْنِ</text>
+      <text x="260" y="63" text-anchor="middle" font-size="13" fill="#1a472a" font-weight="700">Isim</text>
+      <text x="260" y="81" text-anchor="middle" font-size="12" fill="#888">majrur, man'ut</text>
+      <text x="125" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#1a472a" font-weight="700" direction="rtl">الْمَنفُوشِ</text>
+      <text x="125" y="63" text-anchor="middle" font-size="13" fill="#1a472a" font-weight="700">Isim Maf'ul</text>
+      <text x="125" y="81" text-anchor="middle" font-size="12" fill="#888">na't</text>
+
+      <!-- TINGKAT 1 — man'ut dan na't → majrur -->
+      <line x1="260" y1="88" x2="260" y2="108" stroke="#1a472a" stroke-width="2.2"/>
+      <line x1="125" y1="88" x2="125" y2="108" stroke="#1a472a" stroke-width="2.2"/>
+      <line x1="125" y1="108" x2="260" y2="108" stroke="#1a472a" stroke-width="2.2"/>
+      <text x="192" y="104" text-anchor="middle" font-size="12" fill="#1a472a" font-style="italic">man'ut dan na't</text>
+      <polygon points="186,108 198,108 192,119" fill="#1a472a"/>
+      <line x1="192" y1="108" x2="192" y2="136" stroke="#1a472a" stroke-width="2.2"/>
+      <text x="192" y="156" text-anchor="middle" font-size="13" fill="#1a472a" font-style="italic">Man'ut dan Na't  >  Majrur</text>
+      <text x="192" y="178" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#1a472a" font-weight="700" direction="rtl">الْعِهْنِ الْمَنفُوشِ</text>
+      <text x="192" y="196" text-anchor="middle" font-size="12" fill="#555">bulu domba yang dihambur</text>
+
+      <!-- TINGKAT 2 — jar dan majrur -->
+      <line x1="365" y1="88" x2="365" y2="218" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="192" y1="202" x2="192" y2="218" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="192" y1="218" x2="365" y2="218" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="278" y="214" text-anchor="middle" font-size="12" fill="#5b21b6" font-style="italic">jar dan majrur</text>
+      <polygon points="272,218 284,218 278,229" fill="#5b21b6"/>
+      <line x1="278" y1="218" x2="278" y2="246" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="278" y="266" text-anchor="middle" font-size="13" fill="#5b21b6" font-style="italic">Jar-Majrur  >  Muta'allaq bi Khabar</text>
+      <text x="278" y="288" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#5b21b6" font-weight="700" direction="rtl">كَالْعِهْنِ الْمَنفُوشِ</text>
+      <text x="278" y="306" text-anchor="middle" font-size="12" fill="#555">seperti bulu domba yang dihambur</text>
+
+      <!-- TINGKAT 3 — khabar dibuang dan muta'allaq-nya -->
+      <line x1="465" y1="88" x2="465" y2="328" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="278" y1="312" x2="278" y2="328" stroke="#92400e" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="278" y1="328" x2="465" y2="328" stroke="#92400e" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="371" y="324" text-anchor="middle" font-size="12" fill="#92400e" font-style="italic">khabar dan muta'allaq</text>
+      <polygon points="365,328 377,328 371,339" fill="#92400e"/>
+      <line x1="371" y1="328" x2="371" y2="356" stroke="#92400e" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="371" y="376" text-anchor="middle" font-size="13" fill="#92400e" font-style="italic">Khabar Dibuang  >  Khabar Takunu</text>
+      <text x="371" y="398" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#92400e" font-weight="700" direction="rtl">[كَائِنَةً] كَالْعِهْنِ الْمَنفُوشِ</text>
+      <text x="371" y="416" text-anchor="middle" font-size="12" fill="#555">[berada] seperti bulu domba yang dihambur</text>
+
+      <!-- TINGKAT 4 — fi'il naqish, isim, dan khabar serentak → ma'thuf -->
+      <line x1="688" y1="88" x2="688" y2="436" stroke="#c2410c" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="590" y1="88" x2="590" y2="436" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="371" y1="422" x2="371" y2="436" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="371" y1="436" x2="688" y2="436" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="485" y="432" text-anchor="middle" font-size="12" fill="#1e3a8a" font-style="italic">kana, isim, dan khabar</text>
+      <polygon points="523,436 535,436 529,447" fill="#1e3a8a"/>
+      <line x1="529" y1="436" x2="529" y2="464" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="529" y="484" text-anchor="middle" font-size="13" fill="#1e3a8a" font-style="italic">Jumlah Fi'liyyah  >  Ma'thuf</text>
+      <text x="529" y="506" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#1e3a8a" font-weight="700" direction="rtl">تَكُونُ الْجِبَالُ كَالْعِهْنِ الْمَنفُوشِ</text>
+      <text x="529" y="524" text-anchor="middle" font-size="12" fill="#555">gunung-gunung akan menjadi seperti bulu domba yang dihambur</text>
+
+      <!-- TINGKAT 5 — wawu dan ma'thuf (puncak tanpa kotak; ma'thuf 'alaih di ayat 4) -->
+      <line x1="770" y1="88" x2="770" y2="546" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="529" y1="530" x2="529" y2="546" stroke="#be185d" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="529" y1="546" x2="770" y2="546" stroke="#be185d" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="650" y="542" text-anchor="middle" font-size="12" fill="#be185d" font-style="italic">'athaf dan ma'thuf</text>
+      <polygon points="594,546 606,546 600,557" fill="#be185d"/>
+      <line x1="600" y1="546" x2="600" y2="574" stroke="#be185d" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="600" y="594" text-anchor="middle" font-size="13" fill="#be185d" font-style="italic">'Athaf  >  Ma'thuf 'ala Ayat 4</text>
+      <text x="600" y="616" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#be185d" font-weight="700" direction="rtl">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</text>
+      <text x="600" y="634" text-anchor="middle" font-size="12" fill="#555">dan gunung-gunung akan seperti bulu domba yang dihambur</text>
+
+      <!-- RUJUKAN I'RAB — mundur ke ayat 4: ma'thuf 'alaih (mudhaf ilaih) -->
+      <line x1="600" y1="640" x2="600" y2="676" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <polygon points="594,676 606,676 600,687" fill="#9ca3af"/>
+      <text x="600" y="712" text-anchor="middle" font-size="11" fill="#6b7280">Rujukan i'rab — ma'thuf 'alaih (mudhaf ilaih</text>
+      <text x="600" y="728" text-anchor="middle" font-size="11" fill="#6b7280">bagi zharaf) berada di ayat 4</text>
+      <text x="600" y="756" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="17" fill="#888" font-weight="700" direction="rtl">يَوْمَ يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ ٱلْمَبْثُوثِ</text>
+      <text x="600" y="778" text-anchor="middle" font-size="11" fill="#aaa">pada hari manusia akan menjadi seperti laron yang bertebaran</text>
+
+    </svg>
+    <div class="diagram-legenda">
+      <span class="legenda-label">Keterangan Garis</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:2.2px solid #1a472a;"></span> Tingkat pertama — man'ut dan na't</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.8px dashed #5b21b6;"></span> Tingkat kedua — jar-majrur</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.8px dashed #92400e;"></span> Tingkat ketiga — khabar yang dibuang</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.8px dashed #1e3a8a;"></span> Tingkat keempat — kana, isim, dan khabar</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.8px dashed #be185d;"></span> Puncak — wawu dan ma'thuf</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.2px dashed #0e7490;"></span> Garis turun huruf</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.5px dashed #9ca3af;"></span> Garis turun unsur yang dibuang (taqdir)</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.5px dashed #9ca3af;"></span> Rujukan i'rab ke ayat lain</span>
+    </div>
+    <div class="hubungan-ayat-box" id="hubungan-qariah-ayat-5">
+      <div class="hubungan-ayat-judul">Hubungan dengan Ayat Sebelumnya dan Berikutnya</div>
+      <div class="hubungan-ayat-isi">
+        <p><strong>Ke belakang:</strong> di-'athaf-kan kepada kalimat <span class="arab-istilah">يَكُونُ النَّاسُ كَالْفَرَاشِ الْمَبْثُوثِ</span> di ayat 4 (Ad-Da'as dkk.), sehingga ikut menjadi mudhaf ilaih bagi zharaf <span class="arab-istilah">يَوْمَ</span> — ditandai rujukan i'rab mundur.</p>
+        <p><strong>Ke depan:</strong> ayat 6 membuka bagian ketiga dengan <span class="arab-istilah">أَمَّا</span>: rincian nasib manusia menurut timbangan amalnya. As-Sa'di: sesudah itu timbangan ditegakkan, dan manusia terbagi menjadi orang yang bahagia dan orang yang celaka.</p>
       </div>
-    </td></tr>
-    <tr><td>Status I'rab</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-marfu">Marfu'</span> ditandai dengan tanda dhammah di akhir kata</li>
-        <li>Fi'il-mudhari' berstatus marfu' karena tidak didahului oleh 'amil nashab atau jazm</li>
-      </ul>
-    </td></tr>
-    <tr><td>Kedudukan Gramatikal</td><td>
-      <ul class="poin-list">
-        <li>Fi'il-naqish — inti dari kalimat jumlah naqish-kaana</li>
-        <li>Membutuhkan dua unsur: ism-kaana (subyek) dan khabar-kaana (predikat)</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
-
-<!-- K3: ٱلْجِبَالُ -->
-<div class="kartu">
-  <div class="kartu-head-harf3" style="background:#f0f7f2;">
-    <span class="badge badge-kata kh3-badge">ISIM · Isim-Jamid · Marfu' · (101:5:3)</span>
-    <div class="kh3-arab arab">ٱلْجِبَالُ</div>
-    <div class="kh3-arti">gunung-gunung</div>
+    </div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Jenis Kata</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-n">Isim</span> isim-jamid (kata benda yang tidak diturunkan dari fi'il)</li>
-        <li>jamak taksir (jamak pecah) dari <span class="arab-inline">جَبَل</span> (satu gunung)</li>
-        <li>menunjukkan keseluruhan gunung-gunung di muka bumi</li>
-      </ul>
-      <div class="konsep-box" style="margin-top:10px;">
-        <div class="konsep-label">Konsep Gramatikal dalam QS Al-Qari'ah</div>
-        <div class="konsep-label">Jamak Taksir (Jamak Pecah)</div>
-        <div class="konsep-isi">
-          <em>Jamak taksir</em> (harfiah: "jamak pecah") adalah bentuk jamak yang <strong>merubah struktur asli kata tunggalnya</strong> — tidak mengikuti pola yang teratur. Bedakan dengan jamak mudzakkar salim (ditambah ونَ/ينَ) dan jamak mu'annats salim (ditambah اتٌ).
-          <br><br>
-          <strong>Contoh perbandingan:</strong>
-          <table class="konsep-tabel" style="margin-top:6px;">
-            <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
-            <tr><th>Tunggal (mufrad)</th><th>Jamak Taksir</th><th>Makna</th></tr>
-            <tr><td><span class="arab-inline" style="font-size:15px;">جَبَل</span></td><td><span class="arab-inline" style="font-size:15px;">جِبَال</span></td><td>gunung → gunung-gunung</td></tr>
-            <tr><td><span class="arab-inline" style="font-size:15px;">كِتَاب</span></td><td><span class="arab-inline" style="font-size:15px;">كُتُب</span></td><td>buku → buku-buku</td></tr>
-            <tr><td><span class="arab-inline" style="font-size:15px;">رَجُل</span></td><td><span class="arab-inline" style="font-size:15px;">رِجَال</span></td><td>laki-laki → para laki-laki</td></tr>
-          </table>
-          <strong>Perlakuan gramatikal jamak taksir (khusus untuk benda mati seperti gunung):</strong> secara gramatikal diperlakukan sebagai <em>mufrad mu'annats</em> (perempuan tunggal) — itulah sebabnya fi'il yang mengiringinya memakai ta (<span class="arab-inline">تَكُونُ</span>), bukan ya (<span class="arab-inline">يَكُونُ</span>).
-        </div>
-      </div>
-    </td></tr>
-    <tr><td>Arti</td><td>
-      <ul class="poin-list">
-        <li>gunung-gunung</li>
-        <li>keseluruhan gunung di muka bumi — yang kokoh, tegak, dan dianggap abadi oleh manusia</li>
-      </ul>
-    </td></tr>
-    <tr><td>Status I'rab</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-marfu">Marfu'</span> ditandai dengan tanda dhammah di akhir kata</li>
-        <li>Berstatus marfu' karena berperan sebagai <em>ism-kaana</em> (subyek kaana) — yang tetap marfu' meskipun dimasuki kaana</li>
-      </ul>
-    </td></tr>
-    <tr><td>Jumlah</td><td>jamak taksir (jamak pecah) — bentuk jamak yang merubah pola kata dasar</td></tr>
-    <tr><td>Gender</td><td>laki-laki (mudzakkar) — secara asal; namun jamak taksir benda mati diperlakukan mu'annats dalam pemakaian</td></tr>
-    <tr><td>Identitas</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-marifah">Ma'rifah</span> ma'rifah karena ال</li>
-        <li>ال di sini bersifat <em>istighraq</em> (mencakup semua) — artinya: <em>seluruh gunung di muka bumi tanpa kecuali</em></li>
-      </ul>
-    </td></tr>
-    <tr><td>Kedudukan Gramatikal</td><td>
-      <ul class="poin-list">
-        <li>sebagai <em>ism-kaana</em> (subyek dari fi'il-naqish <span class="arab-inline">تَكُونُ</span>)</li>
-        <li>subyek yang dinyatakan akan "menjadi" (kaana) seperti bulu yang dicabik di hari itu</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
 
-<!-- K4: كَ -->
-<div class="kartu">
-  <div class="kartu-head-harf3">
-    <span class="badge badge-harf kh3-badge">HARF · Kaf Tasybih · (101:5:4)</span>
-    <div class="kh3-arab arab">كَ</div>
-    <div class="kh3-arti">seperti</div>
+  <!-- § 6 — KEDUDUKAN AYAT DALAM SURAH -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 4 — Kedudukan dalam Surah</div>
+    <div class="sub-judul">Kedudukan dan peran ayat di dalam keseluruhan surah</div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Jenis Kata</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-harf">Harf</span> huruf jar yang menyerupakan (harf-jar · kaf tasybih)</li>
-        <li>berfungsi membuat kata setelahnya berstatus majrur</li>
-        <li>khusus untuk perumpamaan (tasybih)</li>
-        <li>sama persis dengan <span class="arab-inline">كَ</span> di <a href="101-04.html">ayat 4</a> — konsep lengkap kaf tasybih sudah dibahas di sana</li>
-      </ul>
-    </td></tr>
-    <tr><td>Arti</td><td>
-      <ul class="poin-list">
-        <li>seperti</li>
-        <li>bagaikan · sebagaimana</li>
-      </ul>
-    </td></tr>
-    <tr><td>Status I'rab</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-mabni">Mabni</span> bentuk tetap dengan fathah</li>
-        <li>Tidak berstatus i'rab — huruf tidak di-i'rab</li>
-      </ul>
-    </td></tr>
-    <tr><td>Fungsi</td><td>
-      <ul class="poin-list">
-        <li>membuat <span class="arab-inline">ٱلْعِهْنِ</span> berstatus majrur (ditandai kasrah)</li>
-        <li>bersama <span class="arab-inline">ٱلْعِهْنِ</span> membentuk frasa jar-majrur: <span class="arab-inline">كَٱلْعِهْنِ</span></li>
-        <li>menyerupakan <span class="arab-inline">ٱلْجِبَالُ</span> dengan <span class="arab-inline">ٱلْعِهْنِ ٱلْمَنفُوشِ</span></li>
-      </ul>
-    </td></tr>
-    <tr><td>Kedudukan Gramatikal</td><td>
-      <ul class="poin-list">
-        <li>Berperan sebagai harf-jar untuk perumpamaan (kaf tasybih)</li>
-        <li>Jar-majrur <span class="arab-inline">كَٱلْعِهْنِ</span> keseluruhan berkedudukan sebagai <em>khabar-kaana</em> (predikat kaana) — berstatus manshub</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
 
-<!-- K5: ٱلْعِهْنِ -->
-<div class="kartu">
-  <div class="kartu-head-harf3" style="background:#f0f7f2;">
-    <span class="badge badge-kata kh3-badge">ISIM · Isim-Jamid · Majrur · (101:5:5)</span>
-    <div class="kh3-arab arab">ٱلْعِهْنِ</div>
-    <div class="kh3-arti">bulu (wol berwarna)</div>
+  <div class="kartu">
+    <table class="kartu-tabel">
+      <tr>
+        <td>Posisi Ayat</td>
+        <td>
+          Ayat kelima dari 11 ayat; penutup bagian kedua.
+        </td>
+      </tr>
+      <tr>
+        <td>Hubungan dengan Ayat Sebelumnya</td>
+        <td>
+          Ma'thuf kepada ayat 4; keduanya mudhaf ilaih bagi zharaf yang sama.
+        </td>
+      </tr>
+      <tr>
+        <td>Peran dalam Struktur Surah</td>
+        <td>
+          <ul class="poin-list">
+            <li>Melengkapi gambaran hari itu: manusia (ayat 4) dan gunung-gunung (ayat 5).</li>
+            <li>Menutup bagian kedua sebelum rincian nasib di ayat 6–11.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Jenis Kata</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-n">Isim</span> isim-jamid (kata benda yang tidak diturunkan dari fi'il)</li>
-        <li>nama jenis untuk bulu domba/wol — terutama yang sudah diwarnai</li>
-        <li>para mufassir seperti Ibnu Abbas radhiyallahu 'anhuma menafsirkannya sebagai <em>الصوف المصبوغ</em> (wol yang diwarnai) — yang ringan dan mudah tercabik</li>
-      </ul>
-    </td></tr>
-    <tr><td>Arti</td><td>
-      <ul class="poin-list">
-        <li>bulu</li>
-        <li>wol berwarna — lembut, ringan, dan mudah tercabik oleh angin</li>
-        <li>dipilih sebagai perumpamaan karena sifatnya yang ringan dan lemah — kontras dengan kesan gunung yang kokoh</li>
-      </ul>
-    </td></tr>
-    <tr><td>Status I'rab</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-majrur">Majrur</span> ditandai dengan tanda kasrah di akhir kata</li>
-        <li>Berstatus majrur karena didahului oleh harf-jar <span class="arab-inline">كَ</span></li>
-      </ul>
-    </td></tr>
-    <tr><td>Jumlah</td><td>ism al-jins — menunjukkan jenis (bulu secara umum), bukan satuan tertentu</td></tr>
-    <tr><td>Gender</td><td>laki-laki (mudzakkar)</td></tr>
-    <tr><td>Identitas</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-marifah">Ma'rifah</span> ma'rifah karena ال</li>
-        <li>ال di sini bersifat <em>jinsiyyah</em> (mencakup jenis) — artinya: <em>jenis bulu pada umumnya</em></li>
-      </ul>
-    </td></tr>
-    <tr><td>Kedudukan Gramatikal</td><td>
-      <ul class="poin-list">
-        <li>sebagai <em>majrur bi-harf-jar</em> — kata yang dibuat majrur oleh kaf tasybih</li>
-        <li>bersama كَ membentuk jar-majrur <span class="arab-inline">كَٱلْعِهْنِ</span></li>
-        <li>jar-majrur ini keseluruhan berperan sebagai khabar-kaana</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
 
-<!-- K6: ٱلْمَنفُوشِ -->
-<div class="kartu">
-  <div class="kartu-head-harf3" style="background:#f0f7f2;">
-    <span class="badge badge-kata kh3-badge">ISIM · Isim-Maf'ul · Majrur · (101:5:6)</span>
-    <div class="kh3-arab arab">ٱلْمَنفُوشِ</div>
-    <div class="kh3-arti">yang dicabik / dihambur-hamburkan</div>
+  <!-- § 7 — TADABUR -->
+  <div class="section-header tadabur">
+    <div class="judul">Tadabur Ayat Al-Qur'an</div>
+    <div class="sub-judul">Memahami makna ayat untuk meningkatkan keimanan</div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Jenis Kata</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-n">Isim</span> isim sasaran aksi (isim-maf'ul) — kata yang menjadi <em>obyek</em> dari sebuah perbuatan</li>
-        <li>dari akar <span class="arab-inline" style="font-size:16px;">ن - ف - ش</span> — mencabik, menguraikan bulu hingga terpisah-pisah</li>
-        <li>wazan <span class="arab-inline" style="font-size:15px;">مَفْعُول</span> — pola isim-maf'ul dari fi'il dasar tiga huruf (tsulatsi mujarrad)</li>
-        <li>konsep lengkap isim-maf'ul sudah dibahas di <a href="101-04.html">ayat 4</a> pada kartu <span class="arab-inline">ٱلْمَبْثُوثِ</span></li>
-      </ul>
-    </td></tr>
-    <tr><td>Arti</td><td>
-      <ul class="poin-list">
-        <li>yang dicabik</li>
-        <li>yang dihambur-hamburkan — dicerai-beraikan sampai bagian-bagiannya terpisah</li>
-        <li>menggambarkan bulu yang sudah tidak lagi padat/utuh, melainkan terurai menjadi serat-serat halus yang terbang tertiup angin</li>
-      </ul>
-    </td></tr>
-    <tr><td>Akar</td><td>
-      Akar: <span class="arab-inline" style="font-size:16px;">ن - ف - ش</span> — mencabik, menguraikan bulu
-      <div class="tashrif-box">
-        <div class="tashrif-label">TASHRIF — Bab I · Akar ke Isim-Maf'ul</div>
-        <div class="tashrif-grid" style="grid-template-columns:1fr 28px 1fr 1fr 28px 1fr;">
-          <div class="tashrif-kotak akar"><div class="tashrif-kotak-label">Akar Kata</div><span class="tashrif-kotak-arab arab">ن-ف-ش</span></div>
-          <div class="tashrif-panah">→</div>
-          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Madhi</div><span class="tashrif-kotak-arab arab">نَفَشَ</span></div>
-          <div class="tashrif-kotak"><div class="tashrif-kotak-label">Fi'il Mudhari'</div><span class="tashrif-kotak-arab arab">يَنْفُشُ</span></div>
-          <div class="tashrif-panah">→</div>
-          <div class="tashrif-kotak subyek"><div class="tashrif-kotak-label">Isim-Maf'ul</div><span class="tashrif-kotak-arab arab">مَنفُوشٌ</span></div>
-        </div>
-        <div class="tashrif-isi">
-          <span class="arab-inline" style="font-size:16px;">نَفَشَ</span> = mencabik bulu hingga terurai · <span class="arab-inline" style="font-size:16px;">مَنفُوشٌ</span> (pola <em>مَفْعُول</em>) = yang dicabik · <span class="arab-inline" style="font-size:16px;">ٱلْمَنفُوشِ</span> (dengan alif lam) = bulu yang dimaksud dalam ayat ini — wol yang <em>dicabik hingga serat-seratnya terbang tersebar</em>.
-        </div>
-        <div class="link-eksternal-wrapper">
-          Detail bentuk kata kerja (konjugasi) untuk kata kerja <span class="arab-inline" style="font-size:15px;">نَفَشَ</span> dapat dilihat pada link berikut:
-          <br>
-          <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D9%86%D9%81%D8%B4.html"
-             target="_blank" rel="noopener noreferrer" class="link-eksternal">
-            Reverso Conjugator ↗
-          </a>
-        </div>
-      </div>
-    </td></tr>
-    <tr><td>Status I'rab</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-majrur">Majrur</span> ditandai dengan akhiran kasrah di akhir kata</li>
-        <li>Berstatus majrur karena mengikuti man'ut-nya (<span class="arab-inline">ٱلْعِهْنِ</span>) dalam kaidah na'at-man'ut</li>
-      </ul>
-    </td></tr>
-    <tr><td>Jumlah</td><td>tunggal (mufrad) — secara bentuk; maknanya mengikuti man'ut (ism al-jins)</td></tr>
-    <tr><td>Gender</td><td>laki-laki (mudzakkar)</td></tr>
-    <tr><td>Identitas</td><td>
-      <ul class="poin-list">
-        <li><span class="tag tag-marifah">Ma'rifah</span> ma'rifah karena ال</li>
-      </ul>
-    </td></tr>
-    <tr><td>Kedudukan Gramatikal</td><td>
-      <ul class="poin-list">
-        <li>sebagai <em>na'at</em> (sifat) untuk <span class="arab-inline">ٱلْعِهْنِ</span></li>
-        <li>Mengikuti man'ut-nya dalam empat hal: i'rab (majrur), jumlah (mufrad), gender (mudzakkar), identitas (ma'rifah)</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
 
-<!-- §4 ANALISIS TINGKAT 2 -->
-<div class="section-header">
-  <div class="judul">Analisis Tingkat 2 : Analisis Frasa</div>
-  <div class="sub-judul">Struktur dan makna frasa atau klausa dalam ayat</div>
-</div>
-
-<!-- F1: ٱلْعِهْنِ ٱلْمَنفُوشِ (na'at-man'ut) -->
-<div class="kartu">
-  <div class="kartu-head warna-frasa1">
-    <span class="badge badge-frasa1">FRASA 1 — NA'AT-MAN'UT</span>
-    <div class="kartu-arab-besar arab">ٱلْعِهْنِ ٱلْمَنفُوشِ</div>
-    <div class="kartu-arti">bulu yang dicabik (dihambur-hamburkan)</div>
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">RENUNGAN ①</span>
+      <span class="tadabur-judul">Gunung yang Kokoh Menjadi Ringan</span>
+    </div>
+    <div class="tadabur-isi">
+      <p>As-Sa'di menjelaskan: gunung yang keras dan kokoh menjadi seperti bulu domba yang dihambur, yang diterbangkan angin sedikit pun; lalu menjadi debu yang beterbangan. Ia mengaitkannya dengan <span class="arab-istilah">وَتَرَى ٱلْجِبَالَ تَحْسَبُهَا جَامِدَةً وَهِىَ تَمُرُّ مَرَّ ٱلسَّحَابِ</span> (An-Naml: 88) — dan engkau melihat gunung-gunung, engkau kira tetap di tempatnya, padahal ia berjalan seperti jalannya awan.</p>
+      <p>Pelajaran bagi kita: yang tampak paling kokoh di dunia tidak kekal; maka jangan bersandar kepada sesuatu selain Allah &#65019;.</p>
+    </div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Struktur</td><td>
-      <ul class="poin-list">
-        <li>Gabungan dua isim: <span class="arab-inline">ٱلْعِهْنِ</span> (man'ut — yang disifati) + <span class="arab-inline">ٱلْمَنفُوشِ</span> (na'at — sifat)</li>
-        <li>Kedua kata ini <strong>sama persis</strong> dalam empat hal: i'rab (majrur), jumlah (mufrad), gender (mudzakkar), dan identitas (ma'rifah dengan ال)</li>
-        <li>konsep lengkap na'at-man'ut sudah dibahas di <a href="101-04.html">ayat 4</a></li>
-      </ul>
-    </td></tr>
-    <tr><td>Makna Frasa</td><td>
-      <ul class="poin-list">
-        <li>"bulu yang dicabik" · "wol yang dihambur-hamburkan"</li>
-        <li>gambaran bulu domba yang sudah tidak padat lagi — serat-seratnya terpisah, halus, dan mudah terbang tertiup angin</li>
-      </ul>
-    </td></tr>
-    <tr><td>Peran / Kedudukan</td><td>
-      <ul class="poin-list">
-        <li>Berperan sebagai frasa na'at-man'ut — kesatuan isim + sifatnya</li>
-        <li>Bersama kaf tasybih (<span class="arab-inline">كَ</span>) membentuk jar-majrur yang lebih besar</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
 
-<!-- F2: كَٱلْعِهْنِ (jar-majrur) -->
-<div class="kartu">
-  <div class="kartu-head warna-frasa2">
-    <span class="badge badge-frasa2">FRASA 2 — JAR-MAJRUR</span>
-    <div class="kartu-arab-besar arab">كَٱلْعِهْنِ</div>
-    <div class="kartu-arti">seperti bulu</div>
+  <div class="tadabur-box">
+    <div class="tadabur-head">
+      <span class="badge-tadabur">RENUNGAN ②</span>
+      <span class="tadabur-judul">Dua Gambaran, Satu Pesan</span>
+    </div>
+    <div class="tadabur-isi">
+      <p>Ayat 4 menggambarkan manusia yang bingung dan tercerai-berai, ayat 5 menggambarkan gunung yang hancur. Keduanya disandarkan kepada satu zharaf: hari Al-Qari'ah.</p>
+      <p>Pelajaran bagi kita: bila gunung menjadi demikian, maka manusia yang lemah lebih patut mempersiapkan diri untuk hari itu.</p>
+    </div>
   </div>
-  <table class="kartu-tabel">
-    <tr><td>Struktur</td><td>
-      <ul class="poin-list">
-        <li>Gabungan: harf-jar <span class="arab-inline">كَ</span> (kaf tasybih) + isim majrur <span class="arab-inline">ٱلْعِهْنِ</span></li>
-        <li>Kaf tasybih membuat isim setelahnya berstatus majrur (ditandai kasrah)</li>
-        <li>konsep lengkap jar-majrur sudah dibahas di <a href="101-04.html">ayat 4</a></li>
-      </ul>
-    </td></tr>
-    <tr><td>Makna Frasa</td><td>
-      <ul class="poin-list">
-        <li>"seperti bulu"</li>
-        <li>perumpamaan — meski belum lengkap sampai datang na'at-nya</li>
-      </ul>
-    </td></tr>
-    <tr><td>Peran / Kedudukan</td><td>
-      <ul class="poin-list">
-        <li>Berperan sebagai frasa jar-majrur — satu kesatuan yang tidak dipisah</li>
-        <li>Bersama na'at-nya (<span class="arab-inline">ٱلْمَنفُوشِ</span>) membentuk frasa yang lebih lengkap</li>
-      </ul>
-    </td></tr>
-  </table>
+
+  <div class="nav-bawah" id="nav-bawah-container"></div>
+
 </div>
-
-<!-- F3: كَٱلْعِهْنِ ٱلْمَنفُوشِ (jar-majrur + na'at) -->
-<div class="kartu">
-  <div class="kartu-head warna-frasa3">
-    <span class="badge badge-frasa3">FRASA 3 — JAR-MAJRUR + NA'AT</span>
-    <div class="kartu-arab-besar arab">كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
-    <div class="kartu-arti">seperti bulu yang dicabik</div>
-  </div>
-  <table class="kartu-tabel">
-    <tr><td>Struktur</td><td>
-      <ul class="poin-list">
-        <li>Gabungan frasa: jar-majrur <span class="arab-inline">كَٱلْعِهْنِ</span> + na'at <span class="arab-inline">ٱلْمَنفُوشِ</span></li>
-        <li>Na'at mengikuti man'ut-nya (<span class="arab-inline">ٱلْعِهْنِ</span>) dalam majrur, meskipun secara mahall frasa ini manshub sebagai khabar-kaana</li>
-      </ul>
-    </td></tr>
-    <tr><td>Makna Frasa</td><td>
-      <ul class="poin-list">
-        <li>"seperti bulu yang dicabik"</li>
-        <li>perumpamaan lengkap — gunung di hari kiamat: runtuh, hancur, halus seperti serpihan bulu yang beterbangan</li>
-        <li>tasybih yang kuat: yang kokoh menjadi yang ringan · yang tegak menjadi yang hancur · yang dianggap abadi menjadi yang rapuh</li>
-      </ul>
-    </td></tr>
-    <tr><td>Peran / Kedudukan</td><td>
-      <ul class="poin-list">
-        <li>Berperan sebagai <em>khabar-kaana</em> — predikat dari fi'il-naqish <span class="arab-inline">تَكُونُ</span></li>
-        <li>Secara posisi (mahall) berstatus manshub — meskipun lafazhnya majrur karena harf-jar</li>
-        <li>Menjadi inti perumpamaan yang disampaikan ayat ini</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
-
-<!-- F4: تَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ (jumlah naqish kaana) -->
-<div class="kartu">
-  <div class="kartu-head warna-frasa4">
-    <span class="badge badge-frasa4">FRASA 4 — JUMLAH NAQISH-KAANA</span>
-    <div class="kartu-arab-besar arab" style="font-size:30px;">تَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
-    <div class="kartu-arti">gunung-gunung menjadi seperti bulu yang dicabik</div>
-  </div>
-  <table class="kartu-tabel">
-    <tr><td>Struktur</td><td>
-      <ul class="poin-list">
-        <li>Kalimat dengan fi'il-naqish (kaana wa akhawatuha)</li>
-        <li><em>fi'il-naqish</em>: <span class="arab-inline">تَكُونُ</span> (menjadi) — marfu'</li>
-        <li><em>ism-kaana</em>: <span class="arab-inline">ٱلْجِبَالُ</span> (gunung-gunung) — marfu'</li>
-        <li><em>khabar-kaana</em>: jar-majrur <span class="arab-inline">كَٱلْعِهْنِ ٱلْمَنفُوشِ</span> — secara posisi manshub</li>
-      </ul>
-    </td></tr>
-    <tr><td>Makna Frasa</td><td>
-      <ul class="poin-list">
-        <li>"gunung-gunung menjadi seperti bulu yang dicabik"</li>
-        <li>pernyataan transformasi — gunung yang biasanya kokoh, tegak, berat, <em>akan menjadi</em> seperti bulu yang ringan dan tercabik</li>
-        <li>bentuk <em>mudhari'</em> (تَكُونُ) memberikan kesan: kejadian ini <em>akan pasti terjadi</em> — sedang berlangsung pada saat Al-Qari'ah</li>
-      </ul>
-    </td></tr>
-    <tr><td>Peran / Kedudukan</td><td>
-      <ul class="poin-list">
-        <li>Berperan sebagai kalimat jumlah naqish-kaana (kalimat dengan fi'il-naqish)</li>
-        <li>Paralel dengan kalimat <a href="101-04.html">ayat 4</a>: <span class="arab-inline" style="font-size:15px;">يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ ٱلْمَبْثُوثِ</span> — struktur gramatikal identik, subyek dan perumpamaan berbeda</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
-
-<!-- F5: وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ (ayah kamilah) -->
-<div class="kartu">
-  <div class="kartu-head warna-frasa5">
-    <span class="badge badge-frasa5">FRASA 5 — AYAH KAMILAH (AYAT LENGKAP)</span>
-    <div class="kartu-arab-besar arab" style="font-size:26px;">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</div>
-    <div class="kartu-arti">dan gunung-gunung menjadi seperti bulu yang dicabik</div>
-  </div>
-  <table class="kartu-tabel">
-    <tr><td>Struktur</td><td>
-      <ul class="poin-list">
-        <li>Harf-athaf <span class="arab-inline">وَ</span> + jumlah naqish-kaana (kalimat utuh)</li>
-        <li>Harf-athaf menghubungkan jumlah ke jumlah — antar-kalimat (antar-ayat)</li>
-      </ul>
-    </td></tr>
-    <tr><td>Makna Frasa</td><td>
-      <ul class="poin-list">
-        <li>"dan gunung-gunung menjadi seperti bulu yang dicabik"</li>
-        <li>perumpamaan kedua dari dua perumpamaan yang dihadirkan Al-Qur'an untuk menggambarkan Hari Kiamat</li>
-        <li>melengkapi <a href="101-04.html">ayat 4</a>: keduanya berpasangan sebagai lukisan kontras — yang kecil dan yang besar sama-sama hancur</li>
-      </ul>
-    </td></tr>
-    <tr><td>Peran / Kedudukan</td><td>
-      <ul class="poin-list">
-        <li>Ayat ini secara keseluruhan berperan sebagai <em>ma'thuf</em> dari kalimat <a href="101-04.html">ayat 4</a> — dihubungkan oleh harf-athaf <span class="arab-inline">وَ</span></li>
-        <li>Ma'thuf-ilaih (yang dijadikan pasangan athaf): kalimat <a href="101-04.html">ayat 4</a> <span class="arab-inline" style="font-size:15px;">يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ ٱلْمَبْثُوثِ</span></li>
-        <li>Bersama ayat 4, keduanya menjadi <em>dua keterangan kondisi</em> yang melukiskan apa yang terjadi di hari Al-Qari'ah</li>
-      </ul>
-    </td></tr>
-  </table>
-</div>
-
-<!-- §5 ANALISIS TINGKAT 3 -->
-<div class="section-header biru">
-  <div class="judul">Analisis Tingkat 3 : Kedudukan dalam Surah</div>
-  <div class="sub-judul">Posisi dan fungsi ayat 5 dalam Surah Al-Qari'ah</div>
-</div>
-<div class="kartu">
-  <div class="kartu-head warna-kata"><span class="badge badge-kata">KEDUDUKAN AYAT 5 — PERUMPAMAAN KEDUA</span></div>
-  <table class="kartu-tabel">
-    <tr><td>Posisi</td><td>Ayat 5 adalah <strong>penutup babak kedua</strong> surah Al-Qari'ah — babak <em>gambaran peristiwa</em>. Ayat ini melengkapi <a href="101-04.html">ayat 4</a> dengan perumpamaan kedua: jika ayat 4 melukiskan manusia yang berhamburan, ayat 5 melukiskan gunung yang hancur.</td></tr>
-    <tr><td>Hubungan dengan Ayat Sebelumnya</td><td>
-      <ul class="poin-list">
-        <li>Secara gramatikal: dihubungkan langsung ke <a href="101-04.html">ayat 4</a> oleh harf-athaf <span class="arab-inline">وَ</span> di awal — athaf jumlah ke jumlah</li>
-        <li>Secara makna: melengkapi gambaran Hari Kiamat dengan perumpamaan kedua — dari manusia (makhluk kecil) ke gunung (ciptaan besar)</li>
-        <li>Struktur gramatikal paralel dengan ayat 4: fi'il-naqish + ism-kaana + jar-majrur sebagai khabar-kaana</li>
-      </ul>
-    </td></tr>
-    <tr><td>Dua Perumpamaan yang Simetris</td><td>
-      <ul class="poin-list">
-        <li>① <a href="101-04.html">Ayat 4</a>: manusia seperti laron bertebaran — yang kecil, lemah, dan mudah goyah</li>
-        <li>② Ayat 5: gunung seperti bulu yang dicabik — yang besar, kokoh, dan mudah hancur</li>
-        <li>Kontras yang sengaja dirancang: <em>yang kecil</em> dan <em>yang besar</em> sama-sama runtuh tak berdaya di hari itu</li>
-        <li>Pelajaran dari kontras: tidak ada kekuatan duniawi — sekecil apa pun atau sebesar apa pun — yang mampu bertahan di hadapan kedahsyatan Al-Qari'ah</li>
-      </ul>
-    </td></tr>
-    <tr><td>Struktur Surah</td><td>Ayat 5 menutup <strong>babak kedua</strong> (ayat 4–5: gambaran peristiwa). Setelah ini akan menyusul <strong>babak ketiga</strong> (ayat 6–11: pembagian nasib — timbangan amal, surga, dan neraka). Jadi ayat 5 adalah <em>jembatan</em>: dari kekalutan umum (ayat 4–5) ke pembagian akhir nasib (ayat 6 dst).</td></tr>
-  </table>
-</div>
-
-<!-- §6 TADABUR -->
-<div class="section-header tadabur">
-  <div class="judul">Tadabur</div>
-  <div class="sub-judul">Renungan makna dan hikmah ayat 5</div>
-</div>
-<div class="tadabur-box">
-  <div class="tadabur-head">
-    <span class="badge" style="background:#92400e;color:white;">TADABUR</span>
-    <div class="tadabur-judul">كَٱلْعِهْنِ ٱلْمَنفُوشِ — "Seperti Bulu yang Dicabik"</div>
-  </div>
-  <div class="tadabur-isi">
-    <p>Gunung. Dalam sejarah manusia, gunung adalah simbol keabadian dan kekokohan. Kita menyebut seseorang yang teguh dengan "kokoh seperti gunung". Kita membangun benteng di gunung karena kita yakin gunung tidak akan berpindah. Kita menjadikan gunung sebagai penanda waktu dan tempat karena kita percaya ia <em>selalu ada</em>. Tapi Allah Ta'ala di ayat ini mengajarkan kepada kita sesuatu yang mengguncang seluruh cara pandang itu: <strong>gunung pun akan hancur.</strong></p>
-    <p>Perumpamaannya bukan dengan pasir, bukan dengan batu kerikil, bukan dengan puing. Tetapi dengan <em>bulu yang dicabik</em> — <span class="arab-inline">ٱلْعِهْنِ ٱلْمَنفُوشِ</span>. Sesuatu yang paling ringan, paling halus, paling mudah terbawa angin. Bayangkan: gunung Everest, gunung Jabal Rahmah, gunung-gunung yang kita kenal — semuanya akan menjadi seperti serpihan wol yang beterbangan. Kontras yang mustahil dibayangkan: <em>yang paling berat menjadi yang paling ringan</em>.</p>
-    <p>Ibnu Katsir rahimahullah mengutip penafsiran Ibnu Abbas radhiyallahu 'anhuma: <em>al-'ihn</em> adalah bulu domba yang sudah diwarnai — yang paling lemah dari semua serat. Pilihan kata ini bukan kebetulan. Ketika Al-Qur'an ingin menggambarkan kehancuran total, ia memilih perumpamaan yang paling <em>rapuh</em> — bukan sekadar "pecah" atau "remuk", tetapi <em>tercabik hingga terurai halus</em>. Ini adalah akhir yang sempurna untuk apa yang tadinya paling kokoh.</p>
-    <p>Pertanyaan yang perlu kita renungkan: <em>Dalam hidup ini, apa "gunung" kita? Apa yang kita anggap paling kokoh, paling bisa diandalkan, paling abadi? Karier? Kekayaan? Keluarga? Kesehatan? Reputasi? Semua "gunung" yang kita bangun di dunia ini — pada hari itu akan menjadi seperti bulu yang dicabik. Yang tersisa hanyalah apa yang kita kirimkan untuk akhirat kita. Apakah kita sudah membangun "gunung sejati" di sana?</em></p>
-    <p>Allah Ta'ala berfirman di ayat lain: <em>"Dan gunung-gunung akan menjadi seperti bulu (yang berterbangan)"</em> (QS Al-Ma'arij: 9) — mengulang gambaran yang sama. Ketika satu perumpamaan diulang-ulang di Al-Qur'an, itu tanda bahwa Allah ingin umat ini benar-benar meresapinya. Karena begitu gunung hancur, semua ilusi tentang "kekokohan dunia" ikut hancur bersamanya. Yang tersisa hanyalah kebenaran yang selama ini ditutupi oleh kesibukan dunia: <strong>tidak ada yang kekal kecuali Allah, dan tidak ada yang bermanfaat kecuali amal shalih.</strong></p>
-  </div>
-</div>
-
-<!-- §7 DIAGRAM SVG — Model-Pohon 5-Level -->
-<div class="section-header">
-  <div class="judul">Diagram Sintaksis</div>
-  <div class="sub-judul">Model-Pohon · Surah Al-Qari'ah 101:5</div>
-</div>
-<div class="diagram-wrapper" id="diagram-ayat5">
-<svg viewBox="0 0 980 680" xmlns="http://www.w3.org/2000/svg"
-     style="width:100%;max-width:980px;display:block;margin:0 auto;">
-
-  <!-- ============================================================ -->
-  <!-- REFERENSI SEJAJAR: Ayat 4 (ma'thuf-ilaih) — di KANAN ATAS -->
-  <text x="930" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="14" fill="#999" font-weight="700" direction="rtl">يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ</text>
-  <text x="930" y="56" text-anchor="middle" font-size="7.5" fill="#aaa" font-style="italic">Ayat 4 · jumlah naqish-kaana</text>
-  <text x="930" y="68" text-anchor="middle" font-size="7.5" fill="#aaa" font-style="italic">(ma'thuf-ilaih)</text>
-
-  <!-- ============================================================ -->
-  <!-- BARIS KATA (6 morfem RTL, X besar di kanan) -->
-  <!-- وَ -->
-  <text x="850" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">وَ</text>
-  <text x="850" y="60" text-anchor="middle" font-size="9" fill="#1a472a">harf-athaf · mabni fathah</text>
-  <text x="850" y="72" text-anchor="middle" font-size="8" fill="#888">kata sambung ke ayat 4</text>
-
-  <!-- تَكُونُ -->
-  <text x="720" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">تَكُونُ</text>
-  <text x="720" y="60" text-anchor="middle" font-size="9" fill="#1a472a">fi'il-mudhari' naqish · marfu'</text>
-  <text x="720" y="72" text-anchor="middle" font-size="8" fill="#888">kaana wa akhawatuha</text>
-
-  <!-- ٱلْجِبَالُ -->
-  <text x="580" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْجِبَالُ</text>
-  <text x="580" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-jamid · marfu'</text>
-  <text x="580" y="72" text-anchor="middle" font-size="8" fill="#888">ism-kaana (subyek)</text>
-
-  <!-- كَ -->
-  <text x="460" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">كَ</text>
-  <text x="460" y="60" text-anchor="middle" font-size="9" fill="#1a472a">harf-jar · mabni fathah</text>
-  <text x="460" y="72" text-anchor="middle" font-size="8" fill="#888">kaf tasybih</text>
-
-  <!-- ٱلْعِهْنِ -->
-  <text x="310" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْعِهْنِ</text>
-  <text x="310" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-jamid · majrur</text>
-  <text x="310" y="72" text-anchor="middle" font-size="8" fill="#888">man'ut</text>
-
-  <!-- ٱلْمَنفُوشِ -->
-  <text x="120" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="22" fill="#1a472a" font-weight="700" direction="rtl">ٱلْمَنفُوشِ</text>
-  <text x="120" y="60" text-anchor="middle" font-size="9" fill="#1a472a">isim-maf'ul · majrur</text>
-  <text x="120" y="72" text-anchor="middle" font-size="8" fill="#888">na'at (sifat)</text>
-
-  <!-- ============================================================ -->
-  <!-- GARIS VERTIKAL dari tiap kata ke level pertama -->
-  <line x1="850" y1="82" x2="850" y2="528" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <line x1="720" y1="82" x2="720" y2="398" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <line x1="580" y1="82" x2="580" y2="398" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <line x1="460" y1="82" x2="460" y2="270" stroke="#1a472a" stroke-width="2.2"/>
-  <line x1="310" y1="82" x2="310" y2="140" stroke="#1a472a" stroke-width="2.2"/>
-  <line x1="120" y1="82" x2="120" y2="140" stroke="#1a472a" stroke-width="2.2"/>
-
-  <!-- ============================================================ -->
-  <!-- LEVEL 1 — HIJAU SOLID: ٱلْعِهْنِ + ٱلْمَنفُوشِ = na'at-man'ut -->
-  <line x1="120" y1="140" x2="310" y2="140" stroke="#1a472a" stroke-width="2.2"/>
-  <text x="215" y="136" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">man'ut + na'at</text>
-  <polygon points="215,140 208,132 222,132" fill="#1a472a"/>
-  <line x1="215" y1="140" x2="215" y2="178" stroke="#1a472a" stroke-width="2.2"/>
-  <text x="215" y="192" text-anchor="middle" font-size="9" fill="#1a472a" font-style="italic">Na'at-Man'ut (sifat + yang disifati)</text>
-  <text x="215" y="212" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="16" fill="#1a472a" font-weight="700" direction="rtl">ٱلْعِهْنِ ٱلْمَنفُوشِ</text>
-  <text x="215" y="226" text-anchor="middle" font-size="8" fill="#555">al-'ihn al-manfūsh — bulu yang dicabik</text>
-
-  <!-- ============================================================ -->
-  <!-- LEVEL 2 — HIJAU SOLID: كَ + [L1] = jar-majrur + na'at -->
-  <line x1="215" y1="229" x2="215" y2="270" stroke="#1a472a" stroke-width="2.2"/>
-  <line x1="215" y1="270" x2="460" y2="270" stroke="#1a472a" stroke-width="2.2"/>
-  <text x="338" y="266" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">harf-jar + man'ut-na'at</text>
-  <polygon points="338,270 331,262 345,262" fill="#1a472a"/>
-  <line x1="338" y1="270" x2="338" y2="308" stroke="#1a472a" stroke-width="2.2"/>
-  <text x="338" y="322" text-anchor="middle" font-size="9" fill="#1a472a" font-style="italic">Jar-Majrur + Na'at (frasa perumpamaan)</text>
-  <text x="338" y="342" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="15" fill="#1a472a" font-weight="700" direction="rtl">كَٱلْعِهْنِ ٱلْمَنفُوشِ</text>
-  <text x="338" y="356" text-anchor="middle" font-size="8" fill="#555">ka-l-'ihn al-manfūsh — khabar-kaana</text>
-
-  <!-- ============================================================ -->
-  <!-- LEVEL 3 — TEAL PUTUS: تَكُونُ + ٱلْجِبَالُ + [L2] = jumlah naqish-kaana -->
-  <line x1="338" y1="359" x2="338" y2="398" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <line x1="338" y1="398" x2="720" y2="398" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <text x="529" y="394" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">fi'il-naqish + ism-kaana + khabar-kaana</text>
-  <polygon points="529,398 522,390 536,390" fill="#0e7490"/>
-  <line x1="529" y1="398" x2="529" y2="438" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <text x="529" y="452" text-anchor="middle" font-size="9" fill="#0e7490" font-style="italic">Jumlah Naqish-Kaana (kalimat dengan kaana)</text>
-  <text x="529" y="472" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="14" fill="#0e7490" font-weight="700" direction="rtl">تَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</text>
-  <text x="529" y="486" text-anchor="middle" font-size="8" fill="#555">takūnu-l-jibāl ka-l-'ihn al-manfūsh</text>
-
-  <!-- ============================================================ -->
-  <!-- LEVEL 4 — UNGU PUTUS: وَ + [L3] = ayat lengkap (harf-athaf + ma'thuf) -->
-  <line x1="529" y1="489" x2="529" y2="528" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <line x1="529" y1="528" x2="850" y2="528" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <text x="689" y="524" text-anchor="middle" font-size="8" fill="#5b21b6" font-style="italic">harf-athaf + jumlah (ma'thuf)</text>
-  <polygon points="689,528 682,520 696,520" fill="#5b21b6"/>
-  <line x1="689" y1="528" x2="689" y2="568" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <text x="689" y="582" text-anchor="middle" font-size="9" fill="#5b21b6" font-style="italic">Ayat Lengkap (ayah kamilah) — jumlah ma'thufah</text>
-  <text x="689" y="602" text-anchor="middle" font-family="'Scheherazade New',serif"
-        font-size="13" fill="#5b21b6" font-weight="700" direction="rtl">وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ</text>
-  <text x="689" y="616" text-anchor="middle" font-size="8" fill="#555">wa takūnu-l-jibāl ka-l-'ihn al-manfūsh</text>
-
-  <!-- ============================================================ -->
-  <!-- LEVEL 5 — BIRU GELAP PUTUS: [L4] terhubung ke Ayat 4 sebagai ma'thuf-ilaih -->
-  <line x1="689" y1="619" x2="689" y2="650" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <line x1="689" y1="650" x2="930" y2="650" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
-  <text x="812" y="646" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">'athaf jumlah ke jumlah (ma'thuf ke ayat 4)</text>
-
-  <!-- Garis referensi silang ke node Ayat 4 (abu putus) -->
-  <line x1="930" y1="650" x2="930" y2="78" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/>
-  <text x="945" y="370" text-anchor="middle" font-size="8" fill="#888" font-style="italic" transform="rotate(90 945 370)">ma'thuf ke Ayat 4</text>
-
-</svg>
-<div class="diagram-legenda">
-  <div class="legenda-label">LEGENDA</div>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>L1 — ٱلْعِهْنِ ٱلْمَنفُوشِ na'at-man'ut (hijau solid)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>L2 — كَٱلْعِهْنِ ٱلْمَنفُوشِ jar-majrur + na'at (hijau solid)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>L3 — jumlah naqish-kaana (teal putus)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#5b21b6" stroke-width="2" stroke-dasharray="5,3"/></svg>L4 — ayat lengkap / harf-athaf + jumlah (ungu putus)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,3"/></svg>L5 — 'athaf ke Ayat 4 (biru gelap putus)</span>
-  <span class="legenda-item"><svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/></svg>Referensi silang ke Ayat 4 (abu putus)</span>
-</div>
-</div>
-
-<div class="nav-bawah" id="nav-bawah-container"></div>
-</div><!-- /container -->
 
 <footer>
-  <p><a href="index.html">grammar-quran.com</a> &nbsp;·&nbsp; Analisis Gramatikal Al-Qur'an &nbsp;·&nbsp; Semoga menjadi amal jariyah ilmu</p>
+  <p style="max-width:680px;margin:0 auto 10px;line-height:1.7;color:rgba(255,255,255,.55);">Web ini dibangun mulai dari Surah 1 (Al-Fatihah), kemudian Surah 114 (An-Naas), naik ke Surah 113 (Al-Falaq), dan seterusnya menuju Surah Al-Baqarah.</p>
+  <p style="max-width:680px;margin:0 auto 10px;line-height:1.7;color:rgba(255,255,255,.55);">Penjelasan kaidah gramatikal diuraikan bertahap dari ayat yang dibangun di awal. Kaidah gramatikal yang telah dijelaskan pada analisis awal tidak diuraikan ulang bila ditemukan pada ayat atau surat berikutnya.</p>
+  <p style="max-width:680px;margin:0 auto 10px;line-height:1.7;color:rgba(255,255,255,.55);">Analisis yang dibangun pada web ini tentu tidak sempurna. Jika Anda menemukan kesalahan atau ketidak-akuratan, mohon beritahukan kepada kami melalui email: <a href="mailto:ythowloves@gmail.com">ythowloves@gmail.com</a>.</p>
   <!-- V18-0F ③ — atribusi nash Tanzil, COPY LITERAL; tautan wajib hidup -->
   <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.45);">Teks Al-Qur'an: Tanzil Quran Text (Uthmani, v1.1) &copy; Tanzil Project &middot; CC BY 3.0 &middot; <a href="https://tanzil.net" target="_blank" rel="noopener">tanzil.net</a></p>
 </footer>
 
 <script src="surah-data.js"></script>
-<script>const PAGE_CONFIG = { nomorSurah: 101, nomorAyat: 5, ayatTerakhir: false };</script>
+<!-- ╚══ END COPY LITERAL — NAV-BAWAH + FOOTER ══╝ -->
+
+<!-- ╔══ INSERT PAGE_CONFIG (3 nilai wajib) ══╗ -->
 <script>
-(function(){
-  const surah=(typeof getSurahByNomor==='function')?getSurahByNomor(PAGE_CONFIG.nomorSurah):null;
-  const ayatSaat=PAGE_CONFIG.nomorAyat,totalAyat=surah?surah.jumlahAyat:11,surahNama=surah?surah.namaLatin:'Al-Qari\'ah';
-  if(surah){
-    document.title='Grammar '+surah.namaLatin+' '+surah.nomor+':'+ayatSaat;
-    const lbl=document.getElementById('label-ayat-box');if(lbl)lbl.textContent='Ayat Lengkap · '+surah.namaLatin+' : '+ayatSaat;
-    const hiA=document.getElementById('hi-ayat-text');if(hiA)hiA.textContent='Ayat '+ayatSaat+' · ('+surah.nomor+':'+ayatSaat+')';
-    const ddS=document.getElementById('dd-surah');
-    SURAH_DATA.filter(s=>s.status==='tersedia').sort((a,b)=>a.nomor-b.nomor).forEach(s=>{const o=document.createElement('option');o.value=s.nomorStr;o.textContent=s.nomorStr+'  '+s.namaLatin+' \u2014 '+s.jumlahAyat+' Ayat';if(s.nomor===surah.nomor)o.selected=true;ddS.appendChild(o);});
-    function isiAyat(n){const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';const ops=getOpsiDropdownAyat(n);if(!ops.length){dd.disabled=true;return;}dd.disabled=false;ops.forEach(o=>{const opt=document.createElement('option');opt.value=o.path;opt.textContent=o.label;if(o.value===ayatSaat&&n===surah.nomor)opt.selected=true;dd.appendChild(opt);});}
-    isiAyat(surah.nomor);
-    document.getElementById('dd-surah').addEventListener('change',function(){const n=parseInt(this.value);if(n)isiAyat(n);else{const dd=document.getElementById('dd-ayat');dd.innerHTML='<option value="">— Pilih Ayat —</option>';dd.disabled=true;}});
-  }
-  window.navigasiKeAyat=function(){const p=document.getElementById('dd-ayat').value;if(p)window.location.href=p;else alert('Pilih surah dan ayat terlebih dahulu.');};
-  const c=document.getElementById('nav-bawah-container');
-  const bp=document.createElement('a');bp.className='nav-btn';bp.href='101-04.html';bp.textContent='\u2190 Ayat 4';
-  const bh=document.createElement('a');bh.className='nav-btn beranda';bh.href='index.html';bh.textContent='\u2302 Beranda';
-  const bn=document.createElement('a');bn.className='nav-btn';bn.href='101-06.html';bn.textContent='Ayat 6 \u2192';
-  const info=document.createElement('span');info.className='nav-info';info.textContent=surahNama+' \u00b7 Ayat '+ayatSaat+' dari '+totalAyat;
-  c.appendChild(bp);c.appendChild(bh);c.appendChild(info);c.appendChild(bn);
-})();
+  const PAGE_CONFIG = {
+    nomorSurah:   101,
+    nomorAyat:    5,
+    ayatTerakhir: false
+  };
 </script>
+<!-- ╚══ END INSERT PAGE_CONFIG ══╝ -->
+
+<!-- ╔══ COPY LITERAL — INIT SCRIPT (NAV + DROPDOWN) ══╗ -->
+<script>
+  (function () {
+    const surah = getSurahByNomor(PAGE_CONFIG.nomorSurah);
+    if (!surah) return;
+
+    const ayatSaat  = PAGE_CONFIG.nomorAyat;
+    const totalAyat = surah.jumlahAyat;
+    const isLast    = PAGE_CONFIG.ayatTerakhir;
+
+    document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
+
+    const lbl = document.getElementById('label-ayat-box');
+    if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}` + (isLast ? ' · Ayat Terakhir' : '');
+
+    const ddSurah = document.getElementById('dd-surah');
+    SURAH_DATA
+      .filter(s => s.status === 'tersedia')
+      .sort((a, b) => a.nomor - b.nomor)
+      .forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.nomorStr;
+        opt.textContent = s.nomor + '. ' + s.namaLatin + ' — ' + s.jumlahAyat + ' ayat';
+        if (s.nomor === surah.nomor) opt.selected = true;
+        ddSurah.appendChild(opt);
+      });
+
+    function isiDropdownAyat(nomorSurahParam) {
+      const ddAyat = document.getElementById('dd-ayat');
+      ddAyat.innerHTML = '';
+      const opsiAyat = getOpsiDropdownAyat(nomorSurahParam);
+      if (!opsiAyat.length) {
+        ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        ddAyat.disabled = true;
+        return;
+      }
+      ddAyat.disabled = false;
+      opsiAyat.forEach(opsi => {
+        const opt = document.createElement('option');
+        opt.value = opsi.path;
+        opt.textContent = opsi.label;
+        if (nomorSurahParam === surah.nomor) {
+          if (opsi.value === ayatSaat) opt.selected = true;
+        } else {
+          if (opsi.value === 1) opt.selected = true;
+        }
+        ddAyat.appendChild(opt);
+      });
+    }
+
+    isiDropdownAyat(surah.nomor);
+
+    ddSurah.addEventListener('change', function () {
+      const nomorStrPilih = this.value;
+      if (nomorStrPilih) {
+        const sObj = SURAH_DATA.find(s => s.nomorStr === nomorStrPilih);
+        if (sObj) isiDropdownAyat(sObj.nomor);
+      } else {
+        const dd = document.getElementById('dd-ayat');
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
+        dd.disabled = true;
+      }
+    });
+
+    window.navigasiKeAyat = function () {
+      const path = document.getElementById('dd-ayat').value;
+      if (path) { window.location.href = path; }
+      else { alert('Pilih surah dan ayat terlebih dahulu.'); }
+    };
+
+    function fileAyat(s, a) {
+      return String(s).padStart(3, '0') + '-' + String(a).padStart(2, '0') + '.html';
+    }
+    function cariSurahTetanggaSemua(nomor, arah) {
+      if (typeof SURAH_DATA === 'undefined') return null;
+      // V18-4A — navigasi antarsurah (ralat Iwoth 1 Nov 2026):
+      //   tombol kiri ayat 1          → ayat terakhir surah nomor−1
+      //   tombol kanan ayat terakhir  → ayat 1 surah nomor+1
+      // Pengecualian: 001-01 kiri tidak ada · 001-07 kanan → 114-01 · 114-06 kanan → 001-01.
+      let tujuan = nomor + arah;
+      if (nomor === 1) tujuan = (arah === 1) ? 114 : 0;
+      if (nomor === 114 && arah === 1) tujuan = 1;
+      return SURAH_DATA.find(s => s.nomor === tujuan) || null;
+    }
+
+    let prevTarget = null, nextTarget = null;
+    if (ayatSaat > 1) {
+      prevTarget = { href: fileAyat(surah.nomor, ayatSaat - 1), label: '← Ayat ' + (ayatSaat - 1), edge: false };
+    } else {
+      const prevS = cariSurahTetanggaSemua(surah.nomor, -1);
+      if (prevS) prevTarget = { href: fileAyat(prevS.nomor, prevS.jumlahAyat), label: '← ' + prevS.namaLatin + ' ' + prevS.jumlahAyat, edge: true };
+    }
+    if (ayatSaat < totalAyat) {
+      nextTarget = { href: fileAyat(surah.nomor, ayatSaat + 1), label: 'Ayat ' + (ayatSaat + 1) + ' →', edge: false };
+    } else {
+      const nextS = cariSurahTetanggaSemua(surah.nomor, 1);
+      if (nextS) nextTarget = { href: fileAyat(nextS.nomor, 1), label: nextS.namaLatin + ' 1 →', edge: true };
+    }
+
+    const hdrPrev = document.getElementById('hdr-prev');
+    const hdrNext = document.getElementById('hdr-next');
+    if (hdrPrev) {
+      if (prevTarget) {
+        hdrPrev.href = prevTarget.href;
+        hdrPrev.textContent = prevTarget.label;
+        hdrPrev.title = prevTarget.edge ? 'Surah sebelumnya: ' + prevTarget.label.replace('← ', '') : 'Ayat sebelumnya';
+        if (prevTarget.edge) hdrPrev.classList.add('edge');
+      } else { hdrPrev.classList.add('disabled'); hdrPrev.textContent = '←'; }
+    }
+    if (hdrNext) {
+      if (nextTarget) {
+        hdrNext.href = nextTarget.href;
+        hdrNext.textContent = nextTarget.label;
+        hdrNext.title = nextTarget.edge ? 'Surah berikutnya: ' + nextTarget.label.replace(' →', '') : 'Ayat berikutnya';
+        if (nextTarget.edge) hdrNext.classList.add('edge');
+      } else { hdrNext.classList.add('disabled'); hdrNext.textContent = '→'; }
+    }
+
+    const container = document.getElementById('nav-bawah-container');
+    if (container) {
+      if (prevTarget) {
+        const bp = document.createElement('a');
+        bp.className = 'nav-btn' + (prevTarget.edge ? ' edge' : '');
+        bp.href = prevTarget.href;
+        bp.textContent = prevTarget.label;
+        container.appendChild(bp);
+      }
+      const bh = document.createElement('a');
+      bh.className = 'nav-btn beranda';
+      bh.href = 'index.html';
+      bh.textContent = '⌂ Beranda';
+      container.appendChild(bh);
+
+      const info = document.createElement('span');
+      info.className = 'nav-info';
+      info.textContent = `${surah.namaLatin} · Ayat ${ayatSaat} dari ${totalAyat}`;
+      container.appendChild(info);
+
+      if (nextTarget) {
+        const bn = document.createElement('a');
+        bn.className = 'nav-btn' + (nextTarget.edge ? ' edge' : '');
+        bn.href = nextTarget.href;
+        bn.textContent = nextTarget.label;
+        container.appendChild(bn);
+      }
+    }
+  })();
+</script>
+<!-- ╚══ END COPY LITERAL — INIT SCRIPT ══╝ -->
+
 </body>
 </html>
