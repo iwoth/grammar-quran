@@ -310,7 +310,7 @@ const SURAH_DATA = [
     jumlahAyat: 11,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-100 · 11 ayat · sumpah Allah ﷻ dengan kuda perang yang berlari kencang · tiga babak: rangkaian sumpah (1–5) + jawab al-qasam tentang sifat manusia kanud (6–8) + pertanyaan retoris &amp; klimaks Khabīr (9–11) · konsep nahwu utama: rantai 'athaf tiga lapis lintas ayat, 4 jenis huruf fā' (Fā' 'Āthifah, Isti'nāfiyyah, al-Fashīhah, Rābithah), pergeseran nominal-verbal, zhorf zaman vs maf'ul-mutlaq, paralelisme struktur antar-ayat, tanwīn al-'iwadh, taqdīm ganda jar-majrur + zharf · konsep balaghi: chiasm tingkat tinggi (manusia lemah ↔ Allah sempurna), iltifat dari mufrad ke jamak"
+    keterangan: "Surah ke-100 · 11 ayat · lima sumpah Allah ﷻ dengan kuda-kuda perang (1–5) + jawab sumpah: manusia sangat ingkar kepada Rabb-nya, menyaksikan keingkarannya, dan sangat cinta harta (6–8) + peringatan tentang kebangkitan dan Rabb Yang Maha Teliti (9–11) · konsep: wawu qasam, masdar sebagai hal (maf'ul muthlaq dengan fi'il dibuang), fa' 'athaf berantai, 'athaf fi'il kepada isim fa'il ber-al, inna dan lam muzahlaqah, jar-majrur didahulukan untuk penekanan, shighah mubalaghah fa'ul, hamzah istifham sebelum fa', idza dengan 'amil dibuang, shilah jar-majrur, yauma'idzin"
   },
   {
     nomor: 101,
