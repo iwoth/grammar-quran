@@ -288,7 +288,7 @@ const SURAH_DATA = [
     jumlahAyat: 8,
     jenis: "Madaniyah",
     status: "tersedia",
-    keterangan: "Surah ke-98 · 8 ayat · tiga babak retoris: pengenalan Bayyinah (1–3) + diagnosis &amp; resep Din al-Qayyimah (4–5) + pembagian akhir nasib (6–8) · pasangan al-muqābalah lengkap antara syarrul-bariyyah (kafir) ↔ khayrul-bariyyah (mu'min) · konsep nahwu utama: kāna nāqishah + ḥattā ghāyah, idhāfah lafzhiyyah vs ma'nawiyyah, na'at jumlah vs na'at mufrad, fi'il madhy mabni li-mafhūl, istisnā' dengan illā, mufa'al muthlaq sebagai tawkīd, ḥāl jam' mudzakkar sālim (tanda nashb yā'), isim tafḍīl dalam idhāfah, isim isyārah ba'īd untuk khulāṣah, jumlah-fi'liyah sebagai na'at, zharf zamān sebagai tawkīd khulūd · konsep balaghi: pasangan ridha resiprokal mutaqābilah, kunci universal taqwa (khasy-yah)"
+    keterangan: "Surah ke-98 · 8 ayat · bukti yang nyata: Rasul yang membacakan lembaran-lembaran yang disucikan (1–3) + ahli kitab berpecah sesudah bukti datang, padahal perintahnya satu: ikhlas, shalat, dan zakat (4–5) + balasan dua golongan: seburuk-buruk dan sebaik-baik makhluk, ridha dua arah, dan khasyyah (6–8) · konsep: lam dan kana naqish yang majzum, hal berupa jar-majrur, hatta dan an yang tersembunyi, badal, kalimat sifat, khabar yang wajib didahulukan, hashr dengan nafy dan illa, ma mashdariyyah, wawu haliyyah, lam ta'lil, dua hal, idhafah kepada sifat, inna dengan khabar jar-majrur, dhamir fashl, isim tafdhil khair dan syarr, man maushul"
   },
   {
     nomor: 99,
