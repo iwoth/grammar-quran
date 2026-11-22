@@ -277,7 +277,7 @@ const SURAH_DATA = [
     jumlahAyat: 5,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: ""
+    keterangan: "Surah ke-97 · 5 ayat · Al-Qur'an diturunkan pada Lailatul Qadr dan pengagungan malam itu (1–2) + tiga keutamaannya: lebih baik daripada seribu bulan, turunnya para malaikat dan Jibril dengan izin Rabb mereka, keselamatan sampai terbit fajar (3–5) · konsep: inna dan naa, dhamir yang kembali kepada yang belum disebut, wa ma adraka dan ta'liq, isim tafdhil khair dengan min, dua ta' di awal mudhari', idhafah bertingkat, kull, khabar didahulukan untuk pengkhususan, hatta sebelum isim, masdar mimi"
   },
   {
     nomor: 98,
