@@ -266,7 +266,7 @@ const SURAH_DATA = [
     jumlahAyat: 19,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Ayat pertama yang diturunkan"
+    keterangan: "Surah ke-96 · 19 ayat · wahyu pertama: perintah membaca dengan nama Rabb Pencipta dan Pengajar (1–5) + manusia melampaui batas karena merasa cukup (6–8) + orang yang melarang hamba shalat: tiga pertanyaan a-ra'aita dan teguran bahwa Allah melihat (9–14) + ancaman dan perintah sujud (15–19) · konsep: ragam makna ba', maf'ul yang dibuang, badal fi'il, isim tafdhil dengan al, maf'ul li-ajlih, fa'il dan maf'ul satu orang pada fi'il qalbi, in syarthiyyah dan jawab yang dibuang, aw, badal nakirah dari ma'rifah, la nahiyah"
   },
   {
     nomor: 97,
