@@ -255,7 +255,7 @@ const SURAH_DATA = [
     jumlahAyat: 8,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: ""
+    keterangan: "Surah ke-95 · 8 ayat · sumpah dengan tin, zaitun, Bukit Sinai, dan negeri yang aman (1–3) + manusia diciptakan dalam bentuk terbaik lalu dikembalikan ke tempat terendah (4–5) + pengecualian bagi orang yang beriman dan beramal shalih (6) + teguran bagi yang mendustakan hari pembalasan dan penetapan bahwa Allah hakim yang paling adil (7–8) · konsep: rangkaian muqsam bih, makna al-amin, lam dan qad pada jawab qasam, kedudukan asfala safilin, istitsna' muttashil dan munqathi', laisa dan ba' za'idah pada khabarnya"
   },
   {
     nomor: 96,
