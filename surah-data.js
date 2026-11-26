@@ -244,7 +244,7 @@ const SURAH_DATA = [
     jumlahAyat: 8,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-94, tasliyah untuk Nabi ﷺ — janji kemudahan dan perintah amal+niat"
+    keterangan: "Surah ke-94 · 8 ayat · tiga nikmat bagi Rasulullah ﷺ: dada dilapangkan, beban diturunkan, sebutan ditinggikan (1–4) + janji kemudahan bersama kesulitan, diulang dua kali (5–6) + perintah bersungguh-sungguh dalam ibadah dan berharap hanya kepada Allah (7–8) · konsep: makna wizr, isim ma'rifah dan nakirah yang diulang, kedudukan ayat 6, makna selesai dan bersungguh-sungguh, fa' za'idah"
   },
   {
     nomor: 95,
