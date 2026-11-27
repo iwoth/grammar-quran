@@ -233,7 +233,7 @@ const SURAH_DATA = [
     jumlahAyat: 11,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-93, tasliyah untuk Nabi ﷺ — sumpah dan penghiburan, tiga nikmat masa lampau, dan tiga perintah syukur"
+    keterangan: "Surah ke-93 · 11 ayat · sumpah dengan dhuha dan malam; jawabnya: Rabb tidak meninggalkan dan tidak membenci Rasul-Nya ﷺ (1–3) + yang kemudian lebih baik dan pemberian yang membuat ridha (4–5) + tiga nikmat yang telah lalu (6–8) + tiga perintah syukur dengan amma (9–11) · konsep: jawab qasam yang dinafikan, lam ibtida', wajada dua maf'ul atau hal, makna dhallan, isim sesudah amma yang bukan mubtada', fa' za'idah"
   },
   {
     nomor: 94,
