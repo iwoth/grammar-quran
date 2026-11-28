@@ -222,7 +222,7 @@ const SURAH_DATA = [
     jumlahAyat: 21,
     jenis: "Makkiyah",
     status: "tersedia",
-    keterangan: "Surah ke-92, sumpah pembuka demi malam dan siang — dua jalan hidup manusia, peringatan neraka bagi al-asyqa, dan keikhlasan al-atqa yang berbuah keridhaan"
+    keterangan: "Surah ke-92 · 21 ayat · sumpah dengan malam, siang, dan penciptaan laki-laki dan perempuan; jawabnya: usaha manusia berbeda-beda (1–4) + dua golongan dan jalan yang dimudahkan bagi masing-masing (5–11) + petunjuk, akhirat, dan dunia milik Allah (12–13) + neraka bagi yang paling celaka dan keridhaan bagi yang paling bertakwa (14–21) · konsep: idza sesudah sumpah, amma dan man maushul, lam pada isim inna yang diakhirkan, na't lintas ayat, fi'il dua maf'ul dimajhulkan, ma nafiyah tidak beramal, min za'idah, istitsna' munqathi'"
   },
   {
     nomor: 93,

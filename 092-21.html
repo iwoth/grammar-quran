@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
-  Grammar Al-Lail 92:21 — Khatmil Surah: Janji Keridhaan bagi Orang yang Bertakwa
-  Versi build: V15.9 (24 Mei 2026)
-  Template basis: 096-19 (khatmil surah dengan §8 Khatimah 4 komponen)
-  Ayat: وَلَسَوْفَ يَرْضَى
-  Catatan: ayat terakhir Al-Lail; lam+sawfa #429; tanpa konsep baru; §8 Khatimah Surah lengkap
--->
 <html lang="id" dir="ltr">
 <head>
   <meta charset="UTF-8" />
@@ -67,13 +60,13 @@
     .arab { font-family: var(--font-arab); direction: rtl; }
 
     header { background: var(--hijau-gelap); color: white; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
-    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; padding: 6px 0; }   /* V18.2 — tinggi menyesuaikan judul yang diperbesar */
 
     .header-info { display: flex; flex-direction: column; flex-shrink: 0; text-decoration: none; justify-content: center; gap: 0; }
-    .header-info .hi-label { font-size: 0.60rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
+    .header-info .hi-label { font-size: 0.90rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emas); margin-bottom: 3px; }
     .header-info .hi-surah { font-size: 0.90rem; font-weight: 700; color: white; display: flex; align-items: baseline; gap: 10px; }
     .header-info .hi-surah .arab-surah { font-family: var(--font-arab); font-size: 0.98rem; color: var(--emas); direction: rtl; vertical-align: baseline; }
-    .header-info .hi-ayat { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 4px; }
+    .header-info .hi-ayat { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 4px; max-width: 300px; line-height: 1.35; }   /* V18.2 M2 — boleh turun baris, tidak menabrak navigasi */
 
     .nav-dropdowns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .dropdown-wrapper { display: flex; flex-direction: column; gap: 3px; }
@@ -114,12 +107,14 @@
     .section-header.khatimah { background: var(--ungu-pekat); }
     .section-header.khatimah .sub-judul { color: #d8b4fe; }
 
-    .sub-section-header { margin: 24px 0 12px; padding: 8px 14px; background: #f0f7f2; border-left: 4px solid var(--hijau-gelap); border-radius: 4px; }
+    /* Sub-section header untuk diagram per kalimat */
+    .sub-section-header { margin: 24px 0 12px; padding: 8px 14px; background: #f0f7f2; border-left: 4px solid var(--hijau-gelap); border-radius: 4px; text-align: center; }   /* V18.2 M4 — rata tengah */
     .sub-section-header .sub-judul-kalimat { font-size: 13px; font-weight: 700; color: var(--hijau-gelap); }
     .sub-section-header .sub-arab-kalimat { font-family: var(--font-arab); font-size: 22px; color: var(--hijau-gelap); direction: rtl; margin-top: 4px; }
     .sub-section-header .sub-terjemah-kalimat { font-size: 11px; color: #666; font-style: italic; margin-top: 2px; }
 
     .kartu { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .kartu-prosa { padding: 14px 20px; line-height: 1.9; }  /* V16.6: §8 prose-card (Catatan Struktur/Konsep/Tafsir); selaras .konteks-box 14px 18px & sel tabel 20px — cegah teks/bullet menempel border */
     .kartu-head { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #f0ebe0; text-align: center; }
     .kartu-head .kh-left   { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 1; }
     .kartu-head .kh-center { width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; order: 2; }
@@ -134,6 +129,9 @@
     .kartu-head.warna-frasa1 { background: #eef4fb; }
     .kartu-head.warna-frasa2 { background: #f5f0fb; }
     .kartu-head.warna-frasa3 { background: #fdf6ec; }
+    .kartu-head.warna-frasa4 { background: #eaf1ea; }   /* V17-7 — frasa keempat (kamilah) */
+    .kartu-head.warna-frasa5 { background: #e6f0ef; }   /* V18-0 — frasa kelima */
+    .kartu-head.warna-frasa6 { background: #fdf2f8; }   /* V18-0 — frasa keenam */
 
     .badge { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; letter-spacing: .5px; }
     .badge-kata   { background: var(--hijau-gelap); color: white; }
@@ -144,8 +142,9 @@
     .badge-frasa1 { background: var(--biru-tua); color: white; }
     .badge-frasa2 { background: var(--ungu); color: white; }
     .badge-frasa3 { background: var(--coklat); color: white; }
-    .badge-frasa4 { background: var(--hijau-medium); color: white; }
-    .badge-frasa5 { background: var(--ungu-pekat); color: white; }
+    .badge-frasa4 { background: var(--hijau-gelap); color: white; }   /* V17-7 */
+    .badge-frasa5 { background: #115e59; color: white; }   /* V18-0 */
+    .badge-frasa6 { background: #be185d; color: white; }   /* V18-0 */
     .badge-tadabur { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: #92400e; color: white; }
     .badge-khatimah { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--ungu-pekat); color: white; }
 
@@ -168,7 +167,6 @@
     .tag-harf    { background: #f1f5f9; color: #475569; }
     .tag-marfu   { background: #dcfce7; color: #166534; }
     .tag-majrur  { background: #fef3c7; color: #92400e; }
-    .tag-majzum  { background: #ede9fe; color: #5b21b6; }
     .tag-mabni   { background: #e0e7ff; color: #3730a3; }
     .tag-dhamir  { background: #e0f2fe; color: #0c4a6e; }
 
@@ -188,7 +186,24 @@
       background: var(--hijau-gelap);
     }
 
-    /* Tashrif-Box Sub-Pola A */
+    .tashrif-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-top: 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .tashrif-item { text-align: center; }
+    .tashrif-arab { font-family: var(--font-arab); font-size: 24px; color: #9a3412; direction: rtl; display: block; line-height: 1.8; }
+    .tashrif-label { font-size: 11px; color: #888; margin-top: 2px; }
+    .tashrif-panah { font-size: 16px; color: #d97706; }
+    .tashrif-akar { background: #f0f7f2; border: 1px solid #1a472a; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-akar .tashrif-arab { color: #1a472a; }
+    .tashrif-subyek { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 12px; }
+    .tashrif-subyek .tashrif-arab { color: #c2410c; font-weight: 700; }
+    .tashrif-link { font-size: 12px; color: #92400e; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #fed7aa; width: 100%; }
+    .tashrif-link a { color: #c2410c; text-decoration: underline; }
+
+    /* ═══ V15.4 — POLA 59: Tashrif-Box Dua Sub-Pola ═══════════════════════
+       Lampiran 1 (Sub-Pola A) — untuk fi'il + masdar
+       Layout: 3 kotak inline baris atas + 1 kotak orange FULL-WIDTH baris
+       bawah + prose .tashrif-keterangan
+       Source verbatim: 097-04.html, 097-05.html
+       ════════════════════════════════════════════════════════════════════ */
     .tashrif-baris { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 12px; }
     .kotak-akar { background: #f0f7f2; border: 1.5px solid #1a472a; border-radius: 6px; padding: 8px 14px; min-width: 90px; text-align: center; }
     .kotak-akar .kotak-arab { font-family: var(--font-arab); font-size: 22px; color: #1a472a; direction: rtl; font-weight: 700; line-height: 1.4; }
@@ -196,7 +211,6 @@
     .kotak-tashrif { text-align: center; padding: 4px 8px; min-width: 80px; }
     .kotak-tashrif .kotak-arab { font-family: var(--font-arab); font-size: 22px; color: #9a3412; direction: rtl; line-height: 1.4; }
     .kotak-tashrif .kotak-info { font-size: 10px; color: #888; margin-top: 4px; }
-    .tashrif-panah { font-size: 16px; color: #d97706; }
     .kotak-subyek-baris { display: flex; justify-content: center; margin: 8px 0; }
     .kotak-subyek-full { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 10px 18px; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; max-width: 100%; }
     .kotak-arab-inline { font-family: var(--font-arab); font-size: 22px; color: #c2410c; font-weight: 700; direction: rtl; line-height: 1.4; }
@@ -204,72 +218,146 @@
     .tashrif-keterangan { font-size: 12.5px; color: #78350f; padding-top: 10px; border-top: 1px dashed #fed7aa; line-height: 1.7; }
     .tashrif-keterangan a { color: #c2410c; text-decoration: underline; font-weight: 600; }
     .tashrif-keterangan .arab-istilah { color: #9a3412; font-weight: 600; }
-    .tashrif-box-wrap { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 16px; margin-top: 6px; }
 
-    .tadabur-box { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    /* Lampiran 2 (Sub-Pola B) — untuk isim musytaq (non-masdar)
+       Layout: 4 kotak inline SEMUA di satu baris (akar → madhy → mudhari'
+       → kotak orange INLINE) + 1-baris .tashrif-keterangan-singkat */
+    .kotak-subyek-inline { background: #fff3e0; border: 2px solid #c2410c; border-radius: 6px; padding: 8px 14px; min-width: 90px; text-align: center; }
+    .kotak-subyek-inline .kotak-arab { font-family: var(--font-arab); font-size: 22px; color: #c2410c; direction: rtl; font-weight: 700; line-height: 1.4; }
+    .kotak-subyek-inline .kotak-info { font-size: 10px; color: #c2410c; margin-top: 4px; }
+    .tashrif-keterangan-singkat { font-size: 12.5px; color: #78350f; padding-top: 10px; margin-top: 4px; border-top: 1px dashed #fed7aa; line-height: 1.7; text-align: center; }
+    .tashrif-keterangan-singkat a { color: #c2410c; text-decoration: underline; font-weight: 600; }
+    /* V17.0 — pointer (poin-list) di dalam kotak tashrif: tema oranye */
+    .tashrif-keterangan .poin-list, .tashrif-keterangan-singkat .poin-list { text-align: left; }
+    .tashrif-keterangan .poin-list li, .tashrif-keterangan-singkat .poin-list li { font-size: 12.5px; color: #78350f; line-height: 1.6; }
+    .tashrif-keterangan .poin-list li::before, .tashrif-keterangan-singkat .poin-list li::before { background: #c2410c; top: 11px; }
+    .tashrif-keterangan .poin-list a, .tashrif-keterangan-singkat .poin-list a { color: #c2410c; text-decoration: underline; font-weight: 600; }
+    .tashrif-keterangan .poin-list .arab-istilah, .tashrif-keterangan-singkat .poin-list .arab-istilah { color: #9a3412; font-weight: 600; }
+    /* ═══ END V15.4 — POLA 59 ════════════════════════════════════════════ */
+
+    /* ═══ V15.5 — TADABUR-BOX BAKU (Prinsip ㉜) ════════════════════════════ */
+    .tadabur-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--emas); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
     .tadabur-head { background: #fdf6ec; padding: 12px 20px; border-bottom: 1px solid #f0e8d0; display: flex; align-items: center; gap: 10px; }
     .tadabur-judul { font-size: 13px; font-weight: 700; color: #78350f; }
-    .tadabur-isi { padding: 18px 22px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+    .tadabur-isi { padding: 18px 22px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }   /* ← V15.5: padding 22px */
     .tadabur-isi p { margin-bottom: 10px; }
     .tadabur-isi p:last-child { margin-bottom: 0; }
     .arab-kutip { display: block; font-family: var(--font-arab); font-size: 30px; text-align: center; direction: rtl; color: var(--hijau-gelap); margin: 14px 0 10px; line-height: 2; }
+    /* ═══ END V15.5 — Prinsip ㉜ ══════════════════════════════════════════ */
 
+    /* ═══ V17.3 — WARNA TINGKAT SVG 5 & 6 (STANDAR-DIAGRAM-SVG) ════════════ */
+    /* Y terkunci: L1=108 · L2=218 · L3=328 · L4=436 · L5=546 · L6=656       */
+    /* Dipakai sebagai nilai stroke pada <line>/<polyline> di dalam SVG.     */
+    :root {
+      --svg-tingkat-5: #115e59;  /* teal tua — hanya muncul bila 6 tingkat  */
+      --svg-tingkat-6: #1e3a8a;  /* biru tua — tingkat kāmilah (dengan rect)*/
+      --svg-taqdir:    #9ca3af;  /* abu-abu — unsur dibuang / lintas ayat   */
+    }
+    /* ═══ END V17.3 — warna tingkat SVG ════════════════════════════════════ */
+
+    /* ═══ V15.5 — POLA 62: BOX HUBUNGAN DENGAN AYAT (HTML, BUKAN SVG) ═══════ */
     .hubungan-ayat-box {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-left: 5px solid #c2410c;
-      border-radius: 10px;
-      padding: 18px 22px;
-      margin: 18px auto 8px;
       width: 90%;
       max-width: 720px;
+      margin: 16px auto;
+      padding: 18px 22px;
+      background: #fff7ed;
+      border-left: 5px solid #c2410c;
+      border-radius: 6px;
+      font-size: 13px;
     }
     .hubungan-ayat-judul {
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      color: #c2410c;
+      color: #9a3412;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       padding-bottom: 8px;
-      border-bottom: 1px dashed #fed7aa;
+      border-bottom: 1px dashed #fb923c;
     }
-    .hubungan-ayat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
-    .hubungan-ayat-isi p { margin-bottom: 8px; }
-    .hubungan-ayat-isi p:last-child { margin-bottom: 0; }
+    .hubungan-ayat-isi {
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    /* ═══ V17.3 — POLA 79: BOX HUBUNGAN ANTAR-SEGMEN (HTML, BUKAN SVG) ═════ */
+    /* Dipakai bila SATU ayat panjang dipecah menjadi beberapa segmen SVG.   */
+    /* BEDAKAN dari .hubungan-ayat-box (oranye) yang untuk LINTAS FILE.      */
+    .hubungan-segmen-box {
+      width: 90%;
+      max-width: 720px;
+      margin: 16px auto;
+      padding: 18px 22px;
+      background: #eff6ff;
+      border-left: 5px solid #1e3a8a;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .hubungan-segmen-judul {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e3a8a;
+      text-align: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #60a5fa;
+    }
+    .hubungan-segmen-isi {
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    /* ═══ END V17.3 — POLA 79 ══════════════════════════════════════════════ */
+
+    .hubungan-ayat-arab {
+      font-family: 'Scheherazade New', serif;
+      font-size: 22px;
+      text-align: center;
+      color: #7c2d12;
+      margin: 8px 0;
+      direction: rtl;
+    }
     .hubungan-ayat-takdir {
       background: #fef3c7;
-      border: 1px solid #fde68a;
-      border-radius: 6px;
       padding: 10px 14px;
-      margin-top: 14px;
-      text-align: center;
+      border-radius: 4px;
+      margin-top: 12px;
     }
-    .hubungan-ayat-takdir-label { font-size: 12px; font-weight: 700; color: #92400e; margin-bottom: 4px; }
+    .hubungan-ayat-takdir-label {
+      font-weight: 600;
+      font-size: 12px;
+      color: #92400e;
+      margin-bottom: 4px;
+    }
     .hubungan-ayat-takdir-arab {
-      font-family: var(--font-arab);
-      font-size: 22px;
-      color: #c2410c;
-      font-weight: 700;
-      direction: rtl;
+      font-family: 'Scheherazade New', serif;
+      font-size: 18px;
+      text-align: center;
+      color: #7c2d12;
       margin: 4px 0;
+      direction: rtl;
     }
-    .hubungan-ayat-takdir-arti { text-align: center; font-style: italic; color: #6b7280; font-size: 12.5px; }
+    .hubungan-ayat-takdir-arti {
+      text-align: center;
+      font-style: italic;
+      color: #6b7280;
+      font-size: 12px;
+    }
+    /* ═══ END V15.5 — POLA 62 ════════════════════════════════════════════ */
+
+    /* KHATIMAH SURAH BOX */
+    .khatimah-box { background: white; border: 1px solid var(--border); border-left: 5px solid var(--ungu-pekat); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .khatimah-head { background: #faf5ff; padding: 12px 20px; border-bottom: 1px solid #e9d5ff; display: flex; align-items: center; gap: 10px; }
+    .khatimah-judul { font-size: 13px; font-weight: 700; color: var(--ungu-pekat); }
+    .khatimah-isi { padding: 18px 20px; font-size: 14px; line-height: 1.85; color: #2d2d2d; }
+    .khatimah-isi p { margin-bottom: 10px; }
+    .khatimah-isi p:last-child { margin-bottom: 0; }
+    .khatimah-tabel { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; }
+    .khatimah-tabel th, .khatimah-tabel td { padding: 7px 10px; border: 1px solid #e9d5ff; text-align: left; vertical-align: top; }
+    .khatimah-tabel th { background: #faf5ff; color: var(--ungu-pekat); font-weight: 700; }
 
     .diagram-wrapper { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; margin-bottom: 20px; overflow-x: auto; }
     .diagram-legenda { margin-top: 12px; background: #f8f6f1; border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 11px; color: #444; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
     .legenda-label { font-weight: 700; color: #888; letter-spacing: .5px; width: 100%; margin-bottom: 4px; }
     .legenda-item { display: inline-flex; align-items: center; gap: 5px; }
-
-    .khatimah-section { margin-top: 22px; }
-    .khatimah-judul { background: var(--ungu-pekat); color: white; padding: 12px 18px; border-radius: 6px 6px 0 0; font-weight: 700; font-size: 14.5px; }
-    .khatimah-isi { background: #faf7fd; padding: 18px; border: 1px solid #e9d5ff; border-top: none; border-radius: 0 0 6px 6px; font-size: 13.5px; line-height: 1.8; }
-    .khatimah-isi p { margin-bottom: 10px; }
-    .khatimah-isi p:last-child { margin-bottom: 0; }
-    .konsep-tabel { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 12px; }
-    .konsep-tabel th, .konsep-tabel td { padding: 7px 9px; border: 1px solid #d8c4ef; text-align: left; vertical-align: top; }
-    .konsep-tabel th { background: #ede4f8; color: var(--ungu-pekat); font-weight: 700; }
-    .konsep-tabel td.arab { font-family: var(--font-arab); direction: rtl; font-size: 14px; }
 
     .nav-bawah { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 32px 0 8px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
     .nav-btn { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700; color: var(--hijau-gelap); text-decoration: none; transition: background .2s, border-color .2s; }
@@ -283,6 +371,28 @@
     footer { text-align: center; padding: 24px; font-size: 12px; background: var(--hijau-gelap); color: rgba(255,255,255,.45); margin-top: 12px; }
     footer a { color: var(--emas); text-decoration: none; }
 
+    .iltifat-box { background: #fdf4ff; border: 1px solid #e9d5ff; border-left: 5px solid #7e22ce; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .iltifat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7e22ce; margin-bottom: 10px; }
+    .iltifat-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .iltifat-isi p { margin-bottom: 8px; }
+    .iltifat-isi p:last-child { margin-bottom: 0; }
+
+    .konsep-box { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 5px solid var(--biru-tua); border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .konsep-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--biru-tua); margin-bottom: 10px; }
+    .konsep-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .konsep-isi p { margin-bottom: 8px; }
+    .konsep-isi p:last-child { margin-bottom: 0; }
+    .konsep-tabel { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+    .konsep-tabel th, .konsep-tabel td { padding: 7px 10px; border: 1px solid #bfdbfe; text-align: left; vertical-align: top; }
+    .konsep-tabel th { background: #dbeafe; color: var(--biru-tua); font-weight: 700; }
+
+    /* V18-0G butir 1 — kotak penjelasan TANDA NASH (tajwid/penulisan, bukan nahwu) */
+    .tanda-nash-box { background: #f4f6f8; border: 1px solid #d7dde3; border-left: 5px solid #64748b; border-radius: 10px; padding: 16px 20px; margin-top: 8px; }
+    .tanda-nash-judul { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #475569; margin-bottom: 10px; }
+    .tanda-nash-isi { font-size: 13px; color: #374151; line-height: 1.8; }
+    .tanda-nash-isi p { margin-bottom: 8px; }
+    .tanda-nash-isi p:last-child { margin-bottom: 0; }
+
     @media (max-width: 680px) {
       .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
       .nav-dropdowns { flex-direction: column; align-items: flex-start; gap: 6px; }
@@ -292,14 +402,92 @@
       .kartu-tabel td { padding: 8px 14px; }
       .kartu-tabel td:first-child { width: 36%; font-size: 11px; }
       .sub-section-header .sub-arab-kalimat { font-size: 18px; }
-      .konsep-tabel { font-size: 10.5px; }
-      .konsep-tabel th, .konsep-tabel td { padding: 5px 6px; }
     }
-  </style>
+    /* ══ V18.0 — tambahan kerangka (dari TEMPLATE-AYAT V18.0) ══ */
+    .nowrap-waqaf { white-space: nowrap; }
+    .kotak-arab, .kotak-arab-inline, .kartu-arab-besar { padding-bottom: .45em; }
+    /* ══ 079 — KARTU FI'IL & ISIM MUSYTAQ BARU (MASUKAN-079 M6–M12) ══
+       Baris "Pola dan Makna Wazan" + grid tashrif istilahi 10 sel.
+       Tautan baris wazan menuju 000-01-wazan.html#<anchor>. */
+    .tautan-wazan { color: #c2410c; font-weight: 700; text-decoration: underline; }
+    .ti-judul { font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: #9a3412; }
+    .tashrif-istilahi { display: grid; grid-template-columns: repeat(5, 1fr); direction: rtl; border: 1px solid #fed7aa; border-radius: 6px; overflow: hidden; background: white; margin-bottom: 12px; }
+    .ti-sel { direction: ltr; text-align: center; padding: 6px 4px 8px; border-left: 1px solid #fde7c9; border-bottom: 1px solid #fde7c9; }
+    .ti-label { font-size: 10.5px; color: #888; font-weight: 700; letter-spacing: .2px; }
+    .ti-arab { font-family: var(--font-arab); font-size: 22px; color: #9a3412; direction: rtl; line-height: 1.6; display: block; }
+    .ti-sel.dipakai { background: #fff3e0; box-shadow: inset 0 0 0 2px #c2410c; }
+    .ti-sel.dipakai .ti-arab { color: #c2410c; font-weight: 700; }
+    .ti-sel.kosong .ti-arab { color: #c4b5a5; font-family: var(--font-latin); font-size: 18px; }
+    .ti-tambahan-judul { font-size: 10.5px; color: #9a3412; font-weight: 700; letter-spacing: .3px; margin: 0 0 6px; text-align: right; }
+    .ti-tambahan { display: grid; grid-template-columns: repeat(5, 1fr); direction: rtl; margin: -4px 0 12px; }
+    .ti-tambahan .ti-sel { border: 1px solid #fed7aa; border-radius: 6px; background: white; }
+    @media (max-width: 680px) {
+      .tashrif-istilahi, .ti-tambahan { grid-template-columns: repeat(2, 1fr); }
+    }
+    /* ══ 079 — ANCHOR KOTAK & KARTU (MASUKAN-079 M17) ══
+       id permanen pada kepala kartu (k-S-A-N kata, f-S-A-N frasa) dan kotak bernama (konsep-…, iltifat-…, tanda-…).
+       scroll-margin agar sasaran tidak tertutup header sticky; :target memberi bingkai penanda. */
+    .kartu-head[id], .konsep-box[id], .iltifat-box[id], .tanda-nash-box[id] { scroll-margin-top: 90px; }
+    .konsep-box:target, .iltifat-box:target, .tanda-nash-box:target, .kartu-head:target { outline: 3px solid #c2410c; outline-offset: 3px; }
+    @media (max-width: 680px) {
+      /* V18-1H · V18-2O — header tidak sticky di ponsel */
+      header { position: static; }
+      .kartu-head[id], .konsep-box[id], .iltifat-box[id], .tanda-nash-box[id] { scroll-margin-top: 12px; }
+    }
+    /* ══ CALON V18.3 — pilot retrofit 001 Al-Fatihah (27 Oktober 2026) ══
+       ① M9 I-1b: lafazh taqdir di kepala kartu frasa — unsur SAUDARA .kartu-arab-besar
+          (bukan di dalamnya; BONUS 13), berkurung siku, kelabu = simpul taqdir SVG, ±75%.
+       ② M10 ③: blok video (hanya 001 dan 108–114), ikon play dengan CSS, tanpa elemen grafik vektor. */
+    .kartu-head .kh-center { flex-wrap: wrap; gap: 2px 12px; }
+    .kartu-head .kh-center:has(.taqdir-kepala) { direction: rtl; }   /* urutan DOM = urutan baca: taqdir muqaddam ditulis sebelum nash, mu'akhkhar sesudahnya */
+    .taqdir-kepala { font-family: var(--font-arab); font-size: 30px; color: #9ca3af; direction: rtl; line-height: 1.6; padding-bottom: .45em; }
+    .section-header.video { background: #7f1d1d; }
+    .section-header.video .sub-judul { color: #fecaca; }
+    .video-section { margin: 8px 0 12px; }
+    .video-link { display: block; max-width: 680px; margin: 0 auto; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.15); text-decoration: none; border: 1px solid var(--border); transition: transform .2s, box-shadow .2s; }
+    .video-link:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.22); }
+    .video-thumb { position: relative; background: #000; line-height: 0; }
+    .video-thumb img { width: 100%; display: block; opacity: .92; }
+    .video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 72px; height: 72px; background: rgba(220,38,38,.92); border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,.4); }
+    .video-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%,-50%); border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent white; }
+    .video-domain { position: absolute; bottom: 10px; right: 12px; background: rgba(0,0,0,.75); color: white; font-size: 11px; line-height: 1.4; padding: 3px 8px; border-radius: 4px; }
+    .video-bar { background: #7f1d1d; padding: 14px 18px; display: flex; align-items: center; gap: 14px; }
+    .video-icon { flex-shrink: 0; width: 40px; height: 40px; background: #dc2626; border-radius: 8px; position: relative; }
+    .video-icon::after { content: ''; position: absolute; top: 50%; left: 55%; transform: translate(-50%,-50%); border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent white; }
+    .video-info { flex: 1; min-width: 0; }
+    .video-title { font-size: 13.5px; font-weight: 700; color: white; line-height: 1.5; }
+    .video-btn { flex-shrink: 0; background: var(--emas); color: #1a1a1a; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 6px; white-space: nowrap; }
+    @media (max-width: 680px) { .taqdir-kepala { font-size: 27px; } }
+      /* ——— POLA 83 · CSS KHATIMAH SURAH 4-KOMPONEN (ayat khatmil) ——— */
+    .khatimah-box-gelap { background: linear-gradient(135deg,#1a2332,#0f172a); color: #e2e8f0; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; }
+    .khatimah-baris { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 11px 14px; margin-bottom: 9px; }
+    .khatimah-baris.akhir { background: #fef3c7; border: 2px solid #d97706; color: #3f2d0a; }
+    .khatimah-nomor { flex: 0 0 auto; min-width: 32px; text-align: center; background: #334155; color: #fff; font-size: 11px; font-weight: 700; border-radius: 6px; padding: 4px 7px; }
+    .khatimah-baris.akhir .khatimah-nomor { background: #92400e; color: #fff; }
+    .khatimah-teks { flex: 1 1 auto; }
+    .khatimah-arab { font-family: 'Scheherazade New', serif; font-size: 19px; direction: rtl; text-align: right; line-height: 1.9; color: #f1f5f9; }
+    .khatimah-baris.akhir .khatimah-arab { color: #451a03; }
+    .khatimah-arab, .khatimah-fungsi { display: block; }   /* V18 — Arab dan fungsi bertumpuk, tidak sebaris */
+    .khatimah-fungsi { font-size: 12.5px; line-height: 1.7; color: #cbd5e1; margin-top: 3px; }
+    .khatimah-baris.akhir .khatimah-fungsi { color: #78350f; }
+    .khatimah-catatan { font-size: 13px; line-height: 1.8; color: #cbd5e1; margin-top: 14px; }
+    .konsep-kum-tabel { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; }
+    .konsep-kum-tabel th, .konsep-kum-tabel td { padding: 8px 11px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+    .konsep-kum-tabel th { background: var(--ungu-pekat); color: #fff; font-weight: 700; }
+    .kum-judul-nahwu { font-size: 13.5px; font-weight: 700; color: #1a472a; margin: 18px 0 8px; padding-left: 10px; border-left: 4px solid #1a472a; }
+    .kum-judul-balaghah { font-size: 13.5px; font-weight: 700; color: #5b21b6; margin: 18px 0 8px; padding-left: 10px; border-left: 4px solid #5b21b6; }
+    .doa-box { background: #fef3c7; border-left: 5px solid #92400e; border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 18px 0; }
+    .doa-arab { font-family: 'Scheherazade New', serif; font-size: 22px; color: #78350f; line-height: 2; direction: rtl; text-align: right; }
+    .doa-terjemah { font-size: 13.5px; font-style: italic; color: #78350f; margin-top: 10px; line-height: 1.8; }
+    .syukur-box { background: #ecfdf5; border-left: 5px solid #166534; border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 18px 0; font-size: 13.5px; line-height: 1.85; color: #14532d; }
+    .syukur-box p { margin-bottom: 10px; }
+    .syukur-tanda { display: block; text-align: right; margin-top: 14px; font-size: 12px; font-weight: 700; color: #166534; }
+</style>
 </head>
 
 <body>
 
+<!-- ╔══ COPY LITERAL — HEADER STICKY ══╗ -->
 <header>
   <div class="header-inner">
     <a href="index.html" class="header-info">
@@ -308,10 +496,10 @@
         Surah Al-Lail
         <span class="arab-surah">الليل</span>
       </span>
-      <span class="hi-ayat">Ayat 21 &nbsp;·&nbsp; (92:21) — Khatmil Surah · Janji Keridhaan</span>
+      <span class="hi-ayat">Ayat 21 &nbsp;·&nbsp; (92:21) — Al-Lail — Kelak Dia Akan Ridha</span>
     </a>
     <div class="nav-dropdowns">
-      <a id="hdr-prev" class="nav-btn-hdr" href="#" title="Ayat sebelumnya">←</a>
+      <a id="hdr-prev" class="nav-btn-hdr" href="092-20.html" title="Ayat sebelumnya">← Ayat 20</a>
       <div class="dropdown-wrapper">
         <label for="dd-surah">Pilih Surah</label>
         <select id="dd-surah"><option value="">— Pilih Surah —</option></select>
@@ -321,28 +509,28 @@
         <select id="dd-ayat" disabled><option value="">— Pilih Ayat —</option></select>
       </div>
       <button class="btn-go" onclick="navigasiKeAyat()">Buka</button>
-      <a id="hdr-next" class="nav-btn-hdr" href="#" title="Ayat berikutnya">→</a>
+      <a id="hdr-next" class="nav-btn-hdr edge" href="093-01.html" title="Surah berikutnya: Adh-Dhuha 1">Adh-Dhuha 1 →</a>
     </div>
     <a href="index.html" class="nav-home">⌂ Beranda</a>
   </div>
 </header>
+<!-- ╚══ END COPY LITERAL — HEADER STICKY ══╝ -->
 
 <div class="container">
 
   <!-- § 1 — AYAT LENGKAP -->
   <div class="ayat-box">
     <div class="label-kecil" id="label-ayat-box">Surah Al-Lail — Ayat 21</div>
-    <div class="teks-ayat arab">وَلَسَوْفَ يَرْضَى</div>
-    <div class="terjemahan">"Dan kelak ia benar-benar akan merasa puas (dengan ganjaran yang Allah berikan)."</div>
+    <div class="teks-ayat arab">وَلَسَوْفَ يَرْضَىٰ</div>
+    <div class="terjemahan">Dan sungguh, kelak dia akan ridha (puas).</div>
   </div>
 
   <!-- § 2 — CATATAN KONTEKS -->
   <div class="konteks-box">
     <div class="konteks-judul">Catatan Konteks:</div>
     <div class="konteks-isi">
-      <p><strong>Ayat 21</strong> adalah <em>ayat penutup</em> Surah Al-Lail — ayat terakhir dari 21 ayat. Setelah ayat 17-20 melukiskan sifat dan keikhlasan orang yang paling bertakwa (al-atqā), ayat ini menutup surah dengan sebuah janji yang menggembirakan: <span class="arab-istilah">وَلَسَوْفَ يَرْضَى</span> ("dan kelak ia benar-benar akan merasa puas").</p>
-      <p style="margin-top:8px;">Para ulama tafsir — Ibn Katsīr, As-Sa'dī, dan Aṭ-Ṭabarī — menjelaskan: dhamir pada <span class="arab-istilah">يَرْضَى</span> kembali kepada al-atqā. Maknanya, orang yang bertakwa itu kelak akan benar-benar puas dan ridha dengan balasan yang Allah ﷻ berikan kepadanya — pahala, surga, dan keridhaan-Nya. Inilah buah dari keikhlasannya berinfak demi wajah Allah ﷻ yang disebut pada ayat 20.</p>
-      <p style="margin-top:8px;">Secara gramatikal, ayat ringkas ini mengandung penegasan berlapis. Huruf <span class="arab-istilah">لَ</span> (lām al-ibtidā') dan <span class="arab-istilah">سَوْفَ</span> (harf istiqbāl) bergabung menjadi <span class="arab-istilah">لَسَوْفَ</span> — gabungan dua penegas yang menjadikan janji ini benar-benar pasti. Pola <span class="arab-istilah">لَسَوْفَ</span> ini serupa dengan firman Allah ﷻ dalam Surah Aḍ-Ḍuḥā: <span class="arab-istilah">وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى</span> (QS. Aḍ-Ḍuḥā 93:5).</p>
+      <p>Janji bagi orang yang paling bertakwa. Ad-Da'as dkk. pada ayat ini: wawu huruf qasam dan jarr, lam jatuh pada jawab qasam, <em>sawfa</em> huruf taswif dan istiqbal; <em>yardha</em> fi'il mudhari' dengan fa'il tersembunyi; kalimatnya jawab qasam. Ad-Darwisy: wawu 'athifah, dan lam adalah lam jawab qasam yang tersembunyi ("wallahi la-sawfa yardha").</p>
+      <p>Ibnu Katsir: kelak akan ridha orang yang bersifat dengan sifat-sifat ini ("wa la-sawfa yardha man ittashafa bi-hadzihish-shifat"). Al-Qurthubi: Allah akan memberinya di surga apa yang membuatnya ridha.</p>
     </div>
   </div>
 
@@ -353,205 +541,246 @@
   </div>
 
   <div class="sub-section-header">
-    <div class="sub-judul-kalimat">Kalimat Tunggal — Janji Penutup: Orang yang Bertakwa Kelak Akan Merasa Puas</div>
-    <div class="sub-arab-kalimat arab">وَلَسَوْفَ يَرْضَى</div>
-    <div class="sub-terjemah-kalimat">"Dan kelak ia benar-benar akan merasa puas (dengan ganjaran yang Allah berikan)"</div>
+    <div class="sub-judul-kalimat">Janji dengan Lam dan Sawfa — Empat Morfem</div>
+    <div class="sub-arab-kalimat arab">وَلَسَوْفَ يَرْضَىٰ</div>
+    <div class="sub-terjemah-kalimat">Dan sungguh, kelak dia akan ridha (puas).</div>
   </div>
 
-  <!-- ╔══ KARTU 1 — وَ ══╗ -->
+  <!-- KARTU 1 — morfem 1 -->
   <div class="kartu">
-    <div class="kartu-head warna-harf">
-      <div class="kh-left"><span class="badge badge-harf">WAW ATHAF · (92:21:01)</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">وَ</span></div>
-      <div class="kh-right"><span class="kartu-arti">"dan"</span></div>
+    <div class="kartu-head warna-harf" id="k-92-21-1">
+      <div class="kh-left"><span class="badge badge-harf">HARF 'ATHAF · (92:21:1)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">وَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">dan</span></div>
     </div>
     <table class="kartu-tabel">
       <tr>
         <td>Jenis Kata</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-harf">Harf</span> — <strong>wāw al-'athaf</strong> (huruf penghubung)</li>
-            <li>Menghubungkan kalimat ayat 21 dengan kalimat ayat 20 sebelumnya</li>
-            <li>Mabnī fath, lā mahalla lahā min al-i'rāb</li>
+            <li>Harf 'athaf — wawu yang menggabungkan kata atau kalimat sesudahnya dengan kabar tentang orang yang paling bertakwa (ayat 17) dalam satu hukum (Ad-Darwisy: "'athifah"; Ad-Da'as dkk. pada ayat ini menyebutnya wawu qasam — lihat kotak khilaf).</li>
+            <li>Jamid — huruf tidak dapat ditashrifkan.</li>
+            <li>Di nash ia ditulis bersambung dengan kata sesudahnya dalam satu kata grafis, tetapi ia morfem tersendiri.</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Makna</td>
+        <td>Status I'rab</td>
         <td>
           <ul class="poin-list">
-            <li>Makna: "dan" — menyambungkan janji keridhaan ini dengan motif keikhlasan yang disebut ayat 20</li>
-            <li>Menjadikan ayat 20 dan 21 satu rangkaian: keikhlasan (ayat 20) dan buahnya (ayat 21)</li>
+            <li>Mabni (bentuknya tetap) atas fathah; tidak memiliki kedudukan i'rab.</li>
+            <li>Beramal secara 'athaf: yang sesudahnya mengikuti hukum yang sebelumnya.</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Status I'rāb</td>
+        <td>Peran Kata Dalam Ayat</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-mabni">Mabnī</span> 'alā al-fatḥah</li>
-            <li>Tidak memiliki kedudukan i'rāb (<em>lā mahalla lahā min al-i'rāb</em>)</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan Gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li>Huruf 'athaf yang menyambungkan kalimat ayat 21 kepada kalimat sebelumnya</li>
-            <li>Kalimat sesudahnya mengikuti kedudukan kalimat yang disambunginya</li>
+            <li>Menggabungkan janji keridhaan kepada kabar bahwa orang yang paling bertakwa dijauhkan dari neraka (ayat 17).</li>
           </ul>
         </td>
       </tr>
     </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Jenis-jenis wawu telah dibahas pada Surah Al-Fatihah (1), ayat 5 — <a href="https://grammar-quran.com/001-05.html#konsep-jenis-wawu" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-05.html#konsep-jenis-wawu</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Wawu 'athaf telah dibahas pada Surah Al-Fatihah (1), ayat 5 — <a href="https://grammar-quran.com/001-05.html#konsep-wawu-athaf" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-05.html#konsep-wawu-athaf</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Huruf 'athaf: wawu, fa', tsumma, aw, dan lainnya telah dibahas pada Surah Al-Fatihah (1), ayat 5 — <a href="https://grammar-quran.com/001-05.html#konsep-huruf-athaf" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/001-05.html#konsep-huruf-athaf</a>
+    </div>
   </div>
-  <!-- ╚══ END KARTU 1 ══╝ -->
-
-  <!-- ╔══ KARTU 2 — لَ ══╗ -->
+  <!-- KARTU 2 — morfem 2 -->
   <div class="kartu">
-    <div class="kartu-head warna-harf">
-      <div class="kh-left"><span class="badge badge-harf">LAM IBTIDA · (92:21:02)</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">لَ</span></div>
-      <div class="kh-right"><span class="kartu-arti">"sungguh"</span></div>
+    <div class="kartu-head warna-harf" id="k-92-21-2">
+      <div class="kh-left"><span class="badge badge-harf">HARF TAUKID · LAM IBTIDA' · (92:21:2)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">sungguh</span></div>
     </div>
     <table class="kartu-tabel">
       <tr>
         <td>Jenis Kata</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-harf">Harf</span> — <strong>lām al-ibtidā'</strong> (huruf penegas pembuka)</li>
-            <li>Huruf yang berfungsi sebagai penegas (taukīd) — menguatkan makna kalimat sesudahnya</li>
-            <li>Di sini <span class="arab-istilah">لَ</span> masuk pada <span class="arab-istilah">سَوْفَ</span>, membentuk gabungan penegas <span class="arab-istilah">لَسَوْفَ</span></li>
-            <li>Mabnī fath, lā mahalla lahā min al-i'rāb</li>
+            <li>Lam ibtida' — lam penegas; di sini ia masuk sebelum <em>sawfa</em>, sebagaimana pada Adh-Dhuha: 5 (Ad-Da'as dkk. di sana: "al-lamu lamul-ibtida'").</li>
+            <li>Jamid — huruf tidak dapat ditashrifkan.</li>
+            <li>Di nash ia ditulis bersambung dengan kata sesudahnya dalam satu kata grafis, tetapi ia morfem tersendiri.</li>
+          </ul>
+          <div class="konsep-box" id="khilaf-wawu-lam-ayat-21" style="margin-top:10px;">
+            <div class="konsep-label">Khilaf dalam QS Al-Lail</div>
+            <div class="konsep-label">Wawu dan Lam di Ayat 21</div>
+            <div class="konsep-isi">
+<p>Susunan <span class="arab-istilah">وَلَسَوْفَ يَرْضَىٰ</span> sama dengan Adh-Dhuha: 5, tempat khilaf tentang lam sebelum <em>sawfa</em> telah dibahas (kotak yang dirujuk di bawah kartu ini). Pada ayat ini, para pengi'rab membacanya sebagai berikut:</p>
+<ul class="poin-list">
+            <li><strong>1. Wawu qasam dan lam jawab qasam.</strong> Ad-Da'as dkk. pada ayat ini: "al-wawu harfu qasamin wa jarr", dan lam "waqi'atun fi jawabil-qasam".</li>
+            <li><strong>2. Wawu 'athaf dan lam jawab qasam yang tersembunyi.</strong> Ad-Darwisy: wawu 'athifah, dan lam itu jawab bagi sumpah yang tidak disebut — "wallahi la-sawfa yardha".</li>
+            <li><strong>3. Wawu 'athaf dan lam ibtida' (dipakai halaman ini).</strong> Inilah pendapat yang diikuti pada Adh-Dhuha: 5, mengikuti Ad-Da'as dkk. di sana ("al-lamu lamul-ibtida'"). Halaman ini memakainya juga di sini, karena susunannya sama.</li>
+          </ul>
+<p><strong>Di ayat ini:</strong></p>
+<ul class="poin-list">
+            <li>Ketiga pendapat sepakat pada maknanya: janji keridhaan itu ditegaskan dan pasti terjadi.</li>
+            <li>I'rab <span class="arab-istilah">يَرْضَىٰ</span> tidak berubah: fi'il mudhari' marfu' dengan fa'il tersembunyi.</li>
+          </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Status I'rab</td>
+        <td>
+          <ul class="poin-list">
+            <li>Mabni (bentuknya tetap) atas fathah; tidak memiliki kedudukan i'rab.</li>
+            <li>Tidak beramal: fi'il sesudahnya tetap marfu'.</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Makna</td>
+        <td>Peran Kata Dalam Ayat</td>
         <td>
           <ul class="poin-list">
-            <li>Makna: "sungguh, benar-benar" — menegaskan kepastian janji yang disebutkan</li>
-            <li>Bersama <span class="arab-istilah">سَوْفَ</span> sesudahnya membentuk penegasan berlapis — dibahas pada keterangan kartu <span class="arab-istilah">سَوْفَ</span></li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>Status I'rāb</td>
-        <td>
-          <ul class="poin-list">
-            <li><span class="tag tag-mabni">Mabnī</span> 'alā al-fatḥah</li>
-            <li>Tidak memiliki kedudukan i'rāb (<em>lā mahalla lahā min al-i'rāb</em>)</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan Gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li>Huruf penegas — memperkuat kalimat tanpa mengubah i'rāb kata sesudahnya</li>
-            <li>Menjadi penanda kepastian janji keridhaan bagi al-atqā</li>
+            <li>Menegaskan janji: sungguh, ia akan ridha.</li>
           </ul>
         </td>
       </tr>
     </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Lam ibtida': penegas di awal kalimat telah dibahas pada Surah Adh-Dhuha (93), ayat 4 — <a href="https://grammar-quran.com/093-04.html#konsep-lam-ibtida" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/093-04.html#konsep-lam-ibtida</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Lam sebelum sawfa: lam ibtida' atau lam qasam telah dibahas pada Surah Adh-Dhuha (93), ayat 5 — <a href="https://grammar-quran.com/093-05.html#khilaf-lam-walasaufa" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/093-05.html#khilaf-lam-walasaufa</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Lam jawab qasam, lam muwaththi'ah, dan nun taukid telah dibahas pada Surah Al-Humazah (104), ayat 4 — <a href="https://grammar-quran.com/104-04.html#konsep-lam-qasam-nun-taukid" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/104-04.html#konsep-lam-qasam-nun-taukid</a>
+    </div>
   </div>
-  <!-- ╚══ END KARTU 2 ══╝ -->
-
-  <!-- ╔══ KARTU 3 — سَوْفَ ══╗ -->
+  <!-- KARTU 3 — morfem 3 -->
   <div class="kartu">
-    <div class="kartu-head warna-harf">
-      <div class="kh-left"><span class="badge badge-harf">HARF ISTIQBAL · (92:21:03)</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">سَوْفَ</span></div>
-      <div class="kh-right"><span class="kartu-arti">"kelak / pasti akan"</span></div>
+    <div class="kartu-head warna-harf" id="k-92-21-3">
+      <div class="kh-left"><span class="badge badge-harf">HARF ISTIQBAL · (92:21:3)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">سَوْفَ</span></div>
+      <div class="kh-right"><span class="kartu-arti">kelak</span></div>
     </div>
     <table class="kartu-tabel">
       <tr>
         <td>Jenis Kata</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-harf">Harf</span> — <strong>harf istiqbāl</strong> (huruf penanda masa depan)</li>
-            <li>Masuk pada fi'il-mudhāri' untuk menunjukkan bahwa perbuatan itu terjadi di masa yang akan datang</li>
-            <li><span class="arab-istilah">سَوْفَ</span> menunjukkan masa depan yang lebih jauh dan lebih ditekankan dibanding huruf <span class="arab-istilah">سَـ</span> (sīn)</li>
-            <li>Mabnī fath, lā mahalla lahā min al-i'rāb</li>
+            <li>Harf istiqbal (huruf masa datang) — <em>sawfa</em> (Ad-Da'as dkk.: "harfu taswifin wa istiqbal").</li>
+            <li>Jamid — huruf tidak dapat ditashrifkan.</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Makna</td>
+        <td>Status I'rab</td>
         <td>
           <ul class="poin-list">
-            <li>Makna: "kelak, nanti, pasti akan" — menunjukkan kepastian terjadinya di masa depan</li>
-            <li>Dalam ayat: menegaskan bahwa keridhaan itu pasti datang, meski di waktu yang akan datang (di akhirat)</li>
+            <li>Mabni (bentuknya tetap) atas fathah; tidak memiliki kedudukan i'rab.</li>
+            <li>Tidak beramal: tidak mengubah i'rab fi'il mudhari' sesudahnya, tetapi mengkhususkan maknanya untuk masa datang.</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Status I'rāb</td>
+        <td>Peran Kata Dalam Ayat</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-mabni">Mabnī</span> 'alā al-fatḥah</li>
-            <li>Tidak memiliki kedudukan i'rāb (<em>lā mahalla lahā min al-i'rāb</em>)</li>
-            <li>Tidak mengubah i'rāb fi'il sesudahnya — <span class="arab-istilah">يَرْضَى</span> tetap marfū'</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>Penegasan Berlapis</td>
-        <td>
-          <ul class="poin-list">
-            <li>Gabungan <span class="arab-istilah">لَ</span> + <span class="arab-istilah">سَوْفَ</span> menjadi <span class="arab-istilah">لَسَوْفَ</span> menghadirkan <strong>dua penegasan sekaligus</strong>: lām al-ibtidā' yang menegaskan kepastian, dan <span class="arab-istilah">سَوْفَ</span> yang menegaskan masa depan yang pasti tiba</li>
-            <li>Perpaduan ini menjadikan janji keridhaan benar-benar kokoh — tidak ada keraguan padanya</li>
-            <li>Pola serupa terdapat pada firman Allah ﷻ: <span class="arab-istilah">وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى</span> (QS. Aḍ-Ḍuḥā 93:5) — janji pemberian Allah ﷻ kepada Nabi ﷺ</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>Kedudukan Gramatikal</td>
-        <td>
-          <ul class="poin-list">
-            <li>Huruf istiqbāl — menandai bahwa <span class="arab-istilah">يَرْضَى</span> terjadi di masa depan</li>
-            <li>Tidak ber-'amal terhadap i'rāb fi'il sesudahnya</li>
+            <li>Menunjukkan bahwa keridhaan itu datang kemudian — di akhirat.</li>
+            <li>Berbeda dari sin, sawfa dapat didahului lam — sebagaimana di sini dan di Adh-Dhuha: 5.</li>
           </ul>
         </td>
       </tr>
     </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Huruf istiqbal: sin dan sawfa telah dibahas pada Surah Al-Masad (111), ayat 3 — <a href="https://grammar-quran.com/111-03.html#konsep-huruf-istiqbal" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/111-03.html#konsep-huruf-istiqbal</a>
+    </div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Sawfa: huruf istiqbal telah dibahas pada Surah At-Takatsur (102), ayat 3 — <a href="https://grammar-quran.com/102-03.html#konsep-saufa-istiqbal" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/102-03.html#konsep-saufa-istiqbal</a>
+    </div>
   </div>
-  <!-- ╚══ END KARTU 3 ══╝ -->
-
-  <!-- ╔══ KARTU 4 — يَرْضَى ══╗ -->
+  <!-- KARTU 4 — morfem 4 -->
   <div class="kartu">
-    <div class="kartu-head warna-fiil">
-      <div class="kh-left"><span class="badge badge-fi">FI'IL MUDHARI · (92:21:04)</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">يَرْضَى</span></div>
-      <div class="kh-right"><span class="kartu-arti">"merasa puas / ridha"</span></div>
+    <div class="kartu-head warna-fiil" id="k-92-21-4">
+      <div class="kh-left"><span class="badge badge-fi">FI'IL MUDHARI' · (92:21:4)</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">يَرْضَىٰ</span></div>
+      <div class="kh-right"><span class="kartu-arti">ia akan ridha</span></div>
     </div>
     <table class="kartu-tabel">
       <tr>
         <td>Jenis Kata</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-fi">Fi'il</span> — <strong>fi'il-mudhāri'</strong> (kata kerja bentuk sekarang/akan datang)</li>
-            <li>Subkategori morfologis: <strong>fi'il nāqish</strong> — huruf akhir berupa huruf 'illah, tampil sebagai alif maqshūrah</li>
-            <li>Akar: <span class="arab-istilah">ر-ض-و</span> (rā'-dhād-wāw)</li>
-            <li>Wazan: tsulātsī mujarrad — bentuk madhy-nya <span class="arab-istilah">رَضِيَ</span> ("merasa puas, ridha")</li>
+            <li>Fi'il mudhari' (kata kerja bentuk sekarang/akan datang), ma'lum (aktif).</li>
+            <li>Tsulatsi mujarrad (tiga huruf asli tanpa tambahan), musytaq — karena itu memiliki tashrif.</li>
+            <li>Naqish: akarnya <span class="arab-istilah">ر - ض - و</span>, huruf akhirnya wawu.</li>
+            <li>Lazim dalam pemakaian ini (tidak memerlukan obyek).</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Makna</td>
+        <td>Pola dan Makna Wazan</td>
         <td>
           <ul class="poin-list">
-            <li>Makna leksikal: "merasa puas, rela, ridha, senang"</li>
-            <li>Dalam ayat: al-atqā kelak akan benar-benar puas dan ridha — dengan pahala, surga, dan segala balasan Allah ﷻ atas keikhlasannya</li>
+            <li>Berwazan <span class="arab-istilah">فَعِلَ – يَفْعَلُ</span> — <strong>mujarrad bab 'alima</strong>: <span class="arab-istilah">رَضِيَ – يَرْضَى</span>.</li>
+            <li>Ciri makna bab ini: beragam; di sini: ridha, puas, senang.</li>
+            <li>Tabel seluruh wazan beserta ciri maknanya: <a class="tautan-wazan" href="000-01-wazan.html#mujarrad-alima" target="_blank" rel="noopener">Tabel Wazan Fi'il — mujarrad bab 'alima</a></li>
           </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Akar Kata &amp; Tashrif</td>
+        <td>
+          <div class="tashrif-box" style="flex-direction:column;align-items:stretch;gap:0;">
+            <div class="tashrif-baris">
+              <div class="kotak-akar">
+                <div class="kotak-arab arab">ر - ض - و</div>
+                <div class="kotak-info">Akar Kata</div>
+              </div>
+              <span class="ti-judul">Tashrif istilahi (perubahan bentuk menurut jenis kata) — dibaca dari kanan</span>
+            </div>
+            <div class="tashrif-istilahi">
+              <div class="ti-sel"><div class="ti-label">Madhi</div><span class="ti-arab">رَضِيَ</span></div>
+              <div class="ti-sel dipakai"><div class="ti-label">Mudhari'</div><span class="ti-arab">يَرْضَى</span></div>
+              <div class="ti-sel"><div class="ti-label">Masdar</div><span class="ti-arab">رِضًا</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Fa'il</div><span class="ti-arab">رَاضٍ</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Maf'ul</div><span class="ti-arab">مَرْضِيٌّ</span></div>
+              <div class="ti-sel"><div class="ti-label">Amr</div><span class="ti-arab">اِرْضَ</span></div>
+              <div class="ti-sel"><div class="ti-label">Nahy</div><span class="ti-arab">لَا تَرْضَ</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Zaman</div><span class="ti-arab">مَرْضًى</span></div>
+              <div class="ti-sel"><div class="ti-label">Isim Makan</div><span class="ti-arab">مَرْضًى</span></div>
+              <div class="ti-sel kosong"><div class="ti-label">Isim Alat</div><span class="ti-arab">—</span></div>
+            </div>
+            <div class="kotak-subyek-baris">
+              <div class="kotak-subyek-full">
+                <span class="kotak-arab-inline arab">يَرْضَىٰ</span>
+                <span class="kotak-label">— bentuk yang dipakai dalam ayat (mudhari', pelaku orang ketiga tunggal laki-laki, <span class="arab-istilah">هُوَ</span>)</span>
+              </div>
+            </div>
+            <div class="tashrif-keterangan">
+              <ul class="poin-list">
+            <li>Masdar sama'i <span class="arab-istilah">رِضًا</span> dan <span class="arab-istilah">رِضْوَانٌ</span> (<a href="https://arabiclexicon.hawramani.com/%d8%b1%d8%b6%d9%8a/" target="_blank" rel="noopener">kamus — رضي</a>); isim maf'ul asalnya <span class="arab-istilah">مَرْضُوٌّ</span>, wawu diubah menjadi ya' lalu dileburkan.</li>
+            <li>Naqish: huruf akhir akarnya wawu; pada mudhari' ia menjadi alif yang ditulis ya' (alif maqshurah) — <span class="arab-istilah">يَرْضَى</span>.</li>
+            <li>Isim zaman dan makan sesuai rumus; isim alat tidak tercatat di kamus.</li>
+            <li>Tashrif lughawi (perubahan bentuk menurut pelaku) lengkap: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-رضي.html" target="_blank" rel="noopener">Reverso Conjugator — رضي</a></li>
+          </ul>
+            </div>
+          </div>
         </td>
       </tr>
       <tr>
         <td>Makna Gramatikal</td>
         <td>
           <ul class="poin-list">
-            <li>(Dia, هُوَ) merasa puas — fi'il-mudhāri' dengan fa'il dhamir mustatir yang merujuk kepada <span class="arab-istilah">الْأَتْقَى</span> (orang yang bertakwa)</li>
-            <li>Tunggal (mufrad), laki-laki (mudzakkar) — bentuk fi'il untuk dhamir <span class="arab-istilah">هُوَ</span></li>
+            <li>Dia, <span class="arab-istilah">هُوَ</span> — orang yang paling bertakwa — akan ridha; <em>sawfa</em> menjadikannya masa datang, dan lam menegaskannya.</li>
+            <li>Fa'il-nya kembali kepada <span class="arab-istilah">ٱلْأَتْقَى</span> di ayat 17.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Makna Leksikal</td>
+        <td>
+          <ul class="poin-list">
+            <li>Ridha, puas. Al-Qurthubi: Allah akan memberinya di surga apa yang membuatnya ridha ("ay sawfa yu'thihi fil-jannati ma yardha").</li>
           </ul>
         </td>
       </tr>
@@ -559,65 +788,28 @@
         <td>Fa'il</td>
         <td>
           <ul class="poin-list">
-            <li>Fa'il Dhamir <span class="arab-istilah">هُوَ</span> — dhamir mustatir (tersembunyi), merujuk kepada <span class="arab-istilah">الْأَتْقَى</span> yang disebut pada ayat 17-18</li>
+            <li>Dhamir mustatir (tersembunyi) jawaz, taqdirnya <span class="arab-istilah">هُوَ</span>, kembali kepada <span class="arab-istilah">ٱلْأَتْقَى</span> (Ibnu Katsir: "man ittashafa bi-hadzihish-shifat").</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Akar dan Tashrif</td>
-        <td>
-          <div class="tashrif-box-wrap">
-            <div class="tashrif-baris">
-              <div class="kotak-akar">
-                <div class="kotak-arab">رضو</div>
-                <div class="kotak-info">akar kata</div>
-              </div>
-              <span class="tashrif-panah">←</span>
-              <div class="kotak-tashrif">
-                <div class="kotak-arab">رَضِيَ</div>
-                <div class="kotak-info">madhy (هو)</div>
-              </div>
-              <span class="tashrif-panah">←</span>
-              <div class="kotak-tashrif">
-                <div class="kotak-arab">يَرْضَى</div>
-                <div class="kotak-info">mudhāri' (هو)</div>
-              </div>
-            </div>
-            <div class="kotak-subyek-baris">
-              <div class="kotak-subyek-full">
-                <span class="kotak-label">subyek ayat:</span>
-                <span class="kotak-arab-inline">يَرْضَى</span>
-                <span class="kotak-label">— fi'il mudhāri', fa'il dhamir هُوَ (merujuk الْأَتْقَى)</span>
-              </div>
-            </div>
-            <div class="tashrif-keterangan">
-              Akar <span class="arab-istilah">ر-ض-و</span> — fi'il tsulātsī mujarrad. Bentuk madhy-nya <span class="arab-istilah">رَضِيَ</span> ("merasa puas, ridha"), bentuk mudhāri'-nya <span class="arab-istilah">يَرْضَى</span> — fi'il nāqish yang berakhir alif maqshūrah. I'rāb: fi'il-mudhāri' <em>marfū' bi-dhammah muqaddarah</em> pada alif maqshūrah. Konjugasi lengkap: <a href="https://conjugator.reverso.net/conjugation-arabic-verb-%D8%B1%D8%B6%D9%8A.html" target="_blank" rel="noopener">Reverso Conjugator — رضي</a>.
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Status I'rāb</td>
+        <td>Status I'rab</td>
         <td>
           <ul class="poin-list">
-            <li><span class="tag tag-marfu">Marfū'</span> dengan dhammah muqaddarah pada alif maqshūrah — fi'il mudhāri' yang tidak didahului adat nāshib atau jāzim</li>
-            <li>Dhammah dikira-kira (<em>muqaddarah</em>) karena berat melafalkannya pada alif maqshūrah</li>
-            <li>Huruf <span class="arab-istilah">سَوْفَ</span> sebelumnya tidak mengubah i'rāb-nya</li>
+            <li>Mu'rab: <strong>marfu'</strong>, karena tidak didahului 'amil nashab atau jazm; tandanya dhammah yang dikira-kirakan (muqaddarah) pada alif (<em>ta'adzdzur</em>).</li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>Kedudukan Gramatikal</td>
+        <td>Peran Kata Dalam Ayat</td>
         <td>
           <ul class="poin-list">
-            <li>Fi'il yang menjadi inti kalimat — bersama fa'il dhamir mustatir membentuk jumlah fi'liyyah</li>
-            <li>Jumlah fi'liyyah <span class="arab-istilah">يَرْضَى</span> menjadi kalimat yang disambung oleh <span class="arab-istilah">وَ</span> kepada ayat 20</li>
+            <li>Inti janji: orang yang paling bertakwa kelak akan ridha dengan balasan Allah.</li>
           </ul>
         </td>
       </tr>
     </table>
   </div>
-  <!-- ╚══ END KARTU 4 ══╝ -->
 
   <!-- § 4 — ANALISIS TINGKAT 2 — FRASA -->
   <div class="section-header biru">
@@ -626,81 +818,137 @@
   </div>
 
   <div class="sub-section-header">
-    <div class="sub-judul-kalimat">Frasa-Frasa Pembentuk Ayat</div>
-    <div class="sub-terjemah-kalimat">F1: jumlah fi'liyyah mustaqbal · F2: jumlah dengan penegasan · F3: kāmilah ayat</div>
+    <div class="sub-judul-kalimat">Dua Frasa — dari Kalimat Janji menuju 'Athaf kepada Ayat 17</div>
+    <div class="sub-terjemah-kalimat">Disusun dari tingkat terdalam diagram menuju kalimat utuh</div>
   </div>
 
-  <!-- ╔══ FRASA 1 — JUMLAH FI'LIYYAH MUSTAQBAL (L1) ══╗ -->
+  <!-- FRASA 1 -->
   <div class="kartu">
-    <div class="kartu-head warna-frasa1">
-      <div class="kh-left"><span class="badge badge-frasa1">FRASA 1 · JUMLAH FI'LIYYAH MUSTAQBAL</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">سَوْفَ يَرْضَى</span></div>
-      <div class="kh-right"><span class="kartu-arti">"kelak ia akan merasa puas"</span></div>
+    <div class="kartu-head warna-frasa1" id="f-92-21-1">
+      <div class="kh-left"><span class="badge badge-frasa1">FRASA 1 · JUMLAH FI'LIYYAH — LAM DAN SAWFA</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">لَسَوْفَ يَرْضَىٰ</span></div>
+      <div class="kh-right"><span class="kartu-arti">sungguh, kelak ia akan ridha</span></div>
     </div>
     <table class="kartu-tabel">
-      <tr><td>Struktur</td><td><ul class="poin-list">
-        <li><strong>Harf istiqbāl</strong> (<span class="arab-istilah">سَوْفَ</span>) + <strong>fi'il-mudhāri'</strong> (<span class="arab-istilah">يَرْضَى</span>) dengan fa'il dhamir mustatir <span class="arab-istilah">هُوَ</span></li>
-        <li>Membentuk jumlah fi'liyyah yang menunjuk masa depan</li>
-      </ul></td></tr>
-      <tr><td>Makna Frasa</td><td><ul class="poin-list">
-        <li>"Kelak ia akan merasa puas" — perbuatan yang pasti terjadi di masa depan</li>
-      </ul></td></tr>
-      <tr><td>Peran / Kedudukan</td><td><ul class="poin-list">
-        <li><strong>Jumlah fi'liyyah</strong> dengan penanda masa depan — inti pernyataan ayat</li>
-      </ul></td></tr>
+      <tr><td>Struktur</td><td>Lam <span class="arab-istilah">لَ</span>, <em>sawfa</em> <span class="arab-istilah">سَوْفَ</span>, dan fi'il <span class="arab-istilah">يَرْضَىٰ</span> (dengan fa'il mustatir) — diikat serentak.</td></tr>
+      <tr><td>Makna Frasa</td><td>Sungguh, kelak ia akan ridha.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Kalimat fi'liyyah yang ditegaskan dengan lam dan dikhususkan untuk masa datang dengan <em>sawfa</em>.</li>
+            <li>Tentang jenis lam ini, lihat kotak khilaf pada kartu lam.</li>
+          </ul>
+        </td>
+      </tr>
     </table>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Lam sebelum sawfa: lam ibtida' atau lam qasam telah dibahas pada Surah Adh-Dhuha (93), ayat 5 — <a href="https://grammar-quran.com/093-05.html#khilaf-lam-walasaufa" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/093-05.html#khilaf-lam-walasaufa</a>
+    </div>
   </div>
-  <!-- ╚══ END FRASA 1 ══╝ -->
-
-  <!-- ╔══ FRASA 2 — JUMLAH DENGAN PENEGASAN (L2) ══╗ -->
+  <!-- FRASA 2 -->
   <div class="kartu">
-    <div class="kartu-head warna-frasa2">
-      <div class="kh-left"><span class="badge badge-frasa2">FRASA 2 · JUMLAH DENGAN PENEGASAN</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">لَسَوْفَ يَرْضَى</span></div>
-      <div class="kh-right"><span class="kartu-arti">"sungguh kelak ia benar-benar akan merasa puas"</span></div>
+    <div class="kartu-head warna-frasa2" id="f-92-21-2">
+      <div class="kh-left"><span class="badge badge-frasa2">FRASA 2 · 'ATHAF — MA'THUF 'ALA AYAT 17</span></div>
+      <div class="kh-center"><span class="kartu-arab-besar arab">وَلَسَوْفَ يَرْضَىٰ</span></div>
+      <div class="kh-right"><span class="kartu-arti">dan sungguh, kelak ia akan ridha</span></div>
     </div>
     <table class="kartu-tabel">
-      <tr><td>Struktur</td><td><ul class="poin-list">
-        <li><strong>Lām al-ibtidā'</strong> (<span class="arab-istilah">لَ</span>) + <strong>jumlah fi'liyyah mustaqbal</strong> (<span class="arab-istilah">سَوْفَ يَرْضَى</span>)</li>
-        <li>Lām penegas masuk pada jumlah, membentuk penegasan berlapis bersama <span class="arab-istilah">سَوْفَ</span></li>
-      </ul></td></tr>
-      <tr><td>Makna Frasa</td><td><ul class="poin-list">
-        <li>"Sungguh kelak ia benar-benar akan merasa puas" — janji yang ditegaskan dengan kuat</li>
-      </ul></td></tr>
-      <tr><td>Peran / Kedudukan</td><td><ul class="poin-list">
-        <li><strong>Jumlah fi'liyyah dengan taukīd</strong> — pernyataan yang dikukuhkan dengan dua penegas</li>
-      </ul></td></tr>
+      <tr><td>Struktur</td><td>Wawu 'athaf <span class="arab-istilah">وَ</span> dan kalimat, Frasa 1.</td></tr>
+      <tr><td>Makna Frasa</td><td>Dan sungguh, kelak ia akan ridha.</td></tr>
+      <tr>
+        <td>Peran Frasa Dalam Ayat</td>
+        <td>
+          <ul class="poin-list">
+            <li>Kalimat ini di-'athaf-kan kepada kabar tentang orang yang paling bertakwa di ayat 17 (Ad-Darwisy: wawu 'athifah).</li>
+            <li>Karena ma'thuf 'alaih-nya di ayat lain, puncak ini tanpa kotak dan merujuk ke ayat 17.</li>
+          </ul>
+        </td>
+      </tr>
     </table>
-  </div>
-  <!-- ╚══ END FRASA 2 ══╝ -->
-
-  <!-- ╔══ FRASA 3 — KAMILAH AYAT (L3) ══╗ -->
-  <div class="kartu">
-    <div class="kartu-head warna-frasa1">
-      <div class="kh-left"><span class="badge badge-frasa5">FRASA 3 · KĀMILAH AYAT</span></div>
-      <div class="kh-center"><span class="kartu-arab-besar">وَلَسَوْفَ يَرْضَى</span></div>
-      <div class="kh-right"><span class="kartu-arti">"dan kelak ia benar-benar akan merasa puas"</span></div>
+    <div class="rujukan-recall" style="margin:2px 14px 16px;padding:9px 13px;background:#f0f7f2;border-left:3px solid #1a472a;border-radius:0 5px 5px 0;font-size:12.5px;color:#2f5540;line-height:1.55;">
+      Wawu 'athaf yang menggabungkan kalimat telah dibahas pada Surah Al-Ikhlas (112), ayat 3 — <a href="https://grammar-quran.com/112-03.html#k-112-3-3" target="_blank" rel="noopener" style="color:#1a472a;font-weight:600;text-decoration:underline;">https://grammar-quran.com/112-03.html#k-112-3-3</a>
     </div>
-    <table class="kartu-tabel">
-      <tr><td>Struktur</td><td><ul class="poin-list">
-        <li><strong>Wāw al-'athaf</strong> (<span class="arab-istilah">وَ</span>) + <strong>jumlah fi'liyyah dengan taukīd</strong> (<span class="arab-istilah">لَسَوْفَ يَرْضَى</span>)</li>
-        <li>Membentuk ayat 21 — ayat penutup Surah Al-Lail</li>
-      </ul></td></tr>
-      <tr><td>Makna Frasa</td><td><ul class="poin-list">
-        <li>"Dan kelak ia benar-benar akan merasa puas" — ayat 21 lengkap</li>
-        <li>Janji keridhaan bagi al-atqā, buah dari keikhlasannya pada ayat 20</li>
-      </ul></td></tr>
-      <tr><td>Peran / Kedudukan</td><td><ul class="poin-list">
-        <li><strong>Kāmilah ayat</strong> — disambung dengan ayat 20 melalui <span class="arab-istilah">وَ</span></li>
-        <li>Ayat penutup surah — menutup Surah Al-Lail dengan janji yang menggembirakan</li>
-      </ul></td></tr>
-    </table>
   </div>
-  <!-- ╚══ END FRASA 3 ══╝ -->
 
-  <!-- § 5 — KEDUDUKAN AYAT DALAM KONTEKS SURAH -->
+  <!-- § 5 — DIAGRAM SINTAKSIS SVG -->
   <div class="section-header biru">
-    <div class="judul">Analisis Tingkat 3 — Kedudukan dalam Surah</div>
+    <div class="judul">Analisis Tingkat 3 — Diagram Sintaksis</div>
+    <div class="sub-judul">Diagram struktur bertingkat unsur kalimat yang menyusun ayat</div>
+  </div>
+
+  <div class="sub-section-header">
+    <div class="sub-judul-kalimat">Diagram Janji dengan Lam dan Sawfa</div>
+    <div class="sub-arab-kalimat arab">وَلَسَوْفَ يَرْضَىٰ</div>
+    <div class="sub-terjemah-kalimat">Empat morfem, dua tingkat; puncak tanpa kotak dengan rujukan i'rab mundur ke ayat 17</div>
+  </div>
+
+  <div class="diagram-wrapper">
+    <svg viewBox="0 0 820 474" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;max-width:820px;width:100%;height:auto;font-family:'Lato',sans-serif;">
+      <text x="640" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#0e7490" font-weight="700" direction="rtl">وَ</text>
+      <text x="640" y="63" text-anchor="middle" font-size="13" fill="#0e7490" font-weight="700">Wawu</text>
+      <text x="640" y="81" text-anchor="middle" font-size="12" fill="#888">'athaf</text>
+      <text x="560" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#0e7490" font-weight="700" direction="rtl">لَ</text>
+      <text x="560" y="63" text-anchor="middle" font-size="13" fill="#0e7490" font-weight="700">Lam</text>
+      <text x="560" y="81" text-anchor="middle" font-size="12" fill="#888">ibtida'</text>
+      <text x="470" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#0e7490" font-weight="700" direction="rtl">سَوْفَ</text>
+      <text x="470" y="63" text-anchor="middle" font-size="13" fill="#0e7490" font-weight="700">Sawfa</text>
+      <text x="470" y="81" text-anchor="middle" font-size="12" fill="#888">istiqbal</text>
+      <text x="360" y="42" dy="-4" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="22" fill="#c2410c" font-weight="700" direction="rtl">يَرْضَىٰ</text>
+      <text x="360" y="63" text-anchor="middle" font-size="13" fill="#c2410c" font-weight="700">Fi'il + Fa'il</text>
+      <text x="360" y="81" text-anchor="middle" font-size="12" fill="#888">fa'il: huwa</text>
+
+      <!-- TINGKAT 1 — lam, sawfa, dan fi'il serentak → kalimat -->
+      <line x1="560" y1="88" x2="560" y2="108" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="470" y1="88" x2="470" y2="108" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="360" y1="88" x2="360" y2="108" stroke="#c2410c" stroke-width="2.2"/>
+      <line x1="360" y1="108" x2="560" y2="108" stroke="#1a472a" stroke-width="2.2"/>
+      <text x="415" y="104" text-anchor="middle" font-size="12" fill="#1a472a" font-style="italic">lam, sawfa, dan fi'il</text>
+      <polygon points="454,108 466,108 460,119" fill="#1a472a"/>
+      <line x1="460" y1="108" x2="460" y2="136" stroke="#1a472a" stroke-width="2.2"/>
+      <text x="460" y="156" text-anchor="middle" font-size="13" fill="#1a472a" font-style="italic">Jumlah Fi'liyyah  >  Lam dan Sawfa</text>
+      <text x="460" y="178" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#1a472a" font-weight="700" direction="rtl">لَسَوْفَ يَرْضَىٰ</text>
+      <text x="460" y="196" text-anchor="middle" font-size="12" fill="#555">sungguh, kelak ia akan ridha</text>
+
+      <!-- TINGKAT 2 — wawu dan kalimat: 'athaf kepada ayat 17 (puncak tanpa kotak) -->
+      <line x1="640" y1="88" x2="640" y2="224" stroke="#0e7490" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <line x1="460" y1="202" x2="460" y2="224" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <line x1="460" y1="224" x2="640" y2="224" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="550" y="220" text-anchor="middle" font-size="12" fill="#5b21b6" font-style="italic">wawu dan kalimat</text>
+      <polygon points="544,224 556,224 550,235" fill="#5b21b6"/>
+      <line x1="550" y1="224" x2="550" y2="252" stroke="#5b21b6" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="550" y="272" text-anchor="middle" font-size="13" fill="#5b21b6" font-style="italic">'Athaf  >  Ma'thuf 'ala Ayat 17</text>
+      <text x="550" y="294" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="15" fill="#5b21b6" font-weight="700" direction="rtl">وَلَسَوْفَ يَرْضَىٰ</text>
+      <text x="550" y="312" text-anchor="middle" font-size="12" fill="#555">dan sungguh, kelak ia akan ridha</text>
+
+      <!-- RUJUKAN I'RAB — mundur ke ayat 17: ma'thuf 'alaih -->
+      <line x1="550" y1="318" x2="550" y2="354" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <polygon points="544,354 556,354 550,365" fill="#9ca3af"/>
+      <text x="550" y="390" text-anchor="middle" font-size="11" fill="#6b7280">Rujukan i'rab — ma'thuf 'alaih:</text>
+      <text x="550" y="406" text-anchor="middle" font-size="11" fill="#6b7280">kabar tentang yang paling bertakwa di ayat 17</text>
+      <text x="550" y="434" text-anchor="middle" font-family="'Scheherazade New',serif" font-size="17" fill="#888" font-weight="700" direction="rtl">وَسَيُجَنَّبُهَا ٱلْأَتْقَى</text>
+      <text x="550" y="456" text-anchor="middle" font-size="11" fill="#aaa">dan akan dijauhkan darinya orang yang paling bertakwa (92:17)</text>
+
+    </svg>
+    <div class="diagram-legenda">
+      <span class="legenda-label">Keterangan Garis</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:2.2px solid #1a472a;"></span> Tingkat pertama — kalimat janji</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.8px dashed #5b21b6;"></span> Puncak — 'athaf</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.2px dashed #0e7490;"></span> Garis turun huruf</span>
+      <span class="legenda-item"><span style="display:inline-block;width:22px;height:0;border-top:1.5px dashed #9ca3af;"></span> Rujukan i'rab ke ayat lain</span>
+    </div>
+    <div class="hubungan-ayat-box" id="hubungan-lail-ayat-21">
+      <div class="hubungan-ayat-judul">Hubungan dengan Ayat Sebelumnya</div>
+      <div class="hubungan-ayat-isi">
+        <p><strong>Ke belakang:</strong> di-'athaf-kan kepada kabar tentang orang yang paling bertakwa di ayat 17 (rujukan i'rab mundur); sifat-sifatnya di ayat 18–20.</p>
+        <p><strong>Penutup surah:</strong> sesudah peringatan bagi yang paling celaka (ayat 14–16), surah ditutup dengan janji keridhaan bagi yang paling bertakwa.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 6 — KEDUDUKAN AYAT DALAM SURAH -->
+  <div class="section-header biru">
+    <div class="judul">Analisis Tingkat 4 — Kedudukan dalam Surah</div>
     <div class="sub-judul">Kedudukan dan peran ayat di dalam keseluruhan surah</div>
   </div>
 
@@ -709,159 +957,25 @@
       <tr>
         <td>Posisi Ayat</td>
         <td>
-          <strong>Ayat 21 dari 21 ayat — ayat penutup surah</strong>. Ayat ini menutup Surah Al-Lail dengan janji keridhaan bagi orang yang bertakwa.
+          Ayat kedua puluh satu, ayat terakhir surah; penutup bagian keempat (ayat 14–21).
         </td>
       </tr>
       <tr>
         <td>Hubungan dengan Ayat Sebelumnya</td>
         <td>
-          Ayat 21 disambung dengan ayat 20 melalui <em>wāw al-'athaf</em>. Ayat 20 menyebut keikhlasan al-atqā (berinfak demi wajah Allah ﷻ), ayat 21 menyebut buahnya — ia kelak akan benar-benar puas dengan balasan Allah ﷻ. Kaitan ini dijelaskan pada catatan di bawah diagram.
+          Ma'thufah kepada kabar di ayat 17 (Ad-Darwisy); Ad-Da'as dkk. menyebutnya jawab qasam.
         </td>
       </tr>
       <tr>
-        <td>Struktur Internal Ayat</td>
+        <td>Peran dalam Struktur Surah</td>
         <td>
-          Ayat ini berupa <em>jumlah fi'liyyah</em> ringkas yang dikukuhkan penegasan berlapis: <span class="arab-istilah">وَ</span> ('athaf) + <span class="arab-istilah">لَ</span> (lām al-ibtidā') + <span class="arab-istilah">سَوْفَ</span> (harf istiqbāl) + <span class="arab-istilah">يَرْضَى</span> (fi'il mudhāri').
-        </td>
-      </tr>
-      <tr>
-        <td>Peran dalam Konteks Surah</td>
-        <td>
-          Ayat 21 adalah penutup yang menggembirakan. Surah Al-Lail dibuka dengan sumpah (demi malam, siang, dan penciptaan), membentangkan dua jalan hidup manusia, dan kini ditutup dengan janji: bagi yang menempuh jalan ketakwaan, ada keridhaan yang pasti menanti.
-        </td>
-      </tr>
-      <tr>
-        <td>Hubungan dengan Ayat Berikutnya</td>
-        <td>
-          Ayat 21 adalah ayat terakhir Surah Al-Lail — tidak ada ayat sesudahnya dalam surah ini. Rekapitulasi dan perenungan menyeluruh atas surah disajikan pada bagian Khatimah Surah di bawah.
+          <ul class="poin-list">
+            <li>Menutup surah dengan janji bagi orang yang paling bertakwa: ia akan ridha.</li>
+            <li>Mengimbangi permulaan surah: usaha manusia berbeda-beda (ayat 4), dan balasannya pun berbeda.</li>
+          </ul>
         </td>
       </tr>
     </table>
-  </div>
-
-  <!-- § 6 — DIAGRAM SINTAKSIS SVG -->
-  <div class="section-header biru">
-    <div class="judul">Analisis Tingkat 4 — Diagram Sintaksis</div>
-    <div class="sub-judul">Diagram struktur bertingkat unsur kalimat yang menyusun ayat</div>
-  </div>
-
-  <div class="sub-section-header">
-    <div class="sub-judul-kalimat">Diagram Sintaksis Ayat 21</div>
-    <div class="sub-arab-kalimat arab">وَلَسَوْفَ يَرْضَى</div>
-    <div class="sub-terjemah-kalimat">Struktur bertingkat: harf istiqbāl + fi'il → jumlah dengan penegasan → kāmilah</div>
-  </div>
-
-  <div class="diagram-wrapper">
-    <svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg"
-         style="width:100%;max-width:820px;display:block;margin:0 auto;font-family:'Lato',sans-serif;">
-
-      <!-- BARIS KATA (RTL) 4 unit: وَ · لَ · سَوْفَ · يَرْضَى -->
-      <!-- X = 720 · 590 · 430 · 200 -->
-
-      <!-- KATA 1 (KANAN): وَ -->
-      <text x="720" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="20" fill="#1e3a8a" font-weight="700" direction="rtl">وَ</text>
-      <text x="720" y="60" text-anchor="middle" font-size="9" fill="#1e3a8a">wāw 'athaf</text>
-      <text x="720" y="72" text-anchor="middle" font-size="8" fill="#888">lā mahalla lahā</text>
-
-      <!-- KATA 2: لَ -->
-      <text x="590" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="20" fill="#475569" font-weight="700" direction="rtl">لَ</text>
-      <text x="590" y="60" text-anchor="middle" font-size="9" fill="#475569">lām al-ibtidā'</text>
-      <text x="590" y="72" text-anchor="middle" font-size="8" fill="#888">penegas · lā mahalla lahā</text>
-
-      <!-- KATA 3: سَوْفَ -->
-      <text x="430" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="20" fill="#475569" font-weight="700" direction="rtl">سَوْفَ</text>
-      <text x="430" y="60" text-anchor="middle" font-size="9" fill="#475569">harf istiqbāl</text>
-      <text x="430" y="72" text-anchor="middle" font-size="8" fill="#888">lā mahalla lahā</text>
-
-      <!-- KATA 4: يَرْضَى -->
-      <text x="200" y="42" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="20" fill="#c2410c" font-weight="700" direction="rtl">يَرْضَى</text>
-      <text x="200" y="60" text-anchor="middle" font-size="9" fill="#c2410c">fi'il-mudhāri' · marfū'</text>
-      <text x="200" y="72" text-anchor="middle" font-size="8" fill="#888">fa'il mustatir: هُوَ</text>
-
-      <!-- GARIS VERTIKAL dari tiap kata -->
-      <line x1="720" y1="82" x2="720" y2="348" stroke="#1e3a8a" stroke-width="1.2" stroke-dasharray="3,3"/>
-      <line x1="590" y1="82" x2="590" y2="238" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3"/>
-      <line x1="430" y1="82" x2="430" y2="148" stroke="#1a472a" stroke-width="2.2"/>
-      <line x1="200" y1="82" x2="200" y2="148" stroke="#1a472a" stroke-width="2.2"/>
-
-      <!-- LEVEL 1 HIJAU SOLID: سَوْفَ + يَرْضَى = harf istiqbal + fi'il -->
-      <line x1="200" y1="148" x2="430" y2="148" stroke="#1a472a" stroke-width="2.2"/>
-      <text x="315" y="144" text-anchor="middle" font-size="8" fill="#1a472a" font-style="italic">harf istiqbāl + fi'il-mudhāri'</text>
-      <polygon points="315,148 308,140 322,140" fill="#1a472a"/>
-      <line x1="315" y1="148" x2="315" y2="188" stroke="#1a472a" stroke-width="2.2"/>
-      <text x="315" y="200" text-anchor="middle" font-size="8.5" fill="#1a472a" font-style="italic" font-weight="700">Frasa 1 · Jumlah Fi'liyyah Mustaqbal</text>
-      <text x="315" y="216" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="15" fill="#1a472a" font-weight="700" direction="rtl">سَوْفَ يَرْضَى</text>
-      <text x="315" y="229" text-anchor="middle" font-size="8" fill="#555">sawfa yardhā — "kelak ia akan merasa puas"</text>
-
-      <!-- LEVEL 2 TEAL PUTUS: لَ + L1 = jumlah dengan penegasan -->
-      <line x1="315" y1="232" x2="315" y2="268" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="590" y1="238" x2="590" y2="268" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="315" y1="268" x2="590" y2="268" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <text x="452" y="264" text-anchor="middle" font-size="8" fill="#0e7490" font-style="italic">lām al-ibtidā' · jumlah fi'liyyah</text>
-      <polygon points="452,268 445,260 459,260" fill="#0e7490"/>
-      <line x1="452" y1="268" x2="452" y2="308" stroke="#0e7490" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <text x="452" y="320" text-anchor="middle" font-size="8.5" fill="#0e7490" font-style="italic" font-weight="700">Frasa 2 · Jumlah dengan Penegasan</text>
-      <text x="452" y="336" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="15" fill="#0e7490" font-weight="700" direction="rtl">لَسَوْفَ يَرْضَى</text>
-      <text x="452" y="349" text-anchor="middle" font-size="8" fill="#555">lasawfa yardhā — "sungguh kelak ia benar-benar akan merasa puas"</text>
-
-      <!-- LEVEL 3 BIRU GELAP PUTUS: وَ + L2 = kāmilah ayat -->
-      <line x1="452" y1="352" x2="452" y2="388" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <line x1="452" y1="388" x2="720" y2="388" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
-      <text x="586" y="384" text-anchor="middle" font-size="8" fill="#1e3a8a" font-style="italic">wāw 'athaf · jumlah dengan penegasan</text>
-      <polygon points="586,388 579,380 593,380" fill="#1e3a8a"/>
-      <line x1="586" y1="388" x2="586" y2="414" stroke="#1e3a8a" stroke-width="1.8" stroke-dasharray="5,3"/>
-
-      <rect x="389" y="418" width="394" height="92" rx="8" fill="#faf5ff" stroke="#1e3a8a" stroke-width="2.5"/>
-      <text x="586" y="440" text-anchor="middle" font-size="9" fill="#1e3a8a" font-style="italic" font-weight="700">Frasa 3 · Kāmilah — Ayat 21 Surah Al-Lail (Penutup)</text>
-      <text x="586" y="470" text-anchor="middle" font-family="'Scheherazade New',serif"
-            font-size="18" fill="#1e3a8a" font-weight="700" direction="rtl">وَلَسَوْفَ يَرْضَى</text>
-      <text x="586" y="492" text-anchor="middle" font-size="8.5" fill="#666" font-style="italic">janji keridhaan: buah keikhlasan al-atqā</text>
-
-    </svg>
-
-    <div class="diagram-legenda">
-      <span class="legenda-label">LEGENDA</span>
-      <span class="legenda-item">
-        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1a472a" stroke-width="2.5"/></svg>
-        Harf Istiqbāl + Fi'il (hijau solid)
-      </span>
-      <span class="legenda-item">
-        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#0e7490" stroke-width="2" stroke-dasharray="5,3"/></svg>
-        Jumlah dengan Penegasan (teal putus)
-      </span>
-      <span class="legenda-item">
-        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="5,3"/></svg>
-        Kāmilah Ayat (biru gelap putus)
-      </span>
-      <span class="legenda-item">
-        <svg width="28" height="3"><line x1="0" y1="1.5" x2="28" y2="1.5" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3"/></svg>
-        Harf lā mahalla lahā (abu putus tipis)
-      </span>
-    </div>
-
-    <!-- Box Hubungan dengan Ayat — ayat 21 buah keikhlasan ayat 20, penutup surah -->
-    <div class="hubungan-ayat-box">
-      <div class="hubungan-ayat-judul">↔ Hubungan dengan Ayat Sebelumnya — Penutup Surah ↔</div>
-      <div class="hubungan-ayat-isi">
-        <p>Ayat 21 adalah penutup Surah Al-Lail yang menyempurnakan rangkaian sifat al-atqā:</p>
-
-        <p style="margin-top:10px;"><strong>① Hubungan ke belakang — buah dari keikhlasan ayat 20.</strong> Ayat 20 menyebut keikhlasan al-atqā: ia berinfak semata mengharap wajah Allah ﷻ. Ayat 21 datang dengan <span class="arab-istilah">وَ</span> ('athaf) menyebut buahnya — keridhaan yang pasti:</p>
-
-        <div class="hubungan-ayat-takdir">
-          <div class="hubungan-ayat-takdir-label">Rangkaian Ayat 20-21 — Keikhlasan dan Buahnya:</div>
-          <div class="hubungan-ayat-takdir-arab arab">ابْتِغَاءَ وَجْهِ رَبِّهِ الْأَعْلَى (20) ··· وَلَسَوْفَ يَرْضَى (21)</div>
-          <div class="hubungan-ayat-takdir-arti">"ia berinfak demi wajah Rabb-nya — dan kelak ia benar-benar akan merasa puas"</div>
-        </div>
-
-        <p style="margin-top:12px;"><strong>② Penutup surah.</strong> Ayat 21 adalah ayat terakhir Surah Al-Lail. Surah yang dibuka dengan sumpah demi malam dan siang ini ditutup dengan janji keridhaan yang ditegaskan berlapis (<span class="arab-istilah">لَ</span> + <span class="arab-istilah">سَوْفَ</span>). Rekapitulasi menyeluruh atas surah disajikan pada bagian Khatimah Surah di bawah.</p>
-      </div>
-    </div>
   </div>
 
   <!-- § 7 — TADABUR -->
@@ -873,163 +987,184 @@
   <div class="tadabur-box">
     <div class="tadabur-head">
       <span class="badge-tadabur">RENUNGAN ①</span>
-      <span class="tadabur-judul">Janji Keridhaan dan Kepuasan bagi Orang yang Bertakwa</span>
+      <span class="tadabur-judul">Balasan yang Membuat Ridha</span>
     </div>
     <div class="tadabur-isi">
-      <p>Surah Al-Lail ditutup dengan satu janji yang menggembirakan: <span class="arab-istilah">وَلَسَوْفَ يَرْضَى</span> — "dan kelak ia benar-benar akan merasa puas". Para ulama menjelaskan, dhamir pada <span class="arab-istilah">يَرْضَى</span> kembali kepada al-atqā — orang yang paling bertakwa. Ia kelak akan benar-benar puas dengan balasan yang Allah ﷻ berikan: pahala yang berlipat, surga yang penuh kenikmatan, dan keridhaan-Nya.</p>
-      <p>Renungkanlah kata <span class="arab-istilah">يَرْضَى</span> — "merasa puas". Para ulama menjelaskan, ini menggambarkan puncak kebahagiaan. Tidak sekadar diberi balasan, tetapi diberi sampai ia benar-benar <em>puas</em> — tidak ada lagi yang ia inginkan, tidak ada lagi kekurangan yang ia rasakan. Ganjaran Allah ﷻ bagi hamba yang ikhlas begitu melimpah hingga jiwa yang menerimanya berkata: "cukup, aku telah puas."</p>
-      <p>Maka, akhī — ayat ini menanamkan harapan di hati orang beriman. Mungkin di dunia ini seorang hamba yang bertakwa menahan diri, berinfak, dan berkorban tanpa banyak balasan yang terlihat. Namun ketahuilah, ada hari ketika seluruh kebaikan itu kembali kepadanya dalam bentuk yang jauh lebih indah. Bersabarlah dalam ketaatan — sebab di ujung jalan ketakwaan ada keridhaan yang pasti menanti.</p>
+      <p>Al-Qurthubi: Allah akan memberinya di surga apa yang membuatnya ridha. Ibnu Katsir: janji ini bagi siapa pun yang bersifat dengan sifat-sifat itu.</p>
+      <p>Pelajaran bagi kita: orang yang memberi karena Allah tidak akan dirugikan; Allah sendiri yang menjanjikan keridhaan baginya.</p>
     </div>
   </div>
 
   <div class="tadabur-box">
     <div class="tadabur-head">
       <span class="badge-tadabur">RENUNGAN ②</span>
-      <span class="tadabur-judul">"Lasawfa" — Janji Allah ﷻ yang Pasti, Tak Bercampur Keraguan</span>
+      <span class="tadabur-judul">Ridha Dibalas Ridha</span>
     </div>
     <div class="tadabur-isi">
-      <p>Perhatikanlah susunan penutup ayat ini: <span class="arab-istilah">لَسَوْفَ</span> — gabungan dua huruf penegas, <span class="arab-istilah">لَ</span> (lām al-ibtidā') dan <span class="arab-istilah">سَوْفَ</span> (harf istiqbāl). Bahasa Al-Qur'an memilih untuk mengukuhkan janji ini dengan penegasan berlapis. Maknanya: keridhaan ini <em>pasti</em> datang — tidak ada keraguan sedikit pun padanya.</p>
-      <p>Para ulama menjelaskan, ketika Allah ﷻ menjanjikan sesuatu, janji itu pasti terlaksana — sebab Dia tidak pernah mengingkari janji. Maka penegasan <span class="arab-istilah">لَسَوْفَ</span> di sini bukanlah karena janji-Nya butuh dikuatkan, melainkan untuk menenangkan hati hamba dan menghapus segala keraguan yang mungkin terbisik. Pola yang sama Allah ﷻ pakai untuk menghibur Nabi-Nya ﷺ: <span class="arab-istilah">وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى</span> ("dan kelak Tuhanmu pasti memberimu, sehingga engkau puas" — QS. Aḍ-Ḍuḥā 93:5).</p>
-      <p>Maka, akhī — tanamkanlah keyakinan ini dalam hati: janji Allah ﷻ adalah kebenaran yang pasti. Ketika dunia terasa berat dan balasan kebaikan terasa lambat datang, ingatlah <span class="arab-istilah">لَسَوْفَ</span> — "sungguh, kelak, pasti". Keyakinan akan janji Allah ﷻ inilah yang menjadikan seorang mukmin tetap teguh beramal, sebab ia tahu bahwa tidak ada satu pun kebaikannya yang akan sia-sia.</p>
+      <p>Ia memberi untuk mencari wajah Rabb-nya (ayat 20), maka Allah menjanjikan bahwa ia akan ridha. Balasan sesuai dengan jenis amalnya.</p>
+      <p>Pelajaran bagi kita: carilah ridha Allah dalam setiap pemberian, niscaya Allah menjadikan kita ridha dengan pemberian-Nya.</p>
     </div>
   </div>
 
-  <div class="tadabur-box">
-    <div class="tadabur-head">
-      <span class="badge-tadabur">RENUNGAN ③</span>
-      <span class="tadabur-judul">Husnul Khātimah — Buah dari Keikhlasan adalah Keridhaan</span>
-    </div>
-    <div class="tadabur-isi">
-      <p>Surah Al-Lail memiliki penutup yang indah. Surah ini dibuka dengan sumpah demi malam, siang, dan penciptaan; lalu membentangkan dua jalan hidup manusia — jalan kemudahan menuju kebaikan, dan jalan kesukaran menuju keburukan; lalu menyebut dua golongan — al-asyqā (yang celaka) dan al-atqā (yang bertakwa). Dan kini, surah ditutup bukan dengan ancaman, melainkan dengan <em>janji keridhaan</em> bagi golongan yang berbahagia.</p>
-      <p>Renungkanlah keindahan susunan ini. Surah dibuka dengan sumpah agung, dan ditutup dengan <span class="arab-istilah">يَرْضَى</span> — sebuah kata yang melukiskan kepuasan jiwa yang sempurna. Para ulama menjelaskan, perjalanan al-atqā dalam surah ini adalah teladan: ia memberi (ayat 5), membenarkan kebaikan (ayat 6), menafkahkan harta untuk menyucikan diri (ayat 18), ikhlas semata demi wajah Allah ﷻ (ayat 19-20) — dan ujung dari semua itu adalah keridhaan (ayat 21).</p>
-      <p>Maka, akhī — inilah pelajaran pamungkas Surah Al-Lail: buah dari keikhlasan adalah keridhaan. Barangsiapa mengikhlaskan amalnya untuk Allah ﷻ, menempuh jalan ketakwaan dengan sabar, maka Allah ﷻ menjanjikan baginya akhir yang membahagiakan — husnul khātimah, dan keridhaan yang abadi. Semoga Allah ﷻ menjadikan kita termasuk golongan al-atqā, dan menutup hidup kita dengan keridhaan-Nya.</p>
-      <p><strong>اللَّهُمَّ اجْعَلْنَا مِنَ الْأَتْقِيَاءِ الْمُخْلِصِينَ وَاخْتِمْ لَنَا بِحُسْنِ الْخَاتِمَةِ وَأَرْضِنَا وَارْضَ عَنَّا</strong> — "Ya Allah, jadikanlah kami termasuk orang-orang bertakwa yang ikhlas, akhirilah hidup kami dengan husnul khātimah, puaskanlah kami dan ridhailah kami." Āmīn.</p>
-    </div>
-  </div>
 
   <!-- § 8 — KHATIMAH SURAH -->
   <div class="section-header khatimah">
     <div class="judul">Khatimah Surah Al-Lail</div>
-    <div class="sub-judul">Rekapitulasi 21 ayat, struktur surah, konsep gramatikal kumulatif, dan pesan penutup</div>
+    <div class="sub-judul">Rangkuman, struktur, konsep kumulatif, dan penutup surah</div>
   </div>
 
-  <!-- §8.1 — REKAPITULASI 21 AYAT -->
-  <div class="khatimah-section">
-    <div class="khatimah-judul">§8.1 — Rekapitulasi 21 Ayat Surah Al-Lail</div>
+  <!-- KOMPONEN 1 — RANGKUMAN SURAH -->
+  <div class="khatimah-box">
+    <div class="khatimah-head">
+      <span class="badge-khatimah">KOMPONEN ①</span>
+      <span class="khatimah-judul">Rangkuman Surah</span>
+    </div>
     <div class="khatimah-isi">
-      <p>Tabel berikut meringkas seluruh 21 ayat Surah Al-Lail beserta fungsi tematik dan konsep gramatikal utama yang muncul pada tiap ayat:</p>
-      <table class="konsep-tabel">
-        <tr>
-          <th style="width:6%;">Ayat</th>
-          <th style="width:30%;">Kata Kunci</th>
-          <th style="width:34%;">Konsep Utama (Nahwu / Balaghah)</th>
-          <th>Fungsi Tematik</th>
-        </tr>
-        <tr style="background:#ede4f8;">
-          <td colspan="4" style="text-align:center; font-weight:bold; font-style:italic; color:#3b0764;">SEGMEN 1 (ayat 1-4) — Sumpah Pembuka: Malam, Siang, dan Penciptaan</td>
-        </tr>
-        <tr><td><strong>1</strong></td><td class="arab">وَاللَّيْلِ إِذَا يَغْشَى</td><td>Wāw al-qasam, zharf إِذَا, jumlah fi'liyyah</td><td>Sumpah demi malam ketika menutupi</td></tr>
-        <tr><td><strong>2</strong></td><td class="arab">وَالنَّهَارِ إِذَا تَجَلَّى</td><td>'Athaf qasam, fi'il bab V (تَجَلَّى)</td><td>Sumpah demi siang ketika terang benderang</td></tr>
-        <tr><td><strong>3</strong></td><td class="arab">وَمَا خَلَقَ الذَّكَرَ وَالْأُنْثَى</td><td>Mā mashdariyyah, ṭibāq al-ījāb (الذَّكَر ↔ الْأُنْثَى)</td><td>Sumpah demi penciptaan laki-laki dan perempuan</td></tr>
-        <tr><td><strong>4</strong></td><td class="arab">إِنَّ سَعْيَكُمْ لَشَتَّى</td><td>Jawāb qasam, إِنَّ + lām muzahlaqah, isim jamak شَتَّى</td><td>Isi sumpah: usaha manusia berbeda-beda</td></tr>
-        <tr style="background:#ede4f8;">
-          <td colspan="4" style="text-align:center; font-weight:bold; font-style:italic; color:#3b0764;">SEGMEN 2 (ayat 5-11) — Dua Jalan: Kemudahan dan Kesukaran</td>
-        </tr>
-        <tr><td><strong>5</strong></td><td class="arab">فَأَمَّا مَنْ أَعْطَى وَاتَّقَى</td><td>Adat tafshīl أَمَّا, isim sharth مَنْ, fi'il bab VIII (اتَّقَى)</td><td>Golongan pertama: yang memberi dan bertakwa</td></tr>
-        <tr><td><strong>6</strong></td><td class="arab">وَصَدَّقَ بِالْحُسْنَى</td><td>Fi'il bab II (صَدَّقَ), bā' ta'diyah, isim الْحُسْنَى</td><td>Membenarkan balasan terbaik</td></tr>
-        <tr><td><strong>7</strong></td><td class="arab">فَسَنُيَسِّرُهُ لِلْيُسْرَى</td><td>Fā' jawāb sharth, sīn istiqbāl, fi'il bab II (نُيَسِّر)</td><td>Janji: dimudahkan menuju kemudahan</td></tr>
-        <tr><td><strong>8</strong></td><td class="arab">وَأَمَّا مَنْ بَخِلَ وَاسْتَغْنَى</td><td>Tafshīl kedua, fi'il bab X (اسْتَغْنَى), al-muqābalah</td><td>Golongan kedua: yang kikir dan merasa cukup</td></tr>
-        <tr><td><strong>9</strong></td><td class="arab">وَكَذَّبَ بِالْحُسْنَى</td><td>Fi'il bab II (كَذَّبَ), muqābalah dengan ayat 6</td><td>Mendustakan balasan terbaik</td></tr>
-        <tr><td><strong>10</strong></td><td class="arab">فَسَنُيَسِّرُهُ لِلْعُسْرَى</td><td>Fā' jawāb sharth, muqābalah dengan ayat 7</td><td>Akibat: dimudahkan menuju kesukaran</td></tr>
-        <tr><td><strong>11</strong></td><td class="arab">وَمَا يُغْنِي عَنْهُ مَالُهُ إِذَا تَرَدَّى</td><td>Mā nāfiyah, fi'il bab V (تَرَدَّى), zharf إِذَا</td><td>Harta tak berguna saat ia binasa</td></tr>
-        <tr style="background:#ede4f8;">
-          <td colspan="4" style="text-align:center; font-weight:bold; font-style:italic; color:#3b0764;">SEGMEN 3 (ayat 12-16) — Hak Allah ﷻ dan Peringatan Neraka</td>
-        </tr>
-        <tr><td><strong>12</strong></td><td class="arab">إِنَّ عَلَيْنَا لَلْهُدَى</td><td>إِنَّ, khabar muqaddam jar-majrūr, lām muzahlaqah</td><td>Hak Allah ﷻ: memberi petunjuk</td></tr>
-        <tr><td><strong>13</strong></td><td class="arab">وَإِنَّ لَنَا لَلْآخِرَةَ وَالْأُولَى</td><td>إِنَّ, khabar muqaddam, ṭibāq (الْآخِرَة ↔ الْأُولَى)</td><td>Milik Allah ﷻ: akhirat dan dunia</td></tr>
-        <tr><td><strong>14</strong></td><td class="arab">فَأَنْذَرْتُكُمْ نَارًا تَلَظَّى</td><td>Fi'il bab IV (أَنْذَرَ), iltifāt نَا→تُ, na't jumlah</td><td>Peringatan akan neraka yang menyala</td></tr>
-        <tr><td><strong>15</strong></td><td class="arab">لَا يَصْلَاهَا إِلَّا الْأَشْقَى</td><td>Istitsnā' mufarragh, qashr (لَا...إِلَّا), isim tafdhīl</td><td>Yang masuk neraka: orang paling celaka</td></tr>
-        <tr><td><strong>16</strong></td><td class="arab">الَّذِي كَذَّبَ وَتَوَلَّى</td><td>Isim mawshūl, shilah, fi'il bab V (تَوَلَّى)</td><td>Sifat al-asyqā: mendustakan dan berpaling</td></tr>
-        <tr style="background:#ede4f8;">
-          <td colspan="4" style="text-align:center; font-weight:bold; font-style:italic; color:#3b0764;">SEGMEN 4 (ayat 17-21) — Al-Atqā: Keikhlasan dan Janji Keridhaan</td>
-        </tr>
-        <tr><td><strong>17</strong></td><td class="arab">وَسَيُجَنَّبُهَا الْأَتْقَى</td><td>Sīn istiqbāl, fi'il majhūl bab II, isim tafdhīl</td><td>Yang dijauhkan dari neraka: orang paling bertakwa</td></tr>
-        <tr><td><strong>18</strong></td><td class="arab">الَّذِي يُؤْتِي مَالَهُ يَتَزَكَّى</td><td>Isim mawshūl, fi'il bab IV (يُؤْتِي), hāl jumlah</td><td>Sifat al-atqā: berinfak untuk menyucikan diri</td></tr>
-        <tr><td><strong>19</strong></td><td class="arab">وَمَا لِأَحَدٍ عِنْدَهُ مِنْ نِعْمَةٍ تُجْزَى</td><td>Mā nāfiyah, khabar muqaddam, harf jarr zā'idah (مِنْ)</td><td>Keikhlasan: bukan untuk membalas budi</td></tr>
-        <tr><td><strong>20</strong></td><td class="arab">إِلَّا ابْتِغَاءَ وَجْهِ رَبِّهِ الْأَعْلَى</td><td>Istitsnā' munqathi', idhafah bertingkat, itsbāt sifat</td><td>Motif murni: mengharap wajah Allah ﷻ</td></tr>
-        <tr><td><strong>21</strong></td><td class="arab">وَلَسَوْفَ يَرْضَى</td><td>Wāw 'athaf, lām al-ibtidā', harf istiqbāl سَوْفَ</td><td>Janji penutup: keridhaan bagi al-atqā</td></tr>
+      <table class="khatimah-tabel">
+        <tr><th>Nomor Surah</th><td>92</td></tr>
+        <tr><th>Nama</th><td>Al-Lail (Malam) — dari muqsam bih di ayat pertama</td></tr>
+        <tr><th>Jumlah Ayat</th><td>21 ayat — tujuh puluh satu kata; Al-Qurthubi: dua puluh satu ayat dengan kesepakatan ("bi-ijma'")</td></tr>
+        <tr><th>Golongan</th><td>Makkiyyah — Ibnu Katsir: "wa hiya makkiyyah"; Al-Qurthubi: makkiyyah, dan ada yang mengatakan madaniyyah ("wa qila madaniyyah").</td></tr>
+        <tr><th>Kandungan</th><td>Sumpah dengan malam, siang, dan penciptaan laki-laki dan perempuan; jawabnya: usaha manusia berbeda-beda; dua golongan dan jalan yang dimudahkan bagi masing-masing; petunjuk, akhirat, dan dunia milik Allah; peringatan neraka bagi yang paling celaka dan janji bagi yang paling bertakwa</td></tr>
+      </table>
+      <p><strong>Tema sentral.</strong> Usaha manusia berbeda-beda, dan setiap orang dimudahkan menuju akhir yang sesuai dengan amalnya. Rasulullah &#65018; membacakan ayat 5–10 ketika bersabda: "Beramallah, karena setiap orang dimudahkan menuju apa yang ia diciptakan untuknya" (HR. Al-Bukhari 4949 dan Muslim 2647).</p>
+      <p><strong>Struktur — empat bagian.</strong></p>
+      <table class="khatimah-tabel">
+        <tr><th>Bagian</th><th>Ayat</th><th>Isi</th></tr>
+        <tr><td>I — Sumpah dan jawabnya</td><td>1–4</td><td>Malam yang menutupi, siang yang terang, penciptaan laki-laki dan perempuan; usaha kalian berbeda-beda</td></tr>
+        <tr><td>II — Dua golongan</td><td>5–11</td><td>Yang memberi, bertakwa, dan membenarkan dimudahkan menuju kemudahan; yang kikir, merasa cukup, dan mendustakan dimudahkan menuju kesukaran; hartanya tidak berguna saat ia binasa</td></tr>
+        <tr><td>III — Kekuasaan Allah</td><td>12–13</td><td>Atas Allah-lah penjelasan petunjuk; milik-Nya akhirat dan dunia</td></tr>
+        <tr><td>IV — Peringatan dan janji</td><td>14–21</td><td>Neraka yang menyala, dimasuki yang paling celaka; dijauhkan darinya yang paling bertakwa, yang berinfak hanya karena wajah Rabb-nya — kelak ia ridha</td></tr>
+      </table>
+      <p><strong>Ringkasan tafsir.</strong> Allah bersumpah dengan malam ketika menutupi dan siang ketika terang (Ath-Thabari) bahwa usaha manusia berbeda-beda. Siapa yang memberi, bertakwa, dan membenarkan <em>al-husna</em>, Allah memudahkannya menuju kemudahan; siapa yang kikir, merasa cukup, dan mendustakan, Allah memudahkannya menuju kesukaran, dan hartanya tidak berguna ketika ia binasa (As-Sa'di). Atas Allah-lah menjelaskan petunjuk, dan milik-Nya akhirat dan dunia (Ath-Thabari). Neraka yang menyala tidak dimasuki — dengan dimasuki yang meliputi — kecuali oleh yang paling celaka, yang mendustakan dan berpaling (Ibnu Katsir, As-Sa'di); dan dijauhkan darinya yang paling bertakwa, yang berinfak untuk menyucikan diri, bukan untuk membalas jasa, tetapi hanya mencari wajah Rabb-nya — kelak ia ridha (Ibnu Katsir, Al-Qurthubi).</p>
+    </div>
+  </div>
+
+  <!-- KOMPONEN 2 — CATATAN STRUKTUR SURAH -->
+  <div class="khatimah-box-gelap">
+    <div class="khatimah-judul" style="color:#fbbf24;font-size:14px;margin-bottom:14px;">KOMPONEN ② — Catatan Struktur Surah: Dua Puluh Satu Ayat</div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">1</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَٱلَّيْلِ إِذَا يَغْشَىٰ</span><span class="khatimah-fungsi">Sumpah — wawu qasam; fi'il qasam wajib dibuang; idza sesudah sumpah</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">2</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَٱلنَّهَارِ إِذَا تَجَلَّىٰ</span><span class="khatimah-fungsi">Muqsam bih kedua — wawu 'athaf; idza: 'amil fi'il qasam, makna membatasi muqsam bih</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">3</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَمَا خَلَقَ ٱلذَّكَرَ وَٱلْأُنثَىٰٓ</span><span class="khatimah-fungsi">Muqsam bih ketiga — ma maushul atau mashdariyyah; dua maf'ul ma'thuf</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">4</span><span class="khatimah-teks"><span class="khatimah-arab arab">إِنَّ سَعْيَكُمْ لَشَتَّىٰ</span><span class="khatimah-fungsi">Jawab qasam — inna dan lam muzahlaqah pada khabar; jamak taksir</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">5</span><span class="khatimah-teks"><span class="khatimah-arab arab">فَأَمَّا مَنْ أَعْطَىٰ وَٱتَّقَىٰ</span><span class="khatimah-fungsi">Golongan pertama — fa', amma, man maushul, dan shilah ma'thufah</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">6</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَصَدَّقَ بِٱلْحُسْنَىٰ</span><span class="khatimah-fungsi">Shilah ketiga — ba' pada maf'ul; isim tafdhil fu'la</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">7</span><span class="khatimah-teks"><span class="khatimah-arab arab">فَسَنُيَسِّرُهُۥ لِلْيُسْرَىٰ</span><span class="khatimah-fungsi">Khabar bagi man — fa' rabithah dan sin; lam pada al-yusra</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">8</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَأَمَّا مَنۢ بَخِلَ وَٱسْتَغْنَىٰ</span><span class="khatimah-fungsi">Golongan kedua — wa amma; man bertanda iqlab</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">9</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَكَذَّبَ بِٱلْحُسْنَىٰ</span><span class="khatimah-fungsi">Shilah ketiga — susunan sejajar ayat 6</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">10</span><span class="khatimah-teks"><span class="khatimah-arab arab">فَسَنُيَسِّرُهُۥ لِلْعُسْرَىٰ</span><span class="khatimah-fungsi">Khabar bagi man — susunan sejajar ayat 7</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">11</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَمَا يُغْنِى عَنْهُ مَالُهُۥٓ إِذَا تَرَدَّىٰٓ</span><span class="khatimah-fungsi">Ma nafiyah pada fi'il; fa'il idhafah; idza dan fi'il madhi</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">12</span><span class="khatimah-teks"><span class="khatimah-arab arab">إِنَّ عَلَيْنَا لَلْهُدَىٰ</span><span class="khatimah-fungsi">Inna; khabar jar-majrur didahulukan; lam pada isim inna yang diakhirkan</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">13</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَإِنَّ لَنَا لَلْـَٔاخِرَةَ وَٱلْأُولَىٰ</span><span class="khatimah-fungsi">'Athaf kepada ayat 12 dengan susunan yang sama</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">14</span><span class="khatimah-teks"><span class="khatimah-arab arab">فَأَنذَرْتُكُمْ نَارًا تَلَظَّىٰ</span><span class="khatimah-fungsi">Fi'il dua maf'ul; kalimat sebagai na't bagi nakirah</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">15</span><span class="khatimah-teks"><span class="khatimah-arab arab">لَا يَصْلَىٰهَآ إِلَّا ٱلْأَشْقَى</span><span class="khatimah-fungsi">Na't kedua — la dan illa: istitsna' mufarragh; isim tafdhil sebagai fa'il</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">16</span><span class="khatimah-teks"><span class="khatimah-arab arab">ٱلَّذِى كَذَّبَ وَتَوَلَّىٰ</span><span class="khatimah-fungsi">Isim maushul sebagai na't lintas ayat; dua shilah ma'thufah</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">17</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَسَيُجَنَّبُهَا ٱلْأَتْقَى</span><span class="khatimah-fungsi">Fi'il majhul dengan dua maf'ul: maf'ul pertama menjadi na'ib fa'il</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">18</span><span class="khatimah-teks"><span class="khatimah-arab arab">ٱلَّذِى يُؤْتِى مَالَهُۥ يَتَزَكَّىٰ</span><span class="khatimah-fungsi">Na't lintas ayat; shilah dengan hal (atau badal)</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">19</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَمَا لِأَحَدٍ عِندَهُۥ مِن نِّعْمَةٍ تُجْزَىٰٓ</span><span class="khatimah-fungsi">Ma nafiyah tidak beramal karena khabar didahulukan; min za'idah; na't</span></span></div>
+  <div class="khatimah-baris"><span class="khatimah-nomor">20</span><span class="khatimah-teks"><span class="khatimah-arab arab">إِلَّا ٱبْتِغَآءَ وَجْهِ رَبِّهِ ٱلْأَعْلَىٰ</span><span class="khatimah-fungsi">Istitsna' munqathi' atau maf'ul li-ajlih; idhafah bertingkat</span></span></div>
+  <div class="khatimah-baris akhir"><span class="khatimah-nomor">21</span><span class="khatimah-teks"><span class="khatimah-arab arab">وَلَسَوْفَ يَرْضَىٰ</span><span class="khatimah-fungsi">Penutup — lam dan sawfa; janji keridhaan</span></span></div>
+    <div class="khatimah-catatan">
+      <p><strong>Tiga keunikan susunan Surah Al-Lail:</strong></p>
+      <p><strong>Pertama — dua golongan yang sejajar.</strong> Ayat 5–7 dan 8–10 memakai susunan yang sama kata demi kata: <em>amma</em>, <em>man</em> maushul, dua shilah ma'thufah, shilah ketiga dengan ba', lalu khabar dengan fa' dan sin — dengan sifat yang berlawanan.</p>
+      <p><strong>Kedua — lam pada isim inna yang diakhirkan.</strong> Ayat 12 dan 13 mendahulukan khabar jar-majrur, sehingga lam muzahlaqah masuk pada isim inna.</p>
+      <p><strong>Ketiga — na't yang berangkai lintas ayat.</strong> Neraka di ayat 14 disifati di ayat 14 dan 15; <em>al-asyqa</em> di ayat 15 disifati di ayat 16; <em>al-atqa</em> di ayat 17 disifati di ayat 18, lalu niatnya dirinci di ayat 19–20.</p>
+    </div>
+  </div>
+
+  <!-- KOMPONEN 3 — KONSEP GRAMATIKAL KUMULATIF -->
+  <div class="khatimah-box">
+    <div class="khatimah-head">
+      <span class="badge-khatimah">KOMPONEN ③</span>
+      <span class="khatimah-judul">Konsep Gramatikal Surah Al-Lail</span>
+    </div>
+    <div class="khatimah-isi">
+      <p>Berikut konsep-konsep pokok yang dibahas pada surah ini, dikelompokkan menurut tiga bidang.</p>
+      <div class="kum-judul-nahwu">Nahwu dan Sharf — Susunan Kata dan Kalimat</div>
+      <table class="konsep-kum-tabel">
+        <tr><th>Konsep</th><th>Ayat</th><th>Keterangan</th></tr>
+        <tr><td>Wawu qasam dan fi'il qasam yang dibuang</td><td>1</td><td>Taqdir [uqsimu]; jawabnya di ayat 4</td></tr>
+        <tr><td>Idza sesudah sumpah</td><td>1 · 2</td><td>'Amil secara i'rab; muqsam bih secara makna</td></tr>
+        <tr><td>Ma maushul atau mashdariyyah</td><td>3</td><td>Khilaf</td></tr>
+        <tr><td>Lam muzahlaqah</td><td>4 · 12 · 13</td><td>Pada khabar, dan pada isim inna yang diakhirkan</td></tr>
+        <tr><td>Amma, man maushul, dan fa' pada khabar</td><td>5 · 7 · 8 · 10</td><td>Mubtada' dan khabar lintas ayat</td></tr>
+        <tr><td>Isim tafdhil ber-al</td><td>6 · 7 · 10 · 13 · 15 · 17 · 20</td><td>Tanpa pembanding; af'al atau bermakna fa'il</td></tr>
+        <tr><td>Kalimat sebagai na't bagi nakirah</td><td>14 · 15 · 19</td><td>Pengikatnya dhamir</td></tr>
+        <tr><td>Istitsna' mufarragh dan munqathi'</td><td>15 · 20</td><td>La … illa; illa bermakna lakin</td></tr>
+        <tr><td>Na't lintas ayat dengan isim maushul</td><td>16 · 18</td><td>Alladzi mengikuti man'ut di ayat sebelumnya</td></tr>
+        <tr><td>Fi'il dua maf'ul dimajhulkan</td><td>17</td><td>Maf'ul pertama menjadi na'ib fa'il</td></tr>
+        <tr><td>Hal berupa kalimat</td><td>18</td><td>Atau badal (Ad-Darwisy)</td></tr>
+        <tr><td>Ma nafiyah di depan kalimat nominal</td><td>19</td><td>Tidak beramal karena khabar didahulukan</td></tr>
+        <tr><td>Min za'idah sesudah penafian</td><td>19</td><td>Majrur lafzhan, marfu' mahallan</td></tr>
+        <tr><td>Maf'ul li-ajlih</td><td>20</td><td>Pendapat Ad-Darwisy</td></tr>
+        <tr><td>Lam dan sawfa</td><td>21</td><td>Sama dengan Adh-Dhuha: 5</td></tr>
+      </table>
+      <div class="kum-judul-balaghah">Balaghah — Keindahan dan Faedah Susunan</div>
+      <table class="konsep-kum-tabel">
+        <tr><th>Konsep</th><th>Ayat</th><th>Keterangan</th></tr>
+        <tr><td>Sumpah dengan dua hal yang berlawanan</td><td>1 · 2 · 3</td><td>Malam dan siang; laki-laki dan perempuan</td></tr>
+        <tr><td>Perincian dengan amma</td><td>5 · 8</td><td>Merinci usaha yang berbeda-beda di ayat 4</td></tr>
+        <tr><td>Maf'ul yang dibuang</td><td>5 · 16</td><td>Mencakup setiap pemberian dan setiap kebenaran</td></tr>
+        <tr><td>Pembatasan dengan la … illa</td><td>15</td><td>Hanya yang paling celaka</td></tr>
+        <tr><td>Penegasan penafian dengan min</td><td>19</td><td>Tidak satu nikmat pun</td></tr>
+      </table>
+      <div class="kum-judul-nahwu">Tauhid — Pokok Keyakinan</div>
+      <table class="konsep-kum-tabel">
+        <tr><th>Konsep</th><th>Ayat</th><th>Keterangan</th></tr>
+        <tr><td>Allah bersumpah dengan makhluk-Nya</td><td>1 · 2 · 3</td><td>Hamba bersumpah hanya dengan Allah</td></tr>
+        <tr><td>Takdir dan amal</td><td>5–10</td><td>Setiap orang dimudahkan menuju apa yang ia diciptakan untuknya</td></tr>
+        <tr><td>Petunjuk dijelaskan oleh Allah</td><td>12</td><td>Tidak ada alasan sesudah penjelasan</td></tr>
+        <tr><td>Milik Allah akhirat dan dunia</td><td>13</td><td>Mintalah keduanya kepada Pemiliknya</td></tr>
+        <tr><td>Ikhlas karena wajah Allah</td><td>19 · 20</td><td>Sifat-sifat Allah ditetapkan tanpa menyerupakan</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- §8.2 — STRUKTUR SURAH -->
-  <div class="khatimah-section">
-    <div class="khatimah-judul">§8.2 — Struktur Surah Al-Lail: Dari Sumpah Pembuka Menuju Janji Keridhaan</div>
-    <div class="khatimah-isi">
-      <p>Surah Al-Lail tersusun dalam empat segmen yang mengalir secara berurutan — dari sumpah pembuka hingga janji penutup:</p>
-      <p><strong>Segmen 1 (ayat 1-4) — Sumpah Pembuka.</strong> Surah dibuka dengan tiga sumpah: demi malam ketika menutupi, demi siang ketika terang, dan demi penciptaan laki-laki dan perempuan. Isi sumpah disebutkan pada ayat 4: <span class="arab-istilah">إِنَّ سَعْيَكُمْ لَشَتَّى</span> — "sesungguhnya usaha kalian berbeda-beda". Inilah tema pokok surah: perbuatan manusia bercabang menjadi dua jalan.</p>
-      <p><strong>Segmen 2 (ayat 5-11) — Dua Jalan.</strong> Surah membentangkan dua jalan hidup dengan pola <em>al-muqābalah</em> (perimbangan) yang indah. Golongan pertama: yang memberi, bertakwa, dan membenarkan kebaikan — dimudahkan menuju <span class="arab-istilah">الْيُسْرَى</span> (kemudahan). Golongan kedua: yang kikir, merasa cukup, dan mendustakan — dimudahkan menuju <span class="arab-istilah">الْعُسْرَى</span> (kesukaran). Tiap unsur pada golongan pertama berpasangan berlawanan dengan golongan kedua.</p>
-      <p><strong>Segmen 3 (ayat 12-16) — Hak Allah ﷻ dan Peringatan.</strong> Surah menegaskan hak dan kekuasaan Allah ﷻ: memberi petunjuk adalah hak-Nya, dan milik-Nya-lah akhirat serta dunia. Lalu datang peringatan tentang neraka yang menyala, yang dimasuki oleh al-asyqā — orang paling celaka yang mendustakan dan berpaling.</p>
-      <p><strong>Segmen 4 (ayat 17-21) — Al-Atqā dan Janji Keridhaan.</strong> Sebagai penyeimbang, surah menampilkan al-atqā — orang paling bertakwa yang dijauhkan dari neraka. Sifatnya dirinci: berinfak untuk menyucikan diri, ikhlas tanpa motif balas-budi, semata mengharap wajah Allah ﷻ. Surah ditutup dengan janji keridhaan: <span class="arab-istilah">وَلَسَوْفَ يَرْضَى</span>.</p>
-      <p>Perhatikan keindahan arsitektur ini: surah dibuka dengan <em>sumpah agung</em> dan ditutup dengan <em>janji keridhaan</em>. Di antara keduanya, dua golongan manusia dilukiskan dengan perimbangan yang sempurna — dan surah memilih mengakhiri kisah dengan golongan yang berbahagia, sebagai penutup yang menumbuhkan harapan.</p>
+  <!-- KOMPONEN 4 — TADABUR KHATMIL + DOA + SYUKUR -->
+  <div class="khatimah-box">
+    <div class="khatimah-head">
+      <span class="badge-khatimah">KOMPONEN ④</span>
+      <span class="khatimah-judul">Tadabur Khatmil Surah</span>
     </div>
-  </div>
-
-  <!-- §8.3 — KONSEP GRAMATIKAL KUMULATIF -->
-  <div class="khatimah-section">
-    <div class="khatimah-judul">§8.3 — Konsep Nahwu dan Balaghah Kumulatif dalam Surah Al-Lail</div>
     <div class="khatimah-isi">
-      <p>Sepanjang 21 ayat, Surah Al-Lail menghadirkan beragam konsep gramatikal dan balaghah. Berikut rangkumannya:</p>
-      <p><strong>Bidang Nahwu (tata bahasa):</strong></p>
+      <p><strong>Dari perbedaan usaha, kepada dua jalan, kepada dua akhir.</strong> Malam dan siang berbeda, laki-laki dan perempuan berbeda — demikian pula usaha manusia. Yang memberi dan bertakwa dimudahkan menuju kemudahan; yang kikir dan merasa cukup dimudahkan menuju kesukaran. Penjelasan telah datang dari Allah, peringatan telah disampaikan, dan janji keridhaan disediakan bagi yang berinfak hanya karena wajah-Nya.</p>
+      <p>Siapa yang memahami bahwa hartanya tidak berguna ketika ia binasa, ia mendahulukannya untuk akhirat; siapa yang mengikhlaskan pemberiannya, ia tidak menunggu balasan manusia.</p>
+      <p><strong>Pelajaran yang dipetik:</strong></p>
       <ul class="poin-list">
-        <li><strong>Sumpah (qasam)</strong> — wāw al-qasam pada ayat 1-3, dengan jawāb qasam pada ayat 4 yang dikukuhkan <span class="arab-istilah">إِنَّ</span> dan lām muzahlaqah</li>
-        <li><strong>Adat tafshīl</strong> <span class="arab-istilah">أَمَّا</span> — perincian dua golongan pada ayat 5 dan 8, dengan fā' jawāb pada ayat 7 dan 10</li>
-        <li><strong>Ragam bab fi'il</strong> — fi'il terbentuk dari berbagai bab: bab II (صَدَّقَ، كَذَّبَ، نُيَسِّر), bab IV (أَنْذَرَ، يُؤْتِي), bab V (تَجَلَّى، تَرَدَّى، تَوَلَّى، يَتَزَكَّى), bab VIII (اتَّقَى), bab X (اسْتَغْنَى)</li>
-        <li><strong>Jumlah ismiyyah dengan khabar muqaddam</strong> — pada ayat 12, 13, dan 19</li>
-        <li><strong>Istitsnā' (pengecualian)</strong> — bentuk mufarragh pada ayat 15, dan bentuk munqathi' pada ayat 20</li>
-        <li><strong>Harf jarr zā'idah</strong> — <span class="arab-istilah">مِنْ</span> tambahan penegas pada ayat 19</li>
-        <li><strong>Idhafah bertingkat</strong> — rangkaian penyandaran berlapis pada ayat 20</li>
-        <li><strong>Penanda masa depan</strong> — sīn istiqbāl pada ayat 7, 10, 17; dan سَوْفَ pada ayat 21</li>
+        <li>Beramallah; setiap orang dimudahkan menuju apa yang ia diciptakan untuknya.</li>
+        <li>Memberi, bertakwa, dan membenarkan adalah sebab kemudahan; kikir, merasa cukup, dan mendustakan adalah sebab kesukaran.</li>
+        <li>Harta tidak menolong pemiliknya ketika ia binasa; yang menyertainya hanyalah amal.</li>
+        <li>Petunjuk telah dijelaskan; mintalah dunia dan akhirat kepada Pemiliknya.</li>
+        <li>Berinfaklah untuk menyucikan diri, bukan untuk membalas jasa atau mencari pujian — hanya karena wajah Allah.</li>
       </ul>
-      <p style="margin-top:10px;"><strong>Bidang Balaghah (keindahan bahasa):</strong></p>
-      <ul class="poin-list">
-        <li><strong>Ṭibāq</strong> (mempertentangkan dua makna berlawanan) — <span class="arab-istilah">الذَّكَر ↔ الْأُنْثَى</span> (ayat 3), <span class="arab-istilah">الْآخِرَة ↔ الْأُولَى</span> (ayat 13)</li>
-        <li><strong>Al-Muqābalah</strong> (perimbangan beberapa makna dengan lawannya) — seluruh segmen dua jalan (ayat 5-10): tiap sifat golongan pertama berpasangan berlawanan dengan golongan kedua</li>
-        <li><strong>Qashr</strong> (pembatasan/pengkhususan) — pola <span class="arab-istilah">لَا...إِلَّا</span> pada ayat 15</li>
-        <li><strong>Iltifāt</strong> (perpindahan gaya) — peralihan dhamir dari <span class="arab-istilah">نَا</span> ke <span class="arab-istilah">تُ</span> pada ayat 14</li>
-        <li><strong>Penegasan berlapis</strong> — gabungan <span class="arab-istilah">لَ</span> + <span class="arab-istilah">سَوْفَ</span> pada ayat 21 yang mengukuhkan janji keridhaan</li>
-      </ul>
-      <p style="margin-top:10px;">Dalam bidang tauhid, ayat 20 menghadirkan penetapan sifat Allah ﷻ — <em>al-wajh</em> (wajah) dan <em>al-'uluww</em> (ketinggian) — menurut manhaj Ahlussunnah: menetapkan tanpa menyimpang ke tahrīf, ta'thīl, takyīf, atau tamtsīl.</p>
+      <div class="doa-box">
+        <div class="doa-arab arab">رَبَّنَا تَقَبَّلْ مِنَّآ إِنَّكَ أَنتَ ٱلسَّمِيعُ ٱلْعَلِيمُ</div>
+        <div class="doa-terjemah">&ldquo;Ya Rabb kami, terimalah dari kami; sesungguhnya Engkaulah Yang Maha Mendengar lagi Maha Mengetahui.&rdquo; (Al-Baqarah: 127). Aamiin yaa Rabbal 'aalamiin.</div>
+      </div>
+      <div class="syukur-box">
+        <p>Alhamdulillah, dengan pertolongan Allah &#65019; semata, analisis gramatikal Surah Al-Lail telah sempurna dua puluh satu ayat. Segala kebenaran yang terdapat padanya berasal dari Allah &#65019;; segala kekeliruan berasal dari kelemahan kami sendiri dan dari setan, dan kami memohon ampunan atasnya.</p>
+        <p>Semoga Allah &#65019; menjadikan pekerjaan ini sebagai <strong>amal jariyah</strong> yang tidak terputus pahalanya, bermanfaat bagi setiap penuntut ilmu yang datang kepada Kitab-Nya, dan diterima sebagai amal yang ikhlas semata-mata karena wajah-Nya yang mulia.</p>
+        <p>Kami memohon kepada Allah &#65019; agar menjadikan kami termasuk orang yang memberi, bertakwa, dan membenarkan, serta menjauhkan kami dari neraka. <strong>Wallahu a'lamu bish-shawab.</strong> Jazakumullahu khairan.</p>
+        <span class="syukur-tanda">— grammar-quran.com</span>
+      </div>
     </div>
   </div>
-
-  <!-- §8.4 — PESAN PENUTUP -->
-  <div class="khatimah-section">
-    <div class="khatimah-judul">§8.4 — Pesan Penutup Tadabur Surah Al-Lail</div>
-    <div class="khatimah-isi">
-      <p>Surah Al-Lail meninggalkan satu pelajaran pokok bagi setiap mukmin: <strong>perbuatan manusia bercabang menjadi dua jalan, dan tiap jalan memiliki ujungnya masing-masing</strong>. Surah ini, sejak sumpahnya yang pertama, telah menegaskan: <span class="arab-istilah">إِنَّ سَعْيَكُمْ لَشَتَّى</span> — usaha manusia sungguh berbeda-beda.</p>
-      <p>Dari surah ini kita belajar bahwa jalan kebaikan dibangun di atas tiga pilar: <em>memberi</em> (berinfak dan berkorban), <em>bertakwa</em> (menjaga diri dari yang dilarang), dan <em>membenarkan</em> (meyakini balasan terbaik dari Allah ﷻ). Siapa yang menempuhnya akan dimudahkan Allah ﷻ menuju segala kebaikan. Sebaliknya, jalan keburukan dibangun di atas kekikiran, merasa cukup dari Allah ﷻ, dan mendustakan — dan ia menggiring pelakunya kepada kesukaran.</p>
-      <p>Surah ini juga mengajarkan puncak keikhlasan melalui sosok al-atqā: ia berinfak bukan untuk membalas budi siapa pun, bukan untuk pujian, melainkan semata mengharap wajah Allah ﷻ Yang Maha Tinggi. Dan inilah janji penutupnya — barangsiapa ikhlas menempuh jalan ketakwaan, <span class="arab-istilah">وَلَسَوْفَ يَرْضَى</span>: kelak ia benar-benar akan merasa puas.</p>
-      <p>Semoga Allah ﷻ menjadikan kita termasuk golongan al-atqā — yang memberi, bertakwa, membenarkan, dan ikhlas semata karena-Nya. Semoga Dia memudahkan kita menuju <span class="arab-istilah">الْيُسْرَى</span>, menjauhkan kita dari <span class="arab-istilah">الْعُسْرَى</span>, dan menutup hidup kita dengan keridhaan-Nya.</p>
-      <p style="text-align:center; margin-top:14px;"><strong style="color:#3b0764;">وَآخِرُ دَعْوَانَا أَنِ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</strong></p>
-      <p style="text-align:center; font-style:italic; color:#666; font-size:12.5px;">"Dan penutup doa kami: segala puji bagi Allah, Rabb seluruh alam."</p>
-    </div>
-  </div>
-
-
-  <!-- NAV-BAWAH -->
   <div class="nav-bawah" id="nav-bawah-container"></div>
 
 </div>
 
 <footer>
-  <p>grammar-quran.com · Analisis Gramatikal Al-Qur'an · <a href="index.html">Beranda</a></p>
+  <p style="max-width:680px;margin:0 auto 10px;line-height:1.7;color:rgba(255,255,255,.55);">Web ini dibangun mulai dari Surah 1 (Al-Fatihah), kemudian Surah 114 (An-Naas), naik ke Surah 113 (Al-Falaq), dan seterusnya menuju Surah Al-Baqarah.</p>
+  <p style="max-width:680px;margin:0 auto 10px;line-height:1.7;color:rgba(255,255,255,.55);">Penjelasan kaidah gramatikal diuraikan bertahap dari ayat yang dibangun di awal. Kaidah gramatikal yang telah dijelaskan pada analisis awal tidak diuraikan ulang bila ditemukan pada ayat atau surat berikutnya.</p>
+  <p style="max-width:680px;margin:0 auto 10px;line-height:1.7;color:rgba(255,255,255,.55);">Analisis yang dibangun pada web ini tentu tidak sempurna. Jika Anda menemukan kesalahan atau ketidak-akuratan, mohon beritahukan kepada kami melalui email: <a href="mailto:ythowloves@gmail.com">ythowloves@gmail.com</a>.</p>
   <!-- V18-0F ③ — atribusi nash Tanzil, COPY LITERAL; tautan wajib hidup -->
   <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.45);">Teks Al-Qur'an: Tanzil Quran Text (Uthmani, v1.1) &copy; Tanzil Project &middot; CC BY 3.0 &middot; <a href="https://tanzil.net" target="_blank" rel="noopener">tanzil.net</a></p>
 </footer>
 
 <script src="surah-data.js"></script>
+<!-- ╚══ END COPY LITERAL — NAV-BAWAH + FOOTER ══╝ -->
 
+<!-- ╔══ INSERT PAGE_CONFIG (3 nilai wajib) ══╗ -->
 <script>
   const PAGE_CONFIG = {
     nomorSurah:   92,
@@ -1037,7 +1172,9 @@
     ayatTerakhir: true
   };
 </script>
+<!-- ╚══ END INSERT PAGE_CONFIG ══╝ -->
 
+<!-- ╔══ COPY LITERAL — INIT SCRIPT (NAV + DROPDOWN) ══╗ -->
 <script>
   (function () {
     const surah = getSurahByNomor(PAGE_CONFIG.nomorSurah);
@@ -1050,7 +1187,7 @@
     document.title = `Grammar ${surah.namaLatin} ${surah.nomor}:${ayatSaat}`;
 
     const lbl = document.getElementById('label-ayat-box');
-    if (lbl) lbl.textContent = `Ayat Lengkap \u00b7 ${surah.namaLatin} : ${ayatSaat}` + (isLast ? ' \u00b7 Ayat Terakhir' : '');
+    if (lbl) lbl.textContent = `Ayat Lengkap · ${surah.namaLatin} : ${ayatSaat}` + (isLast ? ' · Ayat Terakhir' : '');
 
     const ddSurah = document.getElementById('dd-surah');
     SURAH_DATA
@@ -1059,7 +1196,7 @@
       .forEach(s => {
         const opt = document.createElement('option');
         opt.value = s.nomorStr;
-        opt.textContent = s.nomor + '. ' + s.namaLatin + ' \u2014 ' + s.jumlahAyat + ' ayat';
+        opt.textContent = s.nomor + '. ' + s.namaLatin + ' — ' + s.jumlahAyat + ' ayat';
         if (s.nomor === surah.nomor) opt.selected = true;
         ddSurah.appendChild(opt);
       });
@@ -1069,7 +1206,7 @@
       ddAyat.innerHTML = '';
       const opsiAyat = getOpsiDropdownAyat(nomorSurahParam);
       if (!opsiAyat.length) {
-        ddAyat.innerHTML = '<option value="">\u2014 Pilih Ayat \u2014</option>';
+        ddAyat.innerHTML = '<option value="">— Pilih Ayat —</option>';
         ddAyat.disabled = true;
         return;
       }
@@ -1096,7 +1233,7 @@
         if (sObj) isiDropdownAyat(sObj.nomor);
       } else {
         const dd = document.getElementById('dd-ayat');
-        dd.innerHTML = '<option value="">\u2014 Pilih Ayat \u2014</option>';
+        dd.innerHTML = '<option value="">— Pilih Ayat —</option>';
         dd.disabled = true;
       }
     });
@@ -1112,21 +1249,28 @@
     }
     function cariSurahTetanggaSemua(nomor, arah) {
       if (typeof SURAH_DATA === 'undefined') return null;
-      return SURAH_DATA.find(s => s.nomor === nomor + arah) || null;
+      // V18-4A — navigasi antarsurah (ralat Iwoth 1 Nov 2026):
+      //   tombol kiri ayat 1          → ayat terakhir surah nomor−1
+      //   tombol kanan ayat terakhir  → ayat 1 surah nomor+1
+      // Pengecualian: 001-01 kiri tidak ada · 001-07 kanan → 114-01 · 114-06 kanan → 001-01.
+      let tujuan = nomor + arah;
+      if (nomor === 1) tujuan = (arah === 1) ? 114 : 0;
+      if (nomor === 114 && arah === 1) tujuan = 1;
+      return SURAH_DATA.find(s => s.nomor === tujuan) || null;
     }
 
     let prevTarget = null, nextTarget = null;
     if (ayatSaat > 1) {
-      prevTarget = { href: fileAyat(surah.nomor, ayatSaat - 1), label: '\u2190 Ayat ' + (ayatSaat - 1), edge: false };
+      prevTarget = { href: fileAyat(surah.nomor, ayatSaat - 1), label: '← Ayat ' + (ayatSaat - 1), edge: false };
     } else {
       const prevS = cariSurahTetanggaSemua(surah.nomor, -1);
-      if (prevS) prevTarget = { href: fileAyat(prevS.nomor, prevS.jumlahAyat), label: '\u2190 ' + prevS.namaLatin + ' ' + prevS.jumlahAyat, edge: true };
+      if (prevS) prevTarget = { href: fileAyat(prevS.nomor, prevS.jumlahAyat), label: '← ' + prevS.namaLatin + ' ' + prevS.jumlahAyat, edge: true };
     }
     if (ayatSaat < totalAyat) {
-      nextTarget = { href: fileAyat(surah.nomor, ayatSaat + 1), label: 'Ayat ' + (ayatSaat + 1) + ' \u2192', edge: false };
+      nextTarget = { href: fileAyat(surah.nomor, ayatSaat + 1), label: 'Ayat ' + (ayatSaat + 1) + ' →', edge: false };
     } else {
       const nextS = cariSurahTetanggaSemua(surah.nomor, 1);
-      if (nextS) nextTarget = { href: fileAyat(nextS.nomor, 1), label: nextS.namaLatin + ' 1 \u2192', edge: true };
+      if (nextS) nextTarget = { href: fileAyat(nextS.nomor, 1), label: nextS.namaLatin + ' 1 →', edge: true };
     }
 
     const hdrPrev = document.getElementById('hdr-prev');
@@ -1135,17 +1279,17 @@
       if (prevTarget) {
         hdrPrev.href = prevTarget.href;
         hdrPrev.textContent = prevTarget.label;
-        hdrPrev.title = prevTarget.edge ? 'Surah sebelumnya: ' + prevTarget.label.replace('\u2190 ', '') : 'Ayat sebelumnya';
+        hdrPrev.title = prevTarget.edge ? 'Surah sebelumnya: ' + prevTarget.label.replace('← ', '') : 'Ayat sebelumnya';
         if (prevTarget.edge) hdrPrev.classList.add('edge');
-      } else { hdrPrev.classList.add('disabled'); hdrPrev.textContent = '\u2190'; }
+      } else { hdrPrev.classList.add('disabled'); hdrPrev.textContent = '←'; }
     }
     if (hdrNext) {
       if (nextTarget) {
         hdrNext.href = nextTarget.href;
         hdrNext.textContent = nextTarget.label;
-        hdrNext.title = nextTarget.edge ? 'Surah berikutnya: ' + nextTarget.label.replace(' \u2192', '') : 'Ayat berikutnya';
+        hdrNext.title = nextTarget.edge ? 'Surah berikutnya: ' + nextTarget.label.replace(' →', '') : 'Ayat berikutnya';
         if (nextTarget.edge) hdrNext.classList.add('edge');
-      } else { hdrNext.classList.add('disabled'); hdrNext.textContent = '\u2192'; }
+      } else { hdrNext.classList.add('disabled'); hdrNext.textContent = '→'; }
     }
 
     const container = document.getElementById('nav-bawah-container');
@@ -1160,12 +1304,12 @@
       const bh = document.createElement('a');
       bh.className = 'nav-btn beranda';
       bh.href = 'index.html';
-      bh.textContent = '\u2302 Beranda';
+      bh.textContent = '⌂ Beranda';
       container.appendChild(bh);
 
       const info = document.createElement('span');
       info.className = 'nav-info';
-      info.textContent = `${surah.namaLatin} \u00b7 Ayat ${ayatSaat} dari ${totalAyat}`;
+      info.textContent = `${surah.namaLatin} · Ayat ${ayatSaat} dari ${totalAyat}`;
       container.appendChild(info);
 
       if (nextTarget) {
@@ -1178,6 +1322,7 @@
     }
   })();
 </script>
+<!-- ╚══ END COPY LITERAL — INIT SCRIPT ══╝ -->
 
 </body>
 </html>
